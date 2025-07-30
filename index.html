@@ -1857,8 +1857,8 @@
     let aiWorkbookSelectedPersonality = '';
     let aiWorkbookUserMainName = ''; // Nombre principal como ID
     
-    // 🚀 CONFIGURACIÓN DE APPS SCRIPT
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec'; // Cambiar por tu URL real
+    // 🚀 CONFIGURACIÓN DE APPS SCRIPT - URL REAL INTEGRADA
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec';
     let autoSyncInterval = null;
     let lastSyncTime = null;
     
@@ -1887,13 +1887,8 @@
       }
     }
 
-    // 🚀 SISTEMA DE SINCRONIZACIÓN AUTOMÁTICA CON APPS SCRIPT
+    // 🚀 SISTEMA DE SINCRONIZACIÓN AUTOMÁTICA CON APPS SCRIPT (OPTIMIZADO)
     async function sendDataToAppsScript(userData) {
-      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
-        console.log('⚠️ Apps Script URL no configurada');
-        return false;
-      }
-      
       try {
         const response = await fetch(APPS_SCRIPT_URL, {
           method: 'POST',
@@ -1938,29 +1933,33 @@
       }
     }
     
-    // ⏰ INICIAR SINCRONIZACIÓN AUTOMÁTICA CADA MINUTO (SILENCIOSO)
+    // ⏰ INICIAR SINCRONIZACIÓN AUTOMÁTICA CADA MINUTO (OPTIMIZADO)
     function startAutoSync() {
       // Limpiar interval existente
       if (autoSyncInterval) {
         clearInterval(autoSyncInterval);
       }
       
-      // Sync inicial
-      if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
-        sendDataToAppsScript(aiWorkbookUserData);
-      }
+      console.log('🚀 Iniciando auto-sync con Apps Script...');
       
-      // Configurar sync automático cada minuto (60000 ms)
+      // Sync inicial después de 5 segundos (dar tiempo para cargas)
+      setTimeout(() => {
+        if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
+          sendDataToAppsScript(prepareDataForSync());
+        }
+      }, 5000);
+      
+      // Configurar sync automático cada 2 minutos (menos agresivo)
       autoSyncInterval = setInterval(async () => {
         if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
           console.log('🔄 Auto-sync ejecutándose silenciosamente...');
-          await sendDataToAppsScript(aiWorkbookUserData);
+          await sendDataToAppsScript(prepareDataForSync());
         } else {
-          console.log('⏸️ Auto-sync pausado - datos insuficientes');
+          console.log('⏸️ Auto-sync pausado - esperando más datos');
         }
-      }, 60000); // Cada minuto
+      }, 120000); // Cada 2 minutos
       
-      console.log('✅ Auto-sync iniciado silenciosamente - envío cada minuto');
+      console.log('✅ Auto-sync iniciado - envío cada 2 minutos a:', APPS_SCRIPT_URL);
     }
     
     // 🛑 DETENER SINCRONIZACIÓN AUTOMÁTICA
@@ -2461,7 +2460,7 @@
       saveToLocalStorage(googleSheetsData);
       
       // 🚀 ENVÍO AUTOMÁTICO A APPS SCRIPT (si está configurado)
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
         // Envío inmediato en cambios importantes
         const importantFields = [
           'aiWorkbookUserName',
@@ -2783,21 +2782,24 @@
       }, 3000);
     }
 
-    // Auto-guardado SÚPER FRECUENTE y COMPLETO
+    // Auto-guardado OPTIMIZADO (menos frecuente para evitar problemas)
     function setupAutoSave() {
-      // Auto-save en tiempo real en cada input
+      // Auto-save en tiempo real en cada input (con delay más largo)
       document.querySelectorAll('.fun-input, .fun-textarea').forEach(input => {
-        // Guardar en cada tecla (con delay para evitar spam)
+        // Guardar después de dejar de escribir por 2 segundos
         input.addEventListener('input', function() {
           clearTimeout(this.saveTimeout);
           this.saveTimeout = setTimeout(() => {
             saveData();
-          }, 500); // Guardar 500ms después de dejar de escribir
+          }, 2000); // 2 segundos después de dejar de escribir
         });
         
-        // Guardar inmediatamente al hacer focus/blur
+        // Guardar al salir del campo
         input.addEventListener('blur', function() {
-          saveData();
+          clearTimeout(this.saveTimeout);
+          setTimeout(() => {
+            saveData();
+          }, 100);
         });
         
         // Efectos visuales
@@ -2810,15 +2812,14 @@
         });
       });
 
-      // Auto-save cada 10 segundos (más frecuente)
+      // Auto-save cada 30 segundos (menos frecuente)
       setInterval(() => {
-        saveData();
-      }, 10000);
-
-      // Guardar al hacer click en cualquier parte
-      document.addEventListener('click', function() {
-        setTimeout(saveData, 100);
-      });
+        // Solo guardar si hay cambios pendientes
+        const activeInput = document.querySelector('.fun-input:focus, .fun-textarea:focus');
+        if (!activeInput && Object.keys(aiWorkbookUserData).length > 0) {
+          saveData();
+        }
+      }, 30000);
 
       // Guardar al cambiar de pestaña
       document.addEventListener('visibilitychange', function() {
@@ -2827,7 +2828,7 @@
         }
       });
 
-      console.log('💾 Auto-save súper frecuente configurado');
+      console.log('💾 Auto-save optimizado configurado');
     }
 
     // 🚀 FUNCIÓN DE DESCARGA PDF - UNA SOLA HOJA LARGA VERTICAL (SIN ELEMENTOS TÉCNICOS)
@@ -3223,7 +3224,7 @@
       
       // 🚀 INICIAR AUTO-SYNC SILENCIOSO DESPUÉS DE CARGAR DATOS
       setTimeout(() => {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
           startAutoSync();
         } else {
           console.log('⚠️ Apps Script no configurado - funcionando en modo offline');
@@ -3256,7 +3257,7 @@
       saveData();
       
       // Sync final antes de cerrar
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && aiWorkbookUserMainName) {
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && aiWorkbookUserMainName) {
         // Envío síncrono para asegurar que se procese
         navigator.sendBeacon(APPS_SCRIPT_URL, JSON.stringify(prepareDataForSync()));
       }
@@ -3275,7 +3276,7 @@
         }
       } else {
         // Página se vuelve visible - reanudar auto-sync si es necesario
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && !autoSyncInterval) {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && !autoSyncInterval) {
           startAutoSync();
         }
       }
@@ -3312,7 +3313,7 @@
 
     // Verificar conectividad con Apps Script
     async function testAppsScriptConnection() {
-      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'TU_APPS_SCRIPT_URL_AQUI') {
         console.log('❌ Apps Script URL no configurada');
         return false;
       }
@@ -3341,7 +3342,7 @@
         autoSyncActive: autoSyncInterval !== null,
         totalDataFields: Object.keys(aiWorkbookUserData).length,
         userName: aiWorkbookUserMainName,
-        appsScriptConfigured: APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec'
+        appsScriptConfigured: APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI'
       };
     }
 
