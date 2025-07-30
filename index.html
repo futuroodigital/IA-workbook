@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🚀 DESBLOQUEA EL FUTURO CON IA - Futuro Digital</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Librerías para PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
   <style>
     * {
       margin: 0;
@@ -512,6 +517,69 @@
       66% { transform: rotate(240deg) scale(0.9); }
     }
 
+    /* LOGO HEADER ÉPICO */
+    .logo-header {
+      text-align: center;
+      padding: 40px 20px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 10;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0.02) 50%, rgba(255, 215, 0, 0.05) 100%);
+      border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .logo-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .logo-img {
+      max-width: 300px;
+      height: auto;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+      animation: logoFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { 
+        transform: translateY(0px) scale(1);
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+      }
+      50% { 
+        transform: translateY(-10px) scale(1.02);
+        filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
+      }
+    }
+
+    .logo-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: logoGlow 4s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes logoGlow {
+      0% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    .logo-tagline {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.2rem;
+      color: rgba(255, 215, 0, 0.8);
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-top: 15px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
     /* CONTENEDOR PRINCIPAL */
     .container {
       max-width: 1400px;
@@ -527,7 +595,7 @@
       font-size: 4.5rem;
       font-weight: 700;
       text-align: center;
-      margin: 100px 0 60px 0;
+      margin: 60px 0 60px 0;
       background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -1279,6 +1347,10 @@
       .avatar-grid {
         grid-template-columns: 1fr;
       }
+
+      .logo-img {
+        max-width: 200px;
+      }
     }
   </style>
 </head>
@@ -1322,6 +1394,22 @@
     <div class="scan-line"></div>
   </div>
   <div class="glow-overlay"></div>
+
+  <!-- HEADER CON LOGO ÉPICO -->
+  <header class="logo-header">
+    <div class="logo-container">
+      <div class="logo-glow"></div>
+      <img id="mainLogo" 
+           src="./futuro_digital_logo_correcto.png" 
+           alt="Futuro Digital - Logo" 
+           class="logo-img"
+           onerror="tryAlternativeLogos(this)">
+      <div class="logo-fallback" style="display: none; font-family: 'Orbitron', monospace; font-size: 2.5rem; color: #FFD700; font-weight: 700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
+        🚀 FUTURO DIGITAL
+      </div>
+    </div>
+    <div class="logo-tagline">EDUCACIÓN Y TECNOLOGÍA</div>
+  </header>
 
   <!-- MENSAJE DE GUARDADO -->
   <div class="save-message" id="aiWorkbookSaveMessage">✨ ¡DATOS GUARDADOS MÁGICAMENTE!</div>
@@ -1784,6 +1872,31 @@
     let aiWorkbookUserData = {};
     let aiWorkbookSelectedPersonality = '';
     let aiWorkbookUserMainName = ''; // Nombre principal como ID
+    
+    // 🖼️ SISTEMA DE CARGA DE LOGO CON MÚLTIPLES OPCIONES
+    function tryAlternativeLogos(imgElement) {
+      const logoUrls = [
+        './futuro_digital_logo_correcto.png',
+        'futuro_digital_logo_correcto.png',
+        './assets/futuro_digital_logo_correcto.png',
+        './images/futuro_digital_logo_correcto.png',
+        './img/futuro_digital_logo_correcto.png',
+        'https://via.placeholder.com/300x150/FFD700/000000?text=FUTURO+DIGITAL'
+      ];
+      
+      const currentSrc = imgElement.src;
+      const currentIndex = logoUrls.findIndex(url => currentSrc.includes(url.replace('./', '')));
+      
+      if (currentIndex < logoUrls.length - 1) {
+        // Probar siguiente URL
+        imgElement.src = logoUrls[currentIndex + 1];
+      } else {
+        // Si todas fallan, mostrar fallback
+        imgElement.style.display = 'none';
+        document.querySelector('.logo-fallback').style.display = 'block';
+        console.log('🖼️ Logo no encontrado, usando fallback text');
+      }
+    }
     
     // Función para generar ID único basado en nombre
     function generateUserID(name) {
@@ -2276,8 +2389,8 @@
       });
     }
 
-    // Descargar workbook personalizado
-    function downloadWorkbook() {
+    // 🚀 FUNCIÓN DE DESCARGA PDF - UNA SOLA HOJA LARGA VERTICAL
+    async function downloadWorkbook() {
       // Recopilar todos los datos finales
       saveData();
       
@@ -2304,27 +2417,200 @@
         <div style="font-size: 4rem; margin-bottom: 20px; animation: spin 2s linear infinite;">🚀</div>
         <div style="margin-bottom: 15px;">¡COMPILANDO TU REPORTE PERSONAL!</div>
         <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8);">
-          Procesando: ${Object.keys(aiWorkbookUserData).length} datos súper personalizados
+          Capturando: ${Object.keys(aiWorkbookUserData).length} datos súper personalizados
         </div>
         <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.9;">
-          Tu workbook épico estará listo en un momento...
+          Generando PDF en hoja larga vertical...
         </div>
       `;
       
       document.body.appendChild(message);
       
-      // Simular generación (aquí conectarías con tu API real)
-      setTimeout(() => {
+      try {
+        // Preparar el área para captura (quitar elementos fixed)
+        const elementsToHide = [
+          '.save-message',
+          '.circuit-bg',
+          '.glow-overlay'
+        ];
+        
+        const hiddenElements = [];
+        elementsToHide.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            hiddenElements.push({element: el, display: el.style.display});
+            el.style.display = 'none';
+          });
+        });
+        
+        // Obtener el elemento principal a capturar
+        const captureElement = document.body;
+        
+        // Configurar opciones para html2canvas - UNA SOLA HOJA LARGA
+        const canvas = await html2canvas(captureElement, {
+          scale: 1.5, // Mejor calidad
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#000000',
+          width: captureElement.scrollWidth,
+          height: captureElement.scrollHeight, // Capturar TODA la altura
+          x: 0,
+          y: 0,
+          scrollX: 0,
+          scrollY: 0,
+          windowWidth: window.innerWidth,
+          windowHeight: captureElement.scrollHeight, // Altura completa
+          foreignObjectRendering: true,
+          removeContainer: true
+        });
+        
+        // Configurar PDF con dimensiones para UNA SOLA HOJA LARGA VERTICAL
+        const { jsPDF } = window.jspdf;
+        
+        // Dimensiones del canvas
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+        
+        // Configurar PDF - Ancho A4, altura ajustada al contenido
+        const pdfWidth = 210; // A4 width en mm
+        const pdfHeight = (imgHeight * pdfWidth) / imgWidth; // Altura proporcional
+        
+        // Crear PDF con altura personalizada (UNA SOLA HOJA LARGA)
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: [pdfWidth, pdfHeight] // Formato personalizado - UNA HOJA LARGA
+        });
+        
+        // Agregar logo al principio del PDF
+        try {
+          // Intentar obtener el logo del workbook actual
+          const logoElement = document.getElementById('mainLogo');
+          const logoUrls = [
+            './futuro_digital_logo_correcto.png',
+            'futuro_digital_logo_correcto.png',
+            './assets/futuro_digital_logo_correcto.png',
+            './images/futuro_digital_logo_correcto.png',
+            './img/futuro_digital_logo_correcto.png'
+          ];
+          
+          let logoLoaded = false;
+          
+          // Probar cargar el logo con múltiples URLs
+          for (const logoUrl of logoUrls) {
+            try {
+              const logoImg = new Image();
+              logoImg.crossOrigin = 'anonymous';
+              
+              await new Promise((resolve, reject) => {
+                logoImg.onload = () => {
+                  try {
+                    // Agregar logo centrado en la parte superior
+                    const logoWidth = 60; // mm
+                    const logoHeight = 30; // mm
+                    const logoX = (pdfWidth - logoWidth) / 2;
+                    const logoY = 10;
+                    
+                    pdf.addImage(logoImg, 'PNG', logoX, logoY, logoWidth, logoHeight);
+                    logoLoaded = true;
+                    console.log('✅ Logo agregado al PDF exitosamente');
+                    resolve();
+                  } catch (e) {
+                    reject(e);
+                  }
+                };
+                logoImg.onerror = () => reject(new Error('Logo no encontrado'));
+                logoImg.src = logoUrl;
+              });
+              
+              if (logoLoaded) break; // Si se cargó exitosamente, salir del loop
+              
+            } catch (e) {
+              console.log(`❌ No se pudo cargar logo desde: ${logoUrl}`);
+              continue; // Probar siguiente URL
+            }
+          }
+          
+          if (!logoLoaded) {
+            console.log('⚠️ No se pudo cargar ningún logo, continuando sin logo');
+          }
+          
+        } catch (e) {
+          console.log('❌ Error general con logo, continuando sin logo:', e);
+        }
+        
+        // Convertir canvas a imagen y agregar al PDF
+        const imgData = canvas.toDataURL('image/png', 0.9);
+        
+        // Agregar la imagen del workbook completo en UNA SOLA PÁGINA
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        
+        // Generar nombre del archivo
+        const userName = aiWorkbookUserMainName || 'Usuario';
+        const sanitizedName = userName.replace(/[^a-zA-Z0-9]/g, '_');
+        const timestamp = new Date().toISOString().slice(0, 10);
+        const fileName = `Workbook_IA_${sanitizedName}_${timestamp}.pdf`;
+        
+        // Descargar el PDF
+        pdf.save(fileName);
+        
+        // Restaurar elementos ocultos
+        hiddenElements.forEach(({element, display}) => {
+          element.style.display = display;
+        });
+        
+        // Quitar mensaje de carga
         if (message.parentNode) {
           message.remove();
         }
         
-        // Mostrar mensaje de éxito
-        alert('¡Tu reporte personal ha sido generado! 🎉\n\nEn una implementación real, aquí se descargaría tu PDF personalizado con todos tus resultados.');
+        // Mensaje de éxito épico
+        const successMessage = document.createElement('div');
+        successMessage.style.cssText = `
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: linear-gradient(135deg, rgba(76, 175, 80, 0.95) 0%, rgba(56, 142, 60, 0.95) 100%);
+          color: white;
+          padding: 40px;
+          border-radius: 20px;
+          font-family: 'Orbitron', monospace;
+          font-size: 1.3rem;
+          text-align: center;
+          z-index: 10002;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(10px);
+        `;
+        successMessage.innerHTML = `
+          <div style="font-size: 3rem; margin-bottom: 15px;">🎉</div>
+          <div style="margin-bottom: 10px;">¡PDF GENERADO EXITOSAMENTE!</div>
+          <div style="font-size: 1rem; opacity: 0.9;">
+            Tu workbook completo se descargó como una hoja larga vertical
+          </div>
+        `;
         
-        // Aquí irían las llamadas reales a tu API para generar el PDF
-        console.log('📊 DATOS PARA PDF PERSONALIZADO:', aiWorkbookUserData);
-      }, 3000);
+        document.body.appendChild(successMessage);
+        
+        setTimeout(() => {
+          if (successMessage.parentNode) {
+            successMessage.remove();
+          }
+        }, 4000);
+        
+        console.log('📄 PDF generado exitosamente como hoja larga vertical');
+        
+      } catch (error) {
+        console.error('Error generando PDF:', error);
+        
+        // Quitar mensaje de carga
+        if (message.parentNode) {
+          message.remove();
+        }
+        
+        // Mensaje de error
+        alert('Error generando el PDF. Por favor intenta de nuevo.');
+      }
     }
 
     // Cargar datos guardados
@@ -2424,7 +2710,19 @@
 
     // Inicializar toda la aplicación
     document.addEventListener('DOMContentLoaded', function() {
-      setupNameSystem(); // NUEVO: Sistema de nombres
+      // Verificar carga del logo
+      const logoElement = document.getElementById('mainLogo');
+      if (logoElement) {
+        logoElement.onload = () => {
+          console.log('✅ Logo cargado exitosamente');
+        };
+        logoElement.onerror = () => {
+          console.log('❌ Error cargando logo, probando alternativas...');
+          tryAlternativeLogos(logoElement);
+        };
+      }
+      
+      setupNameSystem(); // Sistema de nombres
       setupPersonalityTest();
       setupPythonSlider();
       setupProjectSimulator();
@@ -2432,23 +2730,7 @@
       setupAutoSave();
       loadSavedData();
       
-      console.log('🚀 Workbook IA épico cargado completamente con sistema de nombres');
-      
-      // Mensaje de bienvenida épico
-      setTimeout(() => {
-        if (Object.keys(aiWorkbookUserData).length === 0) {
-          showSaveMessage();
-        }
-      }, 1000);
-    }); function() {
-      setupPersonalityTest();
-      setupPythonSlider();
-      setupProjectSimulator();
-      setupAvatarSelection();
-      setupAutoSave();
-      loadSavedData();
-      
-      console.log('🚀 Workbook IA épico cargado completamente');
+      console.log('🚀 Workbook IA épico cargado completamente con sistema de nombres y PDF de hoja larga');
       
       // Mensaje de bienvenida épico
       setTimeout(() => {
