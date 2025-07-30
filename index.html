@@ -1926,43 +1926,19 @@
       }
     }
     
-    // 📊 ACTUALIZAR ESTADO DE SINCRONIZACIÓN
+    // 📊 ACTUALIZAR ESTADO DE SINCRONIZACIÓN (SILENCIOSO - SIN UI)
     function updateSyncStatus(status, message) {
-      // Crear o actualizar indicador de estado
-      let statusElement = document.getElementById('syncStatus');
+      // Solo log en consola, sin elementos visuales
+      const icon = status === 'success' ? '✅' : status === 'error' ? '❌' : 'ℹ️';
+      console.log(`${icon} SYNC: ${message}`);
       
-      if (!statusElement) {
-        statusElement = document.createElement('div');
-        statusElement.id = 'syncStatus';
-        statusElement.style.cssText = `
-          position: fixed;
-          bottom: 100px;
-          right: 30px;
-          background: ${status === 'success' ? 'rgba(76, 175, 80, 0.9)' : 'rgba(244, 67, 54, 0.9)'};
-          color: white;
-          padding: 10px 20px;
-          border-radius: 25px;
-          font-family: 'Orbitron', monospace;
-          font-size: 0.9rem;
-          z-index: 10000;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-          opacity: 0;
-          transition: all 0.3s ease;
-        `;
-        document.body.appendChild(statusElement);
+      // Opcional: Vibración sutil en móviles para feedback
+      if ('vibrate' in navigator && status === 'success') {
+        navigator.vibrate([30]);
       }
-      
-      statusElement.textContent = `🔄 ${message}`;
-      statusElement.style.background = status === 'success' ? 'rgba(76, 175, 80, 0.9)' : 'rgba(244, 67, 54, 0.9)';
-      statusElement.style.opacity = '1';
-      
-      // Ocultar después de 3 segundos
-      setTimeout(() => {
-        statusElement.style.opacity = '0';
-      }, 3000);
     }
     
-    // ⏰ INICIAR SINCRONIZACIÓN AUTOMÁTICA CADA MINUTO
+    // ⏰ INICIAR SINCRONIZACIÓN AUTOMÁTICA CADA MINUTO (SILENCIOSO)
     function startAutoSync() {
       // Limpiar interval existente
       if (autoSyncInterval) {
@@ -1977,15 +1953,14 @@
       // Configurar sync automático cada minuto (60000 ms)
       autoSyncInterval = setInterval(async () => {
         if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
-          console.log('🔄 Auto-sync ejecutándose...');
+          console.log('🔄 Auto-sync ejecutándose silenciosamente...');
           await sendDataToAppsScript(aiWorkbookUserData);
         } else {
           console.log('⏸️ Auto-sync pausado - datos insuficientes');
         }
       }, 60000); // Cada minuto
       
-      console.log('✅ Auto-sync iniciado - envío cada minuto');
-      updateSyncStatus('success', 'Auto-sync activado');
+      console.log('✅ Auto-sync iniciado silenciosamente - envío cada minuto');
     }
     
     // 🛑 DETENER SINCRONIZACIÓN AUTOMÁTICA
@@ -1994,24 +1969,25 @@
         clearInterval(autoSyncInterval);
         autoSyncInterval = null;
         console.log('🛑 Auto-sync detenido');
-        updateSyncStatus('error', 'Auto-sync detenido');
       }
     }
     
-    // 🔄 SYNC MANUAL (BOTÓN DE EMERGENCIA)
+    // 🔄 SYNC MANUAL SILENCIOSO (solo para debugging)
     async function manualSync() {
       if (!aiWorkbookUserMainName) {
-        alert('❌ Primero debes ingresar tu nombre completo');
-        return;
+        console.log('❌ No se puede hacer sync sin nombre completo');
+        return false;
       }
       
-      updateSyncStatus('info', 'Sincronizando manualmente...');
+      console.log('🔄 Ejecutando sync manual...');
       const success = await sendDataToAppsScript(aiWorkbookUserData);
       
       if (success) {
-        showSaveMessage();
+        console.log('✅ Sync manual exitoso');
+        return true;
       } else {
-        alert('❌ Error en sincronización manual. Revisa la consola para más detalles.');
+        console.log('❌ Error en sync manual');
+        return false;
       }
     }
     
@@ -2876,20 +2852,16 @@
       setupAutoSave();
       loadSavedData();
       
-      // 🚀 INICIAR AUTO-SYNC DESPUÉS DE CARGAR DATOS
+      // 🚀 INICIAR AUTO-SYNC SILENCIOSO DESPUÉS DE CARGAR DATOS
       setTimeout(() => {
         if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
           startAutoSync();
         } else {
           console.log('⚠️ Apps Script no configurado - funcionando en modo offline');
-          updateSyncStatus('error', 'Modo offline - configura Apps Script para sync automático');
         }
       }, 2000);
       
-      // AGREGAR BOTÓN DE SYNC MANUAL
-      addManualSyncButton();
-      
-      console.log('🚀 Workbook IA épico cargado completamente con sync automático cada minuto');
+      console.log('🚀 Workbook IA épico cargado completamente con sync automático silencioso');
       
       // Mensaje de bienvenida épico
       setTimeout(() => {
@@ -2898,43 +2870,6 @@
         }
       }, 1000);
     });
-
-    // 🔘 AGREGAR BOTÓN DE SYNC MANUAL
-    function addManualSyncButton() {
-      const syncButton = document.createElement('button');
-      syncButton.innerHTML = '🔄 SYNC MANUAL';
-      syncButton.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        left: 30px;
-        background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 25px;
-        font-family: 'Orbitron', monospace;
-        font-size: 0.9rem;
-        font-weight: 600;
-        cursor: pointer;
-        z-index: 10000;
-        box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
-        transition: all 0.3s ease;
-      `;
-      
-      syncButton.addEventListener('click', manualSync);
-      
-      syncButton.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-3px) scale(1.05)';
-        this.style.boxShadow = '0 8px 25px rgba(33, 150, 243, 0.5)';
-      });
-      
-      syncButton.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-        this.style.boxShadow = '0 5px 15px rgba(33, 150, 243, 0.3)';
-      });
-      
-      document.body.appendChild(syncButton);
-    }
 
     // Auto-guardado cada 30 segundos
     setInterval(() => {
@@ -3006,21 +2941,22 @@
         autoSyncActive: autoSyncInterval !== null,
         totalDataFields: Object.keys(aiWorkbookUserData).length,
         userName: aiWorkbookUserMainName,
-        appsScriptConfigured: APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI'
+        appsScriptConfigured: APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec'
       };
     }
 
-    // Exposer funciones globales para debugging
-    window.aiWorkbookDebug = {
-      testConnection: testAppsScriptConnection,
-      manualSync: manualSync,
-      getSyncStats: getSyncStats,
-      startAutoSync: startAutoSync,
-      stopAutoSync: stopAutoSync,
-      currentData: () => aiWorkbookUserData
-    };
-
-    console.log('🔧 Funciones de debug disponibles en window.aiWorkbookDebug');
+    // Exposer funciones globales para debugging (solo en modo desarrollo)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      window.aiWorkbookDebug = {
+        testConnection: testAppsScriptConnection,
+        manualSync: manualSync,
+        getSyncStats: getSyncStats,
+        startAutoSync: startAutoSync,
+        stopAutoSync: stopAutoSync,
+        currentData: () => aiWorkbookUserData
+      };
+      console.log('🔧 Funciones de debug disponibles en window.aiWorkbookDebug (solo en desarrollo)');
+    }
   </script>
 </body>
 </html>
