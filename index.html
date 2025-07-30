@@ -517,26 +517,22 @@
       66% { transform: rotate(240deg) scale(0.9); }
     }
 
-    /* LOGO HEADER ÉPICO */
-    .logo-header {
-      text-align: center;
-      padding: 40px 20px;
-      margin-bottom: 20px;
+    /* CONTENEDOR PRINCIPAL */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 40px;
       position: relative;
       z-index: 10;
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0.02) 50%, rgba(255, 215, 0, 0.05) 100%);
-      border-bottom: 2px solid rgba(255, 215, 0, 0.3);
     }
 
+    /* LOGO INTEGRADO ARRIBA DEL TÍTULO */
     .logo-container {
       position: relative;
       display: inline-block;
-      margin-bottom: 20px;
     }
 
     .logo-img {
-      max-width: 300px;
-      height: auto;
       filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
       animation: logoFloat 6s ease-in-out infinite;
     }
@@ -568,25 +564,6 @@
     @keyframes logoGlow {
       0% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
       100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
-    }
-
-    .logo-tagline {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.2rem;
-      color: rgba(255, 215, 0, 0.8);
-      font-weight: 300;
-      letter-spacing: 2px;
-      margin-top: 15px;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    }
-
-    /* CONTENEDOR PRINCIPAL */
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 60px 40px;
-      position: relative;
-      z-index: 10;
     }
 
     /* TÍTULO PRINCIPAL ESTILO LIMPIO (COMO EL QUE TE GUSTA) */
@@ -1349,7 +1326,11 @@
       }
 
       .logo-img {
-        max-width: 200px;
+        max-width: 180px !important;
+      }
+
+      .logo-container {
+        margin: 20px 0 40px 0 !important;
       }
     }
   </style>
@@ -1399,19 +1380,21 @@
   <div class="save-message" id="aiWorkbookSaveMessage">✨ ¡DATOS GUARDADOS MÁGICAMENTE!</div>
 
   <div class="container">
-    <!-- LOGO EN EL ESPACIO NEGRO ARRIBA DEL TÍTULO -->
-    <div class="logo-container" style="text-align: center; margin: 40px 0 60px 0; position: relative; z-index: 10;">
-      <div class="logo-glow"></div>
-      <img id="mainLogo" 
-           src="./futuro_digital_logo_correcto.png" 
-           alt="Futuro Digital - Logo" 
-           class="logo-img"
-           style="max-width: 250px; height: auto;"
-           onerror="tryAlternativeLogos(this)">
-      <div class="logo-fallback" style="display: none; font-family: 'Orbitron', monospace; font-size: 2rem; color: #FFD700; font-weight: 700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
-        🚀 FUTURO DIGITAL
+    <!-- LOGO PERFECTAMENTE CENTRADO EN EL ESPACIO NEGRO -->
+    <div style="width: 100%; text-align: center; margin: 40px 0 60px 0; position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <div class="logo-container">
+        <div class="logo-glow"></div>
+        <img id="mainLogo" 
+             src="./futuro_digital_logo_correcto.png" 
+             alt="Futuro Digital - Logo" 
+             class="logo-img"
+             style="max-width: 250px; height: auto; display: block; margin: 0 auto;"
+             onerror="tryAlternativeLogos(this)">
+        <div class="logo-fallback" style="display: none; font-family: 'Orbitron', monospace; font-size: 2rem; color: #FFD700; font-weight: 700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); text-align: center;">
+          🚀 FUTURO DIGITAL
+        </div>
       </div>
-      <div style="font-family: 'Orbitron', monospace; font-size: 1rem; color: rgba(255, 215, 0, 0.7); font-weight: 300; letter-spacing: 1px; margin-top: 10px;">
+      <div style="font-family: 'Orbitron', monospace; font-size: 1rem; color: rgba(255, 215, 0, 0.7); font-weight: 300; letter-spacing: 1px; margin-top: 15px; text-align: center; width: 100%;">
         EDUCACIÓN Y TECNOLOGÍA
       </div>
     </div>
@@ -1874,6 +1857,11 @@
     let aiWorkbookSelectedPersonality = '';
     let aiWorkbookUserMainName = ''; // Nombre principal como ID
     
+    // 🚀 CONFIGURACIÓN DE APPS SCRIPT
+    const APPS_SCRIPT_URL = 'TU_APPS_SCRIPT_URL_AQUI'; // Cambiar por tu URL real
+    let autoSyncInterval = null;
+    let lastSyncTime = null;
+    
     // 🖼️ SISTEMA DE CARGA DE LOGO CON MÚLTIPLES OPCIONES
     function tryAlternativeLogos(imgElement) {
       const logoUrls = [
@@ -1897,6 +1885,188 @@
         document.querySelector('.logo-fallback').style.display = 'block';
         console.log('🖼️ Logo no encontrado, usando fallback text');
       }
+    }
+
+    // 🚀 SISTEMA DE SINCRONIZACIÓN AUTOMÁTICA CON APPS SCRIPT
+    async function sendDataToAppsScript(userData) {
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'TU_APPS_SCRIPT_URL_AQUI') {
+        console.log('⚠️ Apps Script URL no configurada');
+        return false;
+      }
+      
+      try {
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+          mode: 'cors'
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          console.log('✅ Datos enviados a Apps Script exitosamente:', result);
+          lastSyncTime = new Date().toISOString();
+          updateSyncStatus('success', 'Datos sincronizados correctamente');
+          return true;
+        } else {
+          throw new Error(result.error || 'Error desconocido');
+        }
+        
+      } catch (error) {
+        console.error('❌ Error enviando datos a Apps Script:', error);
+        updateSyncStatus('error', `Error: ${error.message}`);
+        return false;
+      }
+    }
+    
+    // 📊 ACTUALIZAR ESTADO DE SINCRONIZACIÓN
+    function updateSyncStatus(status, message) {
+      // Crear o actualizar indicador de estado
+      let statusElement = document.getElementById('syncStatus');
+      
+      if (!statusElement) {
+        statusElement = document.createElement('div');
+        statusElement.id = 'syncStatus';
+        statusElement.style.cssText = `
+          position: fixed;
+          bottom: 100px;
+          right: 30px;
+          background: ${status === 'success' ? 'rgba(76, 175, 80, 0.9)' : 'rgba(244, 67, 54, 0.9)'};
+          color: white;
+          padding: 10px 20px;
+          border-radius: 25px;
+          font-family: 'Orbitron', monospace;
+          font-size: 0.9rem;
+          z-index: 10000;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          opacity: 0;
+          transition: all 0.3s ease;
+        `;
+        document.body.appendChild(statusElement);
+      }
+      
+      statusElement.textContent = `🔄 ${message}`;
+      statusElement.style.background = status === 'success' ? 'rgba(76, 175, 80, 0.9)' : 'rgba(244, 67, 54, 0.9)';
+      statusElement.style.opacity = '1';
+      
+      // Ocultar después de 3 segundos
+      setTimeout(() => {
+        statusElement.style.opacity = '0';
+      }, 3000);
+    }
+    
+    // ⏰ INICIAR SINCRONIZACIÓN AUTOMÁTICA CADA MINUTO
+    function startAutoSync() {
+      // Limpiar interval existente
+      if (autoSyncInterval) {
+        clearInterval(autoSyncInterval);
+      }
+      
+      // Sync inicial
+      if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
+        sendDataToAppsScript(aiWorkbookUserData);
+      }
+      
+      // Configurar sync automático cada minuto (60000 ms)
+      autoSyncInterval = setInterval(async () => {
+        if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
+          console.log('🔄 Auto-sync ejecutándose...');
+          await sendDataToAppsScript(aiWorkbookUserData);
+        } else {
+          console.log('⏸️ Auto-sync pausado - datos insuficientes');
+        }
+      }, 60000); // Cada minuto
+      
+      console.log('✅ Auto-sync iniciado - envío cada minuto');
+      updateSyncStatus('success', 'Auto-sync activado');
+    }
+    
+    // 🛑 DETENER SINCRONIZACIÓN AUTOMÁTICA
+    function stopAutoSync() {
+      if (autoSyncInterval) {
+        clearInterval(autoSyncInterval);
+        autoSyncInterval = null;
+        console.log('🛑 Auto-sync detenido');
+        updateSyncStatus('error', 'Auto-sync detenido');
+      }
+    }
+    
+    // 🔄 SYNC MANUAL (BOTÓN DE EMERGENCIA)
+    async function manualSync() {
+      if (!aiWorkbookUserMainName) {
+        alert('❌ Primero debes ingresar tu nombre completo');
+        return;
+      }
+      
+      updateSyncStatus('info', 'Sincronizando manualmente...');
+      const success = await sendDataToAppsScript(aiWorkbookUserData);
+      
+      if (success) {
+        showSaveMessage();
+      } else {
+        alert('❌ Error en sincronización manual. Revisa la consola para más detalles.');
+      }
+    }
+    
+    // 📊 PREPARAR DATOS PARA APPS SCRIPT
+    function prepareDataForSync() {
+      // Usar la misma estructura que ya tienes pero asegurar que esté completa
+      const googleSheetsData = {
+        // IDENTIFICACIÓN
+        nombre_completo: aiWorkbookUserMainName,
+        user_id: aiWorkbookUserData.userID,
+        fecha_registro: aiWorkbookUserData.timestamp,
+        ultima_actualizacion: new Date().toISOString(),
+        
+        // MOTIVACIÓN
+        problema_mundial: aiWorkbookUserData.aiWorkbookWorldProblem || '',
+        area_magica: aiWorkbookUserData.aiWorkbookMagicArea || '',
+        sueno_personal: aiWorkbookUserData.aiWorkbookCompleteDream || '',
+        
+        // PERSONALIDAD
+        tipo_personalidad: aiWorkbookUserData.personality || '',
+        titulo_personalidad: aiWorkbookUserData.personalityTitle || '',
+        
+        // AVATAR
+        avatar_seleccionado: aiWorkbookUserData.avatar || '',
+        nombre_avatar: aiWorkbookUserData.avatarName || '',
+        
+        // PYTHON
+        nivel_python: aiWorkbookUserData.pythonLevel || '',
+        nombre_nivel_python: aiWorkbookUserData.pythonLevelName || '',
+        emocion_programar: aiWorkbookUserData.aiWorkbookPythonExcitement || '',
+        
+        // PROYECTO
+        tipo_proyecto: aiWorkbookUserData.projectType || '',
+        area_proyecto: aiWorkbookUserData.projectIndustry || '',
+        tipo_personalizado: aiWorkbookUserData.customType || '',
+        area_personalizada: aiWorkbookUserData.customArea || '',
+        descripcion_proyecto: aiWorkbookUserData.projectDescription || '',
+        impacto_proyecto: aiWorkbookUserData.aiWorkbookProjectImpact || '',
+        
+        // FUTURO
+        ubicacion_2030: aiWorkbookUserData.aiWorkbookFutureLocation || '',
+        ingresos_deseados: aiWorkbookUserData.aiWorkbookFutureIncome || '',
+        consejo_futuro: aiWorkbookUserData.aiWorkbookAdviceToSelf || '',
+        
+        // COMPROMISO
+        razon_momento: aiWorkbookUserData.aiWorkbookWhyNow || '',
+        razon_compromiso: aiWorkbookUserData.aiWorkbookCommitmentReason || '',
+        timeline_meses: aiWorkbookUserData.aiWorkbookTimelineMonths || '',
+        
+        // METADATA
+        secciones_completadas: aiWorkbookUserData.completedSections || 0,
+        datos_completos: JSON.stringify(aiWorkbookUserData)
+      };
+      
+      return googleSheetsData;
     }
     
     // Función para generar ID único basado en nombre
@@ -2279,7 +2449,7 @@
       });
     }
 
-    // Guardar datos con sistema de nombres como ID principal
+    // Guardar datos con sistema de nombres como ID principal + APPS SCRIPT
     function saveData() {
       // Si no hay nombre principal, no guardar
       if (!aiWorkbookUserMainName || aiWorkbookUserMainName.trim().length === 0) {
@@ -2298,65 +2468,40 @@
       // Datos principales del usuario
       aiWorkbookUserData.mainUserName = aiWorkbookUserMainName;
       aiWorkbookUserData.userID = generateUserID(aiWorkbookUserMainName);
-      aiWorkbookUserData.timestamp = new Date().toISOString();
+      aiWorkbookUserData.timestamp = aiWorkbookUserData.timestamp || new Date().toISOString();
       aiWorkbookUserData.lastUpdated = new Date().toISOString();
       aiWorkbookUserData.completedSections = Object.keys(aiWorkbookUserData).length;
       
-      // Preparar datos para Google Sheets (una fila por usuario)
-      const googleSheetsData = {
-        // IDENTIFICACIÓN
-        nombre_completo: aiWorkbookUserMainName,
-        user_id: aiWorkbookUserData.userID,
-        fecha_registro: aiWorkbookUserData.timestamp,
-        ultima_actualizacion: aiWorkbookUserData.lastUpdated,
-        
-        // MOTIVACIÓN
-        problema_mundial: aiWorkbookUserData.aiWorkbookWorldProblem || '',
-        area_magica: aiWorkbookUserData.aiWorkbookMagicArea || '',
-        sueno_personal: aiWorkbookUserData.aiWorkbookCompleteDream || '',
-        
-        // PERSONALIDAD
-        tipo_personalidad: aiWorkbookUserData.personality || '',
-        titulo_personalidad: aiWorkbookUserData.personalityTitle || '',
-        
-        // AVATAR
-        avatar_seleccionado: aiWorkbookUserData.avatar || '',
-        nombre_avatar: aiWorkbookUserData.avatarName || '',
-        
-        // PYTHON
-        nivel_python: aiWorkbookUserData.pythonLevel || '',
-        nombre_nivel_python: aiWorkbookUserData.pythonLevelName || '',
-        emocion_programar: aiWorkbookUserData.aiWorkbookPythonExcitement || '',
-        
-        // PROYECTO
-        tipo_proyecto: aiWorkbookUserData.projectType || '',
-        area_proyecto: aiWorkbookUserData.projectIndustry || '',
-        tipo_personalizado: aiWorkbookUserData.customType || '',
-        area_personalizada: aiWorkbookUserData.customArea || '',
-        descripcion_proyecto: aiWorkbookUserData.projectDescription || '',
-        impacto_proyecto: aiWorkbookUserData.aiWorkbookProjectImpact || '',
-        
-        // FUTURO
-        ubicacion_2030: aiWorkbookUserData.aiWorkbookFutureLocation || '',
-        ingresos_deseados: aiWorkbookUserData.aiWorkbookFutureIncome || '',
-        consejo_futuro: aiWorkbookUserData.aiWorkbookAdviceToSelf || '',
-        
-        // COMPROMISO
-        razon_momento: aiWorkbookUserData.aiWorkbookWhyNow || '',
-        razon_compromiso: aiWorkbookUserData.aiWorkbookCommitmentReason || '',
-        timeline_meses: aiWorkbookUserData.aiWorkbookTimelineMonths || '',
-        
-        // METADATA
-        secciones_completadas: aiWorkbookUserData.completedSections,
-        datos_completos: JSON.stringify(aiWorkbookUserData)
-      };
+      // Preparar datos para Google Sheets
+      const googleSheetsData = prepareDataForSync();
       
       // Guardar en localStorage con nombre como clave
       const storageKey = `aiWorkbook_${aiWorkbookUserMainName.replace(/\s+/g, '_')}`;
       localStorage.setItem(storageKey, JSON.stringify(googleSheetsData));
       localStorage.setItem('aiWorkbookCurrentUser', aiWorkbookUserMainName);
       
-      console.log('📊 Datos listos para Google Sheets:', googleSheetsData);
+      // 🚀 ENVÍO AUTOMÁTICO A APPS SCRIPT (si está configurado)
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
+        // Envío inmediato en cambios importantes
+        const importantFields = [
+          'aiWorkbookUserName',
+          'personality',
+          'avatar',
+          'projectType',
+          'projectIndustry',
+          'aiWorkbookCommitmentReason'
+        ];
+        
+        const hasImportantChanges = inputs.some(input => 
+          importantFields.includes(input.id) && input.value.trim()
+        );
+        
+        if (hasImportantChanges || Object.keys(aiWorkbookUserData).length > 10) {
+          sendDataToAppsScript(googleSheetsData);
+        }
+      }
+      
+      console.log('📊 Datos guardados localmente y preparados para sync:', googleSheetsData);
     }
 
     // Mostrar mensaje de guardado épico
@@ -2731,7 +2876,20 @@
       setupAutoSave();
       loadSavedData();
       
-      console.log('🚀 Workbook IA épico cargado completamente con sistema de nombres y PDF de hoja larga');
+      // 🚀 INICIAR AUTO-SYNC DESPUÉS DE CARGAR DATOS
+      setTimeout(() => {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
+          startAutoSync();
+        } else {
+          console.log('⚠️ Apps Script no configurado - funcionando en modo offline');
+          updateSyncStatus('error', 'Modo offline - configura Apps Script para sync automático');
+        }
+      }, 2000);
+      
+      // AGREGAR BOTÓN DE SYNC MANUAL
+      addManualSyncButton();
+      
+      console.log('🚀 Workbook IA épico cargado completamente con sync automático cada minuto');
       
       // Mensaje de bienvenida épico
       setTimeout(() => {
@@ -2741,6 +2899,43 @@
       }, 1000);
     });
 
+    // 🔘 AGREGAR BOTÓN DE SYNC MANUAL
+    function addManualSyncButton() {
+      const syncButton = document.createElement('button');
+      syncButton.innerHTML = '🔄 SYNC MANUAL';
+      syncButton.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-family: 'Orbitron', monospace;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        z-index: 10000;
+        box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        transition: all 0.3s ease;
+      `;
+      
+      syncButton.addEventListener('click', manualSync);
+      
+      syncButton.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px) scale(1.05)';
+        this.style.boxShadow = '0 8px 25px rgba(33, 150, 243, 0.5)';
+      });
+      
+      syncButton.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+        this.style.boxShadow = '0 5px 15px rgba(33, 150, 243, 0.3)';
+      });
+      
+      document.body.appendChild(syncButton);
+    }
+
     // Auto-guardado cada 30 segundos
     setInterval(() => {
       const activeInput = document.querySelector('.fun-input:focus, .fun-textarea:focus');
@@ -2749,10 +2944,83 @@
       }
     }, 30000);
 
-    // Detectar abandono de página
+    // Detectar abandono de página y limpiar
     window.addEventListener('beforeunload', function() {
       saveData();
+      
+      // Sync final antes de cerrar
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && aiWorkbookUserMainName) {
+        // Envío síncrono para asegurar que se procese
+        navigator.sendBeacon(APPS_SCRIPT_URL, JSON.stringify(prepareDataForSync()));
+      }
+      
+      // Limpiar intervalos
+      stopAutoSync();
     });
+
+    // Detectar cambio de visibilidad de la página
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        // Página se oculta - hacer sync final
+        if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
+          sendDataToAppsScript(prepareDataForSync());
+        }
+      } else {
+        // Página se vuelve visible - reanudar auto-sync si es necesario
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && !autoSyncInterval) {
+          startAutoSync();
+        }
+      }
+    });
+
+    // 🛠️ FUNCIONES ADICIONALES DE UTILIDAD
+
+    // Verificar conectividad con Apps Script
+    async function testAppsScriptConnection() {
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'TU_APPS_SCRIPT_URL_AQUI') {
+        console.log('❌ Apps Script URL no configurada');
+        return false;
+      }
+      
+      try {
+        const response = await fetch(`${APPS_SCRIPT_URL}?action=status`);
+        const result = await response.json();
+        
+        if (result.status === 'active') {
+          console.log('✅ Conexión con Apps Script exitosa:', result);
+          return true;
+        } else {
+          console.log('❌ Apps Script no responde correctamente');
+          return false;
+        }
+      } catch (error) {
+        console.error('❌ Error conectando con Apps Script:', error);
+        return false;
+      }
+    }
+
+    // Obtener estadísticas de sync
+    function getSyncStats() {
+      return {
+        lastSyncTime: lastSyncTime,
+        autoSyncActive: autoSyncInterval !== null,
+        totalDataFields: Object.keys(aiWorkbookUserData).length,
+        userName: aiWorkbookUserMainName,
+        appsScriptConfigured: APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI'
+      };
+    }
+
+    // Exposer funciones globales para debugging
+    window.aiWorkbookDebug = {
+      testConnection: testAppsScriptConnection,
+      manualSync: manualSync,
+      getSyncStats: getSyncStats,
+      startAutoSync: startAutoSync,
+      stopAutoSync: stopAutoSync,
+      currentData: () => aiWorkbookUserData
+    };
+
+    console.log('🔧 Funciones de debug disponibles en window.aiWorkbookDebug');
   </script>
 </body>
 </html>
