@@ -2840,7 +2840,58 @@
       
       // ⚡ INICIO DEL PROCESO - SIN DISTRACCIONES VISUALES
       try {
-        // 🚫 OCULTAR ELEMENTOS ESPECÍFICOS PARA EL PDF
+        // 🖼️ FORZAR CARGA CORRECTA DEL LOGO ANTES DE GENERAR PDF
+        const logoElement = document.getElementById('mainLogo');
+        const logoFallback = document.querySelector('.logo-fallback');
+        
+        if (logoElement && !logoElement.complete) {
+          console.log('⏳ Esperando a que el logo termine de cargar...');
+          await new Promise((resolve) => {
+            if (logoElement.complete) {
+              resolve();
+            } else {
+              logoElement.onload = resolve;
+              logoElement.onerror = resolve; // Continuar aunque falle
+              // Timeout por si no carga
+              setTimeout(resolve, 2000);
+            }
+          });
+        }
+        
+        // 🔧 ASEGURAR QUE LA IMAGEN ESTÉ DISPONIBLE PARA html2canvas
+        if (logoElement) {
+          // Si la imagen no está cargada correctamente, usar fallback temporal
+          if (!logoElement.complete || logoElement.naturalHeight === 0) {
+            console.log('⚠️ Logo no cargó correctamente, usando fallback estilizado para PDF...');
+            
+            // Crear un elemento temporal con el logo como texto estilizado
+            const tempLogo = document.createElement('div');
+            tempLogo.innerHTML = '🚀 FUTURO DIGITAL';
+            tempLogo.style.cssText = `
+              font-family: 'Orbitron', monospace; 
+              font-size: 2rem; 
+              color: #FFD700; 
+              font-weight: 700; 
+              text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); 
+              text-align: center;
+              padding: 20px;
+              background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
+              border-radius: 15px;
+              border: 2px solid rgba(255, 215, 0, 0.3);
+            `;
+            
+            // Reemplazar temporalmente
+            logoElement.style.display = 'none';
+            logoElement.parentNode.insertBefore(tempLogo, logoElement);
+            
+            // Guardar referencia para restaurar después
+            window.tempLogoElement = tempLogo;
+          } else {
+            // Forzar que html2canvas vea la imagen como cargada
+            logoElement.setAttribute('crossorigin', 'anonymous');
+            console.log('✅ Logo cargado correctamente para PDF');
+          }
+        }
         const elementsToHide = [
           '.save-message',
           '.circuit-bg',
@@ -2863,6 +2914,20 @@
           });
         });
         
+        // 🚫 OCULTAR ELEMENTOS ESPECÍFICOS PARA EL PDF
+        const elementsToHide = [
+          '.save-message',
+          '.circuit-bg',
+          '.glow-overlay',
+          '.scan-line',
+          // NUEVAS SECCIONES A OCULTAR SEGÚN TU PETICIÓN:
+          // Puedes especificar aquí las secciones que no quieres que aparezcan
+          // Ejemplo: '.workbook-section:nth-child(3)', // Ocultar la 3ra sección
+          // '.final-section', // Ocultar la sección final
+          // '#aiWorkbookSaveMessage', // Ocultar mensaje de guardado
+          // Por ahora dejo los elementos básicos que ya tenías
+        ];
+        
         // 🎯 SECCIONES ESPECÍFICAS QUE NO QUIERES EN EL PDF
         const specificSectionsToHide = [
           '.save-message',
@@ -2876,35 +2941,72 @@
           '.btn-download',               // ← Botón de descarga específico
         ];
         
-        specificSectionsToHide.forEach(selector => {
+        // Combinar ambos arrays
+        const allElementsToHide = [...elementsToHide, ...specificSectionsToHide];
+        
+        const hiddenElements = [];
+        allElementsToHide.forEach(selector => {
           const elements = document.querySelectorAll(selector);
           elements.forEach(el => {
-            if (!hiddenElements.find(item => item.element === el)) {
-              hiddenElements.push({element: el, display: el.style.display});
-              el.style.display = 'none';
-            }
+            hiddenElements.push({element: el, display: el.style.display});
+            el.style.display = 'none';
           });
         });
+        
+        // 🖼️ ASEGURAR QUE EL LOGO ESTÉ VISIBLE Y BIEN CONFIGURADO
+        if (logoElement) {
+          // Forzar visibilidad del logo durante la captura
+          logoElement.style.display = 'block';
+          logoElement.style.opacity = '1';
+          logoElement.style.visibility = 'visible';
+          
+          // Asegurar dimensiones correctas
+          if (logoElement.style.maxWidth) {
+            logoElement.style.width = logoElement.style.maxWidth;
+          }
+          
+          console.log('🖼️ Logo preparado para captura:', logoElement.src, 'Cargado:', logoElement.complete);
+        }
+        
+        // También asegurar que el contenedor del logo esté visible
+        const logoContainer = document.querySelector('.logo-container');
+        if (logoContainer) {
+          logoContainer.style.display = 'block';
+          logoContainer.style.opacity = '1';
+          logoContainer.style.visibility = 'visible';
+        }
         
         // Obtener el elemento principal a capturar
         const captureElement = document.body;
         
-        // Configurar opciones para html2canvas - UNA SOLA HOJA LARGA
+        // Configurar opciones para html2canvas - MEJORADO PARA IMÁGENES
         const canvas = await html2canvas(captureElement, {
           scale: 1.5, // Mejor calidad
           useCORS: true,
           allowTaint: true,
           backgroundColor: '#000000',
           width: captureElement.scrollWidth,
-          height: captureElement.scrollHeight, // Capturar TODA la altura
+          height: captureElement.scrollHeight,
           x: 0,
           y: 0,
           scrollX: 0,
           scrollY: 0,
           windowWidth: window.innerWidth,
-          windowHeight: captureElement.scrollHeight, // Altura completa
+          windowHeight: captureElement.scrollHeight,
           foreignObjectRendering: true,
-          removeContainer: true
+          removeContainer: true,
+          
+          // 🖼️ OPCIONES ESPECÍFICAS PARA MEJORAR IMÁGENES:
+          imageTimeout: 15000,        // Más tiempo para cargar imágenes
+          logging: true,              // Para debug
+          onclone: function(clonedDoc) {
+            // Asegurar que las imágenes estén presentes en el clon
+            const clonedLogo = clonedDoc.getElementById('mainLogo');
+            if (clonedLogo && logoElement) {
+              clonedLogo.src = logoElement.src;
+              clonedLogo.crossOrigin = 'anonymous';
+            }
+          }
         });
         
         // Configurar PDF con dimensiones para UNA SOLA HOJA LARGA VERTICAL
@@ -2925,67 +3027,8 @@
           format: [pdfWidth, pdfHeight] // Formato personalizado - UNA HOJA LARGA
         });
         
-        // Agregar logo al principio del PDF
-        try {
-          // Intentar obtener el logo del workbook actual
-          const logoElement = document.getElementById('mainLogo');
-          const logoUrls = [
-            './futuro_digital_logo_correcto.png',
-            'futuro_digital_logo_correcto.png',
-            './assets/futuro_digital_logo_correcto.png',
-            './images/futuro_digital_logo_correcto.png',
-            './img/futuro_digital_logo_correcto.png'
-          ];
-          
-          let logoLoaded = false;
-          
-          // Probar cargar el logo con múltiples URLs
-          for (const logoUrl of logoUrls) {
-            try {
-              const logoImg = new Image();
-              logoImg.crossOrigin = 'anonymous';
-              
-              await new Promise((resolve, reject) => {
-                logoImg.onload = () => {
-                  try {
-                    // Agregar logo centrado en la parte superior
-                    const logoWidth = 60; // mm
-                    const logoHeight = 30; // mm
-                    const logoX = (pdfWidth - logoWidth) / 2;
-                    const logoY = 10;
-                    
-                    pdf.addImage(logoImg, 'PNG', logoX, logoY, logoWidth, logoHeight);
-                    logoLoaded = true;
-                    console.log('✅ Logo agregado al PDF exitosamente');
-                    resolve();
-                  } catch (e) {
-                    reject(e);
-                  }
-                };
-                logoImg.onerror = () => reject(new Error('Logo no encontrado'));
-                logoImg.src = logoUrl;
-              });
-              
-              if (logoLoaded) break; // Si se cargó exitosamente, salir del loop
-              
-            } catch (e) {
-              console.log(`❌ No se pudo cargar logo desde: ${logoUrl}`);
-              continue; // Probar siguiente URL
-            }
-          }
-          
-          if (!logoLoaded) {
-            console.log('⚠️ No se pudo cargar ningún logo, continuando sin logo');
-          }
-          
-        } catch (e) {
-          console.log('❌ Error general con logo, continuando sin logo:', e);
-        }
-        
-        // Convertir canvas a imagen y agregar al PDF
+        // 📄 AGREGAR CONTENIDO CAPTURADO DIRECTAMENTE (el logo ya está incluido en la captura)
         const imgData = canvas.toDataURL('image/png', 0.9);
-        
-        // Agregar la imagen del workbook completo en UNA SOLA PÁGINA
         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
         
         // Generar nombre del archivo
@@ -3002,9 +3045,29 @@
           element.style.display = display;
         });
         
+        // 🖼️ RESTAURAR LOGO ORIGINAL SI USAMOS FALLBACK
+        if (window.tempLogoElement) {
+          window.tempLogoElement.remove();
+          if (logoElement) {
+            logoElement.style.display = 'block';
+          }
+          delete window.tempLogoElement;
+        }
+        
         console.log('📄 PDF generado exitosamente SIN popups ni botón de descarga - PDF limpio!');
+        console.log('🖼️ Logo debería aparecer correctamente como imagen en el PDF');
         
       } catch (error) {
+        // 🖼️ RESTAURAR LOGO EN CASO DE ERROR
+        if (window.tempLogoElement) {
+          window.tempLogoElement.remove();
+          const logoElement = document.getElementById('mainLogo');
+          if (logoElement) {
+            logoElement.style.display = 'block';
+          }
+          delete window.tempLogoElement;
+        }
+        
         // Mensaje de error silencioso - solo en consola
         console.error('❌ Error generando PDF:', error);
         alert('Error generando el PDF. Revisa la consola para más detalles.');
