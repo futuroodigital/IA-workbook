@@ -2832,7 +2832,7 @@
       console.log('💾 Auto-save súper frecuente configurado');
     }
 
-    // 🚀 FUNCIÓN DE DESCARGA PDF SÚPER SIMPLE Y FUNCIONAL
+    // 🚀 FUNCIÓN DE DESCARGA PDF ARREGLADA - DIMENSIONES CORRECTAS
     async function downloadWorkbook() {
       console.log('🚀 INICIANDO DESCARGA...');
       
@@ -2856,7 +2856,9 @@
         // Ocultar elementos problemáticos
         const hideElements = [
           '.save-message',
-          '.final-section'
+          '.final-section',
+          '.circuit-bg',
+          '.glow-overlay'
         ];
         
         const hidden = [];
@@ -2867,36 +2869,56 @@
           });
         });
         
+        // Pequeña pausa para aplicar cambios
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
         console.log('📸 Capturando página...');
         
-        // Capturar con configuración simple
+        // ARREGLADO: Configuración correcta para capturar TODO el ancho
         const canvas = await html2canvas(document.body, {
-          scale: 1,
+          scale: 1.2,
           useCORS: true,
           allowTaint: true,
-          backgroundColor: '#000000'
+          backgroundColor: '#000000',
+          width: window.innerWidth,           // ← ARREGLADO: Usar ancho de ventana
+          height: document.body.scrollHeight, // ← ARREGLADO: Usar altura total
+          scrollX: 0,
+          scrollY: 0,
+          windowWidth: window.innerWidth,     // ← ARREGLADO: Ancho completo
+          windowHeight: window.innerHeight,
+          x: 0,
+          y: 0
         });
         
         console.log('✅ Página capturada, creando PDF...');
+        console.log('Canvas dimensiones:', canvas.width, 'x', canvas.height);
         
-        // Crear PDF simple
+        // ARREGLADO: Crear PDF con dimensiones proporcionales correctas
         const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'mm', 'a4');
         
-        // Calcular dimensiones
-        const pdfWidth = 210;
-        const pdfHeight = 297;
+        // Calcular dimensiones proporcionales
         const imgWidth = canvas.width;
         const imgHeight = canvas.height;
-        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-        const width = imgWidth * ratio;
-        const height = imgHeight * ratio;
+        const aspectRatio = imgHeight / imgWidth;
+        
+        // PDF con ancho A4 y altura proporcional
+        const pdfWidth = 210; // A4 ancho en mm
+        const pdfHeight = pdfWidth * aspectRatio; // Altura proporcional
+        
+        console.log('PDF dimensiones:', pdfWidth, 'x', pdfHeight);
+        
+        // Crear PDF con formato personalizado
+        const pdf = new jsPDF({
+          orientation: pdfHeight > pdfWidth ? 'portrait' : 'landscape',
+          unit: 'mm',
+          format: [pdfWidth, pdfHeight]
+        });
         
         // Convertir canvas a imagen
-        const imgData = canvas.toDataURL('image/PNG', 0.8);
+        const imgData = canvas.toDataURL('image/PNG', 0.9);
         
-        // Agregar imagen al PDF
-        pdf.addImage(imgData, 'PNG', 0, 0, width, height);
+        // ARREGLADO: Agregar imagen ocupando toda la página
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
         
         // Nombre del archivo
         const name = aiWorkbookUserMainName || 'Usuario';
@@ -2915,14 +2937,14 @@
         });
         
         console.log('🎉 ¡PDF DESCARGADO EXITOSAMENTE!');
-        alert('🎉 ¡PDF descargado exitosamente!');
+        alert('🎉 ¡PDF descargado exitosamente con dimensiones correctas!');
         
       } catch (error) {
         console.error('❌ ERROR:', error);
         alert(`❌ Error: ${error.message}\n\nRevisa la consola para más detalles.`);
         
         // Restaurar todo en caso de error
-        document.querySelectorAll('.save-message, .final-section').forEach(el => {
+        document.querySelectorAll('.save-message, .final-section, .circuit-bg, .glow-overlay').forEach(el => {
           el.style.display = '';
         });
       }
