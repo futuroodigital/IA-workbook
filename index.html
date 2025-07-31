@@ -1857,8 +1857,8 @@
     let aiWorkbookSelectedPersonality = '';
     let aiWorkbookUserMainName = ''; // Nombre principal como ID
     
-    // 🚀 CONFIGURACIÓN DE APPS SCRIPT - URL REAL INTEGRADA
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec';
+    // 🚀 CONFIGURACIÓN DE APPS SCRIPT
+    const APPS_SCRIPT_URL = 'TU_APPS_SCRIPT_URL_AQUI'; // Cambiar por tu URL real
     let autoSyncInterval = null;
     let lastSyncTime = null;
     
@@ -1887,8 +1887,13 @@
       }
     }
 
-    // 🚀 SISTEMA DE SINCRONIZACIÓN AUTOMÁTICA CON APPS SCRIPT (OPTIMIZADO)
+    // 🚀 SISTEMA DE SINCRONIZACIÓN AUTOMÁTICA CON APPS SCRIPT
     async function sendDataToAppsScript(userData) {
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'TU_APPS_SCRIPT_URL_AQUI') {
+        console.log('⚠️ Apps Script URL no configurada');
+        return false;
+      }
+      
       try {
         const response = await fetch(APPS_SCRIPT_URL, {
           method: 'POST',
@@ -1933,33 +1938,29 @@
       }
     }
     
-    // ⏰ INICIAR SINCRONIZACIÓN AUTOMÁTICA CADA MINUTO (OPTIMIZADO)
+    // ⏰ INICIAR SINCRONIZACIÓN AUTOMÁTICA CADA MINUTO (SILENCIOSO)
     function startAutoSync() {
       // Limpiar interval existente
       if (autoSyncInterval) {
         clearInterval(autoSyncInterval);
       }
       
-      console.log('🚀 Iniciando auto-sync con Apps Script...');
+      // Sync inicial
+      if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
+        sendDataToAppsScript(aiWorkbookUserData);
+      }
       
-      // Sync inicial después de 5 segundos (dar tiempo para cargas)
-      setTimeout(() => {
-        if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
-          sendDataToAppsScript(prepareDataForSync());
-        }
-      }, 5000);
-      
-      // Configurar sync automático cada 2 minutos (menos agresivo)
+      // Configurar sync automático cada minuto (60000 ms)
       autoSyncInterval = setInterval(async () => {
         if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
           console.log('🔄 Auto-sync ejecutándose silenciosamente...');
-          await sendDataToAppsScript(prepareDataForSync());
+          await sendDataToAppsScript(aiWorkbookUserData);
         } else {
-          console.log('⏸️ Auto-sync pausado - esperando más datos');
+          console.log('⏸️ Auto-sync pausado - datos insuficientes');
         }
-      }, 120000); // Cada 2 minutos
+      }, 60000); // Cada minuto
       
-      console.log('✅ Auto-sync iniciado - envío cada 2 minutos a:', APPS_SCRIPT_URL);
+      console.log('✅ Auto-sync iniciado silenciosamente - envío cada minuto');
     }
     
     // 🛑 DETENER SINCRONIZACIÓN AUTOMÁTICA
@@ -2782,24 +2783,21 @@
       }, 3000);
     }
 
-    // Auto-guardado OPTIMIZADO (menos frecuente para evitar problemas)
+    // Auto-guardado SÚPER FRECUENTE y COMPLETO
     function setupAutoSave() {
-      // Auto-save en tiempo real en cada input (con delay más largo)
+      // Auto-save en tiempo real en cada input
       document.querySelectorAll('.fun-input, .fun-textarea').forEach(input => {
-        // Guardar después de dejar de escribir por 2 segundos
+        // Guardar en cada tecla (con delay para evitar spam)
         input.addEventListener('input', function() {
           clearTimeout(this.saveTimeout);
           this.saveTimeout = setTimeout(() => {
             saveData();
-          }, 2000); // 2 segundos después de dejar de escribir
+          }, 500); // Guardar 500ms después de dejar de escribir
         });
         
-        // Guardar al salir del campo
+        // Guardar inmediatamente al hacer focus/blur
         input.addEventListener('blur', function() {
-          clearTimeout(this.saveTimeout);
-          setTimeout(() => {
-            saveData();
-          }, 100);
+          saveData();
         });
         
         // Efectos visuales
@@ -2812,14 +2810,15 @@
         });
       });
 
-      // Auto-save cada 30 segundos (menos frecuente)
+      // Auto-save cada 10 segundos (más frecuente)
       setInterval(() => {
-        // Solo guardar si hay cambios pendientes
-        const activeInput = document.querySelector('.fun-input:focus, .fun-textarea:focus');
-        if (!activeInput && Object.keys(aiWorkbookUserData).length > 0) {
-          saveData();
-        }
-      }, 30000);
+        saveData();
+      }, 10000);
+
+      // Guardar al hacer click en cualquier parte
+      document.addEventListener('click', function() {
+        setTimeout(saveData, 100);
+      });
 
       // Guardar al cambiar de pestaña
       document.addEventListener('visibilitychange', function() {
@@ -2828,95 +2827,64 @@
         }
       });
 
-      console.log('💾 Auto-save optimizado configurado');
+      console.log('💾 Auto-save súper frecuente configurado');
     }
 
-    // 🚀 FUNCIÓN DE DESCARGA PDF - UNA SOLA HOJA LARGA VERTICAL (SIN ELEMENTOS TÉCNICOS)
+    // 🚀 FUNCIÓN DE DESCARGA PDF OPTIMIZADA - GENERACIÓN SILENCIOSA SIN POPUPS
     async function downloadWorkbook() {
       // Recopilar todos los datos finales
       saveData();
       
-      // Crear efecto épico de descarga
-      const message = document.createElement('div');
-      message.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(10, 10, 10, 0.95) 100%);
-        color: #FFD700;
-        padding: 50px;
-        border-radius: 25px;
-        border: 2px solid #FFD700;
-        font-family: 'Orbitron', monospace;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 10001;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.3);
-        backdrop-filter: blur(15px);
-      `;
-      message.innerHTML = `
-        <div style="font-size: 4rem; margin-bottom: 20px; animation: spin 2s linear infinite;">🚀</div>
-        <div style="margin-bottom: 15px;">¡COMPILANDO TU REPORTE PERSONAL!</div>
-        <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8);">
-          Capturando: ${Object.keys(aiWorkbookUserData).length} datos súper personalizados
-        </div>
-        <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.9;">
-          Generando PDF en hoja larga vertical...
-        </div>
-      `;
+      // ⚡ PROCESO SILENCIOSO - SIN POPUPS NI BOTONES EN EL PDF
+      console.log('🚀 Iniciando generación de PDF silenciosa...');
       
-      document.body.appendChild(message);
-      
+      // ⚡ INICIO DEL PROCESO - SIN DISTRACCIONES VISUALES
       try {
-        // 🚫 OCULTAR ELEMENTOS QUE NO DEBEN APARECER EN EL PDF
+        // 🚫 OCULTAR ELEMENTOS ESPECÍFICOS PARA EL PDF
         const elementsToHide = [
-          // Elementos de fondo técnicos
           '.save-message',
-          '.circuit-bg', 
+          '.circuit-bg',
           '.glow-overlay',
-          
-          // Botones y elementos de interfaz técnica
-          '.epic-btn', // Botón de descarga
-          '.btn-download', // Botón específico de descarga
-          '#syncStatus', // Indicadores de sync (por si quedaron)
-          '[onclick="downloadWorkbook()"]', // Cualquier botón con la función
-          
-          // Selectores más específicos para el botón de descarga
-          'button[class*="epic-btn"]',
-          'button[class*="btn-download"]',
-          '.final-section button', // Botones en la sección final
-          
-          // Elementos de debugging
-          '.debug-info',
-          '.technical-info'
+          '.scan-line',
+          // NUEVAS SECCIONES A OCULTAR SEGÚN TU PETICIÓN:
+          // Puedes especificar aquí las secciones que no quieres que aparezcan
+          // Ejemplo: '.workbook-section:nth-child(3)', // Ocultar la 3ra sección
+          // '.final-section', // Ocultar la sección final
+          // '#aiWorkbookSaveMessage', // Ocultar mensaje de guardado
+          // Por ahora dejo los elementos básicos que ya tenías
         ];
         
         const hiddenElements = [];
-        
-        // Ocultar elementos específicos
         elementsToHide.forEach(selector => {
           const elements = document.querySelectorAll(selector);
           elements.forEach(el => {
-            if (el && el.style) {
-              hiddenElements.push({element: el, display: el.style.display, visibility: el.style.visibility});
-              el.style.display = 'none';
-              el.style.visibility = 'hidden';
-            }
+            hiddenElements.push({element: el, display: el.style.display});
+            el.style.display = 'none';
           });
         });
         
-        // 🚫 OCULTAR ESPECÍFICAMENTE LA SECCIÓN FINAL CON BOTONES
-        const finalSection = document.querySelector('.final-section');
-        if (finalSection) {
-          hiddenElements.push({element: finalSection, display: finalSection.style.display});
-          finalSection.style.display = 'none';
-        }
+        // 🎯 SECCIONES ESPECÍFICAS QUE NO QUIERES EN EL PDF
+        const specificSectionsToHide = [
+          '.save-message',
+          '.circuit-bg', 
+          '.glow-overlay',
+          '.scan-line',
+          
+          // 🚫 ELEMENTOS ESPECÍFICOS QUE NO QUIERES (según las imágenes):
+          '.final-section',              // ← Toda la sección final (incluye el botón verde)
+          '.epic-btn',                   // ← Todos los botones épicos
+          '.btn-download',               // ← Botón de descarga específico
+        ];
         
-        console.log(`🚫 Ocultados ${hiddenElements.length} elementos técnicos para PDF limpio`);
-        
-        // Pequeña pausa para asegurar que los elementos se oculten
-        await new Promise(resolve => setTimeout(resolve, 500));
+        specificSectionsToHide.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            if (!hiddenElements.find(item => item.element === el)) {
+              hiddenElements.push({element: el, display: el.style.display});
+              el.style.display = 'none';
+            }
+          });
+        });
         
         // Obtener el elemento principal a capturar
         const captureElement = document.body;
@@ -2936,16 +2904,7 @@
           windowWidth: window.innerWidth,
           windowHeight: captureElement.scrollHeight, // Altura completa
           foreignObjectRendering: true,
-          removeContainer: true,
-          ignoreElements: (element) => {
-            // Ignorar elementos específicos durante la captura
-            return element.classList.contains('save-message') ||
-                   element.classList.contains('circuit-bg') ||
-                   element.classList.contains('glow-overlay') ||
-                   element.classList.contains('epic-btn') ||
-                   element.classList.contains('btn-download') ||
-                   element.id === 'syncStatus';
-          }
+          removeContainer: true
         });
         
         // Configurar PDF con dimensiones para UNA SOLA HOJA LARGA VERTICAL
@@ -3039,163 +2998,18 @@
         pdf.save(fileName);
         
         // ✅ RESTAURAR ELEMENTOS OCULTOS
-        hiddenElements.forEach(({element, display, visibility}) => {
-          if (element && element.style) {
-            element.style.display = display || '';
-            element.style.visibility = visibility || '';
-          }
+        hiddenElements.forEach(({element, display}) => {
+          element.style.display = display;
         });
         
-        console.log('✅ Elementos técnicos restaurados después de PDF');
-        
-        // Quitar mensaje de carga
-        if (message.parentNode) {
-          message.remove();
-        }
-        
-        // Mensaje de éxito épico
-        const successMessage = document.createElement('div');
-        successMessage.style.cssText = `
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: linear-gradient(135deg, rgba(76, 175, 80, 0.95) 0%, rgba(56, 142, 60, 0.95) 100%);
-          color: white;
-          padding: 40px;
-          border-radius: 20px;
-          font-family: 'Orbitron', monospace;
-          font-size: 1.3rem;
-          text-align: center;
-          z-index: 10002;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-          backdrop-filter: blur(10px);
-        `;
-        successMessage.innerHTML = `
-          <div style="font-size: 3rem; margin-bottom: 15px;">🎉</div>
-          <div style="margin-bottom: 10px;">¡PDF GENERADO EXITOSAMENTE!</div>
-          <div style="font-size: 1rem; opacity: 0.9;">
-            Tu workbook completo se descargó limpio y profesional
-          </div>
-        `;
-        
-        document.body.appendChild(successMessage);
-        
-        setTimeout(() => {
-          if (successMessage.parentNode) {
-            successMessage.remove();
-          }
-        }, 4000);
-        
-        console.log('📄 PDF generado exitosamente sin elementos técnicos');
+        console.log('📄 PDF generado exitosamente SIN popups ni botón de descarga - PDF limpio!');
         
       } catch (error) {
-        console.error('Error generando PDF:', error);
-        
-        // Quitar mensaje de carga
-        if (message.parentNode) {
-          message.remove();
-        }
-        
-        // Mensaje de error
-        alert('Error generando el PDF. Por favor intenta de nuevo.');
+        // Mensaje de error silencioso - solo en consola
+        console.error('❌ Error generando PDF:', error);
+        alert('Error generando el PDF. Revisa la consola para más detalles.');
       }
     }
-
-    // Cargar datos guardados
-    function loadSavedData() {
-      const savedData = localStorage.getItem('aiWorkbookCompleteData');
-      if (savedData) {
-        aiWorkbookUserData = JSON.parse(savedData);
-        
-        // Restaurar inputs
-        Object.keys(aiWorkbookUserData).forEach(key => {
-          const input = document.getElementById(key);
-          if (input) {
-            input.value = aiWorkbookUserData[key];
-          }
-        });
-        
-        // Restaurar selecciones
-        if (aiWorkbookUserData.avatar) {
-          const avatarCard = document.querySelector(`[data-avatar="${aiWorkbookUserData.avatar}"]`);
-          if (avatarCard) {
-            avatarCard.classList.add('selected');
-          }
-        }
-        
-        if (aiWorkbookUserData.personality) {
-          const personalityOption = document.querySelector(`[data-personality="${aiWorkbookUserData.personality}"]`);
-          if (personalityOption) {
-            personalityOption.classList.add('selected');
-            document.getElementById('aiWorkbookPersonalityResult').classList.add('show');
-            if (aiWorkbookUserData.personalityDescription) {
-              document.getElementById('aiWorkbookPersonalityDescription').innerHTML = `
-                <strong>${aiWorkbookUserData.personalityTitle}</strong><br><br>
-                ${aiWorkbookUserData.personalityDescription}
-              `;
-            }
-          }
-        }
-        
-        // Restaurar slider de Python
-        if (aiWorkbookUserData.pythonLevel) {
-          const slider = document.getElementById('aiWorkbookPythonSlider');
-          if (slider) {
-            slider.value = aiWorkbookUserData.pythonLevel;
-            slider.dispatchEvent(new Event('input'));
-          }
-        }
-        
-        // Restaurar selecciones de proyecto
-        if (aiWorkbookUserData.projectType) {
-          const projectOption = document.querySelector(`[data-value="${aiWorkbookUserData.projectType}"]`);
-          if (projectOption && projectOption.classList.contains('project-option')) {
-            projectOption.classList.add('selected');
-          }
-        }
-        
-        if (aiWorkbookUserData.projectIndustry) {
-          const industryOption = document.querySelector(`[data-value="${aiWorkbookUserData.projectIndustry}"]`);
-          if (industryOption && industryOption.classList.contains('industry-option')) {
-            industryOption.classList.add('selected');
-          }
-        }
-        
-        // Mostrar resultado del proyecto si existe
-        if (aiWorkbookUserData.projectDescription) {
-          document.getElementById('aiWorkbookProjectResult').classList.add('show');
-          document.getElementById('aiWorkbookProjectDescription').textContent = aiWorkbookUserData.projectDescription;
-        }
-      }
-    }
-
-    // Animaciones adicionales
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      @keyframes selectedBurst {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.15); box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
-        100% { transform: scale(1.05); }
-      }
-      
-      @keyframes projectReveal {
-        0% { 
-          opacity: 0; 
-          transform: translateY(20px) scale(0.9); 
-        }
-        100% { 
-          opacity: 1; 
-          transform: translateY(0) scale(1); 
-        }
-      }
-    `;
-    document.head.appendChild(style);
 
     // Inicializar toda la aplicación
     document.addEventListener('DOMContentLoaded', function() {
