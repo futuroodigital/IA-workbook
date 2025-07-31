@@ -1835,12 +1835,6 @@
       </p>
       
       <div style="text-align: center; margin: 40px 0;">
-        <!-- Botón de test temporal -->
-        <button onclick="testDownload(); return false;" style="background: #FF6B6B; color: white; padding: 10px 20px; border: none; border-radius: 10px; margin-bottom: 20px; cursor: pointer; font-family: 'Orbitron', monospace;">
-          🧪 TEST (mira la consola)
-        </button>
-        <br>
-        
         <button class="epic-btn btn-download" onclick="downloadWorkbook(); return false;" style="cursor: pointer;">
           📥 DESCARGAR MI REPORTE PERSONAL
         </button>
@@ -2445,8 +2439,8 @@
         return;
       }
       
-      // Guardar inputs de texto automáticamente
-      const inputs = document.querySelectorAll('.fun-input, .fun-textarea');
+      // Guardar inputs de texto automáticamente - CONVERTIR A ARRAY
+      const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
       inputs.forEach(input => {
         if (input.value.trim()) {
           aiWorkbookUserData[input.id] = input.value.trim();
@@ -2468,7 +2462,7 @@
       
       // 🚀 ENVÍO AUTOMÁTICO A APPS SCRIPT (si está configurado)
       if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
-        // Envío inmediato en cambios importantes
+        // Envío inmediato en cambios importantes - ARREGLADO
         const importantFields = [
           'aiWorkbookUserName',
           'personality',
@@ -2478,8 +2472,9 @@
           'aiWorkbookCommitmentReason'
         ];
         
+        // ARREGLADO: Usar Array.some() correctamente
         const hasImportantChanges = inputs.some(input => 
-          importantFields.includes(input.id) && input.value.trim()
+          importantFields.includes(input.id) && input.value && input.value.trim()
         );
         
         if (hasImportantChanges || Object.keys(aiWorkbookUserData).length > 10) {
@@ -2524,13 +2519,13 @@
       }
     }
 
-    // 💾 GUARDAR DATOS TEMPORALES (SIN NOMBRE)
+    // 💾 GUARDAR DATOS TEMPORALES (SIN NOMBRE) - ARREGLADO
     function saveTemporaryData() {
       try {
         const tempData = {};
         
-        // Guardar todos los inputs aunque no haya nombre
-        const inputs = document.querySelectorAll('.fun-input, .fun-textarea');
+        // Guardar todos los inputs aunque no haya nombre - CONVERTIR A ARRAY
+        const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
         inputs.forEach(input => {
           if (input.value.trim()) {
             tempData[input.id] = input.value.trim();
@@ -2611,7 +2606,7 @@
       }
     }
 
-    // 🔄 RESTAURAR DATOS DEL USUARIO
+    // 🔄 RESTAURAR DATOS DEL USUARIO - ARREGLADO
     function restoreUserData(savedData) {
       try {
         // Restaurar datos globales
@@ -2622,8 +2617,8 @@
           aiWorkbookUserData.timestamp = savedData.fecha_registro;
         }
         
-        // Restaurar todos los inputs de texto
-        const inputs = document.querySelectorAll('.fun-input, .fun-textarea');
+        // Restaurar todos los inputs de texto - CONVERTIR A ARRAY
+        const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
         inputs.forEach(input => {
           const savedValue = savedData[input.id] || 
                            getValueFromGoogleSheetsFormat(savedData, input.id);
@@ -2789,10 +2784,11 @@
       }, 3000);
     }
 
-    // Auto-guardado SÚPER FRECUENTE y COMPLETO
+    // Auto-guardado SÚPER FRECUENTE y COMPLETO - ARREGLADO
     function setupAutoSave() {
-      // Auto-save en tiempo real en cada input
-      document.querySelectorAll('.fun-input, .fun-textarea').forEach(input => {
+      // Auto-save en tiempo real en cada input - CONVERTIR A ARRAY
+      const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
+      inputs.forEach(input => {
         // Guardar en cada tecla (con delay para evitar spam)
         input.addEventListener('input', function() {
           clearTimeout(this.saveTimeout);
@@ -2834,22 +2830,6 @@
       });
 
       console.log('💾 Auto-save súper frecuente configurado');
-    }
-
-    // 🧪 FUNCIÓN DE TEST SIMPLE
-    function testDownload() {
-      console.log('🧪 TESTING...');
-      console.log('html2canvas disponible:', !!window.html2canvas);
-      console.log('jsPDF disponible:', !!window.jspdf);
-      console.log('Función downloadWorkbook:', typeof downloadWorkbook);
-      
-      if (window.html2canvas && window.jspdf && typeof downloadWorkbook === 'function') {
-        console.log('✅ Todo listo para descargar!');
-        return true;
-      } else {
-        console.log('❌ Algo falta...');
-        return false;
-      }
     }
 
     // 🚀 FUNCIÓN DE DESCARGA PDF SÚPER SIMPLE Y FUNCIONAL
