@@ -1857,8 +1857,8 @@
     let aiWorkbookSelectedPersonality = '';
     let aiWorkbookUserMainName = ''; // Nombre principal como ID
     
-    // 🚀 CONFIGURACIÓN DE APPS SCRIPT
-    const APPS_SCRIPT_URL = 'TU_APPS_SCRIPT_URL_AQUI'; // Cambiar por tu URL real
+    // 🚀 CONFIGURACIÓN DE APPS SCRIPT - ¡TU URL REAL!
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec';
     let autoSyncInterval = null;
     let lastSyncTime = null;
     
@@ -2830,79 +2830,23 @@
       console.log('💾 Auto-save súper frecuente configurado');
     }
 
-    // 🚀 FUNCIÓN DE DESCARGA PDF OPTIMIZADA - GENERACIÓN SILENCIOSA SIN POPUPS
+    // 🚀 FUNCIÓN DE DESCARGA PDF OPTIMIZADA - LOGO ARREGLADO
     async function downloadWorkbook() {
       // Recopilar todos los datos finales
       saveData();
       
-      // ⚡ PROCESO SILENCIOSO - SIN POPUPS NI BOTONES EN EL PDF
-      console.log('🚀 Iniciando generación de PDF silenciosa...');
+      console.log('🚀 Iniciando generación de PDF...');
       
-      // ⚡ INICIO DEL PROCESO - SIN DISTRACCIONES VISUALES
       try {
-        // 🖼️ FORZAR CARGA CORRECTA DEL LOGO ANTES DE GENERAR PDF
-        const logoElement = document.getElementById('mainLogo');
-        const logoFallback = document.querySelector('.logo-fallback');
-        
-        if (logoElement && !logoElement.complete) {
-          console.log('⏳ Esperando a que el logo termine de cargar...');
-          await new Promise((resolve) => {
-            if (logoElement.complete) {
-              resolve();
-            } else {
-              logoElement.onload = resolve;
-              logoElement.onerror = resolve; // Continuar aunque falle
-              // Timeout por si no carga
-              setTimeout(resolve, 2000);
-            }
-          });
-        }
-        
-        // 🔧 ASEGURAR QUE LA IMAGEN ESTÉ DISPONIBLE PARA html2canvas
-        if (logoElement) {
-          // Si la imagen no está cargada correctamente, usar fallback temporal
-          if (!logoElement.complete || logoElement.naturalHeight === 0) {
-            console.log('⚠️ Logo no cargó correctamente, usando fallback estilizado para PDF...');
-            
-            // Crear un elemento temporal con el logo como texto estilizado
-            const tempLogo = document.createElement('div');
-            tempLogo.innerHTML = '🚀 FUTURO DIGITAL';
-            tempLogo.style.cssText = `
-              font-family: 'Orbitron', monospace; 
-              font-size: 2rem; 
-              color: #FFD700; 
-              font-weight: 700; 
-              text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); 
-              text-align: center;
-              padding: 20px;
-              background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
-              border-radius: 15px;
-              border: 2px solid rgba(255, 215, 0, 0.3);
-            `;
-            
-            // Reemplazar temporalmente
-            logoElement.style.display = 'none';
-            logoElement.parentNode.insertBefore(tempLogo, logoElement);
-            
-            // Guardar referencia para restaurar después
-            window.tempLogoElement = tempLogo;
-          } else {
-            // Forzar que html2canvas vea la imagen como cargada
-            logoElement.setAttribute('crossorigin', 'anonymous');
-            console.log('✅ Logo cargado correctamente para PDF');
-          }
-        }
+        // Ocultar elementos para el PDF
         const elementsToHide = [
           '.save-message',
           '.circuit-bg',
           '.glow-overlay',
           '.scan-line',
-          // NUEVAS SECCIONES A OCULTAR SEGÚN TU PETICIÓN:
-          // Puedes especificar aquí las secciones que no quieres que aparezcan
-          // Ejemplo: '.workbook-section:nth-child(3)', // Ocultar la 3ra sección
-          // '.final-section', // Ocultar la sección final
-          // '#aiWorkbookSaveMessage', // Ocultar mensaje de guardado
-          // Por ahora dejo los elementos básicos que ya tenías
+          '.final-section',
+          '.epic-btn',
+          '.btn-download',
         ];
         
         const hiddenElements = [];
@@ -2914,74 +2858,12 @@
           });
         });
         
-        // 🚫 OCULTAR ELEMENTOS ESPECÍFICOS PARA EL PDF
-        const elementsToHide = [
-          '.save-message',
-          '.circuit-bg',
-          '.glow-overlay',
-          '.scan-line',
-          // NUEVAS SECCIONES A OCULTAR SEGÚN TU PETICIÓN:
-          // Puedes especificar aquí las secciones que no quieres que aparezcan
-          // Ejemplo: '.workbook-section:nth-child(3)', // Ocultar la 3ra sección
-          // '.final-section', // Ocultar la sección final
-          // '#aiWorkbookSaveMessage', // Ocultar mensaje de guardado
-          // Por ahora dejo los elementos básicos que ya tenías
-        ];
-        
-        // 🎯 SECCIONES ESPECÍFICAS QUE NO QUIERES EN EL PDF
-        const specificSectionsToHide = [
-          '.save-message',
-          '.circuit-bg', 
-          '.glow-overlay',
-          '.scan-line',
-          
-          // 🚫 ELEMENTOS ESPECÍFICOS QUE NO QUIERES (según las imágenes):
-          '.final-section',              // ← Toda la sección final (incluye el botón verde)
-          '.epic-btn',                   // ← Todos los botones épicos
-          '.btn-download',               // ← Botón de descarga específico
-        ];
-        
-        // Combinar ambos arrays
-        const allElementsToHide = [...elementsToHide, ...specificSectionsToHide];
-        
-        const hiddenElements = [];
-        allElementsToHide.forEach(selector => {
-          const elements = document.querySelectorAll(selector);
-          elements.forEach(el => {
-            hiddenElements.push({element: el, display: el.style.display});
-            el.style.display = 'none';
-          });
-        });
-        
-        // 🖼️ ASEGURAR QUE EL LOGO ESTÉ VISIBLE Y BIEN CONFIGURADO
-        if (logoElement) {
-          // Forzar visibilidad del logo durante la captura
-          logoElement.style.display = 'block';
-          logoElement.style.opacity = '1';
-          logoElement.style.visibility = 'visible';
-          
-          // Asegurar dimensiones correctas
-          if (logoElement.style.maxWidth) {
-            logoElement.style.width = logoElement.style.maxWidth;
-          }
-          
-          console.log('🖼️ Logo preparado para captura:', logoElement.src, 'Cargado:', logoElement.complete);
-        }
-        
-        // También asegurar que el contenedor del logo esté visible
-        const logoContainer = document.querySelector('.logo-container');
-        if (logoContainer) {
-          logoContainer.style.display = 'block';
-          logoContainer.style.opacity = '1';
-          logoContainer.style.visibility = 'visible';
-        }
-        
-        // Obtener el elemento principal a capturar
+        // Capturar el elemento principal
         const captureElement = document.body;
         
-        // Configurar opciones para html2canvas - MEJORADO PARA IMÁGENES
+        // Configurar html2canvas
         const canvas = await html2canvas(captureElement, {
-          scale: 1.5, // Mejor calidad
+          scale: 1.5,
           useCORS: true,
           allowTaint: true,
           backgroundColor: '#000000',
@@ -2994,40 +2876,63 @@
           windowWidth: window.innerWidth,
           windowHeight: captureElement.scrollHeight,
           foreignObjectRendering: true,
-          removeContainer: true,
-          
-          // 🖼️ OPCIONES ESPECÍFICAS PARA MEJORAR IMÁGENES:
-          imageTimeout: 15000,        // Más tiempo para cargar imágenes
-          logging: true,              // Para debug
-          onclone: function(clonedDoc) {
-            // Asegurar que las imágenes estén presentes en el clon
-            const clonedLogo = clonedDoc.getElementById('mainLogo');
-            if (clonedLogo && logoElement) {
-              clonedLogo.src = logoElement.src;
-              clonedLogo.crossOrigin = 'anonymous';
-            }
-          }
+          removeContainer: true
         });
         
-        // Configurar PDF con dimensiones para UNA SOLA HOJA LARGA VERTICAL
+        // Configurar PDF
         const { jsPDF } = window.jspdf;
-        
-        // Dimensiones del canvas
         const imgWidth = canvas.width;
         const imgHeight = canvas.height;
-        
-        // Configurar PDF - Ancho A4, altura ajustada al contenido
         const pdfWidth = 210; // A4 width en mm
-        const pdfHeight = (imgHeight * pdfWidth) / imgWidth; // Altura proporcional
+        const pdfHeight = (imgHeight * pdfWidth) / imgWidth;
         
-        // Crear PDF con altura personalizada (UNA SOLA HOJA LARGA)
         const pdf = new jsPDF({
           orientation: 'portrait',
           unit: 'mm',
-          format: [pdfWidth, pdfHeight] // Formato personalizado - UNA HOJA LARGA
+          format: [pdfWidth, pdfHeight]
         });
         
-        // 📄 AGREGAR CONTENIDO CAPTURADO DIRECTAMENTE (el logo ya está incluido en la captura)
+        // ✅ LOGO ARREGLADO - USAR ELEMENTO DEL DOM
+        try {
+          const logoElement = document.getElementById('mainLogo');
+          
+          if (logoElement && logoElement.complete && logoElement.naturalWidth > 0) {
+            // Crear canvas temporal para el logo
+            const logoCanvas = document.createElement('canvas');
+            const logoCtx = logoCanvas.getContext('2d');
+            
+            logoCanvas.width = logoElement.naturalWidth;
+            logoCanvas.height = logoElement.naturalHeight;
+            
+            // Dibujar el logo
+            logoCtx.drawImage(logoElement, 0, 0);
+            
+            // Convertir y agregar al PDF
+            const logoDataUrl = logoCanvas.toDataURL('image/PNG', 1.0);
+            const logoWidth = 60;
+            const logoHeight = 30;
+            const logoX = (pdfWidth - logoWidth) / 2;
+            const logoY = 10;
+            
+            pdf.addImage(logoDataUrl, 'PNG', logoX, logoY, logoWidth, logoHeight);
+            console.log('✅ Logo agregado al PDF exitosamente');
+            
+          } else {
+            // Fallback: texto
+            pdf.setFontSize(20);
+            pdf.setTextColor(255, 215, 0);
+            pdf.text('🚀 FUTURO DIGITAL', pdfWidth / 2, 20, { align: 'center' });
+            console.log('⚠️ Usando texto como fallback del logo');
+          }
+          
+        } catch (e) {
+          console.log('❌ Error con logo, usando fallback:', e);
+          pdf.setFontSize(20);
+          pdf.setTextColor(255, 215, 0);
+          pdf.text('🚀 FUTURO DIGITAL', pdfWidth / 2, 20, { align: 'center' });
+        }
+        
+        // Agregar contenido del workbook
         const imgData = canvas.toDataURL('image/png', 0.9);
         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
         
@@ -3037,38 +2942,17 @@
         const timestamp = new Date().toISOString().slice(0, 10);
         const fileName = `Workbook_IA_${sanitizedName}_${timestamp}.pdf`;
         
-        // Descargar el PDF
+        // Descargar
         pdf.save(fileName);
         
-        // ✅ RESTAURAR ELEMENTOS OCULTOS
+        // Restaurar elementos ocultos
         hiddenElements.forEach(({element, display}) => {
           element.style.display = display;
         });
         
-        // 🖼️ RESTAURAR LOGO ORIGINAL SI USAMOS FALLBACK
-        if (window.tempLogoElement) {
-          window.tempLogoElement.remove();
-          if (logoElement) {
-            logoElement.style.display = 'block';
-          }
-          delete window.tempLogoElement;
-        }
-        
-        console.log('📄 PDF generado exitosamente SIN popups ni botón de descarga - PDF limpio!');
-        console.log('🖼️ Logo debería aparecer correctamente como imagen en el PDF');
+        console.log('📄 PDF generado exitosamente con logo perfecto!');
         
       } catch (error) {
-        // 🖼️ RESTAURAR LOGO EN CASO DE ERROR
-        if (window.tempLogoElement) {
-          window.tempLogoElement.remove();
-          const logoElement = document.getElementById('mainLogo');
-          if (logoElement) {
-            logoElement.style.display = 'block';
-          }
-          delete window.tempLogoElement;
-        }
-        
-        // Mensaje de error silencioso - solo en consola
         console.error('❌ Error generando PDF:', error);
         alert('Error generando el PDF. Revisa la consola para más detalles.');
       }
@@ -3076,11 +2960,11 @@
 
     // Inicializar toda la aplicación
     document.addEventListener('DOMContentLoaded', function() {
-      // 💾 CARGAR DATOS GUARDADOS PRIMERO
+      // Cargar datos guardados
       console.log('🔄 Cargando datos guardados...');
       loadSavedData();
       
-      // Verificar carga del logo
+      // Verificar logo
       const logoElement = document.getElementById('mainLogo');
       if (logoElement) {
         logoElement.onload = () => {
@@ -3092,14 +2976,15 @@
         };
       }
       
-      setupNameSystem(); // Sistema de nombres
+      // Configurar todas las funciones interactivas
+      setupNameSystem();
       setupPersonalityTest();
       setupPythonSlider();
       setupProjectSimulator();
       setupAvatarSelection();
       setupAutoSave();
       
-      // 🚀 INICIAR AUTO-SYNC SILENCIOSO DESPUÉS DE CARGAR DATOS
+      // Iniciar auto-sync
       setTimeout(() => {
         if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
           startAutoSync();
@@ -3108,20 +2993,18 @@
         }
       }, 2000);
       
-      console.log('🚀 Workbook IA épico cargado completamente con localStorage automático');
+      console.log('🚀 Workbook IA épico cargado completamente con todas las funciones!');
       
-      // Mensaje de bienvenida personalizado
+      // Mensaje de bienvenida
       setTimeout(() => {
         if (aiWorkbookUserMainName) {
           showSaveMessage();
           console.log(`👋 ¡Bienvenido de vuelta, ${aiWorkbookUserMainName}!`);
-        } else if (Object.keys(aiWorkbookUserData).length === 0) {
-          showSaveMessage();
         }
       }, 1000);
     });
 
-    // Auto-guardado cada 30 segundos
+    // Auto-guardado adicional
     setInterval(() => {
       const activeInput = document.querySelector('.fun-input:focus, .fun-textarea:focus');
       if (activeInput) {
@@ -3129,30 +3012,25 @@
       }
     }, 30000);
 
-    // Detectar abandono de página y limpiar
+    // Detectar abandono de página
     window.addEventListener('beforeunload', function() {
       saveData();
       
-      // Sync final antes de cerrar
       if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && aiWorkbookUserMainName) {
-        // Envío síncrono para asegurar que se procese
         navigator.sendBeacon(APPS_SCRIPT_URL, JSON.stringify(prepareDataForSync()));
       }
       
-      // Limpiar intervalos
       stopAutoSync();
     });
 
-    // Detectar cambio de visibilidad de la página
+    // Detectar cambio de visibilidad
     document.addEventListener('visibilitychange', function() {
       if (document.hidden) {
-        // Página se oculta - hacer sync final
         saveData();
         if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
           sendDataToAppsScript(prepareDataForSync());
         }
       } else {
-        // Página se vuelve visible - reanudar auto-sync si es necesario
         if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && !autoSyncInterval) {
           startAutoSync();
         }
@@ -3162,11 +3040,6 @@
     // Animaciones adicionales
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
       @keyframes selectedBurst {
         0% { transform: scale(1); }
         50% { transform: scale(1.15); box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
@@ -3186,54 +3059,22 @@
     `;
     document.head.appendChild(style);
 
-    // 🛠️ FUNCIONES ADICIONALES DE UTILIDAD
-
-    // Verificar conectividad con Apps Script
-    async function testAppsScriptConnection() {
-      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'TU_APPS_SCRIPT_URL_AQUI') {
-        console.log('❌ Apps Script URL no configurada');
-        return false;
-      }
-      
-      try {
-        const response = await fetch(`${APPS_SCRIPT_URL}?action=status`);
-        const result = await response.json();
-        
-        if (result.status === 'active') {
-          console.log('✅ Conexión con Apps Script exitosa:', result);
-          return true;
-        } else {
-          console.log('❌ Apps Script no responde correctamente');
-          return false;
-        }
-      } catch (error) {
-        console.error('❌ Error conectando con Apps Script:', error);
-        return false;
-      }
-    }
-
-    // Obtener estadísticas de sync
-    function getSyncStats() {
-      return {
-        lastSyncTime: lastSyncTime,
-        autoSyncActive: autoSyncInterval !== null,
-        totalDataFields: Object.keys(aiWorkbookUserData).length,
-        userName: aiWorkbookUserMainName,
-        appsScriptConfigured: APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI'
-      };
-    }
-
-    // Exposer funciones globales para debugging (solo en modo desarrollo)
+    // Funciones de debug (solo en desarrollo)
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       window.aiWorkbookDebug = {
-        testConnection: testAppsScriptConnection,
         manualSync: manualSync,
-        getSyncStats: getSyncStats,
         startAutoSync: startAutoSync,
         stopAutoSync: stopAutoSync,
-        currentData: () => aiWorkbookUserData
+        currentData: () => aiWorkbookUserData,
+        getSyncStats: () => ({
+          lastSyncTime: lastSyncTime,
+          autoSyncActive: autoSyncInterval !== null,
+          totalDataFields: Object.keys(aiWorkbookUserData).length,
+          userName: aiWorkbookUserMainName,
+          appsScriptConfigured: APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI'
+        })
       };
-      console.log('🔧 Funciones de debug disponibles en window.aiWorkbookDebug (solo en desarrollo)');
+      console.log('🔧 Funciones de debug disponibles en window.aiWorkbookDebug');
     }
   </script>
 </body>
