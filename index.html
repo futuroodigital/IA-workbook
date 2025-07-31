@@ -1835,7 +1835,13 @@
       </p>
       
       <div style="text-align: center; margin: 40px 0;">
-        <button class="epic-btn btn-download" onclick="downloadWorkbook()">
+        <!-- Botón de test temporal -->
+        <button onclick="testDownload(); return false;" style="background: #FF6B6B; color: white; padding: 10px 20px; border: none; border-radius: 10px; margin-bottom: 20px; cursor: pointer; font-family: 'Orbitron', monospace;">
+          🧪 TEST (mira la consola)
+        </button>
+        <br>
+        
+        <button class="epic-btn btn-download" onclick="downloadWorkbook(); return false;" style="cursor: pointer;">
           📥 DESCARGAR MI REPORTE PERSONAL
         </button>
       </div>
@@ -2830,137 +2836,115 @@
       console.log('💾 Auto-save súper frecuente configurado');
     }
 
-    // 🚀 FUNCIÓN DE DESCARGA PDF ARREGLADA - 100% FUNCIONAL
+    // 🧪 FUNCIÓN DE TEST SIMPLE
+    function testDownload() {
+      console.log('🧪 TESTING...');
+      console.log('html2canvas disponible:', !!window.html2canvas);
+      console.log('jsPDF disponible:', !!window.jspdf);
+      console.log('Función downloadWorkbook:', typeof downloadWorkbook);
+      
+      if (window.html2canvas && window.jspdf && typeof downloadWorkbook === 'function') {
+        console.log('✅ Todo listo para descargar!');
+        return true;
+      } else {
+        console.log('❌ Algo falta...');
+        return false;
+      }
+    }
+
+    // 🚀 FUNCIÓN DE DESCARGA PDF SÚPER SIMPLE Y FUNCIONAL
     async function downloadWorkbook() {
-      // Recopilar todos los datos finales
+      console.log('🚀 INICIANDO DESCARGA...');
+      
+      // Guardar datos primero
       saveData();
       
-      console.log('🚀 Iniciando generación de PDF...');
-      
       try {
-        // Verificar que las librerías estén cargadas
-        if (typeof html2canvas === 'undefined') {
-          alert('Error: html2canvas no está cargado. Recarga la página e intenta de nuevo.');
+        // Verificar librerías con alerta
+        if (!window.html2canvas) {
+          alert('❌ Error: html2canvas no está cargado. Recarga la página.');
           return;
         }
         
-        if (typeof window.jspdf === 'undefined') {
-          alert('Error: jsPDF no está cargado. Recarga la página e intenta de nuevo.');
+        if (!window.jspdf) {
+          alert('❌ Error: jsPDF no está cargado. Recarga la página.');
           return;
         }
         
-        // Ocultar elementos para el PDF
-        const elementsToHide = [
+        console.log('✅ Librerías verificadas');
+        
+        // Ocultar elementos problemáticos
+        const hideElements = [
           '.save-message',
-          '.circuit-bg',
-          '.glow-overlay', 
-          '.scan-line',
-          '.final-section',
-          '.epic-btn',
-          '.btn-download'
+          '.final-section'
         ];
         
-        const hiddenElements = [];
-        elementsToHide.forEach(selector => {
-          const elements = document.querySelectorAll(selector);
-          elements.forEach(el => {
-            hiddenElements.push({element: el, display: el.style.display});
+        const hidden = [];
+        hideElements.forEach(selector => {
+          document.querySelectorAll(selector).forEach(el => {
+            hidden.push({el, display: el.style.display});
             el.style.display = 'none';
           });
         });
         
-        // Pequeña pausa para que se apliquen los cambios
-        await new Promise(resolve => setTimeout(resolve, 100));
+        console.log('📸 Capturando página...');
         
-        // Capturar el elemento principal
-        const captureElement = document.body;
-        
-        console.log('📸 Capturando contenido...');
-        
-        // Configurar html2canvas
-        const canvas = await html2canvas(captureElement, {
-          scale: 1.5,
+        // Capturar con configuración simple
+        const canvas = await html2canvas(document.body, {
+          scale: 1,
           useCORS: true,
           allowTaint: true,
-          backgroundColor: '#000000',
-          width: captureElement.scrollWidth,
-          height: captureElement.scrollHeight,
-          x: 0,
-          y: 0,
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: window.innerWidth,
-          windowHeight: captureElement.scrollHeight,
-          foreignObjectRendering: true,
-          removeContainer: true
+          backgroundColor: '#000000'
         });
         
-        console.log('✅ Contenido capturado, creando PDF...');
+        console.log('✅ Página capturada, creando PDF...');
         
-        // Configurar PDF
+        // Crear PDF simple
         const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        
+        // Calcular dimensiones
+        const pdfWidth = 210;
+        const pdfHeight = 297;
         const imgWidth = canvas.width;
         const imgHeight = canvas.height;
-        const pdfWidth = 210; // A4 width en mm
-        const pdfHeight = (imgHeight * pdfWidth) / imgWidth;
+        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+        const width = imgWidth * ratio;
+        const height = imgHeight * ratio;
         
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'mm',
-          format: [pdfWidth, pdfHeight]
+        // Convertir canvas a imagen
+        const imgData = canvas.toDataURL('image/PNG', 0.8);
+        
+        // Agregar imagen al PDF
+        pdf.addImage(imgData, 'PNG', 0, 0, width, height);
+        
+        // Nombre del archivo
+        const name = aiWorkbookUserMainName || 'Usuario';
+        const cleanName = name.replace(/[^a-zA-Z0-9]/g, '_');
+        const date = new Date().toISOString().slice(0, 10);
+        const filename = `Workbook_IA_${cleanName}_${date}.pdf`;
+        
+        console.log('💾 Descargando:', filename);
+        
+        // DESCARGAR
+        pdf.save(filename);
+        
+        // Restaurar elementos
+        hidden.forEach(({el, display}) => {
+          el.style.display = display;
         });
         
-        // Agregar contenido del workbook
-        const imgData = canvas.toDataURL('image/png', 0.9);
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        
-        // Generar nombre del archivo
-        const userName = aiWorkbookUserMainName || 'Usuario';
-        const sanitizedName = userName.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
-        const timestamp = new Date().toISOString().slice(0, 10);
-        const fileName = `Workbook_IA_${sanitizedName}_${timestamp}.pdf`;
-        
-        console.log('💾 Descargando PDF:', fileName);
-        
-        // Descargar el PDF
-        pdf.save(fileName);
-        
-        // Restaurar elementos ocultos
-        hiddenElements.forEach(({element, display}) => {
-          element.style.display = display;
-        });
-        
-        console.log('🎉 PDF descargado exitosamente!');
-        
-        // Mostrar mensaje de éxito
-        showSaveMessage();
+        console.log('🎉 ¡PDF DESCARGADO EXITOSAMENTE!');
+        alert('🎉 ¡PDF descargado exitosamente!');
         
       } catch (error) {
-        console.error('❌ Error generando PDF:', error);
+        console.error('❌ ERROR:', error);
+        alert(`❌ Error: ${error.message}\n\nRevisa la consola para más detalles.`);
         
-        // Mostrar error más descriptivo
-        let errorMsg = 'Error generando el PDF: ';
-        if (error.name === 'SecurityError') {
-          errorMsg += 'Problema de seguridad. Intenta abrir el archivo localmente.';
-        } else if (error.message.includes('canvas')) {
-          errorMsg += 'Error capturando la página. Recarga e intenta de nuevo.';
-        } else {
-          errorMsg += error.message;
-        }
-        
-        alert(errorMsg);
-        
-        // Restaurar elementos ocultos en caso de error
-        try {
-          const hiddenElements = document.querySelectorAll('[style*="display: none"]');
-          hiddenElements.forEach(el => {
-            if (el.style.display === 'none') {
-              el.style.display = '';
-            }
-          });
-        } catch (e) {
-          console.log('Error restaurando elementos:', e);
-        }
+        // Restaurar todo en caso de error
+        document.querySelectorAll('.save-message, .final-section').forEach(el => {
+          el.style.display = '';
+        });
       }
     }
 
