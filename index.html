@@ -1401,7 +1401,7 @@
 
     <!-- TÍTULO PRINCIPAL ESTILO LIMPIO -->
     <h1 class="main-title">DESBLOQUEA EL FUTURO CON IA</h1>
-    <p class="subtitle">✨ El test más épico para conocer tu futuro como maestro de la IA ✨</p>
+    <p class="subtitle">✨ Volviéndote un máster de la IA. ✨</p>
 
     <!-- SECCIÓN DE IDENTIFICACIÓN PERSONAL -->
     <section class="workbook-section" style="margin-top: 40px; border: 3px solid #FFD700; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.15) 100%);">
@@ -1421,7 +1421,6 @@
                  maxlength="50" required>
           
           <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); position: relative; z-index: 10;">
-            🔐 Este será tu identificador único en nuestra base de datos
           </div>
         </div>
         
@@ -1513,35 +1512,35 @@
           <div class="avatar-icon">👨‍💼</div>
           <h3 class="avatar-name">Esteban "El Ambicioso"</h3>
           <p class="avatar-desc">Trabajas en una empresa pero sientes que puedes dar mucho más</p>
-          <p class="avatar-details">• 24-35 años • Guadalajara • Quiere crecer profesionalmente • Teme quedarse obsoleto</p>
+          <p class="avatar-details">• 24-35 años • Quiere crecer profesionalmente • Teme quedarse obsoleto</p>
         </div>
         
         <div class="avatar-card" data-avatar="sofia">
           <div class="avatar-icon">👩‍🚀</div>
           <h3 class="avatar-name">Sofía "La Independiente"</h3>
           <p class="avatar-desc">Eres freelancer y quieres crear tu propio SaaS con IA</p>
-          <p class="avatar-details">• 29 años • GDL/MTY • Desarrolladora independiente • Sueña con su startup</p>
+          <p class="avatar-details">• 29 años • Desarrolladora independiente • Sueña con su startup</p>
         </div>
         
         <div class="avatar-card" data-avatar="bruno">
           <div class="avatar-icon">👨‍🔬</div>
           <h3 class="avatar-name">Bruno "El Técnico"</h3>
           <p class="avatar-desc">Eres DevOps/Backend y quieres integrar IA sin depender de data scientists</p>
-          <p class="avatar-details">• 30-38 años • CDMX • Ingeniero Backend/DevOps • Busca autonomía técnica</p>
+          <p class="avatar-details">• 30-38 años • Ingeniero Backend/DevOps • Busca autonomía técnica</p>
         </div>
         
         <div class="avatar-card" data-avatar="diego">
           <div class="avatar-icon">🌍</div>
           <h3 class="avatar-name">Diego "El Soñador"</h3>
           <p class="avatar-desc">Quieres migrar a Canadá/Europa y necesitas destacar con IA</p>
-          <p class="avatar-details">• 26-32 años • CDMX • Freelancer • Sueña con trabajar en el extranjero</p>
+          <p class="avatar-details">• 26-32 años • Freelancer • Sueña con trabajar en el extranjero</p>
         </div>
         
         <div class="avatar-card" data-avatar="kevin">
           <div class="avatar-icon">👨‍💻</div>
-          <h3 class="avatar-name">Kevin "El Hambriento"</h3>
+          <h3 class="avatar-name">Kevin "El Egresado"</h3>
           <p class="avatar-desc">Recién egresado que quiere sobresalir y conseguir su primer gran empleo</p>
-          <p class="avatar-details">• 22-25 años • CDMX • Recién egresado • Busca ventaja competitiva</p>
+          <p class="avatar-details">• 22-25 años • Recién egresado • Busca ventaja competitiva</p>
         </div>
       </div>
     </section>
@@ -1855,7 +1854,7 @@
     // Variables globales con IDs únicos y sistema de nombres
     let aiWorkbookUserData = {};
     let aiWorkbookSelectedPersonality = '';
-    let aiWorkbookUserMainName = ''; // Nombre principal como ID
+    let aiWorkbookUserMainName = ''; 
     
     // 🚀 CONFIGURACIÓN DE APPS SCRIPT - ¡TU URL REAL!
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec';
@@ -1889,7 +1888,7 @@
 
     // 🚀 SISTEMA DE SINCRONIZACIÓN AUTOMÁTICA CON APPS SCRIPT
     async function sendDataToAppsScript(userData) {
-      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'TU_APPS_SCRIPT_URL_AQUI') {
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
         console.log('⚠️ Apps Script URL no configurada');
         return false;
       }
@@ -2461,7 +2460,7 @@
       saveToLocalStorage(googleSheetsData);
       
       // 🚀 ENVÍO AUTOMÁTICO A APPS SCRIPT (si está configurado)
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
         // Envío inmediato en cambios importantes - ARREGLADO
         const importantFields = [
           'aiWorkbookUserName',
@@ -2978,7 +2977,7 @@
       
       // Iniciar auto-sync
       setTimeout(() => {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
           startAutoSync();
         } else {
           console.log('⚠️ Apps Script no configurado - funcionando en modo offline');
@@ -3008,7 +3007,7 @@
     window.addEventListener('beforeunload', function() {
       saveData();
       
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && aiWorkbookUserMainName) {
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && aiWorkbookUserMainName) {
         navigator.sendBeacon(APPS_SCRIPT_URL, JSON.stringify(prepareDataForSync()));
       }
       
@@ -3023,7 +3022,7 @@
           sendDataToAppsScript(prepareDataForSync());
         }
       } else {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && !autoSyncInterval) {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && !autoSyncInterval) {
           startAutoSync();
         }
       }
@@ -3063,7 +3062,7 @@
           autoSyncActive: autoSyncInterval !== null,
           totalDataFields: Object.keys(aiWorkbookUserData).length,
           userName: aiWorkbookUserMainName,
-          appsScriptConfigured: APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI'
+          appsScriptConfigured: APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec'
         })
       };
       console.log('🔧 Funciones de debug disponibles en window.aiWorkbookDebug');
