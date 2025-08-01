@@ -2092,7 +2092,7 @@
 
     // 🚀 SISTEMA DE SINCRONIZACIÓN AUTOMÁTICA CON APPS SCRIPT
     async function sendDataToAppsScript(userData) {
-      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'TU_APPS_SCRIPT_URL_AQUI') {
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
         console.log('⚠️ Apps Script URL no configurada');
         return false;
       }
@@ -2664,7 +2664,7 @@
       saveToLocalStorage(googleSheetsData);
       
       // 🚀 ENVÍO AUTOMÁTICO A APPS SCRIPT (si está configurado)
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
         // Envío inmediato en cambios importantes - ARREGLADO
         const importantFields = [
           'aiWorkbookUserName',
@@ -3181,7 +3181,7 @@
       
       // Iniciar auto-sync
       setTimeout(() => {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
           startAutoSync();
         } else {
           console.log('⚠️ Apps Script no configurado - funcionando en modo offline');
@@ -3211,7 +3211,7 @@
     window.addEventListener('beforeunload', function() {
       saveData();
       
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && aiWorkbookUserMainName) {
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && aiWorkbookUserMainName) {
         navigator.sendBeacon(APPS_SCRIPT_URL, JSON.stringify(prepareDataForSync()));
       }
       
@@ -3226,7 +3226,7 @@
           sendDataToAppsScript(prepareDataForSync());
         }
       } else {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && !autoSyncInterval) {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && !autoSyncInterval) {
           startAutoSync();
         }
       }
@@ -3266,7 +3266,7 @@
           autoSyncActive: autoSyncInterval !== null,
           totalDataFields: Object.keys(aiWorkbookUserData).length,
           userName: aiWorkbookUserMainName,
-          appsScriptConfigured: APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI'
+          appsScriptConfigured: APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec'
         })
       };
       console.log('🔧 Funciones de debug disponibles en window.aiWorkbookDebug');
