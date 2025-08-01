@@ -1302,35 +1302,239 @@
       opacity: 1;
     }
 
-    /* RESPONSIVE */
+    /* RESPONSIVE MEJORADO PARA MÓVILES */
     @media (max-width: 768px) {
       .container {
-        padding: 40px 20px;
+        padding: 20px 15px;
       }
       
+      /* TÍTULO PRINCIPAL OPTIMIZADO PARA MÓVIL */
       .main-title {
-        font-size: 3rem;
+        font-size: 2.5rem !important;
+        margin: 40px 0 40px 0 !important;
+        letter-spacing: 1px !important;
+        line-height: 1.1 !important;
       }
       
+      .subtitle {
+        font-size: 1.2rem !important;
+        margin-bottom: 40px !important;
+        padding: 0 10px;
+      }
+      
+      /* SECCIONES OPTIMIZADAS */
+      .workbook-section {
+        padding: 30px 20px !important;
+        margin: 40px 0 !important;
+      }
+      
+      .section-title {
+        font-size: 2rem !important;
+        margin-bottom: 20px !important;
+        line-height: 1.2 !important;
+      }
+      
+      .section-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 30px !important;
+      }
+      
+      /* ICONOS OPTIMIZADOS */
+      .ai-icon {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 2rem !important;
+        margin: 0 auto 15px !important;
+      }
+      
+      /* INPUTS OPTIMIZADOS */
+      .fun-input, .fun-textarea {
+        font-size: 1rem !important;
+        padding: 12px 15px !important;
+        margin-bottom: 15px !important;
+      }
+      
+      /* GRIDS RESPONSIVE */
       .questions-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .python-slider-container {
-        flex-direction: column;
-        gap: 20px;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
       }
       
       .avatar-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
       }
-
+      
+      .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+        gap: 15px !important;
+      }
+      
+      /* CARDS OPTIMIZADAS */
+      .question-card, .avatar-card {
+        padding: 20px 15px !important;
+      }
+      
+      .question-text {
+        font-size: 1.1rem !important;
+        line-height: 1.3 !important;
+      }
+      
+      .avatar-name {
+        font-size: 1rem !important;
+      }
+      
+      .avatar-desc {
+        font-size: 0.85rem !important;
+      }
+      
+      .avatar-details {
+        font-size: 0.75rem !important;
+      }
+      
+      /* PROYECTO OPTIONS MÓVIL */
+      .project-option, .industry-option {
+        padding: 20px 15px !important;
+        min-height: 120px !important;
+      }
+      
+      .option-icon {
+        font-size: 2rem !important;
+        margin-bottom: 8px !important;
+      }
+      
+      .option-title {
+        font-size: 0.85rem !important;
+        margin-bottom: 5px !important;
+      }
+      
+      .option-desc {
+        font-size: 0.75rem !important;
+      }
+      
+      /* SLIDER DE PYTHON MÓVIL */
+      .python-slider-container {
+        flex-direction: column !important;
+        gap: 15px !important;
+        padding: 20px !important;
+      }
+      
+      .python-emoji {
+        font-size: 2.5rem !important;
+      }
+      
+      .python-level {
+        font-size: 0.9rem !important;
+      }
+      
+      .python-description {
+        font-size: 0.9rem !important;
+        padding: 12px !important;
+      }
+      
+      /* TEST DE PERSONALIDAD MÓVIL */
+      .test-options {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+      }
+      
+      .test-option {
+        padding: 15px !important;
+      }
+      
+      .option-emoji {
+        font-size: 1.8rem !important;
+      }
+      
+      .test-question {
+        font-size: 1.2rem !important;
+      }
+      
+      /* PASOS DEL PROYECTO MÓVIL */
+      .project-step {
+        padding: 25px 15px !important;
+        margin: 30px 0 !important;
+      }
+      
+      .step-title {
+        font-size: 1.3rem !important;
+      }
+      
+      /* BOTONES MÓVIL */
+      .epic-btn {
+        padding: 15px 30px !important;
+        font-size: 1rem !important;
+        margin: 30px auto !important;
+      }
+      
+      /* LOGO MÓVIL */
       .logo-img {
-        max-width: 180px !important;
+        max-width: 200px !important;
       }
 
       .logo-container {
         margin: 20px 0 40px 0 !important;
+      }
+      
+      /* SECCIÓN DE NOMBRE MÓVIL */
+      .workbook-section:first-of-type {
+        margin-top: 20px !important;
+      }
+      
+      /* COMPROMISO SECCIÓN MÓVIL */
+      .workbook-section:nth-last-of-type(2) {
+        padding: 25px 15px !important;
+      }
+      
+      .workbook-section:nth-last-of-type(2) .section-title {
+        font-size: 2.2rem !important;
+      }
+      
+      /* INPUTS ESPECIALES MÓVIL */
+      .custom-input {
+        font-size: 0.9rem !important;
+        padding: 12px 15px !important;
+      }
+      
+      /* SECCIÓN FINAL MÓVIL */
+      .final-section {
+        padding: 40px 0 !important;
+        margin-top: 60px !important;
+      }
+      
+      .final-title {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+      }
+      
+      .final-text {
+        font-size: 1.1rem !important;
+        padding: 0 15px;
+      }
+    }
+
+    /* RESPONSIVE PARA MÓVILES MUY PEQUEÑOS */
+    @media (max-width: 480px) {
+      .main-title {
+        font-size: 2rem !important;
+        letter-spacing: 0.5px !important;
+      }
+      
+      .section-title {
+        font-size: 1.8rem !important;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .logo-img {
+        max-width: 180px !important;
+      }
+      
+      .epic-btn {
+        padding: 12px 25px !important;
+        font-size: 0.9rem !important;
       }
     }
   </style>
@@ -1401,7 +1605,7 @@
 
     <!-- TÍTULO PRINCIPAL ESTILO LIMPIO -->
     <h1 class="main-title">DESBLOQUEA EL FUTURO CON IA</h1>
-    <p class="subtitle">✨ Volviéndote un máster de la IA. ✨</p>
+    <p class="subtitle">✨ El test más épico para conocer tu futuro como maestro de la IA ✨</p>
 
     <!-- SECCIÓN DE IDENTIFICACIÓN PERSONAL -->
     <section class="workbook-section" style="margin-top: 40px; border: 3px solid #FFD700; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.15) 100%);">
@@ -1421,6 +1625,7 @@
                  maxlength="50" required>
           
           <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); position: relative; z-index: 10;">
+            🔐 Este será tu identificador único en nuestra base de datos
           </div>
         </div>
         
@@ -1511,36 +1716,36 @@
         <div class="avatar-card" data-avatar="esteban">
           <div class="avatar-icon">👨‍💼</div>
           <h3 class="avatar-name">Esteban "El Ambicioso"</h3>
-          <p class="avatar-desc">Trabajas en una empresa pero sientes que puedes dar mucho más</p>
-          <p class="avatar-details">• 24-35 años • Quiere crecer profesionalmente • Teme quedarse obsoleto</p>
+          <p class="avatar-desc">Trabajas en una empresa y quieres aprender a DESARROLLAR IA para liderar proyectos innovadores</p>
+          <p class="avatar-details">• 24-35 años • Guadalajara • Quiere crear soluciones IA • Busca ser el experto técnico</p>
         </div>
         
         <div class="avatar-card" data-avatar="sofia">
           <div class="avatar-icon">👩‍🚀</div>
           <h3 class="avatar-name">Sofía "La Independiente"</h3>
-          <p class="avatar-desc">Eres freelancer y quieres crear tu propio SaaS con IA</p>
-          <p class="avatar-details">• 29 años • Desarrolladora independiente • Sueña con su startup</p>
+          <p class="avatar-desc">Eres freelancer y quieres aprender a PROGRAMAR IA para crear tu propio SaaS revolucionario</p>
+          <p class="avatar-details">• 29 años • GDL/MTY • Desarrolladora independiente • Quiere construir IA desde cero</p>
         </div>
         
         <div class="avatar-card" data-avatar="bruno">
           <div class="avatar-icon">👨‍🔬</div>
           <h3 class="avatar-name">Bruno "El Técnico"</h3>
-          <p class="avatar-desc">Eres DevOps/Backend y quieres integrar IA sin depender de data scientists</p>
-          <p class="avatar-details">• 30-38 años • Ingeniero Backend/DevOps • Busca autonomía técnica</p>
+          <p class="avatar-desc">Eres DevOps/Backend y quieres aprender a CREAR sistemas de IA sin depender de otros</p>
+          <p class="avatar-details">• 30-38 años • CDMX • Ingeniero Backend/DevOps • Quiere programar IA completa</p>
         </div>
         
         <div class="avatar-card" data-avatar="diego">
           <div class="avatar-icon">🌍</div>
           <h3 class="avatar-name">Diego "El Soñador"</h3>
-          <p class="avatar-desc">Quieres migrar a Canadá/Europa y necesitas destacar con IA</p>
-          <p class="avatar-details">• 26-32 años • Freelancer • Sueña con trabajar en el extranjero</p>
+          <p class="avatar-desc">Quieres migrar a Canadá/Europa y necesitas aprender a DESARROLLAR IA para destacar</p>
+          <p class="avatar-details">• 26-32 años • CDMX • Freelancer • Quiere dominar la programación de IA</p>
         </div>
         
         <div class="avatar-card" data-avatar="kevin">
           <div class="avatar-icon">👨‍💻</div>
-          <h3 class="avatar-name">Kevin "El Egresado"</h3>
-          <p class="avatar-desc">Recién egresado que quiere sobresalir y conseguir su primer gran empleo</p>
-          <p class="avatar-details">• 22-25 años • Recién egresado • Busca ventaja competitiva</p>
+          <h3 class="avatar-name">Kevin "El Hambriento"</h3>
+          <p class="avatar-desc">Recién egresado que quiere aprender a PROGRAMAR IA para conseguir el trabajo de sus sueños</p>
+          <p class="avatar-details">• 22-25 años • CDMX • Recién egresado • Busca especializarse en desarrollo de IA</p>
         </div>
       </div>
     </section>
@@ -1854,7 +2059,7 @@
     // Variables globales con IDs únicos y sistema de nombres
     let aiWorkbookUserData = {};
     let aiWorkbookSelectedPersonality = '';
-    let aiWorkbookUserMainName = ''; 
+    let aiWorkbookUserMainName = ''; // Nombre principal como ID
     
     // 🚀 CONFIGURACIÓN DE APPS SCRIPT - ¡TU URL REAL!
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec';
@@ -1888,7 +2093,7 @@
 
     // 🚀 SISTEMA DE SINCRONIZACIÓN AUTOMÁTICA CON APPS SCRIPT
     async function sendDataToAppsScript(userData) {
-      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'TU_APPS_SCRIPT_URL_AQUI') {
         console.log('⚠️ Apps Script URL no configurada');
         return false;
       }
@@ -2460,7 +2665,7 @@
       saveToLocalStorage(googleSheetsData);
       
       // 🚀 ENVÍO AUTOMÁTICO A APPS SCRIPT (si está configurado)
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
         // Envío inmediato en cambios importantes - ARREGLADO
         const importantFields = [
           'aiWorkbookUserName',
@@ -2977,7 +3182,7 @@
       
       // Iniciar auto-sync
       setTimeout(() => {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI') {
           startAutoSync();
         } else {
           console.log('⚠️ Apps Script no configurado - funcionando en modo offline');
@@ -3007,7 +3212,7 @@
     window.addEventListener('beforeunload', function() {
       saveData();
       
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && aiWorkbookUserMainName) {
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && aiWorkbookUserMainName) {
         navigator.sendBeacon(APPS_SCRIPT_URL, JSON.stringify(prepareDataForSync()));
       }
       
@@ -3022,7 +3227,7 @@
           sendDataToAppsScript(prepareDataForSync());
         }
       } else {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && !autoSyncInterval) {
+        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI' && !autoSyncInterval) {
           startAutoSync();
         }
       }
@@ -3062,7 +3267,7 @@
           autoSyncActive: autoSyncInterval !== null,
           totalDataFields: Object.keys(aiWorkbookUserData).length,
           userName: aiWorkbookUserMainName,
-          appsScriptConfigured: APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec'
+          appsScriptConfigured: APPS_SCRIPT_URL !== 'TU_APPS_SCRIPT_URL_AQUI'
         })
       };
       console.log('🔧 Funciones de debug disponibles en window.aiWorkbookDebug');
