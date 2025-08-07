@@ -193,48 +193,6 @@
     .circuit-node-4 { top: 60%; right: 35%; }
     .circuit-node-5 { top: 50%; left: 50%; }
 
-    /* Esquinas técnicas */
-    .circuit-corner-1 {
-      position: absolute;
-      top: 20%;
-      left: 15%;
-      width: 40px;
-      height: 1px;
-      background: #FFD700;
-      transform-origin: left;
-    }
-
-    .circuit-corner-1::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 40px;
-      width: 1px;
-      height: 30px;
-      background: #FFD700;
-    }
-
-    .circuit-corner-2 {
-      position: absolute;
-      bottom: 25%;
-      right: 20%;
-      width: 50px;
-      height: 1px;
-      background: #FFD700;
-      transform-origin: right;
-    }
-
-    .circuit-corner-2::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 50px;
-      width: 1px;
-      height: 25px;
-      background: #FFD700;
-      transform: translateY(-25px);
-    }
-
     /* Animaciones sutiles SIN BRILLOS */
     @keyframes lineFlow {
       0%, 100% { opacity: 0.5; }
@@ -267,29 +225,6 @@
       border: 1px solid rgba(255, 215, 0, 0.3);
       transform: rotate(30deg);
       animation: hexRotate 20s linear infinite;
-    }
-
-    .hex-pattern::before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      width: 20px;
-      height: 20px;
-      border: 1px solid rgba(255, 215, 0, 0.2);
-      transform: rotate(60deg);
-    }
-
-    .hex-pattern-2 {
-      position: absolute;
-      bottom: 20%;
-      left: 10%;
-      width: 15px;
-      height: 15px;
-      background: transparent;
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      transform: rotate(45deg);
-      animation: hexRotate 15s linear infinite reverse;
     }
 
     @keyframes hexRotate {
@@ -368,134 +303,6 @@
       100% { transform: translate(100px, 100px); }
     }
 
-    /* LÍNEAS DE CÓDIGO SIMULADAS */
-    .code-lines {
-      position: absolute;
-      top: 5%;
-      right: 5%;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.6rem;
-      color: rgba(255, 215, 0, 0.4);
-      line-height: 1.8;
-      animation: codeScroll 12s linear infinite;
-    }
-
-    .code-lines::before {
-      content: "def process_ai():\n  neural_net.train()\n  return prediction";
-      white-space: pre-line;
-    }
-
-    @keyframes codeScroll {
-      0%, 80% { opacity: 0.4; }
-      90% { opacity: 0.7; }
-      100% { opacity: 0.4; }
-    }
-
-    /* INDICADORES DE ESTADO */
-    .status-indicator {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: #FFD700;
-      border-radius: 50%;
-      animation: statusBlink 3s ease-in-out infinite;
-    }
-
-    .status-1 {
-      top: 8%;
-      left: 15%;
-      animation-delay: 0s;
-    }
-
-    .status-2 {
-      top: 75%;
-      right: 20%;
-      animation-delay: 1s;
-    }
-
-    .status-3 {
-      bottom: 8%;
-      left: 40%;
-      animation-delay: 2s;
-    }
-
-    @keyframes statusBlink {
-      0%, 70% { opacity: 0.3; }
-      85% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-
-    /* TERMINAL CURSOR */
-    .terminal-cursor {
-      position: absolute;
-      bottom: 5%;
-      right: 10%;
-      width: 2px;
-      height: 15px;
-      background: #FFD700;
-      animation: cursorBlink 1s step-end infinite;
-    }
-
-    .terminal-cursor::before {
-      content: ">";
-      position: absolute;
-      left: -10px;
-      top: 0;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.8rem;
-      color: rgba(255, 215, 0, 0.7);
-    }
-
-    @keyframes cursorBlink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-
-    /* EFECTOS DE PARTÍCULAS MINIMALES */
-    .micro-particle {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      background: #FFD700;
-      opacity: 0.5;
-      animation: microFloat 15s linear infinite;
-    }
-
-    .particle-1 {
-      top: 20%;
-      left: 30%;
-      animation-delay: 0s;
-    }
-
-    .particle-2 {
-      top: 60%;
-      left: 70%;
-      animation-delay: 5s;
-    }
-
-    .particle-3 {
-      top: 80%;
-      left: 20%;
-      animation-delay: 10s;
-    }
-
-    @keyframes microFloat {
-      0% { 
-        transform: translate(0, 0); 
-        opacity: 0; 
-      }
-      10% { 
-        opacity: 0.5; 
-      }
-      90% { 
-        opacity: 0.5; 
-      }
-      100% { 
-        transform: translate(50px, -100px); 
-        opacity: 0; 
-      }
-    }
-
     /* OVERLAY BRILLANTE */
     .glow-overlay {
       position: fixed;
@@ -526,7 +333,7 @@
       z-index: 10;
     }
 
-    /* LOGO INTEGRADO ARRIBA DEL TÍTULO */
+    /* LOGO */
     .logo-container {
       position: relative;
       display: inline-block;
@@ -566,7 +373,7 @@
       100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
     }
 
-    /* TÍTULO PRINCIPAL ESTILO LIMPIO (COMO EL QUE TE GUSTA) */
+    /* TÍTULO PRINCIPAL */
     .main-title {
       font-family: 'Orbitron', monospace;
       font-size: 4.5rem;
@@ -582,7 +389,7 @@
       text-transform: uppercase;
     }
 
-    /* LÍNEA DE ESCANEO MÁGICA */
+    /* LÍNEA DE ESCANEO */
     .scan-line {
       position: absolute;
       top: 0;
@@ -891,110 +698,53 @@
       display: block;
     }
 
-    /* SLIDER DE PYTHON ARREGLADO */
-    .python-slider-container {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      margin: 40px 0;
-      padding: 30px;
-      background: rgba(255, 215, 0, 0.05);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 215, 0, 0.2);
-    }
-
-    .python-display {
-      min-width: 120px;
-      text-align: center;
-    }
-
-    .python-emoji {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    .python-level {
-      font-family: 'Orbitron', monospace;
-      font-size: 1rem;
-      color: #FFD700;
-      font-weight: 600;
-    }
-
-    .python-slider {
-      flex: 1;
-    }
-
-    #aiWorkbookPythonSlider {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 8px;
-      background: rgba(255, 215, 0, 0.2);
-      border-radius: 10px;
-      outline: none;
-    }
-
-    #aiWorkbookPythonSlider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 25px;
-      height: 25px;
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    }
-
-    #aiWorkbookPythonSlider::-moz-range-thumb {
-      width: 25px;
-      height: 25px;
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      border-radius: 50%;
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    }
-
-    .python-description {
-      text-align: center;
-      margin-top: 20px;
-      font-family: 'Orbitron', monospace;
-      font-size: 1rem;
-      color: #FFD700;
-      font-style: italic;
-      padding: 15px;
-      background: rgba(255, 215, 0, 0.05);
-      border-radius: 10px;
-    }
-
-    /* GRID DE PROYECTOS ÉPICO */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      margin: 40px 0;
-      position: relative;
-    }
-
-    .project-option, .industry-option {
+    /* ===== AVISO SÚPER ENGANCHANTE ===== */
+    .hook-banner {
       background: 
-        linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(255, 215, 0, 0.03) 50%, rgba(255, 215, 0, 0.08) 100%),
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-      border: 2px solid rgba(255, 215, 0, 0.4);
-      border-radius: 20px;
-      padding: 25px 20px;
+        linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 165, 0, 0.15) 50%, rgba(255, 215, 0, 0.15) 100%),
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      border: 3px solid #FFD700;
+      border-radius: 30px;
+      padding: 60px 40px;
+      margin: 80px 0;
       text-align: center;
-      cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
-      backdrop-filter: blur(10px);
-      transform-style: preserve-3d;
-      min-height: 140px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      backdrop-filter: blur(30px);
+      box-shadow: 
+        0 0 100px rgba(255, 215, 0, 0.4),
+        inset 0 0 50px rgba(255, 215, 0, 0.1);
+      animation: hookPulse 3s ease-in-out infinite;
+      display: none;
     }
 
-    .project-option::before, .industry-option::before {
+    .hook-banner.show {
+      display: block;
+      animation: hookAppear 1s cubic-bezier(0.68, -0.55, 0.265, 1.55), hookPulse 3s ease-in-out infinite 1s;
+    }
+
+    @keyframes hookAppear {
+      from { 
+        opacity: 0; 
+        transform: scale(0.8) rotate(-5deg); 
+      }
+      to { 
+        opacity: 1; 
+        transform: scale(1) rotate(0deg); 
+      }
+    }
+
+    @keyframes hookPulse {
+      0%, 100% { 
+        box-shadow: 0 0 100px rgba(255, 215, 0, 0.4), inset 0 0 50px rgba(255, 215, 0, 0.1);
+      }
+      50% { 
+        box-shadow: 0 0 150px rgba(255, 215, 0, 0.6), inset 0 0 80px rgba(255, 215, 0, 0.15);
+      }
+    }
+
+    /* EFECTOS ESPECIALES DEL BANNER */
+    .hook-banner::before {
       content: "";
       position: absolute;
       top: -50%;
@@ -1002,546 +752,476 @@
       width: 200%;
       height: 200%;
       background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-      transform: rotate(45deg) scale(0);
-      transition: all 0.6s ease;
-      opacity: 0;
-    }
-
-    .project-option:hover, .industry-option:hover {
-      border-color: #FFD700;
-      background: 
-        linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.08) 50%, rgba(255, 215, 0, 0.15) 100%),
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-      transform: translateY(-8px) rotateX(5deg) rotateY(5deg) scale(1.02);
-      box-shadow: 
-        0 20px 40px rgba(255, 215, 0, 0.3),
-        0 0 60px rgba(255, 215, 0, 0.15),
-        inset 0 0 30px rgba(255, 215, 0, 0.05);
-    }
-
-    .project-option:hover::before, .industry-option:hover::before {
-      opacity: 1;
-      transform: rotate(45deg) scale(1);
-    }
-
-    .project-option.selected, .industry-option.selected {
-      border-color: #FFD700;
-      background: 
-        linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.15) 50%, rgba(255, 215, 0, 0.25) 100%),
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 
-        0 25px 50px rgba(255, 215, 0, 0.4),
-        0 0 80px rgba(255, 215, 0, 0.25),
-        inset 0 0 40px rgba(255, 215, 0, 0.1);
-      animation: selectedPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes selectedPulse {
-      0%, 100% { 
-        box-shadow: 
-          0 25px 50px rgba(255, 215, 0, 0.4),
-          0 0 80px rgba(255, 215, 0, 0.25),
-          inset 0 0 40px rgba(255, 215, 0, 0.1);
-      }
-      50% { 
-        box-shadow: 
-          0 30px 60px rgba(255, 215, 0, 0.5),
-          0 0 100px rgba(255, 215, 0, 0.3),
-          inset 0 0 50px rgba(255, 215, 0, 0.15);
-      }
-    }
-
-    .option-icon {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      animation: iconFloat 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
-    }
-
-    @keyframes iconFloat {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-5px) scale(1.1); }
-    }
-
-    .option-title {
-      font-family: 'Orbitron', monospace;
-      font-weight: 700;
-      color: #FFD700;
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-      letter-spacing: 0.5px;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    }
-
-    .option-desc {
-      font-size: 0.85rem;
-      color: rgba(255, 215, 0, 0.8);
-      line-height: 1.3;
-      font-weight: 400;
-    }
-
-    /* CAMPOS DE ENTRADA PERSONALIZADA */
-    .custom-input-container {
-      margin-top: 20px;
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: all 0.5s ease;
+      animation: hookSweep 4s linear infinite;
       pointer-events: none;
     }
 
-    .custom-input-container.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
+    @keyframes hookSweep {
+      0% { transform: rotate(0deg) scale(0); opacity: 0; }
+      50% { transform: rotate(180deg) scale(1); opacity: 1; }
+      100% { transform: rotate(360deg) scale(0); opacity: 0; }
     }
 
-    .custom-input {
-      background: 
-        linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%),
-        linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
-      border: 2px solid rgba(255, 215, 0, 0.5);
-      border-radius: 15px;
-      padding: 15px 20px;
-      color: #FFD700;
-      font-size: 1rem;
-      font-family: 'Orbitron', monospace;
-      font-weight: 500;
-      width: 100%;
-      transition: all 0.4s ease;
-      backdrop-filter: blur(15px);
-      box-shadow: 
-        inset 0 0 20px rgba(255, 215, 0, 0.1),
-        0 0 30px rgba(255, 215, 0, 0.2);
-      text-align: center;
-    }
-
-    .custom-input:focus {
-      outline: none;
-      border-color: #FFD700;
-      box-shadow: 
-        0 0 40px rgba(255, 215, 0, 0.5),
-        inset 0 0 30px rgba(255, 215, 0, 0.2),
-        0 0 80px rgba(255, 215, 0, 0.3);
-      transform: scale(1.02);
-    }
-
-    .custom-input::placeholder {
-      color: rgba(255, 215, 0, 0.6);
-      font-style: italic;
-    }
-
-    /* PASOS DEL PROYECTO CON EFECTOS ESPECIALES */
-    .project-step {
-      margin: 50px 0;
-      padding: 40px;
-      background: 
-        linear-gradient(135deg, rgba(255, 215, 0, 0.06) 0%, rgba(255, 215, 0, 0.02) 50%, rgba(255, 215, 0, 0.06) 100%),
-        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 50%);
-      border: 2px solid rgba(255, 215, 0, 0.3);
-      border-radius: 25px;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(20px);
-    }
-
-    .project-step::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-      animation: stepSweep 4s ease-in-out infinite;
-    }
-
-    @keyframes stepSweep {
-      0%, 100% { left: -100%; }
-      50% { left: 100%; }
-    }
-
-    .step-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.5rem;
-      color: #FFD700;
-      margin-bottom: 25px;
-      text-align: center;
+    .hook-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: hookIconFloat 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
       position: relative;
       z-index: 10;
-      text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-      animation: titleGlow 3s ease-in-out infinite alternate;
     }
 
-    /* ANIMACIONES ÉPICAS ADICIONALES */
-    @keyframes hologramSweep {
-      0% { transform: translateX(-200%) translateY(-200%) rotate(45deg); }
-      100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
+    @keyframes hookIconFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+      25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
+      50% { transform: translateY(0px) rotate(0deg) scale(1.1); }
+      75% { transform: translateY(-5px) rotate(-5deg) scale(1.05); }
     }
 
-    @keyframes commitmentSweep {
-      0% { transform: translateX(-100%) skewX(-15deg); }
-      100% { transform: translateX(200%) skewX(-15deg); }
-    }
-
-    @keyframes declarationGlow {
-      0% { transform: translateX(-150%) translateY(-150%) rotate(45deg); }
-      100% { transform: translateX(150%) translateY(150%) rotate(45deg); }
-    }
-
-    @keyframes signatureScan {
-      0%, 100% { left: -100%; opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { left: 100%; opacity: 0; }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(180deg); }
-    }
-
-    /* VALIDACIÓN DE NOMBRE */
-    .name-valid {
-      color: #4CAF50 !important;
-      border-color: #4CAF50 !important;
-      box-shadow: 0 0 30px rgba(76, 175, 80, 0.4) !important;
-    }
-
-    .name-invalid {
-      color: #ff4444 !important;
-      border-color: #ff4444 !important;
-      box-shadow: 0 0 30px rgba(255, 68, 68, 0.4) !important;
-    }
-
-    /* BOTONES PRINCIPALES */
-    .epic-btn {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #FFA500 75%, #FFD700 100%);
-      background-size: 300% 300%;
-      border: none;
-      padding: 20px 50px;
-      border-radius: 50px;
-      color: #000000;
+    .hook-title {
       font-family: 'Orbitron', monospace;
-      font-size: 1.2rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 
-        0 15px 40px rgba(255, 215, 0, 0.4),
-        0 0 60px rgba(255, 215, 0, 0.2);
-      display: block;
-      margin: 40px auto;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      animation: btnGlow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes btnGlow {
-      0% { 
-        background-position: 0% 50%;
-        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2);
-      }
-      100% { 
-        background-position: 100% 50%;
-        box-shadow: 0 20px 50px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3);
-      }
-    }
-
-    .epic-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 
-        0 25px 60px rgba(255, 215, 0, 0.6),
-        0 0 100px rgba(255, 215, 0, 0.4);
-    }
-
-    /* SECCIÓN FINAL */
-    .final-section {
-      text-align: center;
-      padding: 60px 0;
-      margin-top: 80px;
-    }
-
-    .final-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: #FFD700;
-      margin: 30px 0;
-      text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+      margin-bottom: 20px;
+      text-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+      position: relative;
+      z-index: 10;
+      letter-spacing: 2px;
+      line-height: 1.1;
     }
 
-    .final-text {
+    .hook-subtitle {
+      font-size: 1.8rem;
+      color: rgba(255, 215, 0, 0.9);
+      margin-bottom: 30px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 10;
+      font-weight: 600;
+    }
+
+    .hook-description {
       font-size: 1.3rem;
       color: rgba(255, 215, 0, 0.8);
       margin-bottom: 40px;
       line-height: 1.5;
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .btn-download {
-      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    /* LISTA DE BENEFICIOS ÉPICOS */
+    .hook-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+      position: relative;
+      z-index: 10;
     }
 
-    /* SAVE MESSAGE */
-    .save-message {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 165, 0, 0.9) 100%);
-      color: #000;
-      padding: 15px 25px;
-      border-radius: 50px;
+    .benefit-card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(255, 215, 0, 0.4);
+      border-radius: 20px;
+      padding: 25px 20px;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-card:hover {
+      border-color: #FFD700;
+      background: rgba(255, 215, 0, 0.1);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+    }
+
+    .benefit-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+      transform: scale(0);
+      transition: all 0.5s ease;
+    }
+
+    .benefit-card:hover::before {
+      transform: scale(1);
+    }
+
+    .benefit-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      animation: benefitFloat 3s ease-in-out infinite;
+      position: relative;
+      z-index: 10;
+    }
+
+    .benefit-card:nth-child(1) .benefit-icon { animation-delay: 0s; }
+    .benefit-card:nth-child(2) .benefit-icon { animation-delay: 0.5s; }
+    .benefit-card:nth-child(3) .benefit-icon { animation-delay: 1s; }
+    .benefit-card:nth-child(4) .benefit-icon { animation-delay: 1.5s; }
+
+    @keyframes benefitFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(5deg); }
+    }
+
+    .benefit-title {
       font-family: 'Orbitron', monospace;
-      font-weight: 600;
-      z-index: 10000;
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-      opacity: 0;
+      font-size: 1.2rem;
+      color: #FFD700;
+      margin-bottom: 10px;
+      font-weight: 700;
+      position: relative;
+      z-index: 10;
+    }
+
+    .benefit-desc {
+      font-size: 1rem;
+      color: rgba(255, 215, 0, 0.8);
+      line-height: 1.4;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* URGENCIA Y ESCASEZ ÉPICOS */
+    .urgency-container {
+      background: linear-gradient(135deg, rgba(255, 68, 68, 0.15) 0%, rgba(255, 165, 0, 0.15) 50%, rgba(255, 215, 0, 0.15) 100%);
+      border: 2px solid #ff6b6b;
+      border-radius: 20px;
+      padding: 30px;
+      margin: 40px 0;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      animation: urgencyPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes urgencyPulse {
+      0%, 100% { 
+        border-color: #ff6b6b;
+        box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+      }
+      50% { 
+        border-color: #ff4444;
+        box-shadow: 0 0 50px rgba(255, 68, 68, 0.5);
+      }
+    }
+
+    .urgency-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem;
+      color: #ff6b6b;
+      font-weight: 700;
+      margin-bottom: 15px;
+      animation: urgencyBlink 1.5s ease-in-out infinite;
+    }
+
+    @keyframes urgencyBlink {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
+    .countdown-timer {
+      font-size: 2rem;
+      color: #FFD700;
+      font-family: 'Orbitron', monospace;
+      font-weight: 800;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    }
+
+    /* TESTIMONIALES MINI ÉPICOS */
+    .mini-testimonials {
+      display: flex;
+      justify-content: space-around;
+      margin: 40px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .mini-testimonial {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 15px;
+      padding: 20px 15px;
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .save-message.show {
-      opacity: 1;
+    .mini-testimonial:hover {
+      background: rgba(255, 215, 0, 0.1);
+      transform: translateY(-5px);
+      border-color: #FFD700;
     }
 
-    /* RESPONSIVE MEJORADO PARA MÓVILES */
+    .testimonial-avatar {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      animation: avatarBounce 2s ease-in-out infinite;
+    }
+
+    .mini-testimonial:nth-child(1) .testimonial-avatar { animation-delay: 0s; }
+    .mini-testimonial:nth-child(2) .testimonial-avatar { animation-delay: 0.3s; }
+    .mini-testimonial:nth-child(3) .testimonial-avatar { animation-delay: 0.6s; }
+
+    @keyframes avatarBounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .testimonial-name {
+      font-family: 'Orbitron', monospace;
+      font-size: 1rem;
+      color: #FFD700;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .testimonial-result {
+      font-size: 0.9rem;
+      color: rgba(255, 215, 0, 0.8);
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    /* BOTÓN SÚPER ÉPICO */
+    .hook-cta-btn {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #FFA500 75%, #FFD700 100%);
+      background-size: 400% 400%;
+      border: none;
+      padding: 25px 60px;
+      border-radius: 60px;
+      color: #000000;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.5rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.5s ease;
+      box-shadow: 
+        0 20px 50px rgba(255, 215, 0, 0.5),
+        0 0 80px rgba(255, 215, 0, 0.3);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: ctaPulse 3s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      margin: 40px 0;
+      z-index: 10;
+    }
+
+    @keyframes ctaPulse {
+      0% { 
+        background-position: 0% 50%;
+        box-shadow: 0 20px 50px rgba(255, 215, 0, 0.5), 0 0 80px rgba(255, 215, 0, 0.3);
+        transform: scale(1);
+      }
+      50% { 
+        background-position: 100% 50%;
+        box-shadow: 0 30px 80px rgba(255, 215, 0, 0.7), 0 0 120px rgba(255, 215, 0, 0.5);
+        transform: scale(1.05);
+      }
+      100% { 
+        background-position: 200% 50%;
+        box-shadow: 0 20px 50px rgba(255, 215, 0, 0.5), 0 0 80px rgba(255, 215, 0, 0.3);
+        transform: scale(1);
+      }
+    }
+
+    .hook-cta-btn:hover {
+      transform: translateY(-15px) scale(1.08);
+      box-shadow: 
+        0 40px 100px rgba(255, 215, 0, 0.7),
+        0 0 150px rgba(255, 215, 0, 0.5);
+    }
+
+    .hook-cta-btn::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: rotate(45deg) scale(0);
+      transition: all 0.6s ease;
+    }
+
+    .hook-cta-btn:hover::before {
+      transform: rotate(45deg) scale(1);
+    }
+
+    /* CONTENIDO BLOQUEADO CON BLUR INTENSIFICADO */
+    .locked-content {
+      filter: blur(6px);
+      opacity: 0.4;
+      pointer-events: none;
+      transition: all 1s ease;
+      position: relative;
+    }
+
+    .locked-content::before {
+      content: "🔒 CONTENIDO EXCLUSIVO - REGÍSTRATE PARA CONTINUAR";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Orbitron', monospace;
+      font-size: 1.3rem;
+      color: #FFD700;
+      background: rgba(0, 0, 0, 0.95);
+      padding: 25px 35px;
+      border-radius: 20px;
+      border: 3px solid #FFD700;
+      z-index: 100;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+      animation: lockPulse 2s ease-in-out infinite;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    @keyframes lockPulse {
+      0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+    }
+
+    /* MODAL DE INSCRIPCIÓN */
+    .content-blocker {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 10000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInBlocker 0.8s ease;
+    }
+
+    .content-blocker.show {
+      display: flex;
+    }
+
+    @keyframes fadeInBlocker {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .container {
         padding: 20px 15px;
       }
       
-      /* TÍTULO PRINCIPAL OPTIMIZADO PARA MÓVIL */
       .main-title {
         font-size: 2.5rem !important;
-        margin: 40px 0 40px 0 !important;
         letter-spacing: 1px !important;
         line-height: 1.1 !important;
       }
       
-      .subtitle {
-        font-size: 1.2rem !important;
-        margin-bottom: 40px !important;
-        padding: 0 10px;
+      .hook-title {
+        font-size: 2.5rem !important;
+        line-height: 1.1 !important;
       }
       
-      /* SECCIONES OPTIMIZADAS */
+      .hook-subtitle {
+        font-size: 1.4rem !important;
+      }
+      
+      .hook-description {
+        font-size: 1.1rem !important;
+      }
+      
+      .hook-benefits {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+      
+      .mini-testimonials {
+        flex-direction: column !important;
+      }
+      
+      .questions-grid, .avatar-grid {
+        grid-template-columns: 1fr !important;
+      }
+      
       .workbook-section {
         padding: 30px 20px !important;
-        margin: 40px 0 !important;
       }
       
-      .section-title {
-        font-size: 2rem !important;
-        margin-bottom: 20px !important;
-        line-height: 1.2 !important;
+      .hook-banner {
+        padding: 40px 20px !important;
+        margin: 60px 0 !important;
       }
       
-      .section-subtitle {
-        font-size: 1rem !important;
-        margin-bottom: 30px !important;
-      }
-      
-      /* ICONOS OPTIMIZADOS */
-      .ai-icon {
-        width: 60px !important;
-        height: 60px !important;
-        font-size: 2rem !important;
-        margin: 0 auto 15px !important;
-      }
-      
-      /* INPUTS OPTIMIZADOS */
-      .fun-input, .fun-textarea {
-        font-size: 1rem !important;
-        padding: 12px 15px !important;
-        margin-bottom: 15px !important;
-      }
-      
-      /* GRIDS RESPONSIVE */
-      .questions-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-      }
-      
-      .avatar-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-      }
-      
-      .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
-        gap: 15px !important;
-      }
-      
-      /* CARDS OPTIMIZADAS */
-      .question-card, .avatar-card {
-        padding: 20px 15px !important;
-      }
-      
-      .question-text {
-        font-size: 1.1rem !important;
-        line-height: 1.3 !important;
-      }
-      
-      .avatar-name {
-        font-size: 1rem !important;
-      }
-      
-      .avatar-desc {
-        font-size: 0.85rem !important;
-      }
-      
-      .avatar-details {
-        font-size: 0.75rem !important;
-      }
-      
-      /* PROYECTO OPTIONS MÓVIL */
-      .project-option, .industry-option {
-        padding: 20px 15px !important;
-        min-height: 120px !important;
-      }
-      
-      .option-icon {
-        font-size: 2rem !important;
-        margin-bottom: 8px !important;
-      }
-      
-      .option-title {
-        font-size: 0.85rem !important;
-        margin-bottom: 5px !important;
-      }
-      
-      .option-desc {
-        font-size: 0.75rem !important;
-      }
-      
-      /* SLIDER DE PYTHON MÓVIL */
-      .python-slider-container {
-        flex-direction: column !important;
-        gap: 15px !important;
-        padding: 20px !important;
-      }
-      
-      .python-emoji {
-        font-size: 2.5rem !important;
-      }
-      
-      .python-level {
-        font-size: 0.9rem !important;
-      }
-      
-      .python-description {
-        font-size: 0.9rem !important;
-        padding: 12px !important;
-      }
-      
-      /* TEST DE PERSONALIDAD MÓVIL */
-      .test-options {
-        grid-template-columns: 1fr !important;
-        gap: 15px !important;
-      }
-      
-      .test-option {
-        padding: 15px !important;
-      }
-      
-      .option-emoji {
-        font-size: 1.8rem !important;
-      }
-      
-      .test-question {
-        font-size: 1.2rem !important;
-      }
-      
-      /* PASOS DEL PROYECTO MÓVIL */
-      .project-step {
-        padding: 25px 15px !important;
-        margin: 30px 0 !important;
-      }
-      
-      .step-title {
+      .hook-cta-btn {
+        padding: 20px 40px !important;
         font-size: 1.3rem !important;
       }
       
-      /* BOTONES MÓVIL */
-      .epic-btn {
-        padding: 15px 30px !important;
+      .locked-content::before {
         font-size: 1rem !important;
-        margin: 30px auto !important;
-      }
-      
-      /* LOGO MÓVIL */
-      .logo-img {
-        max-width: 200px !important;
-      }
-
-      .logo-container {
-        margin: 20px 0 40px 0 !important;
-      }
-      
-      /* SECCIÓN DE NOMBRE MÓVIL */
-      .workbook-section:first-of-type {
-        margin-top: 20px !important;
-      }
-      
-      /* COMPROMISO SECCIÓN MÓVIL */
-      .workbook-section:nth-last-of-type(2) {
-        padding: 25px 15px !important;
-      }
-      
-      .workbook-section:nth-last-of-type(2) .section-title {
-        font-size: 2.2rem !important;
-      }
-      
-      /* INPUTS ESPECIALES MÓVIL */
-      .custom-input {
-        font-size: 0.9rem !important;
-        padding: 12px 15px !important;
-      }
-      
-      /* SECCIÓN FINAL MÓVIL */
-      .final-section {
-        padding: 40px 0 !important;
-        margin-top: 60px !important;
-      }
-      
-      .final-title {
-        font-size: 2.2rem !important;
-        line-height: 1.2 !important;
-      }
-      
-      .final-text {
-        font-size: 1.1rem !important;
-        padding: 0 15px;
+        padding: 15px 20px !important;
+        white-space: normal !important;
+        max-width: 280px !important;
+        line-height: 1.3 !important;
       }
     }
 
-    /* RESPONSIVE PARA MÓVILES MUY PEQUEÑOS */
-    @media (max-width: 480px) {
-      .main-title {
-        font-size: 2rem !important;
-        letter-spacing: 0.5px !important;
+    /* ANIMACIÓN DE SHAKE ÉPICA */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+
+    /* ANIMACIONES DEL PREVIEW TENTADOR */
+    @keyframes previewSweep {
+      0% { transform: rotate(0deg) scale(0); opacity: 0; }
+      50% { transform: rotate(180deg) scale(1); opacity: 0.3; }
+      100% { transform: rotate(360deg) scale(0); opacity: 0; }
+    }
+
+    @keyframes previewFloat {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-8px) scale(1.1); }
+    }
+
+    .content-preview {
+      animation: previewAppear 1s ease-out;
+    }
+
+    @keyframes previewAppear {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.95); 
       }
-      
-      .section-title {
-        font-size: 1.8rem !important;
-      }
-      
-      .projects-grid {
-        grid-template-columns: 1fr !important;
-      }
-      
-      .logo-img {
-        max-width: 180px !important;
-      }
-      
-      .epic-btn {
-        padding: 12px 25px !important;
-        font-size: 0.9rem !important;
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- FONDO CON LÍNEAS EXACTAS DEL MOCKUP + ELEMENTOS TECH -->
+  <!-- FONDO CON EFECTOS TECH -->
   <div class="circuit-bg">
     <div class="tech-grid"></div>
     <div class="circuit-lines">
@@ -1552,8 +1232,6 @@
       <div class="circuit-line-5"></div>
       <div class="circuit-connector-1"></div>
       <div class="circuit-connector-2"></div>
-      <div class="circuit-corner-1"></div>
-      <div class="circuit-corner-2"></div>
       <div class="circuit-node circuit-node-1"></div>
       <div class="circuit-node circuit-node-2"></div>
       <div class="circuit-node circuit-node-3"></div>
@@ -1561,35 +1239,21 @@
       <div class="circuit-node circuit-node-5"></div>
     </div>
     
-    <!-- ELEMENTOS TECH ADICIONALES -->
     <div class="hex-pattern"></div>
-    <div class="hex-pattern-2"></div>
     <div class="data-point data-point-1"></div>
     <div class="data-point data-point-2"></div>
     <div class="data-point data-point-3"></div>
-    <div class="code-lines"></div>
-    <div class="status-indicator status-1"></div>
-    <div class="status-indicator status-2"></div>
-    <div class="status-indicator status-3"></div>
-    <div class="terminal-cursor"></div>
-    <div class="micro-particle particle-1"></div>
-    <div class="micro-particle particle-2"></div>
-    <div class="micro-particle particle-3"></div>
-    <!-- LÍNEA DE ESCANEO MÁGICA -->
     <div class="scan-line"></div>
   </div>
   <div class="glow-overlay"></div>
 
-  <!-- MENSAJE DE GUARDADO -->
-  <div class="save-message" id="aiWorkbookSaveMessage"></div>
-
   <div class="container">
-    <!-- LOGO PERFECTAMENTE CENTRADO EN EL ESPACIO NEGRO -->
+    <!-- LOGO PERFECTAMENTE CENTRADO -->
     <div style="width: 100%; text-align: center; margin: 40px 0 60px 0; position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center;">
       <div class="logo-container">
         <div class="logo-glow"></div>
         <img id="mainLogo" 
-             src="./futuro_digital_logo_correcto.png" 
+             src="https://raw.githubusercontent.com/futuroodigital/IA-workbook/main/futuro_digital_logo_correcto.png" 
              alt="Futuro Digital - Logo" 
              class="logo-img"
              style="max-width: 250px; height: auto; display: block; margin: 0 auto;"
@@ -1603,36 +1267,31 @@
       </div>
     </div>
 
-    <!-- TÍTULO PRINCIPAL ESTILO LIMPIO -->
+    <!-- TÍTULO PRINCIPAL -->
     <h1 class="main-title">DESBLOQUEA EL FUTURO CON IA</h1>
     <p class="subtitle">✨ Vuélvete un máster desarrollando tu propia IA✨</p>
 
-    <!-- SECCIÓN DE IDENTIFICACIÓN PERSONAL -->
+    <!-- ========== CONTENIDO GRATUITO (SOLO 3 SECCIONES) ========== -->
+    
+    <!-- SECCIÓN 1: IDENTIFICACIÓN PERSONAL -->
     <section class="workbook-section" style="margin-top: 40px; border: 3px solid #FFD700; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.15) 100%);">
       <div class="ai-icon" style="font-size: 3.5rem; width: 100px; height: 100px;">👤</div>
       <h2 class="section-title" style="font-size: 2.2rem;">🌟 ¿Quién eres, futuro maestro de la IA?</h2>
       <p class="section-subtitle">Tu nombre será tu pase de entrada al futuro digital</p>
       
       <div style="max-width: 500px; margin: 0 auto; text-align: center;">
-        <div style="margin: 30px 0; padding: 30px; background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 20px; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent); animation: hologramSweep 3s linear infinite;"></div>
-          
-          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.3rem; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); position: relative; z-index: 10;">
+        <div style="margin: 30px 0; padding: 30px; background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 20px;">
+          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.3rem; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);">
             ✨ Tu Nombre Completo
           </label>
-          <input type="text" class="fun-input" placeholder="Escribe tu nombre completo aquí..." id="aiWorkbookUserName" 
-                 style="font-size: 1.4rem; text-align: center; padding: 20px; border: 3px solid #FFD700; box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); position: relative; z-index: 10;" 
+          <input type="text" class="fun-input" placeholder="Escribe tu nombre completo aquí..." id="userName" 
+                 style="font-size: 1.4rem; text-align: center; padding: 20px; border: 3px solid #FFD700; box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);" 
                  maxlength="50" required>
-          
-          <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); position: relative; z-index: 10;">
-          </div>
         </div>
-        
-        <div id="aiWorkbookNameValidation" style="margin-top: 15px; font-family: 'Orbitron', monospace; font-size: 1rem; opacity: 0; transition: all 0.3s ease;"></div>
       </div>
     </section>
 
-    <!-- SECCIÓN 1: DESCUBRE TU MOTIVACIÓN -->
+    <!-- SECCIÓN 2: MOTIVACIÓN -->
     <section class="workbook-section">
       <div class="ai-icon">🧠</div>
       <h2 class="section-title">💫 ¿Qué te mueve hacia la IA?</h2>
@@ -1642,13 +1301,13 @@
         <div class="question-card">
           <div class="ai-icon">🎯</div>
           <h3 class="question-text">Si tuvieras una varita mágica de IA, ¿qué problema del mundo resolverías primero?</h3>
-          <input type="text" class="fun-input" placeholder="Ej: 'Ayudar a doctores a salvar más vidas' o 'Hacer que trabajar sea más divertido'..." id="aiWorkbookWorldProblem">
+          <input type="text" class="fun-input" placeholder="Ej: 'Ayudar a doctores a salvar más vidas' o 'Hacer que trabajar sea más divertido'..." id="worldProblem">
         </div>
 
         <div class="question-card">
           <div class="ai-icon">💰</div>
           <h3 class="question-text">¿En qué área te gustaría ser el "mago de la IA" que todos admiran?</h3>
-          <input type="text" class="fun-input" placeholder="Ej: 'En mi trabajo actual' o 'Creando mi propia empresa'..." id="aiWorkbookMagicArea">
+          <input type="text" class="fun-input" placeholder="Ej: 'En mi trabajo actual' o 'Creando mi propia empresa'..." id="magicArea">
         </div>
       </div>
 
@@ -1657,11 +1316,11 @@
           💭 Completa esta frase con total honestidad:
         </h3>
         <div style="font-size: 1.5rem; margin-bottom: 20px; color: rgba(255, 215, 0, 0.9);">"Dominar la IA me ayudará a..."</div>
-        <input type="text" class="fun-input" placeholder="Ej: 'tener la libertad de trabajar desde donde quiera' o 'ganar lo suficiente para ayudar a mi familia'..." id="aiWorkbookCompleteDream" style="font-size: 1.3rem; text-align: center;">
+        <input type="text" class="fun-input" placeholder="Ej: 'tener la libertad de trabajar desde donde quiera' o 'ganar lo suficiente para ayudar a mi familia'..." id="completeDream" style="font-size: 1.3rem; text-align: center;">
       </div>
     </section>
 
-    <!-- SECCIÓN 2: TEST DE PERSONALIDAD IA -->
+    <!-- SECCIÓN 3: TEST DE PERSONALIDAD -->
     <section class="workbook-section">
       <div class="ai-icon">🔮</div>
       <h2 class="section-title">🎭 ¿Qué tipo de genio de la IA eres?</h2>
@@ -1696,663 +1355,367 @@
           </div>
         </div>
         
-        <div class="test-result" id="aiWorkbookPersonalityResult">
+        <div class="test-result" id="personalityResult">
           <h3 style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #FFD700; margin-bottom: 15px;">
             🎉 ¡Tu superpoder ha sido revelado!
           </h3>
-          <div id="aiWorkbookPersonalityDescription" style="font-size: 1.2rem; color: #FFD700; margin-bottom: 20px;"></div>
+          <div id="personalityDescription" style="font-size: 1.2rem; color: #FFD700; margin-bottom: 20px;"></div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 3: ENCUENTRA TU AVATAR -->
-    <section class="workbook-section">
-      <div class="ai-icon">👤</div>
-      <h2 class="section-title">🎯 ¿Con cuál de estos te identificas más?</h2>
-      <p class="section-subtitle">Encuentra tu alma gemela en el mundo tech</p>
+    <!-- ===== AVISO SÚPER ENGANCHANTE ===== -->
+    <div class="hook-banner" id="hookBanner">
+      <div class="hook-icon">🤯</div>
       
-      <div class="avatar-grid">
-        <div class="avatar-card" data-avatar="esteban">
-          <div class="avatar-icon">👨‍💼</div>
-          <h3 class="avatar-name">Esteban "El Ambicioso"</h3>
-          <p class="avatar-desc">Trabajas en una empresa y quieres aprender a DESARROLLAR IA para liderar proyectos innovadores</p>
-          <p class="avatar-details">• 24-35 años • Guadalajara • Quiere crear soluciones IA • Busca ser el experto técnico</p>
-        </div>
-        
-        <div class="avatar-card" data-avatar="sofia">
-          <div class="avatar-icon">👩‍🚀</div>
-          <h3 class="avatar-name">Sofía "La Independiente"</h3>
-          <p class="avatar-desc">Eres freelancer y quieres aprender a PROGRAMAR IA para crear tu propio SaaS revolucionario</p>
-          <p class="avatar-details">• 29 años • GDL/MTY • Desarrolladora independiente • Quiere construir IA desde cero</p>
-        </div>
-        
-        <div class="avatar-card" data-avatar="bruno">
-          <div class="avatar-icon">👨‍🔬</div>
-          <h3 class="avatar-name">Bruno "El Técnico"</h3>
-          <p class="avatar-desc">Eres DevOps/Backend y quieres aprender a CREAR sistemas de IA sin depender de otros</p>
-          <p class="avatar-details">• 30-38 años • CDMX • Ingeniero Backend/DevOps • Quiere programar IA completa</p>
-        </div>
-        
-        <div class="avatar-card" data-avatar="diego">
-          <div class="avatar-icon">🌍</div>
-          <h3 class="avatar-name">Diego "El Soñador"</h3>
-          <p class="avatar-desc">Quieres migrar a Canadá/Europa y necesitas aprender a DESARROLLAR IA para destacar</p>
-          <p class="avatar-details">• 26-32 años • CDMX • Freelancer • Quiere dominar la programación de IA</p>
-        </div>
-        
-        <div class="avatar-card" data-avatar="kevin">
-          <div class="avatar-icon">👨‍💻</div>
-          <h3 class="avatar-name">Kevin "El Hambriento"</h3>
-          <p class="avatar-desc">Recién egresado que quiere aprender a PROGRAMAR IA para conseguir el trabajo de sus sueños</p>
-          <p class="avatar-details">• 22-25 años • CDMX • Recién egresado • Busca especializarse en desarrollo de IA</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 4: NIVEL DE PYTHON DIVERTIDO -->
-    <section class="workbook-section">
-      <div class="ai-icon">🐍</div>
-      <h2 class="section-title">🎮 ¿Qué tal andas con Python?</h2>
-      <p class="section-subtitle">¡Sé honesto, nadie te está juzgando!</p>
+      <h2 class="hook-title">¿VISTE ESO? ¡NECESITAS DESBLOQUEARLO YA! 🤯</h2>
       
-      <div class="python-slider-container">
-        <div class="python-display">
-          <div class="python-emoji" id="aiWorkbookPythonEmoji">😅</div>
-          <div class="python-level" id="aiWorkbookPythonLevel">NOVATO TOTAL</div>
-        </div>
-        
-        <div class="python-slider">
-          <input type="range" id="aiWorkbookPythonSlider" min="1" max="5" value="1">
-          <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: rgba(255, 215, 0, 0.6);">
-            <span>😅 Novato</span>
-            <span>🤔 Básico</span>
-            <span>🐍 Intermedio</span>
-            <span>🧠 Avanzado</span>
-            <span>🤖 Ninja</span>
-          </div>
-        </div>
-      </div>
+      <p class="hook-subtitle">Acabas de ver exactamente lo que te espera...</p>
       
-      <div class="python-description" id="aiWorkbookPythonDescription">
-        "Python... ¿eso no es una serpiente? 🐍"
-      </div>
-
-      <div style="margin: 40px 0;">
-        <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-          💭 ¿Qué te emociona más de la idea de programar con IA?
-        </label>
-        <textarea class="fun-textarea" id="aiWorkbookPythonExcitement" 
-                  placeholder="Ej: 'Crear un bot que me ayude en el trabajo' o 'Hacer que mi computadora entienda lo que le digo'..."></textarea>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 5: SIMULADOR DE PROYECTOS ÉPICOS MEJORADO -->
-    <section class="workbook-section">
-      <div class="ai-icon">🧪</div>
-      <h2 class="section-title">⚡ Construye tu proyecto de ensueño</h2>
-      <p class="section-subtitle">¡Vamos a crear algo increíble juntos!</p>
-      
-      <!-- PASO 1: TIPO DE IA -->
-      <div class="project-step">
-        <h3 class="step-title">🎯 PASO 1: ¿Qué tipo de IA quieres crear?</h3>
-        <div class="projects-grid">
-          <div class="project-option" data-value="asistente">
-            <div class="option-icon">🤖</div>
-            <div class="option-title">ASISTENTE MÁGICO</div>
-            <div class="option-desc">Un ayudante inteligente que entiende todo</div>
-          </div>
-          <div class="project-option" data-value="vision">
-            <div class="option-icon">👁️</div>
-            <div class="option-title">OJOS BIÓNICOS</div>
-            <div class="option-desc">IA que ve y reconoce cosas increíbles</div>
-          </div>
-          <div class="project-option" data-value="predictor">
-            <div class="option-icon">🔮</div>
-            <div class="option-title">BOLA DE CRISTAL</div>
-            <div class="option-desc">Predice el futuro con datos</div>
-          </div>
-          <div class="project-option" data-value="automatizador">
-            <div class="option-icon">⚡</div>
-            <div class="option-title">ROBOT TRABAJADOR</div>
-            <div class="option-desc">Hace el trabajo pesado por ti</div>
-          </div>
-          <div class="project-option" data-value="otra-tipo">
-            <div class="option-icon">🌟</div>
-            <div class="option-title">OTRA</div>
-            <div class="option-desc">Define tu propia categoría épica</div>
-          </div>
-        </div>
-        
-        <!-- Campo personalizado para OTRA tipo -->
-        <div class="custom-input-container" id="aiWorkbookCustomTypeContainer">
-          <input type="text" class="custom-input" id="aiWorkbookCustomType" 
-                 placeholder="🚀 Describe tu tipo de IA personalizado..." maxlength="100">
-        </div>
-      </div>
-
-      <!-- PASO 2: ÁREA DE APLICACIÓN -->
-      <div class="project-step">
-        <h3 class="step-title">🏭 PASO 2: ¿En qué área lo aplicarías?</h3>
-        <div class="projects-grid">
-          <div class="industry-option" data-value="salud">
-            <div class="option-icon">🏥</div>
-            <div class="option-title">SALUD</div>
-            <div class="option-desc">Medicina y bienestar</div>
-          </div>
-          <div class="industry-option" data-value="finanzas">
-            <div class="option-icon">💰</div>
-            <div class="option-title">FINANZAS</div>
-            <div class="option-desc">Dinero e inversiones</div>
-          </div>
-          <div class="industry-option" data-value="educacion">
-            <div class="option-icon">🎓</div>
-            <div class="option-title">EDUCACIÓN</div>
-            <div class="option-desc">Aprendizaje y enseñanza</div>
-          </div>
-          <div class="industry-option" data-value="ecommerce">
-            <div class="option-icon">🛒</div>
-            <div class="option-title">E-COMMERCE</div>
-            <div class="option-desc">Ventas online</div>
-          </div>
-          <div class="industry-option" data-value="entretenimiento">
-            <div class="option-icon">🎮</div>
-            <div class="option-title">GAMING</div>
-            <div class="option-desc">Diversión y entretenimiento</div>
-          </div>
-          <div class="industry-option" data-value="marketing">
-            <div class="option-icon">📈</div>
-            <div class="option-title">MARKETING</div>
-            <div class="option-desc">Publicidad y ventas</div>
-          </div>
-          <div class="industry-option" data-value="logistica">
-            <div class="option-icon">🚚</div>
-            <div class="option-title">LOGÍSTICA</div>
-            <div class="option-desc">Transporte y distribución</div>
-          </div>
-          <div class="industry-option" data-value="otra-area">
-            <div class="option-icon">🌟</div>
-            <div class="option-title">OTRA</div>
-            <div class="option-desc">Tu industria específica</div>
-          </div>
-        </div>
-        
-        <!-- Campo personalizado para OTRA área -->
-        <div class="custom-input-container" id="aiWorkbookCustomAreaContainer">
-          <input type="text" class="custom-input" id="aiWorkbookCustomArea" 
-                 placeholder="🎯 ¿En qué industria o área específica lo aplicarías?" maxlength="100">
-        </div>
-      </div>
-
-      <!-- RESULTADO DEL PROYECTO -->
-      <div class="test-result" id="aiWorkbookProjectResult">
-        <h3 style="font-family: 'Orbitron', monospace; font-size: 1.8rem; color: #FFD700; margin-bottom: 25px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
-          🎉 ¡Tu proyecto épico de IA!
-        </h3>
-        <div id="aiWorkbookProjectDescription" style="font-size: 1.3rem; color: #FFD700; font-weight: 600; margin-bottom: 25px; line-height: 1.4; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);"></div>
-        <div style="margin-top: 25px;">
-          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.1rem; color: #FFD700; margin-bottom: 15px; text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);">
-            💭 Describe cómo cambiaría tu vida este proyecto:
-          </label>
-          <textarea class="fun-textarea" id="aiWorkbookProjectImpact" 
-                    placeholder="Ej: 'Podría ayudar a miles de personas y ganar dinero haciendo lo que amo'..." 
-                    style="min-height: 100px; background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); border: 2px solid rgba(255, 215, 0, 0.5); box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);"></textarea>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 6: VISIÓN DEL FUTURO -->
-    <section class="workbook-section">
-      <div class="ai-icon">⏰</div>
-      <h2 class="section-title">🌟 Tu vida en 2030</h2>
-      <p class="section-subtitle">Imagínate como el maestro de la IA que siempre soñaste ser</p>
-      
-      <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #FFD700; border-radius: 20px; padding: 40px; margin: 40px 0; text-align: center;">
-        <div style="font-family: 'Orbitron', monospace; color: #FFD700; font-size: 1rem; margin-bottom: 20px;">
-          ✨ ESCENARIO: TU MEJOR VIDA EN 2030 ✨
-        </div>
-        <p style="font-size: 1.3rem; color: #FFD700; line-height: 1.6; font-style: italic;">
-          "Son las 10 AM y estás despertando en tu casa de ensueño. Checas tu teléfono: tu sistema de IA generó $5,000 mientras dormías. 
-          Tienes una videollamada con inversionistas de Silicon Valley en 2 horas, pero primero vas a desayunar tranquilamente. 
-          La vida es exactamente como la imaginaste..."
-        </p>
-      </div>
-
-      <div style="display: grid; gap: 25px; margin: 40px 0;">
-        <div>
-          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.1rem; color: #FFD700; margin-bottom: 15px;">
-            🏠 ¿Desde dónde estarás trabajando en 2030?
-          </label>
-          <input type="text" class="fun-input" id="aiWorkbookFutureLocation" 
-                 placeholder="Ej: 'Desde mi oficina en casa con vista al mar' o 'Viajando por el mundo'...">
-        </div>
-
-        <div>
-          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.1rem; color: #FFD700; margin-bottom: 15px;">
-            💰 ¿Cuánto te gustaría estar ganando al mes?
-          </label>
-          <input type="text" class="fun-input" id="aiWorkbookFutureIncome" 
-                 placeholder="$_____ USD/MXN mensuales" style="text-align: center; font-size: 1.2rem;">
-        </div>
-
-        <div>
-          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.1rem; color: #FFD700; margin-bottom: 15px;">
-            🎯 ¿Qué consejo le darías a tu yo de hoy?
-          </label>
-          <textarea class="fun-textarea" id="aiWorkbookAdviceToSelf"
-                    placeholder="Ej: 'Empieza ya, no esperes el momento perfecto. La IA va a cambiar todo y necesitas estar preparado'..."></textarea>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 7: COMPROMISO PERSONAL ÉPICO -->
-    <section class="workbook-section" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.12) 100%); border: 3px solid rgba(255, 215, 0, 0.6); position: relative; overflow: hidden;">
-      <!-- Efectos de fondo épicos -->
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.05), transparent); animation: commitmentSweep 6s linear infinite;"></div>
-      <div style="position: absolute; top: 20%; right: 10%; width: 100px; height: 100px; border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 50%; animation: float 4s ease-in-out infinite;"></div>
-      <div style="position: absolute; bottom: 20%; left: 15%; width: 60px; height: 60px; border: 2px solid rgba(255, 215, 0, 0.4); transform: rotate(45deg); animation: float 3s ease-in-out infinite reverse;"></div>
-      
-      <div class="ai-icon" style="font-size: 4.5rem; width: 130px; height: 130px; position: relative; z-index: 10;">🚀</div>
-      <h2 class="section-title" style="font-size: 2.8rem; position: relative; z-index: 10;">💫 Tu compromiso contigo mismo</h2>
-      <p class="section-subtitle" style="position: relative; z-index: 10;">Es momento de hacer esto oficial y sellar tu destino</p>
-      
-      <div style="position: relative; z-index: 10;">
-        <!-- Recordatorio del nombre -->
-        <div style="margin: 40px 0; padding: 25px; background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 20px; text-align: center;">
-          <div style="font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 10px;">
-            👤 Comprometido por:
-          </div>
-          <div id="aiWorkbookDisplayName" style="font-size: 1.8rem; color: #FFD700; font-weight: 700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
-            [Tu nombre aparecerá aquí]
-          </div>
-        </div>
-
-        <div style="margin: 40px 0;">
-          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin: 25px 0 15px 0; text-align: center; text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);">
-            💭 ¿Por qué este es TU momento para dominar la IA?
-          </label>
-          <textarea class="fun-textarea" id="aiWorkbookWhyNow"
-                    placeholder="Ej: 'Porque tengo una familia que mantener y quiero darles lo mejor' o 'Porque sé que puedo cambiar el mundo'..." 
-                    style="min-height: 120px; border: 2px solid rgba(255, 215, 0, 0.5); box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);"></textarea>
-        </div>
-
-        <!-- Declaración personal épica -->
-        <div style="margin: 50px 0; text-align: center; padding: 40px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.15) 100%); border: 3px solid rgba(255, 215, 0, 0.5); border-radius: 25px; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent); animation: declarationGlow 4s linear infinite;"></div>
-          
-          <div style="font-family: 'Orbitron', monospace; font-size: 1.8rem; color: #FFD700; margin-bottom: 25px; position: relative; z-index: 10; text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);">
-            ✨ Tu declaración personal:
-          </div>
-          <div style="font-size: 1.4rem; margin-bottom: 20px; color: rgba(255, 215, 0, 0.9); position: relative; z-index: 10;">"Me comprometo a dominar la IA porque..."</div>
-          <input type="text" class="fun-input" placeholder="mi razón más poderosa es..." id="aiWorkbookCommitmentReason" 
-                 style="font-size: 1.2rem; text-align: center; border: 3px solid #FFD700; box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); position: relative; z-index: 10;">
-        </div>
-
-        <!-- Timeline con efectos -->
-        <div style="margin: 40px 0; text-align: center; padding: 30px; background: rgba(0, 0, 0, 0.7); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px;">
-          <p style="color: rgba(255, 215, 0, 0.8); font-size: 1.2rem; margin-bottom: 20px; font-family: 'Orbitron', monospace;">
-            ⏰ ¿En cuántos meses quieres estar trabajando profesionalmente con IA?
-          </p>
-          <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <input type="number" class="fun-input" placeholder="6" id="aiWorkbookTimelineMonths" 
-                   style="max-width: 150px; text-align: center; font-size: 1.4rem; border: 2px solid #FFD700; box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);" 
-                   min="1" max="60">
-            <div style="font-size: 1.1rem; color: #FFD700; font-weight: 600;">meses</div>
-          </div>
-          <p style="margin-top: 15px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.6);">
-            (Sé realista, pero también ambicioso 🎯)
-          </p>
-        </div>
-
-        <!-- Zona de firma digital -->
-        <div style="margin: 50px 0; padding: 40px; background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%); border: 3px solid #FFD700; border-radius: 25px; text-align: center; position: relative;">
-          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #FFD700, transparent); animation: signatureScan 3s ease-in-out infinite;"></div>
-          
-          <div style="font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);">
-            🖊️ Firma Digital de Compromiso
-          </div>
-          
-          <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); margin-bottom: 20px; line-height: 1.5;">
-            Al completar este workbook, me comprometo a tomar acción hacia el dominio de la IA
-          </div>
-          
-          <div id="aiWorkbookSignature" style="font-size: 1.6rem; color: #FFD700; font-weight: 700; font-family: 'Orbitron', monospace; padding: 15px; border: 2px dashed rgba(255, 215, 0, 0.5); border-radius: 10px; min-height: 60px; display: flex; align-items: center; justify-content: center;">
-            [Firma se generará automáticamente]
-          </div>
-          
-          <div style="margin-top: 15px; font-size: 0.8rem; color: rgba(255, 215, 0, 0.6);">
-            Firmado digitalmente el <span id="aiWorkbookSignatureDate"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN FINAL ÉPICA -->
-    <section class="final-section">
-      <div class="ai-icon" style="font-size: 4rem; width: 120px; height: 120px; margin: 0 auto 30px;">🎯</div>
-      
-      <h1 class="final-title">¡Tu aventura en IA está a punto de comenzar!</h1>
-      
-      <p class="final-text">
-        Has completado el test más épico del universo IA.<br>
-        Ahora es momento de convertir tus sueños en realidad.
+      <p class="hook-description">
+        Y eso <strong>no es ni el 10% de lo que contiene este workbook.</strong> 
+        Cientos de personas ya están usando estos secretos para 
+        transformar completamente sus carreras con IA. 
+        <strong style="color: #ff6b6b;">¿Vas a ser el próximo o te vas a quedar viendo?</strong>
       </p>
       
-      <div style="text-align: center; margin: 40px 0;">
-        <button class="epic-btn btn-download" onclick="downloadWorkbook(); return false;" style="cursor: pointer;">
-          📥 DESCARGAR MI REPORTE PERSONAL
-        </button>
+      <!-- Beneficios épicos -->
+      <div class="hook-benefits">
+        <div class="benefit-card">
+          <div class="benefit-icon">👤</div>
+          <div class="benefit-title">TU AVATAR PERFECTO</div>
+          <div class="benefit-desc">Descubre cuál perfil de IA es exactamente el tuyo</div>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-title">PROYECTO MILLONARIO</div>
+          <div class="benefit-desc">El proyecto exacto que te puede generar $50K+ al año</div>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">💡</div>
+          <div class="benefit-title">SECRETOS DE PRICING</div>
+          <div class="benefit-desc">Cómo cobrar $150/hora+ por proyectos de IA</div>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">🚀</div>
+          <div class="benefit-title">ROADMAP COMPLETO</div>
+          <div class="benefit-desc">De cero a experto IA en 6 meses máximo</div>
+        </div>
       </div>
       
-      <div style="margin-top: 50px; padding: 30px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.3);">
-        <p style="font-size: 1.2rem; font-weight: 600; color: #FFD700; margin-bottom: 10px;">
-          🤖 "El futuro pertenece a quienes dominan la IA"
-        </p>
-        <p style="color: rgba(255, 215, 0, 0.7); font-size: 1rem;">
-          Tu yo del futuro te está esperando ✨
-        </p>
+      <!-- Urgencia -->
+      <div class="urgency-container">
+        <div class="urgency-text">🚨 ATENCIÓN: Cupos limitados</div>
+        <div class="countdown-timer" id="countdownTimer">03:47:33</div>
+        <div style="font-size: 0.9rem; color: #ff6b6b; margin-top: 10px; font-weight: 600;">
+          El acceso se cierra pronto
+        </div>
       </div>
-    </section>
+      
+      
+      <!-- CTA épico -->
+      <button class="hook-cta-btn" onclick="showSignupForm()">
+        🔥 SÍ, QUIERO DESBLOQUEARLO AHORA
+      </button>
+      
+      <p style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); margin-top: 20px; line-height: 1.4;">
+        🔒 <strong>LO QUE VAS A DESBLOQUEAR AHORA MISMO:</strong><br>
+        ✅ Tu avatar exacto en el mundo IA<br>
+        ✅ Tu proyecto personalizado perfecto<br>
+        ✅ Tu visión del futuro con IA<br>
+        ✅ Roadmap paso a paso hacia el éxito<br><br>
+        <strong style="color: #ff6b6b;">Solo necesitas 10 segundos y tu email 📧</strong>
+      </p>
+    </div>
+
+    <!-- ========== CONTENIDO BLOQUEADO ========== -->
+    <div class="locked-content" id="lockedSections">
+      
+      <!-- SECCIÓN 4: AVATARES (AHORA BLOQUEADA) -->
+      <section class="workbook-section">
+        <div class="ai-icon">👤</div>
+        <h2 class="section-title">🎯 ¿Con cuál de estos te identificas más?</h2>
+        <p class="section-subtitle">Encuentra tu alma gemela en el mundo tech</p>
+        
+        <div class="avatar-grid">
+          <div class="avatar-card" data-avatar="esteban">
+            <div class="avatar-icon">👨‍💼</div>
+            <h3 class="avatar-name">Esteban "El Ambicioso"</h3>
+            <p class="avatar-desc">Trabajas en una empresa y quieres aprender a DESARROLLAR IA para liderar proyectos innovadores</p>
+            <p class="avatar-details">• 24-35 años • Guadalajara • Quiere crear soluciones IA • Busca ser el experto técnico</p>
+          </div>
+          
+          <div class="avatar-card" data-avatar="sofia">
+            <div class="avatar-icon">👩‍🚀</div>
+            <h3 class="avatar-name">Sofía "La Independiente"</h3>
+            <p class="avatar-desc">Eres freelancer y quieres aprender a PROGRAMAR IA para crear tu propio SaaS revolucionario</p>
+            <p class="avatar-details">• 29 años • GDL/MTY • Desarrolladora independiente • Quiere construir IA desde cero</p>
+          </div>
+          
+          <div class="avatar-card" data-avatar="bruno">
+            <div class="avatar-icon">👨‍🔬</div>
+            <h3 class="avatar-name">Bruno "El Técnico"</h3>
+            <p class="avatar-desc">Eres DevOps/Backend y quieres aprender a CREAR sistemas de IA sin depender de otros</p>
+            <p class="avatar-details">• 30-38 años • CDMX • Ingeniero Backend/DevOps • Quiere programar IA completa</p>
+          </div>
+          
+          <div class="avatar-card" data-avatar="diego">
+            <div class="avatar-icon">🌍</div>
+            <h3 class="avatar-name">Diego "El Soñador"</h3>
+            <p class="avatar-desc">Quieres migrar a Canadá/Europa y necesitas aprender a DESARROLLAR IA para destacar</p>
+            <p class="avatar-details">• 26-32 años • CDMX • Freelancer • Quiere dominar la programación de IA</p>
+          </div>
+          
+          <div class="avatar-card" data-avatar="kevin">
+            <div class="avatar-icon">👨‍💻</div>
+            <h3 class="avatar-name">Kevin "El Hambriento"</h3>
+            <p class="avatar-desc">Recién egresado que quiere aprender a PROGRAMAR IA para conseguir el trabajo de sus sueños</p>
+            <p class="avatar-details">• 22-25 años • CDMX • Recién egresado • Busca especializarse en desarrollo de IA</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- SECCIÓN 5: PYTHON -->
+      <section class="workbook-section">
+        <div class="ai-icon">🐍</div>
+        <h2 class="section-title">🎮 ¿Qué tal andas con Python?</h2>
+        <p class="section-subtitle">¡Sé honesto, nadie te está juzgando!</p>
+        
+        <div style="padding: 50px; text-align: center; font-size: 1.2rem; color: rgba(255, 215, 0, 0.6);">
+          Aquí descubrirás exactamente qué necesitas aprender...
+        </div>
+      </section>
+
+      <!-- SECCIÓN 6: PROYECTO ÉPICO -->
+      <section class="workbook-section">
+        <div class="ai-icon">🧪</div>
+        <h2 class="section-title">⚡ Construye tu proyecto de ensueño</h2>
+        <p class="section-subtitle">¡Vamos a crear algo increíble juntos!</p>
+        
+        <div style="padding: 50px; text-align: center; font-size: 1.2rem; color: rgba(255, 215, 0, 0.6);">
+          Tu proyecto personalizado de IA te espera aquí...
+        </div>
+      </section>
+
+      <!-- SECCIÓN 7: FUTURO -->
+      <section class="workbook-section">
+        <div class="ai-icon">⏰</div>
+        <h2 class="section-title">🌟 Tu vida en 2030</h2>
+        <p class="section-subtitle">Imagínate como el maestro de la IA que siempre soñaste ser</p>
+        
+        <div style="padding: 50px; text-align: center; font-size: 1.2rem; color: rgba(255, 215, 0, 0.6);">
+          Calculadora de ingresos y visión del futuro...
+        </div>
+      </section>
+
+      <!-- SECCIÓN 8: COMPROMISO -->
+      <section class="workbook-section">
+        <div class="ai-icon">🚀</div>
+        <h2 class="section-title">💫 Tu roadmap personalizado</h2>
+        <p class="section-subtitle">Plan de acción paso a paso</p>
+        
+        <div style="padding: 50px; text-align: center; font-size: 1.2rem; color: rgba(255, 215, 0, 0.6);">
+          Tu roadmap personalizado hacia el éxito...
+        </div>
+      </section>
+
+      <!-- SECCIÓN FINAL -->
+      <section style="text-align: center; padding: 60px 0; margin-top: 80px;">
+        <div class="ai-icon" style="font-size: 4rem; width: 120px; height: 120px; margin: 0 auto 30px;">🎯</div>
+        
+        <h1 style="font-family: 'Orbitron', monospace; font-size: 3rem; color: #FFD700; margin: 30px 0;">¡Tu aventura en IA comienza aquí!</h1>
+        
+        <div style="margin-top: 50px; padding: 30px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.3);">
+          <p style="font-size: 1.2rem; font-weight: 600; color: #FFD700; margin-bottom: 10px;">
+            🤖 "El futuro pertenece a quienes dominan la IA"
+          </p>
+          <p style="color: rgba(255, 215, 0, 0.7); font-size: 1rem;">
+            Tu yo del futuro te está esperando ✨
+          </p>
+        </div>
+      </section>
+
+    </div>
+    <!-- FIN CONTENIDO BLOQUEADO (INCLUYE AVATARES, PYTHON, PROYECTO, FUTURO, ROADMAP) -->
+
   </div>
 
   <script>
-    // Variables globales con IDs únicos y sistema de nombres
-    let aiWorkbookUserData = {};
-    let aiWorkbookSelectedPersonality = '';
-    let aiWorkbookUserMainName = ''; // Nombre principal como ID
+    // Variables globales
+    let selectedPersonality = '';
+    let selectedAvatar = '';
+    let userData = {};
+    let isUnlocked = false;
     
-    // 🚀 CONFIGURACIÓN DE APPS SCRIPT - ¡TU URL REAL!
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec';
-    let autoSyncInterval = null;
-    let lastSyncTime = null;
+    // 🔓 SISTEMA DE DESBLOQUEO AUTOMÁTICO
+    function unlockContent() {
+      console.log('🔓 Desbloqueando contenido...');
+      
+      const lockedSections = document.getElementById('lockedSections');
+      const hookBanner = document.getElementById('hookBanner');
+      const contentPreview = document.getElementById('contentPreview');
+      
+      if (lockedSections) {
+        // Quitar blur y desbloquear
+        lockedSections.classList.remove('locked-content');
+        lockedSections.style.filter = 'none';
+        lockedSections.style.opacity = '1';
+        lockedSections.style.pointerEvents = 'auto';
+        
+        // Ocultar banner y preview
+        if (hookBanner) hookBanner.style.display = 'none';
+        if (contentPreview) contentPreview.style.display = 'none';
+        
+        // Activar funcionalidad de avatares
+        setupAvatarSelection();
+        
+        // Scroll suave a la sección de avatares
+        setTimeout(() => {
+          const avatarSection = document.querySelector('.avatar-grid');
+          if (avatarSection) {
+            avatarSection.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          }
+        }, 500);
+        
+        // Marcar como desbloqueado
+        isUnlocked = true;
+        localStorage.setItem('workbookUnlocked', 'true');
+        
+        // Efectos de celebración
+        if ('vibrate' in navigator) {
+          navigator.vibrate([100, 50, 100, 50, 200]);
+        }
+        
+        console.log('🎉 ¡Contenido desbloqueado exitosamente!');
+      }
+    }
+
+    // 💾 GUARDAR PROGRESO COMPLETO
+    function saveProgress() {
+      const progressData = {
+        userName: document.getElementById('userName')?.value || '',
+        worldProblem: document.getElementById('worldProblem')?.value || '',
+        magicArea: document.getElementById('magicArea')?.value || '',
+        completeDream: document.getElementById('completeDream')?.value || '',
+        personality: selectedPersonality,
+        personalityData: userData.personalityData || {},
+        avatar: selectedAvatar,
+        timestamp: new Date().toISOString(),
+        completed: ['name', 'motivation', 'personality']
+      };
+      
+      localStorage.setItem('workbookProgress', JSON.stringify(progressData));
+      console.log('💾 Progreso guardado:', progressData);
+    }
+
+    // 🔄 RESTAURAR PROGRESO 
+    function restoreProgress() {
+      const savedProgress = localStorage.getItem('workbookProgress');
+      const isContentUnlocked = localStorage.getItem('workbookUnlocked') === 'true';
+      
+      if (savedProgress) {
+        const progress = JSON.parse(savedProgress);
+        console.log('🔄 Restaurando progreso:', progress);
+        
+        // Restaurar campos de texto
+        if (progress.userName) document.getElementById('userName').value = progress.userName;
+        if (progress.worldProblem) document.getElementById('worldProblem').value = progress.worldProblem;
+        if (progress.magicArea) document.getElementById('magicArea').value = progress.magicArea;
+        if (progress.completeDream) document.getElementById('completeDream').value = progress.completeDream;
+        
+        // Restaurar personalidad
+        if (progress.personality) {
+          selectedPersonality = progress.personality;
+          userData.personalityData = progress.personalityData;
+          
+          // Marcar opción seleccionada
+          const personalityOption = document.querySelector(`[data-personality="${progress.personality}"]`);
+          if (personalityOption) {
+            personalityOption.classList.add('selected');
+            document.getElementById('personalityResult').classList.add('show');
+            
+            if (progress.personalityData) {
+              document.getElementById('personalityDescription').innerHTML = `
+                <strong>${progress.personalityData.title}</strong><br><br>
+                ${progress.personalityData.description}
+              `;
+            }
+          }
+        }
+        
+        // Si está desbloqueado, desbloquear automáticamente
+        if (isContentUnlocked) {
+          setTimeout(() => {
+            unlockContent();
+          }, 1000);
+        }
+      }
+    }
+
+    // 📧 SIMULACIÓN DE INSCRIPCIÓN CON DESBLOQUEO
+    async function handleSignup(email) {
+      console.log('📧 Procesando inscripción para:', email);
+      
+      try {
+        // Simular llamada a API
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Guardar inscripción
+        const registrationData = {
+          email: email,
+          registrationDate: new Date().toISOString(),
+          progress: JSON.parse(localStorage.getItem('workbookProgress') || '{}')
+        };
+        
+        localStorage.setItem('userRegistration', JSON.stringify(registrationData));
+        
+        // DESBLOQUEAR AUTOMÁTICAMENTE
+        unlockContent();
+        
+        console.log('✅ Inscripción exitosa y contenido desbloqueado');
+        return true;
+        
+      } catch (error) {
+        console.error('❌ Error en inscripción:', error);
+        return false;
+      }
+    }
     
-    // 🖼️ SISTEMA DE CARGA DE LOGO CON MÚLTIPLES OPCIONES
+    // 🖼️ SISTEMA DE CARGA DE LOGO CON GITHUB Y FALLBACKS
     function tryAlternativeLogos(imgElement) {
       const logoUrls = [
+        'https://raw.githubusercontent.com/futuroodigital/IA-workbook/main/futuro_digital_logo_correcto.png',
+        'https://raw.githubusercontent.com/futuroodigital/IA-workbook/555d42cb54176821bd9438752de4e931f215dd2b/futuro_digital_logo_correcto.png',
         './futuro_digital_logo_correcto.png',
         'futuro_digital_logo_correcto.png',
         './assets/futuro_digital_logo_correcto.png',
         './images/futuro_digital_logo_correcto.png',
-        './img/futuro_digital_logo_correcto.png',
-        'https://via.placeholder.com/300x150/FFD700/000000?text=FUTURO+DIGITAL'
+        './img/futuro_digital_logo_correcto.png'
       ];
       
       const currentSrc = imgElement.src;
-      const currentIndex = logoUrls.findIndex(url => currentSrc.includes(url.replace('./', '')));
+      const currentIndex = logoUrls.findIndex(url => currentSrc.includes(url.replace('./', '')) || currentSrc === url);
       
       if (currentIndex < logoUrls.length - 1) {
         // Probar siguiente URL
-        imgElement.src = logoUrls[currentIndex + 1];
+        const nextUrl = logoUrls[currentIndex + 1];
+        console.log(`🔄 Probando logo: ${nextUrl}`);
+        imgElement.src = nextUrl;
       } else {
         // Si todas fallan, mostrar fallback
+        console.log('❌ Todas las URLs de logo fallaron, usando fallback text');
         imgElement.style.display = 'none';
         document.querySelector('.logo-fallback').style.display = 'block';
-        console.log('🖼️ Logo no encontrado, usando fallback text');
       }
     }
 
-    // 🚀 SISTEMA DE SINCRONIZACIÓN AUTOMÁTICA CON APPS SCRIPT
-    async function sendDataToAppsScript(userData) {
-      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
-        console.log('⚠️ Apps Script URL no configurada');
-        return false;
-      }
-      
-      try {
-        const response = await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(userData),
-          mode: 'cors'
-        });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const result = await response.json();
-        
-        if (result.success) {
-          console.log('✅ Datos enviados a Apps Script exitosamente:', result);
-          lastSyncTime = new Date().toISOString();
-          updateSyncStatus('success', 'Datos sincronizados correctamente');
-          return true;
-        } else {
-          throw new Error(result.error || 'Error desconocido');
-        }
-        
-      } catch (error) {
-        console.error('❌ Error enviando datos a Apps Script:', error);
-        updateSyncStatus('error', `Error: ${error.message}`);
-        return false;
-      }
-    }
-    
-    // 📊 ACTUALIZAR ESTADO DE SINCRONIZACIÓN (SILENCIOSO - SIN UI)
-    function updateSyncStatus(status, message) {
-      // Solo log en consola, sin elementos visuales
-      const icon = status === 'success' ? '✅' : status === 'error' ? '❌' : 'ℹ️';
-      console.log(`${icon} SYNC: ${message}`);
-      
-      // Opcional: Vibración sutil en móviles para feedback
-      if ('vibrate' in navigator && status === 'success') {
-        navigator.vibrate([30]);
-      }
-    }
-    
-    // ⏰ INICIAR SINCRONIZACIÓN AUTOMÁTICA CADA MINUTO (SILENCIOSO)
-    function startAutoSync() {
-      // Limpiar interval existente
-      if (autoSyncInterval) {
-        clearInterval(autoSyncInterval);
-      }
-      
-      // Sync inicial
-      if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
-        sendDataToAppsScript(aiWorkbookUserData);
-      }
-      
-      // Configurar sync automático cada minuto (60000 ms)
-      autoSyncInterval = setInterval(async () => {
-        if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
-          console.log('🔄 Auto-sync ejecutándose silenciosamente...');
-          await sendDataToAppsScript(aiWorkbookUserData);
-        } else {
-          console.log('⏸️ Auto-sync pausado - datos insuficientes');
-        }
-      }, 60000); // Cada minuto
-      
-      console.log('✅ Auto-sync iniciado silenciosamente - envío cada minuto');
-    }
-    
-    // 🛑 DETENER SINCRONIZACIÓN AUTOMÁTICA
-    function stopAutoSync() {
-      if (autoSyncInterval) {
-        clearInterval(autoSyncInterval);
-        autoSyncInterval = null;
-        console.log('🛑 Auto-sync detenido');
-      }
-    }
-    
-    // 🔄 SYNC MANUAL SILENCIOSO (solo para debugging)
-    async function manualSync() {
-      if (!aiWorkbookUserMainName) {
-        console.log('❌ No se puede hacer sync sin nombre completo');
-        return false;
-      }
-      
-      console.log('🔄 Ejecutando sync manual...');
-      const success = await sendDataToAppsScript(aiWorkbookUserData);
-      
-      if (success) {
-        console.log('✅ Sync manual exitoso');
-        return true;
-      } else {
-        console.log('❌ Error en sync manual');
-        return false;
-      }
-    }
-    
-    // 📊 PREPARAR DATOS PARA APPS SCRIPT
-    function prepareDataForSync() {
-      // Usar la misma estructura que ya tienes pero asegurar que esté completa
-      const googleSheetsData = {
-        // IDENTIFICACIÓN
-        nombre_completo: aiWorkbookUserMainName,
-        user_id: aiWorkbookUserData.userID,
-        fecha_registro: aiWorkbookUserData.timestamp,
-        ultima_actualizacion: new Date().toISOString(),
-        
-        // MOTIVACIÓN
-        problema_mundial: aiWorkbookUserData.aiWorkbookWorldProblem || '',
-        area_magica: aiWorkbookUserData.aiWorkbookMagicArea || '',
-        sueno_personal: aiWorkbookUserData.aiWorkbookCompleteDream || '',
-        
-        // PERSONALIDAD
-        tipo_personalidad: aiWorkbookUserData.personality || '',
-        titulo_personalidad: aiWorkbookUserData.personalityTitle || '',
-        
-        // AVATAR
-        avatar_seleccionado: aiWorkbookUserData.avatar || '',
-        nombre_avatar: aiWorkbookUserData.avatarName || '',
-        
-        // PYTHON
-        nivel_python: aiWorkbookUserData.pythonLevel || '',
-        nombre_nivel_python: aiWorkbookUserData.pythonLevelName || '',
-        emocion_programar: aiWorkbookUserData.aiWorkbookPythonExcitement || '',
-        
-        // PROYECTO
-        tipo_proyecto: aiWorkbookUserData.projectType || '',
-        area_proyecto: aiWorkbookUserData.projectIndustry || '',
-        tipo_personalizado: aiWorkbookUserData.customType || '',
-        area_personalizada: aiWorkbookUserData.customArea || '',
-        descripcion_proyecto: aiWorkbookUserData.projectDescription || '',
-        impacto_proyecto: aiWorkbookUserData.aiWorkbookProjectImpact || '',
-        
-        // FUTURO
-        ubicacion_2030: aiWorkbookUserData.aiWorkbookFutureLocation || '',
-        ingresos_deseados: aiWorkbookUserData.aiWorkbookFutureIncome || '',
-        consejo_futuro: aiWorkbookUserData.aiWorkbookAdviceToSelf || '',
-        
-        // COMPROMISO
-        razon_momento: aiWorkbookUserData.aiWorkbookWhyNow || '',
-        razon_compromiso: aiWorkbookUserData.aiWorkbookCommitmentReason || '',
-        timeline_meses: aiWorkbookUserData.aiWorkbookTimelineMonths || '',
-        
-        // METADATA
-        secciones_completadas: aiWorkbookUserData.completedSections || 0,
-        datos_completos: JSON.stringify(aiWorkbookUserData)
-      };
-      
-      return googleSheetsData;
-    }
-    
-    // Función para generar ID único basado en nombre
-    function generateUserID(name) {
-      if (!name || name.trim().length === 0) return null;
-      
-      const cleanName = name.trim()
-        .toLowerCase()
-        .replace(/\s+/g, '_')
-        .replace(/[áàäâ]/g, 'a')
-        .replace(/[éèëê]/g, 'e')
-        .replace(/[íìïî]/g, 'i')
-        .replace(/[óòöô]/g, 'o')
-        .replace(/[úùüû]/g, 'u')
-        .replace(/[ñ]/g, 'n')
-        .replace(/[^a-z0-9_]/g, '');
-      
-      const timestamp = Date.now();
-      return `${cleanName}_${timestamp}`;
-    }
-    
-    // Validar nombre completo
-    function validateFullName(name) {
-      if (!name || name.trim().length < 3) return false;
-      
-      const words = name.trim().split(/\s+/);
-      if (words.length < 2) return false;
-      
-      // Verificar que contenga solo letras, espacios y acentos
-      const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/;
-      return nameRegex.test(name);
-    }
-    
-    // Configurar sistema de nombres
-    function setupNameSystem() {
-      const nameInput = document.getElementById('aiWorkbookUserName');
-      const nameValidation = document.getElementById('aiWorkbookNameValidation');
-      const displayName = document.getElementById('aiWorkbookDisplayName');
-      const signatureArea = document.getElementById('aiWorkbookSignature');
-      const signatureDate = document.getElementById('aiWorkbookSignatureDate');
-      
-      // Mostrar fecha actual
-      signatureDate.textContent = new Date().toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      
-      nameInput.addEventListener('input', function() {
-        const name = this.value.trim();
-        
-        if (name.length === 0) {
-          nameValidation.style.opacity = '0';
-          this.className = 'fun-input';
-          displayName.textContent = '[Tu nombre aparecerá aquí]';
-          signatureArea.textContent = '[Firma se generará automáticamente]';
-          aiWorkbookUserMainName = '';
-          return;
-        }
-        
-        if (validateFullName(name)) {
-          nameValidation.textContent = '✅ Nombre válido - Bienvenido al futuro, ' + name.split(' ')[0] + '!';
-          nameValidation.style.color = '#4CAF50';
-          nameValidation.style.opacity = '1';
-          this.className = 'fun-input name-valid';
-          
-          // Actualizar displays
-          displayName.textContent = name;
-          signatureArea.textContent = `${name} - Futuro Maestro de IA`;
-          
-          // Guardar como nombre principal
-          aiWorkbookUserMainName = name;
-          aiWorkbookUserData.mainUserName = name;
-          aiWorkbookUserData.userID = generateUserID(name);
-          
-          // Efecto de confirmación
-          if ('vibrate' in navigator) {
-            navigator.vibrate([50, 100, 50]);
-          }
-          
-          // 💾 GUARDAR INMEDIATAMENTE EL NOMBRE
-          saveData();
-          
-        } else {
-          nameValidation.textContent = '❌ Ingresa tu nombre completo (mínimo nombre y apellido)';
-          nameValidation.style.color = '#ff4444';
-          nameValidation.style.opacity = '1';
-          this.className = 'fun-input name-invalid';
-          displayName.textContent = '[Nombre inválido]';
-          signatureArea.textContent = '[Completa tu nombre primero]';
-          aiWorkbookUserMainName = '';
-        }
-      });
-      
-      // Efecto especial al hacer focus
-      nameInput.addEventListener('focus', function() {
-        this.style.transform = 'scale(1.05)';
-        this.style.boxShadow = '0 0 50px rgba(255, 215, 0, 0.6)';
-      });
-      
-      nameInput.addEventListener('blur', function() {
-        this.style.transform = 'scale(1)';
-        this.style.boxShadow = '0 0 40px rgba(255, 215, 0, 0.4)';
-      });
-    }
-    
-    // Test de personalidad CON AUTO-SAVE
+    // TEST DE PERSONALIDAD
     function setupPersonalityTest() {
       const personalities = {
         innovator: {
@@ -2378,898 +1741,244 @@
           document.querySelectorAll('.test-option').forEach(opt => opt.classList.remove('selected'));
           this.classList.add('selected');
           
-          aiWorkbookSelectedPersonality = this.dataset.personality;
-          const personalityData = personalities[aiWorkbookSelectedPersonality];
+          selectedPersonality = this.dataset.personality;
+          const personalityData = personalities[selectedPersonality];
           
-          document.getElementById('aiWorkbookPersonalityResult').classList.add('show');
-          document.getElementById('aiWorkbookPersonalityDescription').innerHTML = `
+          document.getElementById('personalityResult').classList.add('show');
+          document.getElementById('personalityDescription').innerHTML = `
             <strong>${personalityData.title}</strong><br><br>
             ${personalityData.description}
           `;
           
-          aiWorkbookUserData.personality = aiWorkbookSelectedPersonality;
-          aiWorkbookUserData.personalityTitle = personalityData.title;
-          aiWorkbookUserData.personalityDescription = personalityData.description;
+          userData.personality = selectedPersonality;
+          userData.personalityData = personalityData;
           
-          // 💾 GUARDAR INMEDIATAMENTE
-          saveData();
-          showSaveMessage();
-        });
-      });
-    }
-
-    // Configurar slider de Python
-    function setupPythonSlider() {
-      const slider = document.getElementById('aiWorkbookPythonSlider');
-      const emoji = document.getElementById('aiWorkbookPythonEmoji');
-      const level = document.getElementById('aiWorkbookPythonLevel');
-      const description = document.getElementById('aiWorkbookPythonDescription');
-      
-      const levels = [
-        { emoji: '😅', level: 'NOVATO TOTAL', desc: '"Python... ¿eso no es una serpiente? 🐍"' },
-        { emoji: '🤔', level: 'EXPLORADOR CURIOSO', desc: '"He visto algunos tutoriales y ya entiendo qué son las variables"' },
-        { emoji: '🐍', level: 'APRENDIZ VALIENTE', desc: '"Puedo hacer scripts básicos y usar algunas librerías"' },
-        { emoji: '🧠', level: 'PROGRAMADOR SÓLIDO', desc: '"Domino funciones, clases y frameworks como pandas"' },
-        { emoji: '🤖', level: 'NINJA DEL CÓDIGO', desc: '"Soy prácticamente un modelo de machine learning andante!"' }
-      ];
-      
-      slider.addEventListener('input', function() {
-        const levelData = levels[this.value - 1];
-        emoji.textContent = levelData.emoji;
-        level.textContent = levelData.level;
-        description.textContent = levelData.desc;
-        aiWorkbookUserData.pythonLevel = this.value;
-        aiWorkbookUserData.pythonLevelName = levelData.level;
-        
-        saveData();
-      });
-    }
-
-    // Simulador de proyectos épicos MEJORADO
-    function setupProjectSimulator() {
-      let selectedType = '';
-      let selectedIndustry = '';
-      let customType = '';
-      let customArea = '';
-      
-      // Tipo de proyecto
-      document.querySelectorAll('.project-option').forEach(option => {
-        option.addEventListener('click', function() {
-          document.querySelectorAll('.project-option').forEach(opt => opt.classList.remove('selected'));
-          this.classList.add('selected');
+          // Guardar progreso inmediatamente
+          saveProgress();
           
-          selectedType = this.dataset.value;
-          aiWorkbookUserData.projectType = selectedType;
-          
-          // Manejar campo personalizado para tipo
-          const customContainer = document.getElementById('aiWorkbookCustomTypeContainer');
-          if (selectedType === 'otra-tipo') {
-            customContainer.classList.add('show');
-            document.getElementById('aiWorkbookCustomType').focus();
-          } else {
-            customContainer.classList.remove('show');
-            customType = '';
-            document.getElementById('aiWorkbookCustomType').value = '';
-          }
-          
-          // Efecto visual épico
-          this.style.animation = 'selectedBurst 0.6s ease';
+          // SECUENCIA ÉPICA: Primero preview, después hook banner
           setTimeout(() => {
-            this.style.animation = '';
-          }, 600);
+            showContentPreview();
+          }, 1500);
           
-          updateProjectResult();
-          // 💾 GUARDAR INMEDIATAMENTE
-          saveData();
-          showSaveMessage();
-        });
-      });
-      
-      // Industria
-      document.querySelectorAll('.industry-option').forEach(option => {
-        option.addEventListener('click', function() {
-          document.querySelectorAll('.industry-option').forEach(opt => opt.classList.remove('selected'));
-          this.classList.add('selected');
-          
-          selectedIndustry = this.dataset.value;
-          aiWorkbookUserData.projectIndustry = selectedIndustry;
-          
-          // Manejar campo personalizado para área
-          const customContainer = document.getElementById('aiWorkbookCustomAreaContainer');
-          if (selectedIndustry === 'otra-area') {
-            customContainer.classList.add('show');
-            document.getElementById('aiWorkbookCustomArea').focus();
-          } else {
-            customContainer.classList.remove('show');
-            customArea = '';
-            document.getElementById('aiWorkbookCustomArea').value = '';
-          }
-          
-          // Efecto visual épico
-          this.style.animation = 'selectedBurst 0.6s ease';
           setTimeout(() => {
-            this.style.animation = '';
-          }, 600);
+            triggerHookBanner();
+          }, 4000);
           
-          updateProjectResult();
-          saveData();
-          showSaveMessage();
-        });
-      });
-      
-      // Eventos para campos personalizados CON AUTO-SAVE
-      document.getElementById('aiWorkbookCustomType').addEventListener('input', function() {
-        customType = this.value.trim();
-        aiWorkbookUserData.customType = customType;
-        updateProjectResult();
-        // 💾 GUARDAR INMEDIATAMENTE
-        saveData();
-      });
-      
-      document.getElementById('aiWorkbookCustomArea').addEventListener('input', function() {
-        customArea = this.value.trim();
-        aiWorkbookUserData.customArea = customArea;
-        updateProjectResult();
-        // 💾 GUARDAR INMEDIATAMENTE
-        saveData();
-      });
-      
-      function updateProjectResult() {
-        // Determinar tipo final
-        let finalType = selectedType;
-        if (selectedType === 'otra-tipo' && customType) {
-          finalType = customType;
-        }
-        
-        // Determinar área final
-        let finalArea = selectedIndustry;
-        if (selectedIndustry === 'otra-area' && customArea) {
-          finalArea = customArea;
-        }
-        
-        if (finalType && finalArea) {
-          let description = '';
-          
-          // Combinaciones predefinidas
-          const projectCombinations = {
-            'asistente-salud': '🤖 Un asistente médico que ayuda a doctores a diagnosticar enfermedades más rápido',
-            'asistente-finanzas': '💰 Un asesor financiero personal que te ayuda a invertir como un experto',
-            'asistente-educacion': '🎓 Un tutor personal que adapta las lecciones a tu estilo de aprendizaje',
-            'asistente-ecommerce': '🛒 Un asistente de compras que sabe exactamente qué necesitas',
-            'asistente-entretenimiento': '🎮 Un compañero de juegos que hace que cada partida sea épica',
-            'asistente-marketing': '📈 Un experto en marketing que optimiza tus campañas automáticamente',
-            'asistente-logistica': '🚚 Un coordinador logístico que optimiza rutas y entregas',
-            
-            'vision-salud': '👁️ Una IA que puede detectar enfermedades en radiografías mejor que los humanos',
-            'vision-finanzas': '💰 Un sistema que detecta fraudes financieros al instante',
-            'vision-educacion': '🎓 Una IA que evalúa tareas y da feedback personalizado',
-            'vision-ecommerce': '🛒 Un sistema que reconoce productos y ayuda a los clientes a encontrar lo que buscan',
-            'vision-entretenimiento': '🎮 Una IA que genera mundos de videojuegos ultra realistas',
-            'vision-marketing': '📈 Un analizador visual que sabe qué contenido se volverá viral',
-            'vision-logistica': '🚚 Un sistema de visión que optimiza el empaquetado y clasificación',
-            
-            'predictor-salud': '🔮 Un predictor que anticipa epidemias y salva vidas',
-            'predictor-finanzas': '💰 Un oráculo financiero que predice los mercados con precisión increíble',
-            'predictor-educacion': '🎓 Un sistema que predice qué estudiantes necesitan ayuda extra',
-            'predictor-ecommerce': '🛒 Un predictor de tendencias que sabe qué productos van a explotar',
-            'predictor-entretenimiento': '🎮 Una IA que predice qué juegos serán los próximos hits',
-            'predictor-marketing': '📈 Un visionario digital que predice qué contenido se volverá viral',
-            'predictor-logistica': '🚚 Un predictor de demanda que optimiza inventarios y rutas',
-            
-            'automatizador-salud': '⚡ Un robot que automatiza procedimientos médicos con precisión perfecta',
-            'automatizador-finanzas': '💰 Un sistema que ejecuta inversiones automáticamente mientras duermes',
-            'automatizador-educacion': '🎓 Una plataforma que crea cursos personalizados automáticamente',
-            'automatizador-ecommerce': '🛒 Una IA que maneja todo tu negocio online sin intervención humana',
-            'automatizador-entretenimiento': '🎮 Un generador automático de contenido gaming infinito',
-            'automatizador-marketing': '📈 Una IA que crea y ejecuta campañas millonarias sola',
-            'automatizador-logistica': '🚚 Un automatizador completo de cadenas de suministro'
-          };
-          
-          // Buscar combinación predefinida
-          const key = `${selectedType}-${selectedIndustry}`;
-          if (projectCombinations[key]) {
-            description = projectCombinations[key];
-          } else {
-            // Crear descripción personalizada
-            let typeDesc = '';
-            let areaDesc = finalArea;
-            
-            switch(selectedType) {
-              case 'asistente':
-                typeDesc = '🤖 Un asistente inteligente especializado en';
-                break;
-              case 'vision':
-                typeDesc = '👁️ Un sistema de visión artificial para';
-                break;
-              case 'predictor':
-                typeDesc = '🔮 Un predictor avanzado para';
-                break;
-              case 'automatizador':
-                typeDesc = '⚡ Un automatizador completo para';
-                break;
-              case 'otra-tipo':
-                typeDesc = `🌟 ${customType} especializado en`;
-                break;
-              default:
-                typeDesc = '🚀 Una IA revolucionaria para';
-            }
-            
-            description = `${typeDesc} ${areaDesc}`;
-          }
-          
-          // Mostrar resultado con efecto épico
-          const resultElement = document.getElementById('aiWorkbookProjectResult');
-          const descElement = document.getElementById('aiWorkbookProjectDescription');
-          
-          resultElement.classList.add('show');
-          descElement.textContent = description;
-          
-          // Efecto de aparición épica
-          descElement.style.animation = 'projectReveal 1s ease';
-          
-          aiWorkbookUserData.projectDescription = description;
-          aiWorkbookUserData.finalProjectType = finalType;
-          aiWorkbookUserData.finalProjectArea = finalArea;
-          
-          saveData();
-          showSaveMessage();
-        }
-      }
-    }
-
-    // Manejar selección de avatares
-    function setupAvatarSelection() {
-      document.querySelectorAll('.avatar-card').forEach(card => {
-        card.addEventListener('click', function() {
-          document.querySelectorAll('.avatar-card').forEach(c => c.classList.remove('selected'));
-          this.classList.add('selected');
-          
-          aiWorkbookUserData.avatar = this.dataset.avatar;
-          aiWorkbookUserData.avatarName = this.querySelector('.avatar-name').textContent;
-          
-          saveData();
-          showSaveMessage();
-        });
-      });
-    }
-
-    // Guardar datos con sistema de nombres como ID principal + APPS SCRIPT + LOCAL STORAGE AVANZADO
-    function saveData() {
-      // Si no hay nombre principal, solo guardar temporalmente
-      if (!aiWorkbookUserMainName || aiWorkbookUserMainName.trim().length === 0) {
-        // Guardar datos temporales sin nombre
-        saveTemporaryData();
-        return;
-      }
-      
-      // Guardar inputs de texto automáticamente - CONVERTIR A ARRAY
-      const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
-      inputs.forEach(input => {
-        if (input.value.trim()) {
-          aiWorkbookUserData[input.id] = input.value.trim();
-        }
-      });
-      
-      // Datos principales del usuario
-      aiWorkbookUserData.mainUserName = aiWorkbookUserMainName;
-      aiWorkbookUserData.userID = generateUserID(aiWorkbookUserMainName);
-      aiWorkbookUserData.timestamp = aiWorkbookUserData.timestamp || new Date().toISOString();
-      aiWorkbookUserData.lastUpdated = new Date().toISOString();
-      aiWorkbookUserData.completedSections = Object.keys(aiWorkbookUserData).length;
-      
-      // Preparar datos para Google Sheets
-      const googleSheetsData = prepareDataForSync();
-      
-      // 💾 GUARDAR EN LOCAL STORAGE MÚLTIPLE
-      saveToLocalStorage(googleSheetsData);
-      
-      // 🚀 ENVÍO AUTOMÁTICO A APPS SCRIPT (si está configurado)
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
-        // Envío inmediato en cambios importantes - ARREGLADO
-        const importantFields = [
-          'aiWorkbookUserName',
-          'personality',
-          'avatar',
-          'projectType',
-          'projectIndustry',
-          'aiWorkbookCommitmentReason'
-        ];
-        
-        // ARREGLADO: Usar Array.some() correctamente
-        const hasImportantChanges = inputs.some(input => 
-          importantFields.includes(input.id) && input.value && input.value.trim()
-        );
-        
-        if (hasImportantChanges || Object.keys(aiWorkbookUserData).length > 10) {
-          sendDataToAppsScript(googleSheetsData);
-        }
-      }
-      
-      console.log('💾 Datos guardados en localStorage y preparados para sync:', googleSheetsData);
-    }
-
-    // 💾 SISTEMA AVANZADO DE LOCAL STORAGE
-    function saveToLocalStorage(data) {
-      try {
-        // Guardar datos del usuario específico
-        const userKey = `aiWorkbook_${aiWorkbookUserMainName.replace(/\s+/g, '_')}`;
-        localStorage.setItem(userKey, JSON.stringify(data));
-        
-        // Guardar lista de usuarios para selector
-        const existingUsers = JSON.parse(localStorage.getItem('aiWorkbook_usersList') || '[]');
-        if (!existingUsers.includes(aiWorkbookUserMainName)) {
-          existingUsers.push(aiWorkbookUserMainName);
-          localStorage.setItem('aiWorkbook_usersList', JSON.stringify(existingUsers));
-        }
-        
-        // Guardar usuario actual
-        localStorage.setItem('aiWorkbookCurrentUser', aiWorkbookUserMainName);
-        
-        // Backup general con timestamp
-        const backupData = {
-          ...data,
-          backupTimestamp: new Date().toISOString(),
-          backupType: 'auto'
-        };
-        localStorage.setItem('aiWorkbook_lastBackup', JSON.stringify(backupData));
-        
-        console.log('✅ Datos guardados en localStorage exitosamente');
-        
-      } catch (error) {
-        console.error('❌ Error guardando en localStorage:', error);
-        // Si localStorage está lleno, limpiar datos antiguos
-        cleanOldLocalStorageData();
-      }
-    }
-
-    // 💾 GUARDAR DATOS TEMPORALES (SIN NOMBRE) - ARREGLADO
-    function saveTemporaryData() {
-      try {
-        const tempData = {};
-        
-        // Guardar todos los inputs aunque no haya nombre - CONVERTIR A ARRAY
-        const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
-        inputs.forEach(input => {
-          if (input.value.trim()) {
-            tempData[input.id] = input.value.trim();
-          }
-        });
-        
-        // Guardar selecciones
-        if (aiWorkbookSelectedPersonality) {
-          tempData.personality = aiWorkbookSelectedPersonality;
-          tempData.personalityTitle = aiWorkbookUserData.personalityTitle;
-          tempData.personalityDescription = aiWorkbookUserData.personalityDescription;
-        }
-        
-        if (aiWorkbookUserData.avatar) {
-          tempData.avatar = aiWorkbookUserData.avatar;
-          tempData.avatarName = aiWorkbookUserData.avatarName;
-        }
-        
-        if (aiWorkbookUserData.pythonLevel) {
-          tempData.pythonLevel = aiWorkbookUserData.pythonLevel;
-          tempData.pythonLevelName = aiWorkbookUserData.pythonLevelName;
-        }
-        
-        // Datos del proyecto
-        Object.keys(aiWorkbookUserData).forEach(key => {
-          if (key.includes('project') || key.includes('custom')) {
-            tempData[key] = aiWorkbookUserData[key];
-          }
-        });
-        
-        tempData.tempSaveTimestamp = new Date().toISOString();
-        
-        localStorage.setItem('aiWorkbook_tempData', JSON.stringify(tempData));
-        console.log('💾 Datos temporales guardados (sin nombre)');
-        
-      } catch (error) {
-        console.error('❌ Error guardando datos temporales:', error);
-      }
-    }
-
-    // 🔄 CARGAR DATOS GUARDADOS AVANZADO
-    function loadSavedData() {
-      try {
-        // 1. Intentar cargar usuario actual
-        const currentUser = localStorage.getItem('aiWorkbookCurrentUser');
-        
-        if (currentUser) {
-          const userKey = `aiWorkbook_${currentUser.replace(/\s+/g, '_')}`;
-          const savedUserData = localStorage.getItem(userKey);
-          
-          if (savedUserData) {
-            console.log(`🔄 Cargando datos del usuario: ${currentUser}`);
-            restoreUserData(JSON.parse(savedUserData));
-            return;
-          }
-        }
-        
-        // 2. Si no hay usuario actual, buscar último backup
-        const lastBackup = localStorage.getItem('aiWorkbook_lastBackup');
-        if (lastBackup) {
-          console.log('🔄 Cargando último backup disponible');
-          restoreUserData(JSON.parse(lastBackup));
-          return;
-        }
-        
-        // 3. Si no hay backup, cargar datos temporales
-        const tempData = localStorage.getItem('aiWorkbook_tempData');
-        if (tempData) {
-          console.log('🔄 Cargando datos temporales');
-          restoreUserData(JSON.parse(tempData));
-          return;
-        }
-        
-        console.log('ℹ️ No hay datos guardados para cargar');
-        
-      } catch (error) {
-        console.error('❌ Error cargando datos guardados:', error);
-      }
-    }
-
-    // 🔄 RESTAURAR DATOS DEL USUARIO - ARREGLADO
-    function restoreUserData(savedData) {
-      try {
-        // Restaurar datos globales
-        if (savedData.nombre_completo) {
-          aiWorkbookUserMainName = savedData.nombre_completo;
-          aiWorkbookUserData.mainUserName = savedData.nombre_completo;
-          aiWorkbookUserData.userID = savedData.user_id;
-          aiWorkbookUserData.timestamp = savedData.fecha_registro;
-        }
-        
-        // Restaurar todos los inputs de texto - CONVERTIR A ARRAY
-        const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
-        inputs.forEach(input => {
-          const savedValue = savedData[input.id] || 
-                           getValueFromGoogleSheetsFormat(savedData, input.id);
-          
-          if (savedValue) {
-            input.value = savedValue;
-            aiWorkbookUserData[input.id] = savedValue;
-          }
-        });
-        
-        // Restaurar nombre en el display
-        if (savedData.nombre_completo) {
-          const nameInput = document.getElementById('aiWorkbookUserName');
-          const displayName = document.getElementById('aiWorkbookDisplayName');
-          const signatureArea = document.getElementById('aiWorkbookSignature');
-          
-          if (nameInput) nameInput.value = savedData.nombre_completo;
-          if (displayName) displayName.textContent = savedData.nombre_completo;
-          if (signatureArea) signatureArea.textContent = `${savedData.nombre_completo} - Futuro Maestro de IA`;
-        }
-        
-        // Restaurar selección de personalidad
-        if (savedData.tipo_personalidad || savedData.personality) {
-          const personalityType = savedData.tipo_personalidad || savedData.personality;
-          const personalityOption = document.querySelector(`[data-personality="${personalityType}"]`);
-          
-          if (personalityOption) {
-            personalityOption.classList.add('selected');
-            aiWorkbookSelectedPersonality = personalityType;
-            aiWorkbookUserData.personality = personalityType;
-            aiWorkbookUserData.personalityTitle = savedData.titulo_personalidad || savedData.personalityTitle;
-            aiWorkbookUserData.personalityDescription = savedData.personalityDescription;
-            
-            // Mostrar resultado
-            document.getElementById('aiWorkbookPersonalityResult').classList.add('show');
-            document.getElementById('aiWorkbookPersonalityDescription').innerHTML = `
-              <strong>${aiWorkbookUserData.personalityTitle}</strong><br><br>
-              ${aiWorkbookUserData.personalityDescription || 'Personalidad restaurada'}
-            `;
-          }
-        }
-        
-        // Restaurar selección de avatar
-        if (savedData.avatar_seleccionado || savedData.avatar) {
-          const avatarType = savedData.avatar_seleccionado || savedData.avatar;
-          const avatarCard = document.querySelector(`[data-avatar="${avatarType}"]`);
-          
-          if (avatarCard) {
-            avatarCard.classList.add('selected');
-            aiWorkbookUserData.avatar = avatarType;
-            aiWorkbookUserData.avatarName = savedData.nombre_avatar || savedData.avatarName;
-          }
-        }
-        
-        // Restaurar slider de Python
-        if (savedData.nivel_python || savedData.pythonLevel) {
-          const pythonLevel = savedData.nivel_python || savedData.pythonLevel;
-          const slider = document.getElementById('aiWorkbookPythonSlider');
-          
-          if (slider) {
-            slider.value = pythonLevel;
-            slider.dispatchEvent(new Event('input'));
-            
-            aiWorkbookUserData.pythonLevel = pythonLevel;
-            aiWorkbookUserData.pythonLevelName = savedData.nombre_nivel_python || savedData.pythonLevelName;
-          }
-        }
-        
-        // Restaurar proyecto
-        if (savedData.tipo_proyecto || savedData.projectType) {
-          const projectType = savedData.tipo_proyecto || savedData.projectType;
-          const projectOption = document.querySelector(`[data-value="${projectType}"].project-option`);
-          
-          if (projectOption) {
-            projectOption.classList.add('selected');
-            aiWorkbookUserData.projectType = projectType;
-          }
-        }
-        
-        if (savedData.area_proyecto || savedData.projectIndustry) {
-          const industryType = savedData.area_proyecto || savedData.projectIndustry;
-          const industryOption = document.querySelector(`[data-value="${industryType}"].industry-option`);
-          
-          if (industryOption) {
-            industryOption.classList.add('selected');
-            aiWorkbookUserData.projectIndustry = industryType;
-          }
-        }
-        
-        // Mostrar resultado del proyecto si existe
-        if (savedData.descripcion_proyecto || savedData.projectDescription) {
-          const projectDesc = savedData.descripcion_proyecto || savedData.projectDescription;
-          document.getElementById('aiWorkbookProjectResult').classList.add('show');
-          document.getElementById('aiWorkbookProjectDescription').textContent = projectDesc;
-          aiWorkbookUserData.projectDescription = projectDesc;
-        }
-        
-        console.log('✅ Datos restaurados exitosamente:', savedData.nombre_completo || 'Usuario temporal');
-        
-        // Mostrar mensaje de bienvenida de vuelta
-        if (savedData.nombre_completo) {
+          // Scroll suave hacia abajo para que vean todo
           setTimeout(() => {
-            showSaveMessage();
-          }, 1000);
-        }
-        
-      } catch (error) {
-        console.error('❌ Error restaurando datos:', error);
-      }
+            window.scrollBy({
+              top: 400,
+              behavior: 'smooth'
+            });
+          }, 5000);
+        });
+      });
     }
 
-    // 🔄 CONVERTIR FORMATO GOOGLE SHEETS A CAMPOS
-    function getValueFromGoogleSheetsFormat(savedData, fieldId) {
-      const fieldMapping = {
-        'aiWorkbookWorldProblem': 'problema_mundial',
-        'aiWorkbookMagicArea': 'area_magica', 
-        'aiWorkbookCompleteDream': 'sueno_personal',
-        'aiWorkbookPythonExcitement': 'emocion_programar',
-        'aiWorkbookProjectImpact': 'impacto_proyecto',
-        'aiWorkbookFutureLocation': 'ubicacion_2030',
-        'aiWorkbookFutureIncome': 'ingresos_deseados',
-        'aiWorkbookAdviceToSelf': 'consejo_futuro',
-        'aiWorkbookWhyNow': 'razon_momento',
-        'aiWorkbookCommitmentReason': 'razon_compromiso',
-        'aiWorkbookTimelineMonths': 'timeline_meses'
-      };
+    // 🔥 MOSTRAR PREVIEW TENTADOR
+    function showContentPreview() {
+      console.log('👀 Mostrando preview tentador...');
       
-      return savedData[fieldMapping[fieldId]] || null;
-    }
-
-    // 🧹 LIMPIAR DATOS ANTIGUOS DE LOCAL STORAGE
-    function cleanOldLocalStorageData() {
-      try {
-        // Mantener solo los últimos 5 usuarios
-        const usersList = JSON.parse(localStorage.getItem('aiWorkbook_usersList') || '[]');
+      const contentPreview = document.getElementById('contentPreview');
+      
+      if (contentPreview) {
+        contentPreview.style.display = 'block';
         
-        if (usersList.length > 5) {
-          const usersToRemove = usersList.slice(0, usersList.length - 5);
-          
-          usersToRemove.forEach(username => {
-            const userKey = `aiWorkbook_${username.replace(/\s+/g, '_')}`;
-            localStorage.removeItem(userKey);
+        // Scroll suave al preview
+        setTimeout(() => {
+          contentPreview.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
           });
-          
-          const updatedUsersList = usersList.slice(-5);
-          localStorage.setItem('aiWorkbook_usersList', JSON.stringify(updatedUsersList));
-          
-          console.log('🧹 Datos antiguos limpiados del localStorage');
-        }
+        }, 300);
         
-      } catch (error) {
-        console.error('❌ Error limpiando localStorage:', error);
+        // Efectos de vibración suave
+        if ('vibrate' in navigator) {
+          navigator.vibrate([100, 50, 100]);
+        }
       }
     }
 
-    // Mostrar mensaje de guardado épico
-    function showSaveMessage() {
-      const message = document.getElementById('aiWorkbookSaveMessage');
-      message.classList.add('show');
+    // 🚀 TRIGGER DEL AVISO SÚPER ENGANCHANTE
+    function triggerHookBanner() {
+      console.log('🚀 Activando hook banner...');
       
-      setTimeout(() => {
-        message.classList.remove('show');
-      }, 3000);
-    }
-
-    // Auto-guardado SÚPER FRECUENTE y COMPLETO - ARREGLADO
-    function setupAutoSave() {
-      // Auto-save en tiempo real en cada input - CONVERTIR A ARRAY
-      const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
-      inputs.forEach(input => {
-        // Guardar en cada tecla (con delay para evitar spam)
-        input.addEventListener('input', function() {
-          clearTimeout(this.saveTimeout);
-          this.saveTimeout = setTimeout(() => {
-            saveData();
-          }, 500); // Guardar 500ms después de dejar de escribir
-        });
-        
-        // Guardar inmediatamente al hacer focus/blur
-        input.addEventListener('blur', function() {
-          saveData();
-        });
-        
-        // Efectos visuales
-        input.addEventListener('focus', function() {
-          this.style.transform = 'scale(1.02)';
-        });
-        
-        input.addEventListener('blur', function() {
-          this.style.transform = 'scale(1)';
-        });
-      });
-
-      // Auto-save cada 10 segundos (más frecuente)
-      setInterval(() => {
-        saveData();
-      }, 10000);
-
-      // Guardar al hacer click en cualquier parte
-      document.addEventListener('click', function() {
-        setTimeout(saveData, 100);
-      });
-
-      // Guardar al cambiar de pestaña
-      document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-          saveData();
-        }
-      });
-
-      console.log('💾 Auto-save súper frecuente configurado');
-    }
-
-    // 🚀 FUNCIÓN DE DESCARGA PDF ARREGLADA - DIMENSIONES CORRECTAS
-    async function downloadWorkbook() {
-      console.log('🚀 INICIANDO DESCARGA...');
+      const hookBanner = document.getElementById('hookBanner');
+      const lockedSections = document.getElementById('lockedSections');
       
-      // Guardar datos primero
-      saveData();
-      
-      try {
-        // Verificar librerías con alerta
-        if (!window.html2canvas) {
-          alert('❌ Error: html2canvas no está cargado. Recarga la página.');
-          return;
-        }
+      if (hookBanner && lockedSections) {
+        // Mostrar banner con efecto épico
+        hookBanner.classList.add('show');
         
-        if (!window.jspdf) {
-          alert('❌ Error: jsPDF no está cargado. Recarga la página.');
-          return;
-        }
-        
-        console.log('✅ Librerías verificadas');
-        
-        // Ocultar elementos problemáticos
-        const hideElements = [
-          '.save-message',
-          '.final-section',
-          '.circuit-bg',
-          '.glow-overlay'
-        ];
-        
-        const hidden = [];
-        hideElements.forEach(selector => {
-          document.querySelectorAll(selector).forEach(el => {
-            hidden.push({el, display: el.style.display});
-            el.style.display = 'none';
+        // Scroll INMEDIATO al banner
+        setTimeout(() => {
+          hookBanner.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
           });
-        });
+        }, 200);
         
-        // Pequeña pausa para aplicar cambios
-        await new Promise(resolve => setTimeout(resolve, 300));
+        // Activar blur en contenido bloqueado INMEDIATAMENTE
+        setTimeout(() => {
+          lockedSections.classList.add('locked-content');
+        }, 400);
         
-        console.log('📸 Capturando página...');
+        // Efectos de sonido/vibración MÁS INTENSOS
+        if ('vibrate' in navigator) {
+          navigator.vibrate([300, 150, 300, 150, 500]);
+        }
         
-        // ARREGLADO: Configuración correcta para capturar TODO el ancho
-        const canvas = await html2canvas(document.body, {
-          scale: 1.2,
-          useCORS: true,
-          allowTaint: true,
-          backgroundColor: '#000000',
-          width: window.innerWidth,           // ← ARREGLADO: Usar ancho de ventana
-          height: document.body.scrollHeight, // ← ARREGLADO: Usar altura total
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: window.innerWidth,     // ← ARREGLADO: Ancho completo
-          windowHeight: window.innerHeight,
-          x: 0,
-          y: 0
-        });
+        // Iniciar countdown
+        startCountdown();
         
-        console.log('✅ Página capturada, creando PDF...');
-        console.log('Canvas dimensiones:', canvas.width, 'x', canvas.height);
-        
-        // ARREGLADO: Crear PDF con dimensiones proporcionales correctas
-        const { jsPDF } = window.jspdf;
-        
-        // Calcular dimensiones proporcionales
-        const imgWidth = canvas.width;
-        const imgHeight = canvas.height;
-        const aspectRatio = imgHeight / imgWidth;
-        
-        // PDF con ancho A4 y altura proporcional
-        const pdfWidth = 210; // A4 ancho en mm
-        const pdfHeight = pdfWidth * aspectRatio; // Altura proporcional
-        
-        console.log('PDF dimensiones:', pdfWidth, 'x', pdfHeight);
-        
-        // Crear PDF con formato personalizado
-        const pdf = new jsPDF({
-          orientation: pdfHeight > pdfWidth ? 'portrait' : 'landscape',
-          unit: 'mm',
-          format: [pdfWidth, pdfHeight]
-        });
-        
-        // Convertir canvas a imagen
-        const imgData = canvas.toDataURL('image/PNG', 0.9);
-        
-        // ARREGLADO: Agregar imagen ocupando toda la página
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        
-        // Nombre del archivo
-        const name = aiWorkbookUserMainName || 'Usuario';
-        const cleanName = name.replace(/[^a-zA-Z0-9]/g, '_');
-        const date = new Date().toISOString().slice(0, 10);
-        const filename = `Workbook_IA_${cleanName}_${date}.pdf`;
-        
-        console.log('💾 Descargando:', filename);
-        
-        // DESCARGAR
-        pdf.save(filename);
-        
-        // Restaurar elementos
-        hidden.forEach(({el, display}) => {
-          el.style.display = display;
-        });
-        
-        console.log('🎉 ¡PDF DESCARGADO EXITOSAMENTE!');
-        alert('🎉 ¡PDF descargado exitosamente con dimensiones correctas!');
-        
-      } catch (error) {
-        console.error('❌ ERROR:', error);
-        alert(`❌ Error: ${error.message}\n\nRevisa la consola para más detalles.`);
-        
-        // Restaurar todo en caso de error
-        document.querySelectorAll('.save-message, .final-section, .circuit-bg, .glow-overlay').forEach(el => {
-          el.style.display = '';
-        });
+        // Efecto adicional: hacer que la página "tiemble"
+        document.body.style.animation = 'shake 0.5s ease-in-out';
+        setTimeout(() => {
+          document.body.style.animation = '';
+        }, 500);
       }
     }
 
-    // Inicializar toda la aplicación
+    // COUNTDOWN TIMER ÉPICO
+    function startCountdown() {
+      const timerElement = document.getElementById('countdownTimer');
+      if (!timerElement) return;
+      
+      // Establecer tiempo inicial (3 horas, 47 minutos, 33 segundos)
+      let totalSeconds = (3 * 3600) + (47 * 60) + 33;
+      
+      const countdown = setInterval(() => {
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        
+        timerElement.textContent = 
+          `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        totalSeconds--;
+        
+        // Efecto de urgencia cuando quedan menos de 5 minutos
+        if (totalSeconds < 300) {
+          timerElement.style.color = '#ff4444';
+          timerElement.style.animation = 'urgencyBlink 0.5s ease-in-out infinite';
+        }
+        
+        if (totalSeconds < 0) {
+          clearInterval(countdown);
+          timerElement.textContent = '00:00:00';
+          timerElement.style.color = '#ff4444';
+        }
+      }, 1000);
+    }
+
+    // MOSTRAR FORMULARIO DE INSCRIPCIÓN REAL
+    function showSignupForm() {
+      console.log('📧 Mostrando formulario de inscripción...');
+      
+      // Crear modal simple con prompt
+      const email = prompt('🔥 ¡Perfecto! Solo necesito tu email para desbloquearte todo el contenido:\n\n(Es 100% gratis y toma 5 segundos)');
+      
+      if (email && isValidEmail(email)) {
+        // Mostrar loading
+        document.body.style.cursor = 'wait';
+        
+        // Procesar inscripción y desbloquear
+        handleSignup(email).then(success => {
+          document.body.style.cursor = 'default';
+          
+          if (success) {
+            alert('🎉 ¡Perfecto! Tu contenido se está desbloqueando...');
+          } else {
+            alert('❌ Hubo un error. Inténtalo de nuevo.');
+          }
+        });
+        
+      } else if (email) {
+        alert('❌ Por favor, ingresa un email válido');
+        showSignupForm(); // Intentar de nuevo
+      }
+      
+      // Efecto de vibración
+      if ('vibrate' in navigator) {
+        navigator.vibrate([100, 50, 100]);
+      }
+    }
+
+    // VALIDAR EMAIL
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // CERRAR FORMULARIO
+    function closeSignupForm() {
+      const modal = document.getElementById('signupModal');
+      if (modal) {
+        modal.classList.remove('show');
+      }
+    }
+
+    // RECOLECCIÓN DE DATOS CON AUTO-SAVE
+    function collectUserData() {
+      const inputs = ['userName', 'worldProblem', 'magicArea', 'completeDream'];
+      
+      inputs.forEach(inputId => {
+        const input = document.getElementById(inputId);
+        if (input) {
+          input.addEventListener('input', function() {
+            userData[inputId] = this.value.trim();
+            saveProgress(); // Auto-save en cada cambio
+          });
+        }
+      });
+    }
+
+    // INICIALIZAR TODO
     document.addEventListener('DOMContentLoaded', function() {
-      // Cargar datos guardados
-      console.log('🔄 Cargando datos guardados...');
-      loadSavedData();
+      console.log('🚀 Workbook Freemium cargado');
       
-      // Verificar logo
+      // Restaurar progreso guardado PRIMERO
+      restoreProgress();
+      
+      setupPersonalityTest();
+      collectUserData();
+      
+      // Solo setup avatares si ya está desbloqueado
+      if (isUnlocked) {
+        setupAvatarSelection();
+      }
+      
+      // Verificar logo con mejor logging
       const logoElement = document.getElementById('mainLogo');
       if (logoElement) {
         logoElement.onload = () => {
-          console.log('✅ Logo cargado exitosamente');
+          console.log('✅ Logo cargado exitosamente desde:', logoElement.src);
         };
         logoElement.onerror = () => {
-          console.log('❌ Error cargando logo, probando alternativas...');
+          console.log('❌ Error cargando logo desde:', logoElement.src);
           tryAlternativeLogos(logoElement);
         };
+        
+        // Verificar si ya está cargado
+        if (logoElement.complete && logoElement.naturalHeight !== 0) {
+          console.log('✅ Logo ya estaba cargado desde:', logoElement.src);
+        }
       }
       
-      // Configurar todas las funciones interactivas
-      setupNameSystem();
-      setupPersonalityTest();
-      setupPythonSlider();
-      setupProjectSimulator();
-      setupAvatarSelection();
-      setupAutoSave();
-      
-      // Iniciar auto-sync
-      setTimeout(() => {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec') {
-          startAutoSync();
-        } else {
-          console.log('⚠️ Apps Script no configurado - funcionando en modo offline');
-        }
-      }, 2000);
-      
-      console.log('🚀 Workbook IA épico cargado completamente con todas las funciones!');
-      
-      // Mensaje de bienvenida
-      setTimeout(() => {
-        if (aiWorkbookUserMainName) {
-          showSaveMessage();
-          console.log(`👋 ¡Bienvenido de vuelta, ${aiWorkbookUserMainName}!`);
-        }
-      }, 1000);
+      console.log('🎯 Sistema de desbloqueo automático activado');
     });
 
-    // Auto-guardado adicional
+    // Guardar progreso en localStorage
     setInterval(() => {
-      const activeInput = document.querySelector('.fun-input:focus, .fun-textarea:focus');
-      if (activeInput) {
-        saveData();
-      }
-    }, 30000);
+      localStorage.setItem('workbookProgress', JSON.stringify(userData));
+    }, 5000);
 
-    // Detectar abandono de página
-    window.addEventListener('beforeunload', function() {
-      saveData();
-      
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && aiWorkbookUserMainName) {
-        navigator.sendBeacon(APPS_SCRIPT_URL, JSON.stringify(prepareDataForSync()));
-      }
-      
-      stopAutoSync();
-    });
-
-    // Detectar cambio de visibilidad
-    document.addEventListener('visibilitychange', function() {
-      if (document.hidden) {
-        saveData();
-        if (aiWorkbookUserMainName && Object.keys(aiWorkbookUserData).length > 5) {
-          sendDataToAppsScript(prepareDataForSync());
-        }
-      } else {
-        if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec' && !autoSyncInterval) {
-          startAutoSync();
-        }
-      }
-    });
-
-    // Animaciones adicionales
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes selectedBurst {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.15); box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
-        100% { transform: scale(1.05); }
-      }
-      
-      @keyframes projectReveal {
-        0% { 
-          opacity: 0; 
-          transform: translateY(20px) scale(0.9); 
-        }
-        100% { 
-          opacity: 1; 
-          transform: translateY(0) scale(1); 
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Funciones de debug (solo en desarrollo)
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      window.aiWorkbookDebug = {
-        manualSync: manualSync,
-        startAutoSync: startAutoSync,
-        stopAutoSync: stopAutoSync,
-        currentData: () => aiWorkbookUserData,
-        getSyncStats: () => ({
-          lastSyncTime: lastSyncTime,
-          autoSyncActive: autoSyncInterval !== null,
-          totalDataFields: Object.keys(aiWorkbookUserData).length,
-          userName: aiWorkbookUserMainName,
-          appsScriptConfigured: APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec'
-        })
-      };
-      console.log('🔧 Funciones de debug disponibles en window.aiWorkbookDebug');
+    // Cargar progreso guardado
+    const savedProgress = localStorage.getItem('workbookProgress');
+    if (savedProgress) {
+      userData = JSON.parse(savedProgress);
+      console.log('📄 Progreso cargado:', userData);
     }
   </script>
 </body>
