@@ -1666,6 +1666,101 @@
         font-size: 0.9rem !important;
       }
     }
+
+    /* ANIMACIONES ADICIONALES */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    
+    @keyframes popIn {
+      0% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.8); 
+      }
+      100% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1); 
+      }
+    }
+    
+    @keyframes commitmentSweep {
+      0% { transform: translateX(-100%) skewX(-15deg); }
+      100% { transform: translateX(200%) skewX(-15deg); }
+    }
+    
+    @keyframes declarationGlow {
+      0% { transform: translateX(-150%) translateY(-150%) rotate(45deg); }
+      100% { transform: translateX(150%) translateY(150%) rotate(45deg); }
+    }
+    
+    @keyframes signatureScan {
+      0%, 100% { left: -100%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(180deg); }
+    }
+    
+    @keyframes hologramSweep {
+      0% { transform: translateX(-200%) translateY(-200%) rotate(45deg); }
+      100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
+    }
+    
+    /* ANIMACIONES PARA EFECTO DE DESBLOQUEO ÉPICO */
+    @keyframes successFadeIn {
+      0% { 
+        opacity: 0; 
+        transform: scale(0.8); 
+      }
+      100% { 
+        opacity: 1; 
+        transform: scale(1); 
+      }
+    }
+    
+    @keyframes successFadeOut {
+      0% { 
+        opacity: 1; 
+        transform: scale(1); 
+      }
+      100% { 
+        opacity: 0; 
+        transform: scale(1.1); 
+      }
+    }
+    
+    @keyframes successBounce {
+      0%, 100% { 
+        transform: translateY(0px) scale(1); 
+      }
+      25% { 
+        transform: translateY(-20px) scale(1.05); 
+      }
+      50% { 
+        transform: translateY(0px) scale(1.1); 
+      }
+      75% { 
+        transform: translateY(-10px) scale(1.05); 
+      }
+    }
+    
+    @keyframes successSpin {
+      0% { 
+        transform: rotate(0deg) scale(1); 
+      }
+      50% { 
+        transform: rotate(180deg) scale(1.3); 
+      }
+      100% { 
+        transform: rotate(360deg) scale(1); 
+      }
+    }
   </style>
 </head>
 
@@ -2036,13 +2131,13 @@ print(f"Accuracy: {accuracy:.2f}")
         <!-- SECCIÓN 5: ANÁLISIS DE TUS HABILIDADES PYTHON -->
         <section class="workbook-section">
           <div class="ai-icon">🐍</div>
-          <h2 class="section-title">🎮 ¿Qué tan listo estás con Python?</h2>
-          <p class="section-subtitle">Veamos qué tan preparado estás para crear IA</p>
+          <h2 class="section-title">🎮 Diagnóstico: Tu nivel Python para IA</h2>
+          <p class="section-subtitle">Evaluemos tu base técnica actual</p>
           
           <div class="python-slider-container">
             <div class="python-display">
               <div class="python-emoji" id="aiWorkbookPythonEmoji2">😅</div>
-              <div class="python-level" id="aiWorkbookPythonLevel2">PRINCIPIANTE</div>
+              <div class="python-level" id="aiWorkbookPythonLevel2">NOVATO</div>
             </div>
             
             <div class="python-slider">
@@ -2050,9 +2145,9 @@ print(f"Accuracy: {accuracy:.2f}")
               <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: rgba(255, 215, 0, 0.6);">
                 <span>😅 Básico</span>
                 <span>🤔 Intermedio</span>
-                <span>🐍 Bueno</span>
-                <span>🧠 Muy bueno</span>
-                <span>🤖 Experto</span>
+                <span>🐍 Avanzado</span>
+                <span>🧠 Expert</span>
+                <span>🤖 Ninja</span>
               </div>
             </div>
           </div>
@@ -2061,51 +2156,84 @@ print(f"Accuracy: {accuracy:.2f}")
             "Python para IA... ¿por dónde empiezo? 🐍"
           </div>
 
-          <!-- HERRAMIENTAS BÁSICAS DE IA -->
+          <!-- ARQUITECTURAS DE IA MÁS POPULARES -->
           <div style="margin: 40px 0;">
             <h3 style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #FFD700; text-align: center; margin-bottom: 25px;">
-              🧰 Herramientas que usarás para crear IA
+              🏗️ Arquitecturas de IA que deberías conocer
             </h3>
             <div class="architecture-grid">
               <div class="architecture-card">
-                <div class="architecture-icon">📊</div>
-                <div class="architecture-name">Pandas</div>
-                <div class="architecture-use">Para manejar datos como Excel</div>
-              </div>
-              <div class="architecture-card">
                 <div class="architecture-icon">🧠</div>
-                <div class="architecture-name">Scikit-learn</div>
-                <div class="architecture-use">Para crear modelos básicos</div>
+                <div class="architecture-name">Transformers</div>
+                <div class="architecture-use">GPT, BERT, procesamiento de lenguaje</div>
               </div>
               <div class="architecture-card">
-                <div class="architecture-icon">🔥</div>
-                <div class="architecture-name">PyTorch</div>
-                <div class="architecture-use">Para redes neuronales avanzadas</div>
+                <div class="architecture-icon">👁️</div>
+                <div class="architecture-name">CNNs</div>
+                <div class="architecture-use">Visión computacional, reconocimiento</div>
               </div>
               <div class="architecture-card">
                 <div class="architecture-icon">📈</div>
-                <div class="architecture-name">Matplotlib</div>
-                <div class="architecture-use">Para hacer gráficas bonitas</div>
+                <div class="architecture-name">GANs</div>
+                <div class="architecture-use">Generación de imágenes, datos sintéticos</div>
               </div>
               <div class="architecture-card">
-                <div class="architecture-icon">🤖</div>
-                <div class="architecture-name">TensorFlow</div>
-                <div class="architecture-use">Para IA a gran escala</div>
+                <div class="architecture-icon">🔄</div>
+                <div class="architecture-name">RNNs/LSTMs</div>
+                <div class="architecture-use">Series temporales, secuencias</div>
               </div>
               <div class="architecture-card">
-                <div class="architecture-icon">💬</div>
-                <div class="architecture-name">Transformers</div>
-                <div class="architecture-use">Para crear chatbots inteligentes</div>
+                <div class="architecture-icon">🎯</div>
+                <div class="architecture-name">Reinforcement Learning</div>
+                <div class="architecture-use">Juegos, robótica, optimización</div>
+              </div>
+              <div class="architecture-card">
+                <div class="architecture-icon">🌐</div>
+                <div class="architecture-name">Graph Neural Networks</div>
+                <div class="architecture-use">Redes sociales, moléculas, grafos</div>
               </div>
             </div>
           </div>
 
           <div style="margin: 40px 0;">
             <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-              💭 ¿Qué te emocionaría más aprender sobre IA?
+              💭 ¿Cuál es tu mayor desafío técnico en el desarrollo de IA?
             </label>
             <textarea class="fun-textarea" id="aiWorkbookPythonExcitement2" 
-                      placeholder="Ej: 'Crear un chatbot que ayude a mi negocio' o 'Hacer un sistema que prediga ventas'..."></textarea>
+                      placeholder="Ej: 'Optimizar modelos para producción' o 'Entender la matemática detrás de los algoritmos' o 'Manejar datasets masivos'..."></textarea>
+          </div>
+
+          <!-- CÓDIGO EJEMPLO INTERACTIVO -->
+          <div class="tech-insight">
+            <div class="insight-title">
+              💻 EJEMPLO: Pipeline básico de ML con Python
+            </div>
+            <div class="code-example">
+# Pipeline típico de Machine Learning
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# 1. Cargar y preparar datos
+data = pd.read_csv('dataset.csv')
+X = data.drop('target', axis=1)
+y = data['target']
+
+# 2. Split y entrenamiento
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+
+# 3. Evaluación
+predictions = model.predict(X_test)
+accuracy = accuracy_score(y_test, predictions)
+print(f"Accuracy: {accuracy:.2f}")
+            </div>
+            <div class="insight-content">
+              <strong>🎯 Próximo nivel:</strong> Convertir esto en una API con FastAPI, dockerizar, y deployar en AWS/GCP para producción real.
+            </div>
           </div>
         </section>
 
@@ -2182,7 +2310,7 @@ print(f"Accuracy: {accuracy:.2f}")
             <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
               🎯 ¿En qué nivel te ves ahora y cuál sería tu próximo paso?
             </label>
-            <textarea class="fun-textarea" id="aiWorkbookCurrentPhase2"
+            <textarea class="fun-textarea" id="aiWorkbookCurrentPhase"
                       placeholder="Ej: 'Estoy en Nivel 1, necesito practicar más con pandas' o 'Quiero llegar al Nivel 2 para hacer chatbots'..."></textarea>
           </div>
         </section>
@@ -2194,3 +2322,1247 @@ print(f"Accuracy: {accuracy:.2f}")
           <p class="section-subtitle">Historias inspiradoras de desarrolladores que empezaron desde cero</p>
           
           <div class="questions-grid">
+            <div class="question-card">
+              <div style="font-size: 2rem; margin-bottom: 15px;">👨‍💻</div>
+              <h3 class="question-text">Carlos - De contador a desarrollador de IA</h3>
+              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+                <strong>Antes:</strong> Contador en una empresa<br>
+                <strong>Después:</strong> Creó una IA que detecta fraudes para bancos<br>
+                <strong>Tiempo:</strong> 8 meses de estudio<br>
+                <strong>Salario:</strong> De $15K a $45K MXN mensuales
+              </div>
+            </div>
+            
+            <div class="question-card">
+              <div style="font-size: 2rem; margin-bottom: 15px;">👩‍🚀</div>
+              <h3 class="question-text">Ana - De diseñadora a fundadora de startup</h3>
+              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+                <strong>Antes:</strong> Diseñadora gráfica freelancer<br>
+                <strong>Después:</strong> Fundó startup de IA para e-commerce<br>
+                <strong>Tiempo:</strong> 6 meses aprendiendo + 4 construyendo<br>
+                <strong>Logro:</strong> $2M USD en financiamiento
+              </div>
+            </div>
+            
+            <div class="question-card">
+              <div style="font-size: 2rem; margin-bottom: 15px;">🌍</div>
+              <h3 class="question-text">Diego - De México a Google</h3>
+              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+                <strong>Antes:</strong> Desarrollador web en CDMX<br>
+                <strong>Después:</strong> ML Engineer en Google (remoto)<br>
+                <strong>Tiempo:</strong> 12 meses de preparación<br>
+                <strong>Salario:</strong> $120K USD anuales
+              </div>
+            </div>
+            
+            <div class="question-card">
+              <div style="font-size: 2rem; margin-bottom: 15px;">🏥</div>
+              <h3 class="question-text">María - Revolucionando la medicina</h3>
+              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+                <strong>Antes:</strong> Estudiante de medicina<br>
+                <strong>Después:</strong> Creó IA que detecta cáncer en radiografías<br>
+                <strong>Tiempo:</strong> 10 meses aprendiendo mientras estudiaba<br>
+                <strong>Impacto:</strong> Adoptado por 15 hospitales
+              </div>
+            </div>
+          </div>
+
+          <div class="tech-insight">
+            <div class="insight-title">
+              🎯 EL PATRÓN DEL ÉXITO
+            </div>
+            <div class="insight-content">
+              <strong>1. Empezaron con un problema específico</strong> (no "hacer IA genérica")<br>
+              <strong>2. Aprendieron haciendo proyectos reales</strong> (no solo viendo tutoriales)<br>
+              <strong>3. Se enfocaron en resolver problemas de verdad</strong> (que la gente pagaría por resolver)<br>
+              <strong>4. Construyeron en público</strong> (compartieron su progreso en redes)<br>
+              <strong>5. Nunca dejaron de aprender</strong> (se mantuvieron al día con nuevas técnicas)
+            </div>
+          </div>
+
+          <div style="margin: 40px 0;">
+            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
+              💡 ¿Cuál de estos casos te inspira más y por qué?
+            </label>
+            <textarea class="fun-textarea" id="aiWorkbookCaseStudyInsight"
+                      placeholder="Ej: 'Me inspira Carlos porque también vengo de finanzas' o 'Quiero crear algo como María que ayude a la gente'..."></textarea>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 8: TU COMPROMISO PERSONAL -->
+        <section class="workbook-section" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.12) 100%); border: 3px solid rgba(255, 215, 0, 0.6);">
+          <div class="ai-icon" style="font-size: 4.5rem; width: 130px; height: 130px;">🚀</div>
+          <h2 class="section-title" style="font-size: 2.8rem;">💫 Tu compromiso hacia el futuro</h2>
+          <p class="section-subtitle">Es momento de hacer esto oficial</p>
+          
+          <div style="margin: 40px 0; padding: 25px; background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 20px; text-align: center;">
+            <div style="font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 10px;">
+              👨‍💻 Futuro desarrollador de IA:
+            </div>
+            <div id="aiWorkbookDisplayName2" style="font-size: 1.8rem; color: #FFD700; font-weight: 700;">
+              [Tu nombre aparecerá aquí]
+            </div>
+          </div>
+
+          <div style="margin: 40px 0;">
+            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin: 25px 0 15px 0; text-align: center;">
+              💭 ¿Por qué AHORA es tu momento para aprender IA?
+            </label>
+            <textarea class="fun-textarea" id="aiWorkbookWhyNow"
+                      placeholder="Ej: 'Porque veo que la IA está en todos lados y no me quiero quedar atrás' o 'Porque quiero crear algo que ayude a mi familia'..." 
+                      style="min-height: 120px;"></textarea>
+          </div>
+
+          <div style="margin: 50px 0; text-align: center; padding: 40px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.15) 100%); border: 3px solid rgba(255, 215, 0, 0.5); border-radius: 25px;">
+            <div style="font-family: 'Orbitron', monospace; font-size: 1.8rem; color: #FFD700; margin-bottom: 25px;">
+              ✨ Mi compromiso personal:
+            </div>
+            <div style="font-size: 1.4rem; margin-bottom: 20px; color: rgba(255, 215, 0, 0.9);">"Me comprometo a aprender IA porque..."</div>
+            <input type="text" class="fun-input" placeholder="quiero cambiar mi futuro profesional" id="aiWorkbookCommitmentReason" 
+                   style="font-size: 1.2rem; text-align: center;">
+          </div>
+
+          <div style="margin: 40px 0; text-align: center; padding: 30px; background: rgba(0, 0, 0, 0.7); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px;">
+            <p style="color: rgba(255, 215, 0, 0.8); font-size: 1.2rem; margin-bottom: 20px; font-family: 'Orbitron', monospace;">
+              ⏰ ¿En cuántos meses quieres tener tu primera IA funcionando?
+            </p>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+              <input type="number" class="fun-input" placeholder="6" id="aiWorkbookTimelineMonths" 
+                     style="max-width: 150px; text-align: center; font-size: 1.4rem;" 
+                     min="1" max="60">
+              <div style="font-size: 1.1rem; color: #FFD700; font-weight: 600;">meses</div>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.6);">
+              (La mayoría lo logra en 6-12 meses)
+            </p>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- OVERLAY DE BLOQUEO -->
+      <div class="unlock-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(255, 215, 0, 0.1) 50%, rgba(0, 0, 0, 0.85) 100%); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 20; border-radius: 25px;">
+        <div class="unlock-message" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%); border: 3px solid #FFD700; border-radius: 20px; padding: 40px; text-align: center; max-width: 600px; animation: unlockPulse 2s ease-in-out infinite; box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);">
+          
+          <div style="font-family: 'Orbitron', monospace; font-size: 2rem; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
+            🔥 ¡ESPERA! No te vayas todavía...
+          </div>
+          
+          <div style="font-size: 1.2rem; color: rgba(255, 215, 0, 0.9); margin-bottom: 25px; line-height: 1.5;">
+            Lo que sigue es el contenido MÁS VALIOSO del workbook. Te vas a perder:
+            <br><br>
+            ✨ <strong>Tu plan personalizado paso a paso</strong><br>
+            ✨ <strong>Casos reales de gente que lo logró (con salarios)</strong><br>
+            ✨ <strong>Las herramientas exactas que necesitas</strong><br>
+            ✨ <strong>Tu compromiso personal hacia el éxito</strong><br>
+            ✨ <strong>Estrategias probadas de developers exitosos</strong>
+          </div>
+          
+          <div style="background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);">
+            <div style="font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #FFD700; margin-bottom: 15px;">
+              🎓 MASTERCLASS GRATUITA
+            </div>
+            <div style="font-size: 1.1rem; color: rgba(255, 215, 0, 0.9); line-height: 1.4;">
+              <strong style="color: #FFD700;">📅 Próximamente - Estate al pendiente</strong><br>
+              🎯 <strong>"De Python a IA: Tu primer proyecto en 30 días"</strong><br><br>
+              
+              🎁 <strong>¡BONUS EXCLUSIVOS EN VIVO!</strong><br>
+              💰 Análisis de salarios reales en IA<br>
+              🛠️ Kit de herramientas completo (gratis)<br>
+              🚀 Plan de estudios personalizado<br>
+              👥 Acceso a nuestra comunidad privada<br><br>
+              
+              <span style="background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 1.2rem;">
+                ⚡ Estate al pendiente de los mensajes del grupo ⚡
+              </span><br>
+              <span style="color: rgba(255, 215, 0, 0.8); font-size: 1rem;">
+                Ahí te avisaremos cuándo será la masterclass y te daremos el código
+              </span>
+            </div>
+          </div>
+
+          <div style="background: rgba(0, 0, 0, 0.9); border: 2px solid #FFD700; border-radius: 15px; padding: 30px; margin: 20px 0; text-align: center;">
+            <div style="font-family: 'Orbitron', monospace; font-size: 1.3rem; color: #FFD700; margin-bottom: 15px;">
+              🔐 Código de Desbloqueo
+            </div>
+            <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); margin-bottom: 20px;">
+              (Se revelará en la masterclass GRATUITA)
+            </div>
+            <div style="display: flex; justify-content: center; gap: 15px; margin: 20px 0;">
+              <input type="text" class="code-digit" maxlength="1" id="code1" oninput="moveToNext(this, 'code2')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
+              <input type="text" class="code-digit" maxlength="1" id="code2" oninput="moveToNext(this, 'code3')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
+              <input type="text" class="code-digit" maxlength="1" id="code3" oninput="moveToNext(this, 'code4')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
+              <input type="text" class="code-digit" maxlength="1" id="code4" oninput="validateCode()" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
+            </div>
+            <button onclick="unlockContent()" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); border: none; padding: 15px 40px; border-radius: 50px; color: #000; font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; margin: 20px 0; text-transform: uppercase; letter-spacing: 1px;">
+              DESBLOQUEAR CONTENIDO
+            </button>
+          </div>
+
+          <div style="margin-top: 25px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); font-style: italic;">
+            💡 Tip: El código se comparte SOLO en la masterclass gratuita
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN FINAL ÉPICA -->
+    <section class="final-section">
+      <div class="ai-icon" style="font-size: 4rem; width: 120px; height: 120px; margin: 0 auto 30px;">🎯</div>
+      
+      <h1 class="final-title">¡Tu journey como desarrollador de IA comienza AHORA!</h1>
+      
+      <p class="final-text">
+        Has completado la evaluación más completa para desarrolladores de IA.<br>
+        Es momento de transformar tu carrera y construir el futuro.
+      </p>
+      
+      <div style="text-align: center; margin: 40px 0;">
+        <button class="epic-btn btn-download" onclick="downloadWorkbook(); return false;" style="cursor: pointer;">
+          📥 DESCARGAR MI ANÁLISIS COMPLETO
+        </button>
+      </div>
+      
+      <div style="margin-top: 50px; padding: 30px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.3);">
+        <p style="font-size: 1.2rem; font-weight: 600; color: #FFD700; margin-bottom: 10px;">
+          🤖 "El futuro pertenece a quienes CONSTRUYEN IA, no solo la usan"
+        </p>
+        <p style="color: rgba(255, 215, 0, 0.7); font-size: 1rem;">
+          Tu yo del 2030 te está esperando ✨
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Variables globales con IDs únicos y sistema de nombres
+    let aiWorkbookUserData = {};
+    let aiWorkbookUserMainName = ''; // Nombre principal como ID
+    let currentQuizQuestion = 0;
+    let quizAnswers = [];
+    let isContentUnlocked = false;
+    
+    // 🚀 CONFIGURACIÓN DE APPS SCRIPT - ¡TU URL REAL!
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec';
+    let autoSyncInterval = null;
+    let lastSyncTime = null;
+    
+    // PREGUNTAS DEL QUIZ AVANZADO
+    const quizQuestions = [
+      {
+        question: "🎯 ¿Cuál es tu enfoque preferido al enfrentar un problema de ML?",
+        options: [
+          { text: "Probar múltiples algoritmos y comparar métricas", points: { innovador: 2, constructor: 3, solucionador: 1, visionario: 0 } },
+          { text: "Entender profundamente el problema antes de codificar", points: { innovador: 1, constructor: 0, solucionador: 3, visionario: 2 } },
+          { text: "Buscar soluciones creativas no convencionales", points: { innovador: 3, constructor: 1, solucionador: 0, visionario: 2 } },
+          { text: "Planificar la arquitectura completa del sistema", points: { innovador: 0, constructor: 2, solucionador: 1, visionario: 3 } }
+        ]
+      },
+      {
+        question: "🧠 ¿Qué aspecto técnico te emociona más de la IA?",
+        options: [
+          { text: "Neural networks y deep learning", points: { innovador: 3, constructor: 2, solucionador: 1, visionario: 0 } },
+          { text: "Optimización de modelos para producción", points: { innovador: 0, constructor: 3, solucionador: 2, visionario: 1 } },
+          { text: "Investigación y papers cutting-edge", points: { innovador: 2, constructor: 0, solucionador: 1, visionario: 3 } },
+          { text: "Resolver problemas de negocio con datos", points: { innovador: 1, constructor: 1, solucionador: 3, visionario: 0 } }
+        ]
+      },
+      {
+        question: "⚡ En un equipo de ML, naturalmente serías el que...",
+        options: [
+          { text: "Propone arquitecturas innovadoras", points: { innovador: 3, constructor: 1, solucionador: 0, visionario: 2 } },
+          { text: "Optimiza el pipeline de datos", points: { innovador: 0, constructor: 3, solucionador: 2, visionario: 1 } },
+          { text: "Analiza por qué un modelo no funciona", points: { innovador: 1, constructor: 0, solucionador: 3, visionario: 2 } },
+          { text: "Define la visión técnica del producto", points: { innovador: 2, constructor: 1, solucionador: 0, visionario: 3 } }
+        ]
+      },
+      {
+        question: "🛠️ ¿Cuál sería tu proyecto ideal de IA?",
+        options: [
+          { text: "Crear un nuevo tipo de red neuronal", points: { innovador: 3, constructor: 0, solucionador: 1, visionario: 2 } },
+          { text: "Sistema ML completo escalable a millones de usuarios", points: { innovador: 1, constructor: 3, solucionador: 0, visionario: 2 } },
+          { text: "Resolver un problema específico con alta precisión", points: { innovador: 0, constructor: 2, solucionador: 3, visionario: 1 } },
+          { text: "Plataforma que democratice el acceso a IA", points: { innovador: 2, constructor: 1, solucionador: 0, visionario: 3 } }
+        ]
+      },
+      {
+        question: "📊 Tu relación con los datos es más como...",
+        options: [
+          { text: "Artista que encuentra patrones únicos", points: { innovador: 3, constructor: 0, solucionador: 1, visionario: 2 } },
+          { text: "Ingeniero que construye pipelines robustos", points: { innovador: 0, constructor: 3, solucionador: 2, visionario: 1 } },
+          { text: "Detective que investiga anomalías", points: { innovador: 1, constructor: 1, solucionador: 3, visionario: 0 } },
+          { text: "Estratega que ve oportunidades de negocio", points: { innovador: 2, constructor: 0, solucionador: 1, visionario: 3 } }
+        ]
+      }
+    ];
+
+    // PERFILES DE DESARROLLADOR
+    const developerProfiles = {
+      innovador: {
+        title: "🚀 EL INNOVADOR TÉCNICO",
+        description: "Eres el tipo de desarrollador que crea breakthroughs. Tu mente siempre busca nuevas arquitecturas, algoritmos únicos y enfoques que nadie ha probado. En el mundo de la IA, serás quien desarrolle las próximas técnicas revolucionarias.",
+        techFocus: "Research, nuevas arquitecturas de redes neuronales, papers de cutting-edge",
+        careerPath: "ML Research Engineer → Principal AI Scientist → CTO/Founder",
+        tools: "PyTorch, JAX, Papers with Code, experimentación avanzada"
+      },
+      constructor: {
+        title: "⚡ EL ARQUITECTO DE SISTEMAS", 
+        description: "Tu superpoder está en construir sistemas de IA robustos, escalables y que funcionen en producción real. Eres el desarrollador que toma investigación experimental y la convierte en productos que impactan millones de usuarios.",
+        techFocus: "MLOps, sistemas distribuidos, optimización de modelos, infraestructura",
+        careerPath: "ML Engineer → Senior ML Engineer → Staff Engineer → VP Engineering",
+        tools: "Kubernetes, Docker, TensorFlow Serving, cloud platforms, monitoring"
+      },
+      solucionador: {
+        title: "🧩 EL SOLUCIONADOR MAESTRO",
+        description: "Tienes el don único de diagnosticar problemas complejos y encontrar soluciones elegantes. En IA, eres quien optimiza modelos que no convergen, debuggea pipelines rotos y mejora accuracy donde otros se rinden.",
+        techFocus: "Debugging de modelos, optimización de performance, feature engineering",
+        careerPath: "ML Engineer → Senior ML Engineer → Principal Engineer → Consultant/Expert",
+        tools: "Profilers, A/B testing, statistical analysis, optimization libraries"
+      },
+      visionario: {
+        title: "🌟 EL VISIONARIO ESTRATÉGICO",
+        description: "Ves el big picture y conectas tecnología con oportunidades de negocio. Tu rol es identificar dónde la IA puede crear valor real, diseñar productos y liderar equipos hacia objetivos ambiciosos.",
+        techFocus: "Product development, business applications, team leadership",
+        careerPath: "ML Engineer → ML Product Manager → Director of AI → CPO/CEO",
+        tools: "Business intelligence, product analytics, stakeholder management"
+      }
+    };
+
+    // 🖼️ SISTEMA DE CARGA DE LOGO CON MÚLTIPLES OPCIONES
+    function tryAlternativeLogos(imgElement) {
+      const logoUrls = [
+        './futuro_digital_logo_correcto.png',
+        'futuro_digital_logo_correcto.png',
+        './assets/futuro_digital_logo_correcto.png',
+        './images/futuro_digital_logo_correcto.png',
+        './img/futuro_digital_logo_correcto.png',
+        'https://via.placeholder.com/300x150/FFD700/000000?text=FUTURO+DIGITAL'
+      ];
+      
+      const currentSrc = imgElement.src;
+      const currentIndex = logoUrls.findIndex(url => currentSrc.includes(url.replace('./', '')));
+      
+      if (currentIndex < logoUrls.length - 1) {
+        // Probar siguiente URL
+        imgElement.src = logoUrls[currentIndex + 1];
+      } else {
+        // Si todas fallan, mostrar fallback
+        imgElement.style.display = 'none';
+        document.querySelector('.logo-fallback').style.display = 'block';
+        console.log('🖼️ Logo no encontrado, usando fallback text');
+      }
+    }
+
+    // Función para generar ID único basado en nombre
+    function generateUserID(name) {
+      if (!name || name.trim().length === 0) return null;
+      
+      const cleanName = name.trim()
+        .toLowerCase()
+        .replace(/\s+/g, '_')
+        .replace(/[áàäâ]/g, 'a')
+        .replace(/[éèëê]/g, 'e')
+        .replace(/[íìïî]/g, 'i')
+        .replace(/[óòöô]/g, 'o')
+        .replace(/[úùüû]/g, 'u')
+        .replace(/[ñ]/g, 'n')
+        .replace(/[^a-z0-9_]/g, '');
+      
+      const timestamp = Date.now();
+      return `${cleanName}_${timestamp}`;
+    }
+    
+    // Validar nombre completo
+    function validateFullName(name) {
+      if (!name || name.trim().length < 3) return false;
+      
+      const words = name.trim().split(/\s+/);
+      if (words.length < 2) return false;
+      
+      // Verificar que contenga solo letras, espacios y acentos
+      const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/;
+      return nameRegex.test(name);
+    }
+    
+    // Configurar sistema de nombres
+    function setupNameSystem() {
+      const nameInput = document.getElementById('aiWorkbookUserName');
+      const nameValidation = document.getElementById('aiWorkbookNameValidation');
+      const displayName = document.getElementById('aiWorkbookDisplayName');
+      const displayName2 = document.getElementById('aiWorkbookDisplayName2');
+      const signatureArea = document.getElementById('aiWorkbookSignature');
+      const signatureDate = document.getElementById('aiWorkbookSignatureDate');
+      
+      // Mostrar fecha actual
+      if (signatureDate) {
+        signatureDate.textContent = new Date().toLocaleDateString('es-ES', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      }
+      
+      nameInput.addEventListener('input', function() {
+        const name = this.value.trim();
+        
+        if (name.length === 0) {
+          nameValidation.style.opacity = '0';
+          this.className = 'fun-input';
+          if (displayName) displayName.textContent = '[Tu nombre aparecerá aquí]';
+          if (displayName2) displayName2.textContent = '[Tu nombre aparecerá aquí]';
+          if (signatureArea) signatureArea.textContent = '[Firma se generará automáticamente]';
+          aiWorkbookUserMainName = '';
+          return;
+        }
+        
+        if (validateFullName(name)) {
+          nameValidation.textContent = '✅ Perfecto! Bienvenido al futuro, ' + name.split(' ')[0] + '!';
+          nameValidation.style.color = '#4CAF50';
+          nameValidation.style.opacity = '1';
+          this.className = 'fun-input name-valid';
+          
+          // Actualizar displays
+          if (displayName) displayName.textContent = name;
+          if (displayName2) displayName2.textContent = name;
+          if (signatureArea) signatureArea.textContent = `${name} - Futuro Arquitecto de IA`;
+          
+          // Guardar como nombre principal
+          aiWorkbookUserMainName = name;
+          aiWorkbookUserData.mainUserName = name;
+          aiWorkbookUserData.userID = generateUserID(name);
+          
+          // 💾 GUARDAR INMEDIATAMENTE EL NOMBRE
+          saveData();
+          
+        } else {
+          nameValidation.textContent = '❌ Necesitas tu nombre completo (nombre y apellido)';
+          nameValidation.style.color = '#ff4444';
+          nameValidation.style.opacity = '1';
+          this.className = 'fun-input name-invalid';
+          if (displayName) displayName.textContent = '[Nombre incompleto]';
+          if (displayName2) displayName2.textContent = '[Nombre incompleto]';
+          if (signatureArea) signatureArea.textContent = '[Completa tu nombre primero]';
+          aiWorkbookUserMainName = '';
+        }
+      });
+    }
+
+    // SISTEMA DE QUIZ AVANZADO
+    function setupAdvancedQuiz() {
+      displayQuizQuestion();
+    }
+
+    function displayQuizQuestion() {
+      if (currentQuizQuestion >= quizQuestions.length) {
+        calculateQuizResult();
+        return;
+      }
+
+      const question = quizQuestions[currentQuizQuestion];
+      const container = document.getElementById('quizContainer');
+      
+      container.innerHTML = `
+        <div class="quiz-question">${question.question}</div>
+        <div class="quiz-options">
+          ${question.options.map((option, index) => `
+            <div class="quiz-option" onclick="selectQuizOption(${index})">
+              <div class="option-title">${String.fromCharCode(65 + index)}</div>
+              <div class="option-desc">${option.text}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      // Actualizar progress bar
+      const progress = ((currentQuizQuestion + 1) / quizQuestions.length) * 100;
+      document.getElementById('quizProgressBar').style.width = progress + '%';
+      document.getElementById('currentQuestion').textContent = currentQuizQuestion + 1;
+      document.getElementById('totalQuestions').textContent = quizQuestions.length;
+    }
+
+    function selectQuizOption(optionIndex) {
+      const question = quizQuestions[currentQuizQuestion];
+      const selectedOption = question.options[optionIndex];
+      
+      // Guardar respuesta
+      quizAnswers.push({
+        question: currentQuizQuestion,
+        answer: optionIndex,
+        points: selectedOption.points
+      });
+
+      // Efecto visual
+      const options = document.querySelectorAll('.quiz-option');
+      options.forEach(opt => opt.classList.remove('selected'));
+      options[optionIndex].classList.add('selected');
+
+      // Avanzar después de un breve delay
+      setTimeout(() => {
+        currentQuizQuestion++;
+        displayQuizQuestion();
+      }, 1000);
+    }
+
+    function calculateQuizResult() {
+      // Sumar puntos por categoría
+      const scores = { innovador: 0, constructor: 0, solucionador: 0, visionario: 0 };
+      
+      quizAnswers.forEach(answer => {
+        Object.keys(answer.points).forEach(category => {
+          scores[category] += answer.points[category];
+        });
+      });
+
+      // Encontrar categoría dominante
+      let maxScore = 0;
+      let dominantProfile = 'innovador';
+      
+      Object.keys(scores).forEach(category => {
+        if (scores[category] > maxScore) {
+          maxScore = scores[category];
+          dominantProfile = category;
+        }
+      });
+
+      // Mostrar resultado
+      const profile = developerProfiles[dominantProfile];
+      const resultContainer = document.getElementById('quizResult');
+      const contentDiv = document.getElementById('quizResultContent');
+      
+      contentDiv.innerHTML = `
+        <div style="font-size: 2.5rem; margin-bottom: 20px;">${profile.title}</div>
+        <div style="font-size: 1.3rem; color: rgba(255, 215, 0, 0.9); margin-bottom: 25px; line-height: 1.5;">
+          ${profile.description}
+        </div>
+        <div style="margin: 25px 0; padding: 30px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px;">
+          <div style="font-size: 1.4rem; color: #FFD700; margin-bottom: 15px; font-weight: 700;">
+            🌟 ¡Eres absolutamente INCREÍBLE!
+          </div>
+          <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5; font-size: 1.1rem;">
+            Tu forma de pensar es exactamente lo que el mundo de la IA necesita. Tienes una mente brillante y un potencial enorme para crear cosas asombrosas.
+          </div>
+        </div>
+        <div style="margin-top: 25px; padding: 25px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; text-align: center;">
+          <div style="font-size: 1.2rem; color: #FFD700; margin-bottom: 10px; font-weight: 600;">
+            🚀 Tu ventaja única en el mercado:
+          </div>
+          <div style="color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+            Los desarrolladores como tú son los más buscados y mejor pagados en el mercado de IA. Tu mentalidad ${dominantProfile === 'innovador' ? 'innovadora' : dominantProfile === 'constructor' ? 'constructiva' : dominantProfile === 'solucionador' ? 'analítica' : 'visionaria'} te dará una ventaja competitiva masiva.
+          </div>
+        </div>
+        <div style="margin-top: 25px; padding: 20px; background: rgba(0, 0, 0, 0.7); border: 2px solid #FFD700; border-radius: 15px; text-align: center;">
+          <div style="color: #FFD700; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">
+            💎 Tienes TODO lo necesario para triunfar
+          </div>
+          <div style="color: rgba(255, 215, 0, 0.8); font-size: 1rem;">
+            Solo necesitas las herramientas correctas y el plan adecuado. ¡Y eso es exactamente lo que vamos a darte!
+          </div>
+        </div>
+      `;
+
+      // Guardar resultado
+      aiWorkbookUserData.quizResult = dominantProfile;
+      aiWorkbookUserData.quizProfile = profile;
+      aiWorkbookUserData.quizScores = scores;
+
+      // Ocultar quiz container y mostrar resultado
+      document.getElementById('quizContainer').style.display = 'none';
+      resultContainer.style.display = 'block';
+
+      saveData();
+      showSaveMessage();
+    }
+
+    // Configurar slider de Python
+    function setupPythonSlider() {
+      const slider = document.getElementById('aiWorkbookPythonSlider');
+      const emoji = document.getElementById('aiWorkbookPythonEmoji');
+      const level = document.getElementById('aiWorkbookPythonLevel');
+      const description = document.getElementById('aiWorkbookPythonDescription');
+      
+      const levels = [
+        { emoji: '😅', level: 'BÁSICO', desc: '"Puedo hacer scripts simples y usar librerías básicas como pandas"' },
+        { emoji: '🤔', level: 'INTERMEDIO', desc: '"Manejo funciones, clases y puedo implementar algoritmos de ML básicos"' },
+        { emoji: '🐍', level: 'AVANZADO', desc: '"Domino frameworks como scikit-learn, puedo optimizar código y debugging"' },
+        { emoji: '🧠', level: 'EXPERTO', desc: '"Trabajo con PyTorch/TensorFlow, entiendo arquitecturas de DL y MLOps"' },
+        { emoji: '🤖', level: 'NINJA', desc: '"Puedo implementar papers from scratch y crear sistemas ML complejos"' }
+      ];
+      
+      if (slider && emoji && level && description) {
+        slider.addEventListener('input', function() {
+          const levelData = levels[this.value - 1];
+          emoji.textContent = levelData.emoji;
+          level.textContent = levelData.level;
+          description.textContent = levelData.desc;
+          aiWorkbookUserData.pythonLevel = this.value;
+          aiWorkbookUserData.pythonLevelName = levelData.level;
+          
+          saveData();
+        });
+      }
+    }
+
+    // Simulador de proyectos avanzado
+    function setupProjectSimulator() {
+      let selectedType = '';
+      
+      // Tipo de sistema de IA
+      document.querySelectorAll('.project-option').forEach(option => {
+        option.addEventListener('click', function() {
+          document.querySelectorAll('.project-option').forEach(opt => opt.classList.remove('selected'));
+          this.classList.add('selected');
+          
+          selectedType = this.dataset.value;
+          aiWorkbookUserData.projectType = selectedType;
+          
+          // Manejar campo personalizado
+          const customContainer = document.getElementById('aiWorkbookCustomTypeContainer');
+          if (selectedType === 'otro-sistema') {
+            customContainer.classList.add('show');
+            document.getElementById('aiWorkbookCustomType').focus();
+          } else {
+            customContainer.classList.remove('show');
+            document.getElementById('aiWorkbookCustomType').value = '';
+          }
+          
+          updateProjectResult();
+          saveData();
+          showSaveMessage();
+        });
+      });
+      
+      // Campo personalizado
+      const customTypeInput = document.getElementById('aiWorkbookCustomType');
+      if (customTypeInput) {
+        customTypeInput.addEventListener('input', function() {
+          aiWorkbookUserData.customType = this.value.trim();
+          updateProjectResult();
+          saveData();
+        });
+      }
+      
+      function updateProjectResult() {
+        if (!selectedType) return;
+        
+        let finalType = selectedType;
+        if (selectedType === 'otro-sistema' && document.getElementById('aiWorkbookCustomType').value.trim()) {
+          finalType = document.getElementById('aiWorkbookCustomType').value.trim();
+        }
+        
+        if (finalType && finalType !== 'otro-sistema') {
+          const projectSpecs = generateProjectSpecs(finalType);
+          
+          // Mostrar resultado
+          const resultElement = document.getElementById('aiWorkbookProjectResult');
+          const descElement = document.getElementById('aiWorkbookProjectDescription');
+          const stackElement = document.getElementById('aiWorkbookTechStack');
+          
+          if (resultElement && descElement && stackElement) {
+            resultElement.style.display = 'block';
+            descElement.innerHTML = projectSpecs.description;
+            stackElement.innerHTML = projectSpecs.techStack;
+            
+            aiWorkbookUserData.projectDescription = projectSpecs.description;
+            aiWorkbookUserData.techStack = projectSpecs.techStack;
+            
+            saveData();
+          }
+        }
+      }
+    }
+
+    function generateProjectSpecs(projectType) {
+      const specs = {
+        'nlp-system': {
+          description: `
+            <div style="font-size: 1.4rem; color: #FFD700; font-weight: 600; margin-bottom: 20px;">
+              🤖 Sistema de Procesamiento de Lenguaje Natural Avanzado
+            </div>
+            <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
+              Un sistema que puede entender, procesar y generar texto humano de manera inteligente. 
+              Ideal para chatbots empresariales, análisis de sentimientos, traducción automática o generación de contenido.
+              <br><br>
+              <strong>Casos de uso:</strong> Análisis de reviews, chatbots inteligentes, resúmenes automáticos, clasificación de documentos
+            </div>
+          `,
+          techStack: `
+            <strong>🔧 Core:</strong> Python, PyTorch/TensorFlow, Transformers library<br>
+            <strong>📊 Preprocessing:</strong> NLTK, spaCy, Tokenizers<br>
+            <strong>🧠 Modelos:</strong> BERT, GPT, T5, fine-tuning techniques<br>
+            <strong>☁️ Deploy:</strong> FastAPI, Docker, AWS/GCP, modelo serving<br>
+            <strong>📈 Monitoring:</strong> MLflow, Weights & Biases, performance tracking
+          `
+        },
+        'computer-vision': {
+          description: `
+            <div style="font-size: 1.4rem; color: #FFD700; font-weight: 600; margin-bottom: 20px;">
+              👁️ Sistema de Visión Computacional Inteligente
+            </div>
+            <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
+              Sistemas que "ven" y comprenden imágenes y videos como lo haría un humano, pero con precisión sobrehumana.
+              Perfect para detección de objetos, reconocimiento facial, análisis médico o vehículos autónomos.
+              <br><br>
+              <strong>Casos de uso:</strong> Control de calidad industrial, diagnóstico médico, seguridad, retail analytics
+            </div>
+          `,
+          techStack: `
+            <strong>🔧 Core:</strong> Python, OpenCV, PyTorch, TensorFlow<br>
+            <strong>🧠 Modelos:</strong> CNNs, YOLO, ResNet, EfficientNet, Vision Transformers<br>
+            <strong>📊 Data:</strong> Data augmentation, annotation tools, large datasets<br>
+            <strong>⚡ Optimization:</strong> TensorRT, ONNX, edge deployment<br>
+            <strong>☁️ Infrastructure:</strong> GPU clusters, real-time inference, edge computing
+          `
+        },
+        'predictive-ml': {
+          description: `
+            <div style="font-size: 1.4rem; color: #FFD700; font-weight: 600; margin-bottom: 20px;">
+              🔮 Sistema de Machine Learning Predictivo
+            </div>
+            <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
+              Algoritmos que aprenden de datos históricos para predecir eventos futuros con alta precisión.
+              Esencial para forecasting de demanda, detección de fraude, predicción de precios o análisis de riesgo.
+              <br><br>
+              <strong>Casos de uso:</strong> Predicción de ventas, análisis de riesgo crediticio, forecasting financiero, mantenimiento predictivo
+            </div>
+          `,
+          techStack: `
+            <strong>🔧 Core:</strong> Python, scikit-learn, XGBoost, LightGBM<br>
+            <strong>📊 Data:</strong> Pandas, NumPy, feature engineering, time series analysis<br>
+            <strong>🧠 Algorithms:</strong> Random Forest, Gradient Boosting, Neural Networks<br>
+            <strong>📈 Validation:</strong> Cross-validation, A/B testing, backtesting<br>
+            <strong>🚀 Production:</strong> Model versioning, automated retraining, monitoring
+          `
+        },
+        'automation-ai': {
+          description: `
+            <div style="font-size: 1.4rem; color: #FFD700; font-weight: 600; margin-bottom: 20px;">
+              ⚡ Sistema de IA para Automatización Inteligente
+            </div>
+            <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
+              IA que automatiza procesos complejos, toma decisiones y ejecuta acciones sin intervención humana.
+              Revolucionario para workflows empresariales, trading automático o gestión de recursos.
+              <br><br>
+              <strong>Casos de uso:</strong> RPA inteligente, trading algorithms, optimización de procesos, smart scheduling
+            </div>
+          `,
+          techStack: `
+            <strong>🔧 Core:</strong> Python, Reinforcement Learning, Multi-agent systems<br>
+            <strong>🤖 Frameworks:</strong> OpenAI Gym, Ray, stable-baselines3<br>
+            <strong>⚡ Integration:</strong> APIs, webhooks, message queues, microservices<br>
+            <strong>📊 Decision Making:</strong> Rule engines, optimization algorithms, genetic algorithms<br>
+            <strong>🔄 Orchestration:</strong> Apache Airflow, Kubernetes, event-driven architecture
+          `
+        },
+        'recommendation': {
+          description: `
+            <div style="font-size: 1.4rem; color: #FFD700; font-weight: 600; margin-bottom: 20px;">
+              🎯 Sistema de Recomendación Personalizada
+            </div>
+            <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
+              Algoritmos que aprenden preferencias individuales para sugerir productos, contenido o acciones personalizadas.
+              La base de plataformas como Netflix, Amazon, Spotify - donde la personalización impulsa el engagement.
+              <br><br>
+              <strong>Casos de uso:</strong> E-commerce, streaming, content discovery, marketing personalizado
+            </div>
+          `,
+          techStack: `
+            <strong>🔧 Core:</strong> Python, collaborative filtering, matrix factorization<br>
+            <strong>🧠 Algorithms:</strong> Deep learning embeddings, graph neural networks<br>
+            <strong>📊 Data:</strong> User behavior tracking, implicit/explicit feedback<br>
+            <strong>⚡ Real-time:</strong> Online learning, streaming data, low-latency serving<br>
+            <strong>📈 Optimization:</strong> A/B testing, multi-armed bandits, cold-start solutions
+          `
+        },
+        'generative-ai': {
+          description: `
+            <div style="font-size: 1.4rem; color: #FFD700; font-weight: 600; margin-bottom: 20px;">
+              🎨 Sistema de IA Generativa Creativa
+            </div>
+            <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
+              IA que crea contenido original: imágenes, texto, música, código o video. La frontera más exciting de la IA,
+              donde la creatividad artificial se encuentra con aplicaciones comerciales reales.
+              <br><br>
+              <strong>Casos de uso:</strong> Generación de contenido, arte digital, código automático, diseño creativo
+            </div>
+          `,
+          techStack: `
+            <strong>🔧 Core:</strong> Python, PyTorch, Diffusion models, Transformers<br>
+            <strong>🎨 Models:</strong> GANs, VAEs, CLIP, Stable Diffusion, GPT variants<br>
+            <strong>🖼️ Image:</strong> DALL-E integration, ControlNet, fine-tuning techniques<br>
+            <strong>💬 Text:</strong> OpenAI API, Hugging Face, prompt engineering<br>
+            <strong>🚀 Deployment:</strong> GPU optimization, caching strategies, content moderation
+          `
+        }
+      };
+      
+      return specs[projectType] || specs['nlp-system'];
+    }
+
+    // SISTEMA DE BLOQUEO CON CÓDIGO
+    function moveToNext(current, nextId) {
+      if (current.value.length === 1) {
+        const nextInput = document.getElementById(nextId);
+        if (nextInput) {
+          nextInput.focus();
+        } else {
+          validateCode();
+        }
+      }
+    }
+
+    function validateCode() {
+      // Auto-validar cuando se complete el último dígito
+      setTimeout(() => {
+        const code1 = document.getElementById('code1');
+        const code2 = document.getElementById('code2');
+        const code3 = document.getElementById('code3');
+        const code4 = document.getElementById('code4');
+        
+        if (code1 && code2 && code3 && code4) {
+          const fullCode = code1.value + code2.value + code3.value + code4.value;
+          if (fullCode === '1234') {
+            // Auto-unlock si el código es correcto
+            unlockContent();
+          }
+        }
+      }, 100);
+    }
+
+    function unlockContent() {
+      const code1 = document.getElementById('code1');
+      const code2 = document.getElementById('code2');
+      const code3 = document.getElementById('code3');
+      const code4 = document.getElementById('code4');
+      
+      if (!code1 || !code2 || !code3 || !code4) return;
+      
+      const fullCode = code1.value + code2.value + code3.value + code4.value;
+      
+      if (fullCode === '1234') {
+        // EFECTO DE DESBLOQUEO ÉPICO
+        const lockedSection = document.getElementById('lockedSections');
+        
+        if (lockedSection) {
+          // Mensaje de éxito épico
+          showUnlockSuccessMessage();
+          
+          // Efecto de desbloqueo gradual
+          setTimeout(() => {
+            lockedSection.style.transition = 'all 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            lockedSection.style.filter = 'blur(0px)';
+            lockedSection.style.pointerEvents = 'auto';
+            lockedSection.style.userSelect = 'auto';
+            lockedSection.style.opacity = '1';
+            lockedSection.style.transform = 'scale(1)';
+            
+            // Efectos adicionales
+            lockedSection.style.boxShadow = '0 0 100px rgba(255, 215, 0, 0.3)';
+            
+            setTimeout(() => {
+              lockedSection.style.boxShadow = 'none';
+            }, 2000);
+            
+            isContentUnlocked = true;
+            aiWorkbookUserData.contentUnlocked = true;
+            saveData();
+          }, 1000);
+        }
+        
+      } else {
+        // Efecto de error
+        const codeInputs = document.querySelectorAll('.code-digit');
+        codeInputs.forEach(input => {
+          input.style.borderColor = '#ff4444';
+          input.style.animation = 'shake 0.5s ease';
+          input.style.boxShadow = '0 0 20px rgba(255, 68, 68, 0.5)';
+        });
+        
+        setTimeout(() => {
+          codeInputs.forEach(input => {
+            input.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+            input.style.animation = '';
+            input.style.boxShadow = '';
+            input.value = '';
+          });
+          if (code1) code1.focus();
+        }, 1000);
+        
+        showCustomMessage('❌ Código incorrecto. Obtén el código en la masterclass gratuita.');
+      }
+    }
+
+    function showUnlockSuccessMessage() {
+      // Crear overlay de éxito
+      const successOverlay = document.createElement('div');
+      successOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.95) 0%, rgba(255, 165, 0, 0.95) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        animation: successFadeIn 0.8s ease;
+      `;
+      
+      successOverlay.innerHTML = `
+        <div style="text-align: center; color: #000; animation: successBounce 1s ease;">
+          <div style="font-size: 4rem; margin-bottom: 20px; animation: successSpin 1s ease;">🎉</div>
+          <div style="font-family: 'Orbitron', monospace; font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            ¡FELICIDADES!
+          </div>
+          <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 10px;">
+            🔓 WORKBOOK DESBLOQUEADO
+          </div>
+          <div style="font-size: 1.2rem; opacity: 0.8;">
+            Disfruta todo el contenido exclusivo
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(successOverlay);
+      
+      // Quitar overlay después de 3 segundos
+      setTimeout(() => {
+        successOverlay.style.animation = 'successFadeOut 0.5s ease forwards';
+        setTimeout(() => {
+          if (document.body.contains(successOverlay)) {
+            document.body.removeChild(successOverlay);
+          }
+        }, 500);
+      }, 3000);
+    }
+
+    function showCustomMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.95) 0%, rgba(255, 165, 0, 0.95) 100%);
+        color: #000;
+        padding: 25px 40px;
+        border-radius: 15px;
+        font-family: 'Orbitron', monospace;
+        font-weight: 600;
+        font-size: 1.1rem;
+        z-index: 10001;
+        box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+        animation: popIn 0.5s ease;
+      `;
+      messageDiv.textContent = message;
+      
+      document.body.appendChild(messageDiv);
+      
+      setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        messageDiv.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        setTimeout(() => {
+          if (document.body.contains(messageDiv)) {
+            document.body.removeChild(messageDiv);
+          }
+        }, 300);
+      }, 3000);
+    }
+
+    // Guardar datos
+    function saveData() {
+      if (!aiWorkbookUserMainName || aiWorkbookUserMainName.trim().length === 0) {
+        saveTemporaryData();
+        return;
+      }
+      
+      // Guardar inputs de texto automáticamente
+      const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
+      inputs.forEach(input => {
+        if (input.value && input.value.trim()) {
+          aiWorkbookUserData[input.id] = input.value.trim();
+        }
+      });
+      
+      // Datos principales del usuario
+      aiWorkbookUserData.mainUserName = aiWorkbookUserMainName;
+      aiWorkbookUserData.userID = generateUserID(aiWorkbookUserMainName);
+      aiWorkbookUserData.timestamp = aiWorkbookUserData.timestamp || new Date().toISOString();
+      aiWorkbookUserData.lastUpdated = new Date().toISOString();
+      aiWorkbookUserData.completedSections = Object.keys(aiWorkbookUserData).length;
+      
+      // Guardar en localStorage
+      try {
+        const userKey = `aiWorkbook_${aiWorkbookUserMainName.replace(/\s+/g, '_')}`;
+        localStorage.setItem(userKey, JSON.stringify(aiWorkbookUserData));
+        localStorage.setItem('aiWorkbookCurrentUser', aiWorkbookUserMainName);
+        console.log('💾 Datos guardados exitosamente');
+      } catch (error) {
+        console.error('❌ Error guardando datos:', error);
+      }
+    }
+
+    function saveTemporaryData() {
+      try {
+        const tempData = {};
+        const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
+        inputs.forEach(input => {
+          if (input.value && input.value.trim()) {
+            tempData[input.id] = input.value.trim();
+          }
+        });
+        
+        tempData.tempSaveTimestamp = new Date().toISOString();
+        localStorage.setItem('aiWorkbook_tempData', JSON.stringify(tempData));
+        console.log('💾 Datos temporales guardados');
+      } catch (error) {
+        console.error('❌ Error guardando datos temporales:', error);
+      }
+    }
+
+    function loadSavedData() {
+      try {
+        const currentUser = localStorage.getItem('aiWorkbookCurrentUser');
+        
+        if (currentUser) {
+          const userKey = `aiWorkbook_${currentUser.replace(/\s+/g, '_')}`;
+          const savedUserData = localStorage.getItem(userKey);
+          
+          if (savedUserData) {
+            console.log(`🔄 Cargando datos del usuario: ${currentUser}`);
+            restoreUserData(JSON.parse(savedUserData));
+            return;
+          }
+        }
+        
+        const tempData = localStorage.getItem('aiWorkbook_tempData');
+        if (tempData) {
+          console.log('🔄 Cargando datos temporales');
+          restoreUserData(JSON.parse(tempData));
+        }
+      } catch (error) {
+        console.error('❌ Error cargando datos:', error);
+      }
+    }
+
+    function restoreUserData(savedData) {
+      try {
+        // Restaurar nombre
+        if (savedData.mainUserName) {
+          aiWorkbookUserMainName = savedData.mainUserName;
+          const nameInput = document.getElementById('aiWorkbookUserName');
+          const displayName = document.getElementById('aiWorkbookDisplayName');
+          const displayName2 = document.getElementById('aiWorkbookDisplayName2');
+          const signatureArea = document.getElementById('aiWorkbookSignature');
+          
+          if (nameInput) nameInput.value = savedData.mainUserName;
+          if (displayName) displayName.textContent = savedData.mainUserName;
+          if (displayName2) displayName2.textContent = savedData.mainUserName;
+          if (signatureArea) signatureArea.textContent = `${savedData.mainUserName} - Futuro Arquitecto de IA`;
+        }
+        
+        // Restaurar inputs
+        const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
+        inputs.forEach(input => {
+          if (savedData[input.id]) {
+            input.value = savedData[input.id];
+          }
+        });
+        
+        // Restaurar quiz result
+        if (savedData.quizResult && savedData.quizProfile) {
+          // Mostrar resultado del quiz
+          const resultContainer = document.getElementById('quizResult');
+          const contentDiv = document.getElementById('quizResultContent');
+          const profile = savedData.quizProfile;
+          
+          if (contentDiv && profile) {
+            contentDiv.innerHTML = `
+              <div style="font-size: 2.5rem; margin-bottom: 20px;">${profile.title}</div>
+              <div style="font-size: 1.3rem; color: rgba(255, 215, 0, 0.9); margin-bottom: 25px;">
+                ${profile.description}
+              </div>
+            `;
+            
+            if (resultContainer) {
+              document.getElementById('quizContainer').style.display = 'none';
+              resultContainer.style.display = 'block';
+              currentQuizQuestion = quizQuestions.length; // Marcar quiz como completado
+            }
+          }
+        }
+        
+        // Restaurar slider de Python
+        if (savedData.pythonLevel) {
+          const slider = document.getElementById('aiWorkbookPythonSlider');
+          if (slider) {
+            slider.value = savedData.pythonLevel;
+            slider.dispatchEvent(new Event('input'));
+          }
+        }
+        
+        // Restaurar estado de desbloqueo
+        if (savedData.contentUnlocked) {
+          const lockedSection = document.getElementById('lockedSections');
+          
+          if (lockedSection) {
+            lockedSection.style.filter = 'blur(0px)';
+            lockedSection.style.pointerEvents = 'auto';
+            lockedSection.style.userSelect = 'auto';
+            lockedSection.style.opacity = '1';
+            lockedSection.style.transform = 'scale(1)';
+            isContentUnlocked = true;
+          }
+        }
+        
+        console.log('✅ Datos restaurados exitosamente');
+        setTimeout(showSaveMessage, 1000);
+        
+      } catch (error) {
+        console.error('❌ Error restaurando datos:', error);
+      }
+    }
+
+    // Mostrar mensaje de guardado
+    function showSaveMessage() {
+      const message = document.getElementById('aiWorkbookSaveMessage');
+      if (message) {
+        message.classList.add('show');
+        
+        setTimeout(() => {
+          message.classList.remove('show');
+        }, 3000);
+      }
+    }
+
+    // Auto-guardado
+    function setupAutoSave() {
+      const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
+      inputs.forEach(input => {
+        input.addEventListener('input', function() {
+          clearTimeout(this.saveTimeout);
+          this.saveTimeout = setTimeout(() => {
+            saveData();
+          }, 1000);
+        });
+        
+        input.addEventListener('blur', saveData);
+      });
+
+      setInterval(saveData, 15000);
+      document.addEventListener('click', () => setTimeout(saveData, 200));
+    }
+
+    // Función de descarga PDF
+    async function downloadWorkbook() {
+      console.log('🚀 INICIANDO DESCARGA...');
+      saveData();
+      
+      try {
+        if (!window.html2canvas || !window.jspdf) {
+          alert('❌ Error: Librerías de PDF no cargadas. Recarga la página.');
+          return;
+        }
+        
+        // Ocultar elementos problemáticos
+        const hideElements = ['.save-message', '.circuit-bg', '.glow-overlay'];
+        const hidden = [];
+        
+        hideElements.forEach(selector => {
+          document.querySelectorAll(selector).forEach(el => {
+            hidden.push({el, display: el.style.display});
+            el.style.display = 'none';
+          });
+        });
+        
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        console.log('📸 Capturando página...');
+        
+        const canvas = await html2canvas(document.body, {
+          scale: 1.2,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#000000',
+          width: window.innerWidth,
+          height: document.body.scrollHeight,
+          scrollX: 0,
+          scrollY: 0
+        });
+        
+        console.log('✅ Página capturada, creando PDF...');
+        
+        const { jsPDF } = window.jspdf;
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+        const aspectRatio = imgHeight / imgWidth;
+        const pdfWidth = 210;
+        const pdfHeight = pdfWidth * aspectRatio;
+        
+        const pdf = new jsPDF({
+          orientation: pdfHeight > pdfWidth ? 'portrait' : 'landscape',
+          unit: 'mm',
+          format: [pdfWidth, pdfHeight]
+        });
+        
+        const imgData = canvas.toDataURL('image/PNG', 0.9);
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        
+        const name = aiWorkbookUserMainName || 'Developer';
+        const cleanName = name.replace(/[^a-zA-Z0-9]/g, '_');
+        const date = new Date().toISOString().slice(0, 10);
+        const filename = `AI_Developer_Analysis_${cleanName}_${date}.pdf`;
+        
+        pdf.save(filename);
+        
+        // Restaurar elementos
+        hidden.forEach(({el, display}) => {
+          el.style.display = display;
+        });
+        
+        console.log('🎉 ¡PDF DESCARGADO EXITOSAMENTE!');
+        showCustomMessage('🎉 ¡Análisis descargado exitosamente!');
+        
+      } catch (error) {
+        console.error('❌ ERROR:', error);
+        alert(`❌ Error: ${error.message}`);
+        
+        document.querySelectorAll('.save-message, .circuit-bg, .glow-overlay').forEach(el => {
+          el.style.display = '';
+        });
+      }
+    }
+
+    // Inicializar aplicación
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('🔄 Inicializando workbook de IA...');
+      
+      loadSavedData();
+      setupNameSystem();
+      setupAdvancedQuiz();
+      setupPythonSlider();
+      setupProjectSimulator();
+      setupAutoSave();
+      
+      // Verificar logo
+      const logoElement = document.getElementById('mainLogo');
+      if (logoElement) {
+        logoElement.onload = () => console.log('✅ Logo cargado');
+        logoElement.onerror = () => tryAlternativeLogos(logoElement);
+      }
+      
+      console.log('🚀 Workbook de desarrollo de IA cargado completamente!');
+      
+      setTimeout(() => {
+        if (aiWorkbookUserMainName) {
+          showSaveMessage();
+          console.log(`👋 ¡Bienvenido de vuelta, ${aiWorkbookUserMainName}!`);
+        }
+      }, 1000);
+    });
+
+    // Auto-guardado al salir
+    window.addEventListener('beforeunload', saveData);
+  </script>
+</body>
+</html>
