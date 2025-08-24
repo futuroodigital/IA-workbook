@@ -517,6 +517,38 @@
       66% { transform: rotate(240deg) scale(0.9); }
     }
 
+    /* LÍNEA DE ESCANEO MÁGICA */
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 215, 0, 0.8) 50%, 
+        transparent 100%);
+      animation: scanMove 8s ease-in-out infinite;
+      z-index: 5;
+    }
+
+    @keyframes scanMove {
+      0%, 100% { 
+        top: 0; 
+        opacity: 0; 
+      }
+      10% { 
+        opacity: 0.8; 
+      }
+      90% { 
+        opacity: 0.8; 
+      }
+      100% { 
+        top: 100%; 
+        opacity: 0; 
+      }
+    }
+
     /* CONTENEDOR PRINCIPAL */
     .container {
       max-width: 1400px;
@@ -566,7 +598,7 @@
       100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
     }
 
-    /* TÍTULO PRINCIPAL ESTILO LIMPIO (COMO EL QUE TE GUSTA) */
+    /* TÍTULO PRINCIPAL ESTILO LIMPIO */
     .main-title {
       font-family: 'Orbitron', monospace;
       font-size: 4.5rem;
@@ -580,38 +612,6 @@
       position: relative;
       letter-spacing: 3px;
       text-transform: uppercase;
-    }
-
-    /* LÍNEA DE ESCANEO MÁGICA */
-    .scan-line {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 215, 0, 0.8) 50%, 
-        transparent 100%);
-      animation: scanMove 8s ease-in-out infinite;
-      z-index: 5;
-    }
-
-    @keyframes scanMove {
-      0%, 100% { 
-        top: 0; 
-        opacity: 0; 
-      }
-      10% { 
-        opacity: 0.8; 
-      }
-      90% { 
-        opacity: 0.8; 
-      }
-      100% { 
-        top: 100%; 
-        opacity: 0; 
-      }
     }
 
     .subtitle {
@@ -825,151 +825,6 @@
       width: 0%;
     }
 
-    /* SISTEMA DE BLOQUEO */
-    .locked-content {
-      position: relative;
-      filter: blur(8px);
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .unlock-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        linear-gradient(135deg, 
-          rgba(0, 0, 0, 0.85) 0%, 
-          rgba(255, 215, 0, 0.1) 50%, 
-          rgba(0, 0, 0, 0.85) 100%);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 20;
-      border-radius: 25px;
-    }
-
-    .unlock-message {
-      background: 
-        linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
-      border: 3px solid #FFD700;
-      border-radius: 20px;
-      padding: 40px;
-      text-align: center;
-      max-width: 600px;
-      animation: unlockPulse 2s ease-in-out infinite;
-      box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
-    }
-
-    @keyframes unlockPulse {
-      0%, 100% { 
-        transform: scale(1);
-        box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
-      }
-      50% { 
-        transform: scale(1.02);
-        box-shadow: 0 0 80px rgba(255, 215, 0, 0.5);
-      }
-    }
-
-    .unlock-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.8rem;
-      color: #FFD700;
-      margin-bottom: 20px;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-    }
-
-    .unlock-description {
-      font-size: 1.1rem;
-      color: rgba(255, 215, 0, 0.9);
-      margin-bottom: 25px;
-      line-height: 1.5;
-    }
-
-    .masterclass-info {
-      background: rgba(0, 0, 0, 0.7);
-      border: 2px solid rgba(255, 215, 0, 0.5);
-      border-radius: 15px;
-      padding: 25px;
-      margin: 20px 0;
-    }
-
-    .masterclass-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.3rem;
-      color: #FFD700;
-      margin-bottom: 15px;
-    }
-
-    .masterclass-details {
-      font-size: 1rem;
-      color: rgba(255, 215, 0, 0.8);
-      line-height: 1.4;
-    }
-
-    /* CÓDIGO DE DESBLOQUEO */
-    .unlock-code-container {
-      background: rgba(0, 0, 0, 0.8);
-      border: 2px solid #FFD700;
-      border-radius: 15px;
-      padding: 30px;
-      margin: 20px 0;
-      text-align: center;
-    }
-
-    .code-inputs {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 20px 0;
-    }
-
-    .code-digit {
-      width: 60px;
-      height: 60px;
-      background: rgba(255, 215, 0, 0.1);
-      border: 2px solid rgba(255, 215, 0, 0.4);
-      border-radius: 10px;
-      text-align: center;
-      font-size: 2rem;
-      font-family: 'Orbitron', monospace;
-      font-weight: 700;
-      color: #FFD700;
-      transition: all 0.3s ease;
-    }
-
-    .code-digit:focus {
-      outline: none;
-      border-color: #FFD700;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-      transform: scale(1.1);
-    }
-
-    .unlock-btn {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      border: none;
-      padding: 15px 40px;
-      border-radius: 50px;
-      color: #000;
-      font-family: 'Orbitron', monospace;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin: 20px 0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .unlock-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-    }
-
     /* CONTENIDO DE VALOR TÉCNICO */
     .tech-insight {
       background: 
@@ -1049,7 +904,332 @@
       line-height: 1.3;
     }
 
-    /* SLIDER DE PYTHON ARREGLADO */
+    /* GRID DE PROYECTOS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .project-option {
+      background: 
+        linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(255, 215, 0, 0.03) 50%, rgba(255, 215, 0, 0.08) 100%),
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      border: 2px solid rgba(255, 215, 0, 0.4);
+      border-radius: 20px;
+      padding: 25px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      transform-style: preserve-3d;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-option:hover {
+      border-color: #FFD700;
+      background: 
+        linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.08) 50%, rgba(255, 215, 0, 0.15) 100%);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 
+        0 20px 40px rgba(255, 215, 0, 0.3),
+        0 0 60px rgba(255, 215, 0, 0.15);
+    }
+
+    .project-option.selected {
+      border-color: #FFD700;
+      background: 
+        linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.15) 50%, rgba(255, 215, 0, 0.25) 100%);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 25px 50px rgba(255, 215, 0, 0.4),
+        0 0 80px rgba(255, 215, 0, 0.25);
+    }
+
+    .option-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      animation: iconFloat 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+    }
+
+    .custom-input-container {
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.5s ease;
+      pointer-events: none;
+    }
+
+    .custom-input-container.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .custom-input {
+      background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%);
+      border: 2px solid rgba(255, 215, 0, 0.5);
+      border-radius: 15px;
+      padding: 15px 20px;
+      color: #FFD700;
+      font-size: 1rem;
+      font-family: 'Orbitron', monospace;
+      font-weight: 500;
+      width: 100%;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(15px);
+      text-align: center;
+    }
+
+    .custom-input:focus {
+      outline: none;
+      border-color: #FFD700;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+      transform: scale(1.02);
+    }
+
+    .custom-input::placeholder {
+      color: rgba(255, 215, 0, 0.6);
+      font-style: italic;
+    }
+
+    /* PASOS DEL PROYECTO */
+    .project-step {
+      margin: 50px 0;
+      padding: 40px;
+      background: 
+        linear-gradient(135deg, rgba(255, 215, 0, 0.06) 0%, rgba(255, 215, 0, 0.02) 50%, rgba(255, 215, 0, 0.06) 100%);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 25px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+    }
+
+    .step-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.5rem;
+      color: #FFD700;
+      margin-bottom: 25px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+
+    /* VALIDACIÓN DE NOMBRE */
+    .name-valid {
+      color: #4CAF50 !important;
+      border-color: #4CAF50 !important;
+      box-shadow: 0 0 30px rgba(76, 175, 80, 0.4) !important;
+    }
+
+    .name-invalid {
+      color: #ff4444 !important;
+      border-color: #ff4444 !important;
+      box-shadow: 0 0 30px rgba(255, 68, 68, 0.4) !important;
+    }
+
+    /* SISTEMA DE BLOQUEO */
+    .locked-content {
+      position: relative;
+      filter: blur(8px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .unlock-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(135deg, 
+          rgba(0, 0, 0, 0.85) 0%, 
+          rgba(255, 215, 0, 0.1) 50%, 
+          rgba(0, 0, 0, 0.85) 100%);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      border-radius: 25px;
+    }
+
+    .unlock-message {
+      background: 
+        linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+      border: 3px solid #FFD700;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      max-width: 600px;
+      animation: unlockPulse 2s ease-in-out infinite;
+      box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+    }
+
+    @keyframes unlockPulse {
+      0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+      }
+      50% { 
+        transform: scale(1.02);
+        box-shadow: 0 0 80px rgba(255, 215, 0, 0.5);
+      }
+    }
+
+    .unlock-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      color: #FFD700;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+
+    .unlock-description {
+      font-size: 1.1rem;
+      color: rgba(255, 215, 0, 0.9);
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    /* CÓDIGO DE DESBLOQUEO */
+    .unlock-code-container {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #FFD700;
+      border-radius: 15px;
+      padding: 30px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .code-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .code-digit {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px solid rgba(255, 215, 0, 0.4);
+      border-radius: 10px;
+      text-align: center;
+      font-size: 2rem;
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      color: #FFD700;
+      transition: all 0.3s ease;
+    }
+
+    .code-digit:focus {
+      outline: none;
+      border-color: #FFD700;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      transform: scale(1.1);
+    }
+
+    .unlock-btn {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      border: none;
+      padding: 15px 40px;
+      border-radius: 50px;
+      color: #000;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 20px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .unlock-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+    }
+
+    /* BOTONES PRINCIPALES */
+    .epic-btn {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #FFA500 75%, #FFD700 100%);
+      background-size: 300% 300%;
+      border: none;
+      padding: 20px 50px;
+      border-radius: 50px;
+      color: #000000;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.2rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 
+        0 15px 40px rgba(255, 215, 0, 0.4),
+        0 0 60px rgba(255, 215, 0, 0.2);
+      display: block;
+      margin: 40px auto;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: btnGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes btnGlow {
+      0% { 
+        background-position: 0% 50%;
+        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2);
+      }
+      100% { 
+        background-position: 100% 50%;
+        box-shadow: 0 20px 50px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3);
+      }
+    }
+
+    .epic-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 25px 60px rgba(255, 215, 0, 0.6),
+        0 0 100px rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    }
+
+    /* SAVE MESSAGE */
+    .save-message {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 165, 0, 0.9) 100%);
+      color: #000;
+      padding: 15px 25px;
+      border-radius: 50px;
+      font-family: 'Orbitron', monospace;
+      font-weight: 600;
+      z-index: 10000;
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .save-message.show {
+      opacity: 1;
+    }
+
+    /* SLIDER DE PYTHON */
     .python-slider-container {
       display: flex;
       align-items: center;
@@ -1123,268 +1303,6 @@
       border-radius: 10px;
     }
 
-    /* GRID DE PROYECTOS ÉPICO */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      margin: 40px 0;
-      position: relative;
-    }
-
-    .project-option, .industry-option {
-      background: 
-        linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(255, 215, 0, 0.03) 50%, rgba(255, 215, 0, 0.08) 100%),
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-      border: 2px solid rgba(255, 215, 0, 0.4);
-      border-radius: 20px;
-      padding: 25px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      transform-style: preserve-3d;
-      min-height: 140px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .project-option::before, .industry-option::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-      transform: rotate(45deg) scale(0);
-      transition: all 0.6s ease;
-      opacity: 0;
-    }
-
-    .project-option:hover, .industry-option:hover {
-      border-color: #FFD700;
-      background: 
-        linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.08) 50%, rgba(255, 215, 0, 0.15) 100%),
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-      transform: translateY(-8px) rotateX(5deg) rotateY(5deg) scale(1.02);
-      box-shadow: 
-        0 20px 40px rgba(255, 215, 0, 0.3),
-        0 0 60px rgba(255, 215, 0, 0.15),
-        inset 0 0 30px rgba(255, 215, 0, 0.05);
-    }
-
-    .project-option:hover::before, .industry-option:hover::before {
-      opacity: 1;
-      transform: rotate(45deg) scale(1);
-    }
-
-    .project-option.selected, .industry-option.selected {
-      border-color: #FFD700;
-      background: 
-        linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 215, 0, 0.15) 50%, rgba(255, 215, 0, 0.25) 100%),
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 
-        0 25px 50px rgba(255, 215, 0, 0.4),
-        0 0 80px rgba(255, 215, 0, 0.25),
-        inset 0 0 40px rgba(255, 215, 0, 0.1);
-      animation: selectedPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes selectedPulse {
-      0%, 100% { 
-        box-shadow: 
-          0 25px 50px rgba(255, 215, 0, 0.4),
-          0 0 80px rgba(255, 215, 0, 0.25),
-          inset 0 0 40px rgba(255, 215, 0, 0.1);
-      }
-      50% { 
-        box-shadow: 
-          0 30px 60px rgba(255, 215, 0, 0.5),
-          0 0 100px rgba(255, 215, 0, 0.3),
-          inset 0 0 50px rgba(255, 215, 0, 0.15);
-      }
-    }
-
-    .option-icon {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      animation: iconFloat 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
-    }
-
-    @keyframes iconFloat {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-5px) scale(1.1); }
-    }
-
-    .option-title {
-      font-family: 'Orbitron', monospace;
-      font-weight: 700;
-      color: #FFD700;
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-      letter-spacing: 0.5px;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    }
-
-    .option-desc {
-      font-size: 0.85rem;
-      color: rgba(255, 215, 0, 0.8);
-      line-height: 1.3;
-      font-weight: 400;
-    }
-
-    /* CAMPOS DE ENTRADA PERSONALIZADA */
-    .custom-input-container {
-      margin-top: 20px;
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: all 0.5s ease;
-      pointer-events: none;
-    }
-
-    .custom-input-container.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .custom-input {
-      background: 
-        linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%),
-        linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
-      border: 2px solid rgba(255, 215, 0, 0.5);
-      border-radius: 15px;
-      padding: 15px 20px;
-      color: #FFD700;
-      font-size: 1rem;
-      font-family: 'Orbitron', monospace;
-      font-weight: 500;
-      width: 100%;
-      transition: all 0.4s ease;
-      backdrop-filter: blur(15px);
-      box-shadow: 
-        inset 0 0 20px rgba(255, 215, 0, 0.1),
-        0 0 30px rgba(255, 215, 0, 0.2);
-      text-align: center;
-    }
-
-    .custom-input:focus {
-      outline: none;
-      border-color: #FFD700;
-      box-shadow: 
-        0 0 40px rgba(255, 215, 0, 0.5),
-        inset 0 0 30px rgba(255, 215, 0, 0.2),
-        0 0 80px rgba(255, 215, 0, 0.3);
-      transform: scale(1.02);
-    }
-
-    .custom-input::placeholder {
-      color: rgba(255, 215, 0, 0.6);
-      font-style: italic;
-    }
-
-    /* PASOS DEL PROYECTO CON EFECTOS ESPECIALES */
-    .project-step {
-      margin: 50px 0;
-      padding: 40px;
-      background: 
-        linear-gradient(135deg, rgba(255, 215, 0, 0.06) 0%, rgba(255, 215, 0, 0.02) 50%, rgba(255, 215, 0, 0.06) 100%),
-        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 50%);
-      border: 2px solid rgba(255, 215, 0, 0.3);
-      border-radius: 25px;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(20px);
-    }
-
-    .project-step::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-      animation: stepSweep 4s ease-in-out infinite;
-    }
-
-    @keyframes stepSweep {
-      0%, 100% { left: -100%; }
-      50% { left: 100%; }
-    }
-
-    .step-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.5rem;
-      color: #FFD700;
-      margin-bottom: 25px;
-      text-align: center;
-      position: relative;
-      z-index: 10;
-      text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-      animation: titleGlow 3s ease-in-out infinite alternate;
-    }
-
-    /* VALIDACIÓN DE NOMBRE */
-    .name-valid {
-      color: #4CAF50 !important;
-      border-color: #4CAF50 !important;
-      box-shadow: 0 0 30px rgba(76, 175, 80, 0.4) !important;
-    }
-
-    .name-invalid {
-      color: #ff4444 !important;
-      border-color: #ff4444 !important;
-      box-shadow: 0 0 30px rgba(255, 68, 68, 0.4) !important;
-    }
-
-    /* BOTONES PRINCIPALES */
-    .epic-btn {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #FFA500 75%, #FFD700 100%);
-      background-size: 300% 300%;
-      border: none;
-      padding: 20px 50px;
-      border-radius: 50px;
-      color: #000000;
-      font-family: 'Orbitron', monospace;
-      font-size: 1.2rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 
-        0 15px 40px rgba(255, 215, 0, 0.4),
-        0 0 60px rgba(255, 215, 0, 0.2);
-      display: block;
-      margin: 40px auto;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      animation: btnGlow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes btnGlow {
-      0% { 
-        background-position: 0% 50%;
-        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2);
-      }
-      100% { 
-        background-position: 100% 50%;
-        box-shadow: 0 20px 50px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3);
-      }
-    }
-
-    .epic-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 
-        0 25px 60px rgba(255, 215, 0, 0.6),
-        0 0 100px rgba(255, 215, 0, 0.4);
-    }
-
     /* SECCIÓN FINAL */
     .final-section {
       text-align: center;
@@ -1407,38 +1325,12 @@
       line-height: 1.5;
     }
 
-    .btn-download {
-      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-    }
-
-    /* SAVE MESSAGE */
-    .save-message {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 165, 0, 0.9) 100%);
-      color: #000;
-      padding: 15px 25px;
-      border-radius: 50px;
-      font-family: 'Orbitron', monospace;
-      font-weight: 600;
-      z-index: 10000;
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    .save-message.show {
-      opacity: 1;
-    }
-
     /* RESPONSIVE MEJORADO PARA MÓVILES */
     @media (max-width: 768px) {
       .container {
         padding: 20px 15px;
       }
       
-      /* TÍTULO PRINCIPAL OPTIMIZADO PARA MÓVIL */
       .main-title {
         font-size: 2.5rem !important;
         margin: 40px 0 40px 0 !important;
@@ -1452,7 +1344,6 @@
         padding: 0 10px;
       }
       
-      /* SECCIONES OPTIMIZADAS */
       .workbook-section {
         padding: 30px 20px !important;
         margin: 40px 0 !important;
@@ -1464,27 +1355,12 @@
         line-height: 1.2 !important;
       }
       
-      .section-subtitle {
-        font-size: 1rem !important;
-        margin-bottom: 30px !important;
-      }
-      
-      /* ICONOS OPTIMIZADOS */
       .ai-icon {
         width: 60px !important;
         height: 60px !important;
         font-size: 2rem !important;
-        margin: 0 auto 15px !important;
       }
       
-      /* INPUTS OPTIMIZADOS */
-      .fun-input, .fun-textarea {
-        font-size: 1rem !important;
-        padding: 12px 15px !important;
-        margin-bottom: 15px !important;
-      }
-      
-      /* GRIDS RESPONSIVE */
       .questions-grid {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
@@ -1493,49 +1369,6 @@
       .projects-grid {
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
         gap: 15px !important;
-      }
-      
-      .architecture-grid {
-        grid-template-columns: 1fr !important;
-        gap: 15px !important;
-      }
-      
-      /* CARDS OPTIMIZADAS */
-      .question-card {
-        padding: 20px 15px !important;
-      }
-      
-      .question-text {
-        font-size: 1.1rem !important;
-        line-height: 1.3 !important;
-      }
-      
-      /* QUIZ MÓVIL */
-      .quiz-options {
-        grid-template-columns: 1fr !important;
-        gap: 15px !important;
-      }
-      
-      .quiz-option {
-        padding: 20px 15px !important;
-      }
-      
-      .quiz-question {
-        font-size: 1.2rem !important;
-      }
-      
-      /* UNLOCK MESSAGE MÓVIL */
-      .unlock-message {
-        max-width: 90% !important;
-        padding: 30px 20px !important;
-      }
-      
-      .unlock-title {
-        font-size: 1.5rem !important;
-      }
-      
-      .unlock-description {
-        font-size: 1rem !important;
       }
       
       .code-inputs {
@@ -1548,122 +1381,29 @@
         font-size: 1.5rem !important;
       }
       
-      /* PROYECTO OPTIONS MÓVIL */
-      .project-option, .industry-option {
-        padding: 20px 15px !important;
-        min-height: 120px !important;
+      .unlock-message {
+        max-width: 90% !important;
+        padding: 30px 20px !important;
       }
       
-      .option-icon {
-        font-size: 2rem !important;
-        margin-bottom: 8px !important;
-      }
-      
-      .option-title {
-        font-size: 0.85rem !important;
-        margin-bottom: 5px !important;
-      }
-      
-      .option-desc {
-        font-size: 0.75rem !important;
-      }
-      
-      /* SLIDER DE PYTHON MÓVIL */
       .python-slider-container {
         flex-direction: column !important;
         gap: 15px !important;
         padding: 20px !important;
       }
-      
-      .python-emoji {
-        font-size: 2.5rem !important;
-      }
-      
-      .python-level {
-        font-size: 0.9rem !important;
-      }
-      
-      .python-description {
-        font-size: 0.9rem !important;
-        padding: 12px !important;
-      }
-      
-      /* PASOS DEL PROYECTO MÓVIL */
-      .project-step {
-        padding: 25px 15px !important;
-        margin: 30px 0 !important;
-      }
-      
-      .step-title {
-        font-size: 1.3rem !important;
-      }
-      
-      /* BOTONES MÓVIL */
-      .epic-btn, .unlock-btn {
-        padding: 15px 30px !important;
-        font-size: 1rem !important;
-        margin: 30px auto !important;
-      }
-      
-      /* LOGO MÓVIL */
-      .logo-img {
-        max-width: 200px !important;
-      }
-
-      .logo-container {
-        margin: 20px 0 40px 0 !important;
-      }
-      
-      /* INSIGHTS TÉCNICOS MÓVIL */
-      .tech-insight {
-        padding: 20px 15px !important;
-      }
-      
-      .insight-title {
-        font-size: 1.1rem !important;
-      }
-      
-      .code-example {
-        font-size: 0.8rem !important;
-        padding: 15px !important;
-      }
-      
-      /* MASTERCLASS INFO MÓVIL */
-      .masterclass-info {
-        padding: 20px 15px !important;
-      }
-      
-      .masterclass-title {
-        font-size: 1.2rem !important;
-      }
-      
-      .masterclass-details {
-        font-size: 0.9rem !important;
-      }
     }
 
-    /* RESPONSIVE PARA MÓVILES MUY PEQUEÑOS */
-    @media (max-width: 480px) {
-      .main-title {
-        font-size: 2rem !important;
-        letter-spacing: 0.5px !important;
+    /* ANIMACIÓN ROJA LLAMATIVA */
+    @keyframes pulseRed {
+      0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+        background: linear-gradient(135deg, #FF0000, #FFFF00, #FF0000);
       }
-      
-      .section-title {
-        font-size: 1.8rem !important;
-      }
-      
-      .projects-grid, .architecture-grid {
-        grid-template-columns: 1fr !important;
-      }
-      
-      .logo-img {
-        max-width: 180px !important;
-      }
-      
-      .epic-btn, .unlock-btn {
-        padding: 12px 25px !important;
-        font-size: 0.9rem !important;
+      50% { 
+        transform: scale(1.05); 
+        box-shadow: 0 0 60px rgba(255, 0, 0, 0.9);
+        background: linear-gradient(135deg, #FFFF00, #FF0000, #FFFF00);
       }
     }
 
@@ -1685,34 +1425,6 @@
       }
     }
     
-    @keyframes commitmentSweep {
-      0% { transform: translateX(-100%) skewX(-15deg); }
-      100% { transform: translateX(200%) skewX(-15deg); }
-    }
-    
-    @keyframes declarationGlow {
-      0% { transform: translateX(-150%) translateY(-150%) rotate(45deg); }
-      100% { transform: translateX(150%) translateY(150%) rotate(45deg); }
-    }
-    
-    @keyframes signatureScan {
-      0%, 100% { left: -100%; opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { left: 100%; opacity: 0; }
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(180deg); }
-    }
-    
-    @keyframes hologramSweep {
-      0% { transform: translateX(-200%) translateY(-200%) rotate(45deg); }
-      100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
-    }
-    
-    /* ANIMACIONES PARA EFECTO DE DESBLOQUEO ÉPICO */
     @keyframes successFadeIn {
       0% { 
         opacity: 0; 
@@ -1785,7 +1497,6 @@
       <div class="circuit-node circuit-node-5"></div>
     </div>
     
-    <!-- ELEMENTOS TECH ADICIONALES -->
     <div class="hex-pattern"></div>
     <div class="hex-pattern-2"></div>
     <div class="data-point data-point-1"></div>
@@ -1799,7 +1510,6 @@
     <div class="micro-particle particle-1"></div>
     <div class="micro-particle particle-2"></div>
     <div class="micro-particle particle-3"></div>
-    <!-- LÍNEA DE ESCANEO MÁGICA -->
     <div class="scan-line"></div>
   </div>
   <div class="glow-overlay"></div>
@@ -1808,7 +1518,7 @@
   <div class="save-message" id="aiWorkbookSaveMessage">✨ ¡DATOS GUARDADOS MÁGICAMENTE!</div>
 
   <div class="container">
-    <!-- LOGO PERFECTAMENTE CENTRADO EN EL ESPACIO NEGRO -->
+    <!-- LOGO PERFECTAMENTE CENTRADO -->
     <div style="width: 100%; text-align: center; margin: 40px 0 60px 0; position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center;">
       <div class="logo-container">
         <div class="logo-glow"></div>
@@ -1827,11 +1537,13 @@
       </div>
     </div>
 
-    <!-- TÍTULO PRINCIPAL ESTILO LIMPIO -->
+    <!-- TÍTULO PRINCIPAL -->
     <h1 class="main-title">DESBLOQUEA EL FUTURO CON IA</h1>
     <p class="subtitle">✨ El workbook más completo para desarrolladores que quieren crear su propia IA ✨</p>
 
-    <!-- SECCIÓN DE IDENTIFICACIÓN PERSONAL -->
+    <!-- ========== CONTENIDO COMPLETAMENTE VISIBLE (SIN BLUR) ========== -->
+    
+    <!-- SECCIÓN 1: IDENTIFICACIÓN PERSONAL ✅ -->
     <section class="workbook-section" style="margin-top: 40px; border: 3px solid #FFD700; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.15) 100%);">
       <div class="ai-icon" style="font-size: 3.5rem; width: 100px; height: 100px;">👨‍💻</div>
       <h2 class="section-title" style="font-size: 2.2rem;">🌟 ¿Quién eres, futuro arquitecto de IA?</h2>
@@ -1839,8 +1551,6 @@
       
       <div style="max-width: 500px; margin: 0 auto; text-align: center;">
         <div style="margin: 30px 0; padding: 30px; background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 20px; position: relative; overflow: hidden;">
-          <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent); animation: hologramSweep 3s linear infinite;"></div>
-          
           <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.3rem; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); position: relative; z-index: 10;">
             ✨ Tu Nombre Completo
           </label>
@@ -1857,7 +1567,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 1: DESCUBRE TU MOTIVACIÓN -->
+    <!-- SECCIÓN 2: DESCUBRE TU MOTIVACIÓN ✅ -->
     <section class="workbook-section">
       <div class="ai-icon">🧠</div>
       <h2 class="section-title">💫 ¿Qué te impulsa hacia el desarrollo de IA?</h2>
@@ -1904,7 +1614,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 2: QUIZ AVANZADO DE PERSONALIDAD IA -->
+    <!-- SECCIÓN 3: QUIZ AVANZADO DE PERSONALIDAD IA ✅ -->
     <section class="workbook-section">
       <div class="ai-icon">🔮</div>
       <h2 class="section-title">🎯 Quiz: ¿Qué tipo de arquitecto de IA eres?</h2>
@@ -1932,116 +1642,7 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3: ANÁLISIS DE TUS HABILIDADES PYTHON -->
-    <section class="workbook-section">
-      <div class="ai-icon">🐍</div>
-      <h2 class="section-title">🎮 Diagnóstico: Tu nivel Python para IA</h2>
-      <p class="section-subtitle">Evaluemos tu base técnica actual</p>
-      
-      <div class="python-slider-container">
-        <div class="python-display">
-          <div class="python-emoji" id="aiWorkbookPythonEmoji">😅</div>
-          <div class="python-level" id="aiWorkbookPythonLevel">NOVATO</div>
-        </div>
-        
-        <div class="python-slider">
-          <input type="range" id="aiWorkbookPythonSlider" min="1" max="5" value="1">
-          <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: rgba(255, 215, 0, 0.6);">
-            <span>😅 Básico</span>
-            <span>🤔 Intermedio</span>
-            <span>🐍 Avanzado</span>
-            <span>🧠 Expert</span>
-            <span>🤖 Ninja</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="python-description" id="aiWorkbookPythonDescription">
-        "Python para IA... ¿por dónde empiezo? 🐍"
-      </div>
-
-      <!-- ARQUITECTURAS DE IA MÁS POPULARES -->
-      <div style="margin: 40px 0;">
-        <h3 style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #FFD700; text-align: center; margin-bottom: 25px;">
-          🏗️ Arquitecturas de IA que deberías conocer
-        </h3>
-        <div class="architecture-grid">
-          <div class="architecture-card">
-            <div class="architecture-icon">🧠</div>
-            <div class="architecture-name">Transformers</div>
-            <div class="architecture-use">GPT, BERT, procesamiento de lenguaje</div>
-          </div>
-          <div class="architecture-card">
-            <div class="architecture-icon">👁️</div>
-            <div class="architecture-name">CNNs</div>
-            <div class="architecture-use">Visión computacional, reconocimiento</div>
-          </div>
-          <div class="architecture-card">
-            <div class="architecture-icon">📈</div>
-            <div class="architecture-name">GANs</div>
-            <div class="architecture-use">Generación de imágenes, datos sintéticos</div>
-          </div>
-          <div class="architecture-card">
-            <div class="architecture-icon">🔄</div>
-            <div class="architecture-name">RNNs/LSTMs</div>
-            <div class="architecture-use">Series temporales, secuencias</div>
-          </div>
-          <div class="architecture-card">
-            <div class="architecture-icon">🎯</div>
-            <div class="architecture-name">Reinforcement Learning</div>
-            <div class="architecture-use">Juegos, robótica, optimización</div>
-          </div>
-          <div class="architecture-card">
-            <div class="architecture-icon">🌐</div>
-            <div class="architecture-name">Graph Neural Networks</div>
-            <div class="architecture-use">Redes sociales, moléculas, grafos</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin: 40px 0;">
-        <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-          💭 ¿Cuál es tu mayor desafío técnico en el desarrollo de IA?
-        </label>
-        <textarea class="fun-textarea" id="aiWorkbookPythonExcitement" 
-                  placeholder="Ej: 'Optimizar modelos para producción' o 'Entender la matemática detrás de los algoritmos' o 'Manejar datasets masivos'..."></textarea>
-      </div>
-
-      <!-- CÓDIGO EJEMPLO INTERACTIVO -->
-      <div class="tech-insight">
-        <div class="insight-title">
-          💻 EJEMPLO: Pipeline básico de ML con Python
-        </div>
-        <div class="code-example">
-# Pipeline típico de Machine Learning
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-
-# 1. Cargar y preparar datos
-data = pd.read_csv('dataset.csv')
-X = data.drop('target', axis=1)
-y = data['target']
-
-# 2. Split y entrenamiento
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-model = RandomForestClassifier(n_estimators=100)
-model.fit(X_train, y_train)
-
-# 3. Evaluación
-predictions = model.predict(X_test)
-accuracy = accuracy_score(y_test, predictions)
-print(f"Accuracy: {accuracy:.2f}")
-        </div>
-        <div class="insight-content">
-          <strong>🎯 Próximo nivel:</strong> Convertir esto en una API con FastAPI, dockerizar, y deployar en AWS/GCP para producción real.
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 4: SIMULADOR DE PROYECTOS ÉPICOS -->
+    <!-- SECCIÓN 4: SIMULADOR DE PROYECTOS (SOLO PASO 1) ✅ -->
     <section class="workbook-section">
       <div class="ai-icon">🧪</div>
       <h2 class="section-title">⚡ Construye tu proyecto estrella de IA</h2>
@@ -2123,145 +1724,105 @@ print(f"Accuracy: {accuracy:.2f}")
       </div>
     </section>
 
-    <!-- ========== PUNTO DE BLOQUEO ESTRATÉGICO ========== -->
-    <!-- MENSAJE DE BLOQUEO INMEDIATAMENTE DESPUÉS DEL PASO 1 -->
-    <div style="position: relative; margin: 60px 0;">
-      <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%); border: 3px solid #FFD700; border-radius: 20px; padding: 40px; text-align: center; max-width: 800px; margin: 0 auto; animation: unlockPulse 2s ease-in-out infinite; box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);" id="blockMessage">
+    <!-- ========== MENSAJE DE BLOQUEO ESTRATÉGICO MUY LLAMATIVO ========== -->
+    <!-- APARECE JUSTO DESPUÉS DEL PASO 1 -->
+    <div style="position: relative; margin: 60px 0;" id="blockMessage">
+      <div style="background: linear-gradient(135deg, rgba(220, 20, 60, 0.95) 0%, rgba(255, 0, 0, 0.85) 50%, rgba(220, 20, 60, 0.95) 100%); border: 5px solid #FF0000; border-radius: 25px; padding: 50px; text-align: center; max-width: 900px; margin: 0 auto; animation: unlockPulse 1.5s ease-in-out infinite; box-shadow: 0 0 100px rgba(255, 0, 0, 0.8), inset 0 0 50px rgba(255, 255, 255, 0.1);">
         
-        <div style="font-family: 'Orbitron', monospace; font-size: 2rem; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
+        <div style="font-family: 'Orbitron', monospace; font-size: 2.5rem; color: #FFFFFF; margin-bottom: 25px; text-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 255, 255, 0.5); font-weight: 900; letter-spacing: 2px;">
           🔥 ¡ESPERA! No te vayas todavía...
         </div>
         
-        <div style="font-size: 1.2rem; color: rgba(255, 215, 0, 0.9); margin-bottom: 25px; line-height: 1.5;">
+        <div style="font-size: 1.4rem; color: #FFFFFF; margin-bottom: 30px; line-height: 1.6; font-weight: 600; text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);">
           Lo que sigue es el contenido MÁS VALIOSO del workbook. Te vas a perder:
           <br><br>
-          ✨ <strong>Tu plan personalizado paso a paso</strong><br>
-          ✨ <strong>Casos reales de gente que lo logró (con salarios)</strong><br>
-          ✨ <strong>Las herramientas exactas que necesitas</strong><br>
-          ✨ <strong>Tu compromiso personal hacia el éxito</strong><br>
-          ✨ <strong>Descarga completa de tu análisis personalizado</strong>
+          ✨ <strong style="color: #FFFF00; font-size: 1.2em;">Tu plan personalizado paso a paso</strong><br>
+          ✨ <strong style="color: #FFFF00; font-size: 1.2em;">Casos reales de gente que lo logró (con salarios)</strong><br>
+          ✨ <strong style="color: #FFFF00; font-size: 1.2em;">Las herramientas exactas que necesitas</strong><br>
+          ✨ <strong style="color: #FFFF00; font-size: 1.2em;">Tu compromiso personal hacia el éxito</strong><br>
+          ✨ <strong style="color: #FFFF00; font-size: 1.2em;">Descarga completa de tu análisis personalizado</strong>
         </div>
         
-        <div style="background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);">
-          <div style="font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #FFD700; margin-bottom: 15px;">
+        <div style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%); border: 3px solid #FFFF00; border-radius: 20px; padding: 30px; margin: 25px 0; box-shadow: 0 0 40px rgba(255, 255, 0, 0.4);">
+          <div style="font-family: 'Orbitron', monospace; font-size: 1.6rem; color: #FFFF00; margin-bottom: 20px; font-weight: 800; text-shadow: 0 0 15px rgba(255, 255, 0, 0.8);">
             🎓 MASTERCLASS GRATUITA
           </div>
-          <div style="font-size: 1.1rem; color: rgba(255, 215, 0, 0.9); line-height: 1.4;">
-            <strong style="color: #FFD700;">📅 Próximamente - Estate al pendiente</strong><br>
-            🎯 <strong>"De Python a IA: Tu primer proyecto en 30 días"</strong><br><br>
+          <div style="font-size: 1.2rem; color: #FFFFFF; line-height: 1.5; text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);">
+            <strong style="color: #FFFF00; font-size: 1.1em;">📅 Próximamente - Estate al pendiente</strong><br>
+            🎯 <strong style="color: #FFFFFF;">"De Python a IA: Tu primer proyecto en 30 días"</strong><br><br>
             
-            🎁 <strong>¡BONUS EXCLUSIVOS EN VIVO!</strong><br>
+            🎁 <strong style="color: #FFFF00; font-size: 1.1em;">¡BONUS EXCLUSIVOS EN VIVO!</strong><br>
             💰 Análisis de salarios reales en IA<br>
             🛠️ Kit de herramientas completo (gratis)<br>
             🚀 Plan de estudios personalizado<br>
             👥 Acceso a nuestra comunidad privada<br><br>
             
-            <span style="background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 1.2rem;">
-              ⚡ Estate al pendiente de los mensajes del grupo ⚡
-            </span><br>
-            <span style="color: rgba(255, 215, 0, 0.8); font-size: 1rem;">
-              Ahí te avisaremos cuándo será la masterclass y te daremos el código
+            <div style="background: linear-gradient(135deg, #FF0000, #FFFF00, #FF0000); padding: 15px; border-radius: 15px; margin: 15px 0; box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); animation: pulseRed 2s ease-in-out infinite;">
+              <span style="color: #000000; font-weight: 900; font-size: 1.3rem; text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);">
+                ⚡ PUEDES DESBLOQUEAR TODO EL CONTENIDO EN LA MASTERCLASS ⚡
+              </span>
+            </div>
+            
+            <span style="color: #FFFFFF; font-size: 1rem; opacity: 0.9;">
+              Estate al pendiente de los mensajes del grupo - ahí te daremos el código
             </span>
           </div>
         </div>
 
-        <div style="background: rgba(0, 0, 0, 0.9); border: 2px solid #FFD700; border-radius: 15px; padding: 30px; margin: 20px 0; text-align: center;">
-          <div style="font-family: 'Orbitron', monospace; font-size: 1.3rem; color: #FFD700; margin-bottom: 15px;">
+        <div style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(40, 40, 40, 0.98) 100%); border: 3px solid #FF0000; border-radius: 20px; padding: 35px; margin: 25px 0; text-align: center; box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);">
+          <div style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #FF0000; margin-bottom: 20px; font-weight: 800; text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);">
             🔐 Código de Desbloqueo
           </div>
-          <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); margin-bottom: 20px;">
+          <div style="font-size: 1.1rem; color: #FFFF00; margin-bottom: 25px; font-weight: 600; text-shadow: 0 0 10px rgba(255, 255, 0, 0.6);">
             (Se revelará en la masterclass GRATUITA)
           </div>
-          <div style="display: flex; justify-content: center; gap: 15px; margin: 20px 0;">
-            <input type="text" class="code-digit" maxlength="1" id="code1" oninput="moveToNext(this, 'code2')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-            <input type="text" class="code-digit" maxlength="1" id="code2" oninput="moveToNext(this, 'code3')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-            <input type="text" class="code-digit" maxlength="1" id="code3" oninput="moveToNext(this, 'code4')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-            <input type="text" class="code-digit" maxlength="1" id="code4" oninput="validateCode()" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
+          
+          <!-- CÓDIGO DE PRUEBA TEMPORAL - SOLO PARA TESTING -->
+          <div style="background: rgba(255, 0, 0, 0.1); border: 2px dashed #FF0000; border-radius: 10px; padding: 15px; margin: 20px 0; font-family: 'Orbitron', monospace; color: #FF0000; font-size: 0.9rem;">
+            🚨 CÓDIGO DE PRUEBA (temporal): <strong>1234</strong> 🚨<br>
+            <span style="font-size: 0.8rem; color: #FFFFFF;">Esto es solo para que puedas probar - en producción se quitará</span>
           </div>
-          <button onclick="unlockContent()" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); border: none; padding: 15px 40px; border-radius: 50px; color: #000; font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; margin: 20px 0; text-transform: uppercase; letter-spacing: 1px;">
-            DESBLOQUEAR CONTENIDO
+          
+          <div style="display: flex; justify-content: center; gap: 15px; margin: 25px 0;">
+            <input type="text" 
+                   maxlength="1" 
+                   id="code1" 
+                   oninput="moveToNext(this, 'code2')"
+                   style="width: 70px; height: 70px; background: rgba(255, 0, 0, 0.1); border: 3px solid #FF0000; border-radius: 15px; text-align: center; font-size: 2.2rem; font-family: 'Orbitron', monospace; font-weight: 800; color: #FFFFFF; outline: none; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);">
+            <input type="text" 
+                   maxlength="1" 
+                   id="code2" 
+                   oninput="moveToNext(this, 'code3')"
+                   style="width: 70px; height: 70px; background: rgba(255, 0, 0, 0.1); border: 3px solid #FF0000; border-radius: 15px; text-align: center; font-size: 2.2rem; font-family: 'Orbitron', monospace; font-weight: 800; color: #FFFFFF; outline: none; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);">
+            <input type="text" 
+                   maxlength="1" 
+                   id="code3" 
+                   oninput="moveToNext(this, 'code4')"
+                   style="width: 70px; height: 70px; background: rgba(255, 0, 0, 0.1); border: 3px solid #FF0000; border-radius: 15px; text-align: center; font-size: 2.2rem; font-family: 'Orbitron', monospace; font-weight: 800; color: #FFFFFF; outline: none; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);">
+            <input type="text" 
+                   maxlength="1" 
+                   id="code4" 
+                   oninput="moveToNext(this, null)"
+                   style="width: 70px; height: 70px; background: rgba(255, 0, 0, 0.1); border: 3px solid #FF0000; border-radius: 15px; text-align: center; font-size: 2.2rem; font-family: 'Orbitron', monospace; font-weight: 800; color: #FFFFFF; outline: none; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);">
+          </div>
+          <button onclick="unlockContent()" 
+                  style="background: linear-gradient(135deg, #FF0000 0%, #FFFF00 50%, #FF0000 100%); border: none; padding: 18px 45px; border-radius: 50px; color: #000000; font-family: 'Orbitron', monospace; font-size: 1.2rem; font-weight: 800; cursor: pointer; transition: all 0.3s ease; margin: 25px 0; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6); text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);"
+                  onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.boxShadow='0 15px 40px rgba(255, 0, 0, 0.8)';"
+                  onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(255, 0, 0, 0.6)';">
+            🔓 DESBLOQUEAR CONTENIDO
           </button>
         </div>
 
-        <div style="margin-top: 25px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); font-style: italic;">
-          💡 Tip: El código se comparte SOLO en la masterclass gratuita
+        <div style="margin-top: 30px; font-size: 1rem; color: #FFFF00; font-style: italic; font-weight: 600; text-shadow: 0 0 15px rgba(255, 255, 0, 0.8);">
+          💡 El código se comparte EXCLUSIVAMENTE en la masterclass gratuita
         </div>
       </div>
     </div>
 
-          </div>
-    </section>
-
-    <!-- ========== PUNTO DE BLOQUEO ESTRATÉGICO ========== -->
-    <!-- MENSAJE DE BLOQUEO INMEDIATAMENTE DESPUÉS DEL PASO 1 -->
-    <div style="position: relative; margin: 60px 0;">
-      <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%); border: 3px solid #FFD700; border-radius: 20px; padding: 40px; text-align: center; max-width: 800px; margin: 0 auto; animation: unlockPulse 2s ease-in-out infinite; box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);" id="blockMessage">
+    <!-- ========== CONTENIDO CON BLUR (A PARTIR DE AQUÍ) ========== -->
+    <div id="lockedSections" class="locked-content">
         
-        <div style="font-family: 'Orbitron', monospace; font-size: 2rem; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
-          🔥 ¡ESPERA! No te vayas todavía...
-        </div>
-        
-        <div style="font-size: 1.2rem; color: rgba(255, 215, 0, 0.9); margin-bottom: 25px; line-height: 1.5;">
-          Lo que sigue es el contenido MÁS VALIOSO del workbook. Te vas a perder:
-          <br><br>
-          ✨ <strong>Tu plan personalizado paso a paso</strong><br>
-          ✨ <strong>Casos reales de gente que lo logró (con salarios)</strong><br>
-          ✨ <strong>Las herramientas exactas que necesitas</strong><br>
-          ✨ <strong>Tu compromiso personal hacia el éxito</strong><br>
-          ✨ <strong>Descarga completa de tu análisis personalizado</strong>
-        </div>
-        
-        <div style="background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);">
-          <div style="font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #FFD700; margin-bottom: 15px;">
-            🎓 MASTERCLASS GRATUITA
-          </div>
-          <div style="font-size: 1.1rem; color: rgba(255, 215, 0, 0.9); line-height: 1.4;">
-            <strong style="color: #FFD700;">📅 Próximamente - Estate al pendiente</strong><br>
-            🎯 <strong>"De Python a IA: Tu primer proyecto en 30 días"</strong><br><br>
-            
-            🎁 <strong>¡BONUS EXCLUSIVOS EN VIVO!</strong><br>
-            💰 Análisis de salarios reales en IA<br>
-            🛠️ Kit de herramientas completo (gratis)<br>
-            🚀 Plan de estudios personalizado<br>
-            👥 Acceso a nuestra comunidad privada<br><br>
-            
-            <span style="background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 1.2rem;">
-              ⚡ Estate al pendiente de los mensajes del grupo ⚡
-            </span><br>
-            <span style="color: rgba(255, 215, 0, 0.8); font-size: 1rem;">
-              Ahí te avisaremos cuándo será la masterclass y te daremos el código
-            </span>
-          </div>
-        </div>
-
-        <div style="background: rgba(0, 0, 0, 0.9); border: 2px solid #FFD700; border-radius: 15px; padding: 30px; margin: 20px 0; text-align: center;">
-          <div style="font-family: 'Orbitron', monospace; font-size: 1.3rem; color: #FFD700; margin-bottom: 15px;">
-            🔐 Código de Desbloqueo
-          </div>
-          <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); margin-bottom: 20px;">
-            (Se revelará en la masterclass GRATUITA)
-          </div>
-          <div style="display: flex; justify-content: center; gap: 15px; margin: 20px 0;">
-            <input type="text" class="code-digit" maxlength="1" id="code1" oninput="moveToNext(this, 'code2')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-            <input type="text" class="code-digit" maxlength="1" id="code2" oninput="moveToNext(this, 'code3')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-            <input type="text" class="code-digit" maxlength="1" id="code3" oninput="moveToNext(this, 'code4')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-            <input type="text" class="code-digit" maxlength="1" id="code4" oninput="validateCode()" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-          </div>
-          <button onclick="unlockContent()" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); border: none; padding: 15px 40px; border-radius: 50px; color: #000; font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; margin: 20px 0; text-transform: uppercase; letter-spacing: 1px;">
-            DESBLOQUEAR CONTENIDO
-          </button>
-        </div>
-
-        <div style="margin-top: 25px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); font-style: italic;">
-          💡 Tip: El código se comparte SOLO en la masterclass gratuita
-        </div>
-      </div>
-    </div>
-
-    <!-- CONTENIDO BLOQUEADO CON BLUR - SOLO A PARTIR DE AQUÍ -->
-    <div id="lockedSections" style="filter: blur(8px); pointer-events: none; user-select: none;">
-        
-      <!-- SECCIÓN 5: ANÁLISIS DE TUS HABILIDADES PYTHON -->
+      <!-- SECCIÓN 5: DIAGNÓSTICO PYTHON PARA IA -->
       <section class="workbook-section">
         <div class="ai-icon">🐍</div>
         <h2 class="section-title">🎮 Diagnóstico: Tu nivel Python para IA</h2>
@@ -2269,12 +1830,12 @@ print(f"Accuracy: {accuracy:.2f}")
         
         <div class="python-slider-container">
           <div class="python-display">
-            <div class="python-emoji" id="aiWorkbookPythonEmoji2">😅</div>
-            <div class="python-level" id="aiWorkbookPythonLevel2">NOVATO</div>
+            <div class="python-emoji" id="aiWorkbookPythonEmoji">😅</div>
+            <div class="python-level" id="aiWorkbookPythonLevel">NOVATO</div>
           </div>
           
           <div class="python-slider">
-            <input type="range" id="aiWorkbookPythonSlider2" min="1" max="5" value="1">
+            <input type="range" id="aiWorkbookPythonSlider" min="1" max="5" value="1">
             <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: rgba(255, 215, 0, 0.6);">
               <span>😅 Básico</span>
               <span>🤔 Intermedio</span>
@@ -2285,7 +1846,7 @@ print(f"Accuracy: {accuracy:.2f}")
           </div>
         </div>
         
-        <div class="python-description" id="aiWorkbookPythonDescription2">
+        <div class="python-description" id="aiWorkbookPythonDescription">
           "Python para IA... ¿por dónde empiezo? 🐍"
         </div>
 
@@ -2332,7 +1893,7 @@ print(f"Accuracy: {accuracy:.2f}")
           <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
             💭 ¿Cuál es tu mayor desafío técnico en el desarrollo de IA?
           </label>
-          <textarea class="fun-textarea" id="aiWorkbookPythonExcitement2" 
+          <textarea class="fun-textarea" id="aiWorkbookPythonExcitement" 
                     placeholder="Ej: 'Optimizar modelos para producción' o 'Entender la matemática detrás de los algoritmos' o 'Manejar datasets masivos'..."></textarea>
         </div>
 
@@ -2532,7 +2093,7 @@ print(f"Accuracy: {accuracy:.2f}")
           <div style="font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 10px;">
             👨‍💻 Futuro desarrollador de IA:
           </div>
-          <div id="aiWorkbookDisplayName2" style="font-size: 1.8rem; color: #FFD700; font-weight: 700;">
+          <div id="aiWorkbookDisplayName" style="font-size: 1.8rem; color: #FFD700; font-weight: 700;">
             [Tu nombre aparecerá aquí]
           </div>
         </div>
@@ -2571,7 +2132,7 @@ print(f"Accuracy: {accuracy:.2f}")
         </div>
       </section>
 
-      <!-- SECCIÓN FINAL ÉPICA -->
+      <!-- SECCIÓN FINAL: JOURNEY + BOTÓN DESCARGA -->
       <section class="final-section">
         <div class="ai-icon" style="font-size: 4rem; width: 120px; height: 120px; margin: 0 auto 30px;">🎯</div>
         
@@ -2600,425 +2161,14 @@ print(f"Accuracy: {accuracy:.2f}")
 
     </div>
   </div>
-        
-        <!-- SECCIÓN 5: ANÁLISIS DE TUS HABILIDADES PYTHON -->
-        <section class="workbook-section">
-          <div class="ai-icon">🐍</div>
-          <h2 class="section-title">🎮 Diagnóstico: Tu nivel Python para IA</h2>
-          <p class="section-subtitle">Evaluemos tu base técnica actual</p>
-          
-          <div class="python-slider-container">
-            <div class="python-display">
-              <div class="python-emoji" id="aiWorkbookPythonEmoji2">😅</div>
-              <div class="python-level" id="aiWorkbookPythonLevel2">NOVATO</div>
-            </div>
-            
-            <div class="python-slider">
-              <input type="range" id="aiWorkbookPythonSlider2" min="1" max="5" value="1">
-              <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: rgba(255, 215, 0, 0.6);">
-                <span>😅 Básico</span>
-                <span>🤔 Intermedio</span>
-                <span>🐍 Avanzado</span>
-                <span>🧠 Expert</span>
-                <span>🤖 Ninja</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="python-description" id="aiWorkbookPythonDescription2">
-            "Python para IA... ¿por dónde empiezo? 🐍"
-          </div>
-
-          <!-- ARQUITECTURAS DE IA MÁS POPULARES -->
-          <div style="margin: 40px 0;">
-            <h3 style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #FFD700; text-align: center; margin-bottom: 25px;">
-              🏗️ Arquitecturas de IA que deberías conocer
-            </h3>
-            <div class="architecture-grid">
-              <div class="architecture-card">
-                <div class="architecture-icon">🧠</div>
-                <div class="architecture-name">Transformers</div>
-                <div class="architecture-use">GPT, BERT, procesamiento de lenguaje</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">👁️</div>
-                <div class="architecture-name">CNNs</div>
-                <div class="architecture-use">Visión computacional, reconocimiento</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">📈</div>
-                <div class="architecture-name">GANs</div>
-                <div class="architecture-use">Generación de imágenes, datos sintéticos</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">🔄</div>
-                <div class="architecture-name">RNNs/LSTMs</div>
-                <div class="architecture-use">Series temporales, secuencias</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">🎯</div>
-                <div class="architecture-name">Reinforcement Learning</div>
-                <div class="architecture-use">Juegos, robótica, optimización</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">🌐</div>
-                <div class="architecture-name">Graph Neural Networks</div>
-                <div class="architecture-use">Redes sociales, moléculas, grafos</div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin: 40px 0;">
-            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-              💭 ¿Cuál es tu mayor desafío técnico en el desarrollo de IA?
-            </label>
-            <textarea class="fun-textarea" id="aiWorkbookPythonExcitement2" 
-                      placeholder="Ej: 'Optimizar modelos para producción' o 'Entender la matemática detrás de los algoritmos' o 'Manejar datasets masivos'..."></textarea>
-          </div>
-
-          <!-- CÓDIGO EJEMPLO INTERACTIVO -->
-          <div class="tech-insight">
-            <div class="insight-title">
-              💻 EJEMPLO: Pipeline básico de ML con Python
-            </div>
-            <div class="code-example">
-# Pipeline típico de Machine Learning
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-
-# 1. Cargar y preparar datos
-data = pd.read_csv('dataset.csv')
-X = data.drop('target', axis=1)
-y = data['target']
-
-# 2. Split y entrenamiento
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-model = RandomForestClassifier(n_estimators=100)
-model.fit(X_train, y_train)
-
-# 3. Evaluación
-predictions = model.predict(X_test)
-accuracy = accuracy_score(y_test, predictions)
-print(f"Accuracy: {accuracy:.2f}")
-            </div>
-            <div class="insight-content">
-              <strong>🎯 Próximo nivel:</strong> Convertir esto en una API con FastAPI, dockerizar, y deployar en AWS/GCP para producción real.
-            </div>
-          </div>
-        </section>
-
-        <!-- SECCIÓN 6: TU PLAN PASO A PASO -->
-        <section class="workbook-section">
-          <div class="ai-icon">🗺️</div>
-          <h2 class="section-title">🛣️ Tu plan para dominar la IA</h2>
-          <p class="section-subtitle">Paso a paso hacia convertirte en desarrollador de IA</p>
-          
-          <div style="display: grid; gap: 30px; margin: 40px 0;">
-            <!-- NIVEL 1 -->
-            <div class="tech-insight">
-              <div class="insight-title">
-                📚 NIVEL 1: Las Bases (2-3 meses)
-              </div>
-              <div class="insight-content">
-                <strong>Matemáticas que SÍ necesitas:</strong><br>
-                • Estadística básica (promedios, probabilidades)<br>
-                • Un poco de álgebra (matrices y vectores)<br>
-                • Lógica básica (si esto, entonces aquello)<br><br>
-                
-                <strong>Python para IA:</strong><br>
-                • Pandas para manejar datos<br>
-                • Matplotlib para hacer gráficas<br>
-                • Scikit-learn para primeros modelos<br><br>
-                
-                <strong>Tu primer proyecto:</strong> Predictor de precios de casas
-              </div>
-            </div>
-
-            <!-- NIVEL 2 -->
-            <div class="tech-insight">
-              <div class="insight-title">
-                🧠 NIVEL 2: Redes Neuronales (3-4 meses)
-              </div>
-              <div class="insight-content">
-                <strong>Herramientas principales:</strong><br>
-                • PyTorch (más fácil de aprender)<br>
-                • TensorFlow (para cuando seas pro)<br>
-                • Jupyter Notebooks (para experimentar)<br><br>
-                
-                <strong>Tipos de IA que aprenderás:</strong><br>
-                • Para reconocer imágenes<br>
-                • Para entender texto<br>
-                • Para predecir el futuro<br>
-                • Para crear contenido<br><br>
-                
-                <strong>Tu proyecto estrella:</strong> Sistema que reconoce objetos en fotos
-              </div>
-            </div>
-
-            <!-- NIVEL 3 -->
-            <div class="tech-insight">
-              <div class="insight-title">
-                ⚙️ NIVEL 3: IA en el Mundo Real (2-3 meses)
-              </div>
-              <div class="insight-content">
-                <strong>Cómo poner tu IA en internet:</strong><br>
-                • FastAPI para crear una página web<br>
-                • Docker para empaquetar tu código<br>
-                • AWS/Google Cloud para subirlo a internet<br><br>
-                
-                <strong>Monitoreo de tu IA:</strong><br>
-                • Saber si funciona bien<br>
-                • Detectar errores automáticamente<br>
-                • Mejorarla con el tiempo<br><br>
-                
-                <strong>Tu logro final:</strong> Una IA funcionando que usen personas reales
-              </div>
-            </div>
-          </div>
-
-          <div style="margin: 40px 0;">
-            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-              🎯 ¿En qué nivel te ves ahora y cuál sería tu próximo paso?
-            </label>
-            <textarea class="fun-textarea" id="aiWorkbookCurrentPhase"
-                      placeholder="Ej: 'Estoy en Nivel 1, necesito practicar más con pandas' o 'Quiero llegar al Nivel 2 para hacer chatbots'..."></textarea>
-          </div>
-        </section>
-
-        <!-- SECCIÓN 7: EJEMPLOS REALES DE ÉXITO -->
-        <section class="workbook-section">
-          <div class="ai-icon">🏆</div>
-          <h2 class="section-title">💡 Casos reales: Gente como tú que lo logró</h2>
-          <p class="section-subtitle">Historias inspiradoras de desarrolladores que empezaron desde cero</p>
-          
-          <div class="questions-grid">
-            <div class="question-card">
-              <div style="font-size: 2rem; margin-bottom: 15px;">👨‍💻</div>
-              <h3 class="question-text">Carlos - De contador a desarrollador de IA</h3>
-              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                <strong>Antes:</strong> Contador en una empresa<br>
-                <strong>Después:</strong> Creó una IA que detecta fraudes para bancos<br>
-                <strong>Tiempo:</strong> 8 meses de estudio<br>
-                <strong>Salario:</strong> De $15K a $45K MXN mensuales
-              </div>
-            </div>
-            
-            <div class="question-card">
-              <div style="font-size: 2rem; margin-bottom: 15px;">👩‍🚀</div>
-              <h3 class="question-text">Ana - De diseñadora a fundadora de startup</h3>
-              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                <strong>Antes:</strong> Diseñadora gráfica freelancer<br>
-                <strong>Después:</strong> Fundó startup de IA para e-commerce<br>
-                <strong>Tiempo:</strong> 6 meses aprendiendo + 4 construyendo<br>
-                <strong>Logro:</strong> $2M USD en financiamiento
-              </div>
-            </div>
-            
-            <div class="question-card">
-              <div style="font-size: 2rem; margin-bottom: 15px;">🌍</div>
-              <h3 class="question-text">Diego - De México a Google</h3>
-              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                <strong>Antes:</strong> Desarrollador web en CDMX<br>
-                <strong>Después:</strong> ML Engineer en Google (remoto)<br>
-                <strong>Tiempo:</strong> 12 meses de preparación<br>
-                <strong>Salario:</strong> $120K USD anuales
-              </div>
-            </div>
-            
-            <div class="question-card">
-              <div style="font-size: 2rem; margin-bottom: 15px;">🏥</div>
-              <h3 class="question-text">María - Revolucionando la medicina</h3>
-              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                <strong>Antes:</strong> Estudiante de medicina<br>
-                <strong>Después:</strong> Creó IA que detecta cáncer en radiografías<br>
-                <strong>Tiempo:</strong> 10 meses aprendiendo mientras estudiaba<br>
-                <strong>Impacto:</strong> Adoptado por 15 hospitales
-              </div>
-            </div>
-          </div>
-
-          <div class="tech-insight">
-            <div class="insight-title">
-              🎯 EL PATRÓN DEL ÉXITO
-            </div>
-            <div class="insight-content">
-              <strong>1. Empezaron con un problema específico</strong> (no "hacer IA genérica")<br>
-              <strong>2. Aprendieron haciendo proyectos reales</strong> (no solo viendo tutoriales)<br>
-              <strong>3. Se enfocaron en resolver problemas de verdad</strong> (que la gente pagaría por resolver)<br>
-              <strong>4. Construyeron en público</strong> (compartieron su progreso en redes)<br>
-              <strong>5. Nunca dejaron de aprender</strong> (se mantuvieron al día con nuevas técnicas)
-            </div>
-          </div>
-
-          <div style="margin: 40px 0;">
-            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-              💡 ¿Cuál de estos casos te inspira más y por qué?
-            </label>
-            <textarea class="fun-textarea" id="aiWorkbookCaseStudyInsight"
-                      placeholder="Ej: 'Me inspira Carlos porque también vengo de finanzas' o 'Quiero crear algo como María que ayude a la gente'..."></textarea>
-          </div>
-        </section>
-
-        <!-- SECCIÓN 8: TU COMPROMISO PERSONAL -->
-        <section class="workbook-section" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.12) 100%); border: 3px solid rgba(255, 215, 0, 0.6);">
-          <div class="ai-icon" style="font-size: 4.5rem; width: 130px; height: 130px;">🚀</div>
-          <h2 class="section-title" style="font-size: 2.8rem;">💫 Tu compromiso hacia el futuro</h2>
-          <p class="section-subtitle">Es momento de hacer esto oficial</p>
-          
-          <div style="margin: 40px 0; padding: 25px; background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 20px; text-align: center;">
-            <div style="font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 10px;">
-              👨‍💻 Futuro desarrollador de IA:
-            </div>
-            <div id="aiWorkbookDisplayName2" style="font-size: 1.8rem; color: #FFD700; font-weight: 700;">
-              [Tu nombre aparecerá aquí]
-            </div>
-          </div>
-
-          <div style="margin: 40px 0;">
-            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin: 25px 0 15px 0; text-align: center;">
-              💭 ¿Por qué AHORA es tu momento para aprender IA?
-            </label>
-            <textarea class="fun-textarea" id="aiWorkbookWhyNow"
-                      placeholder="Ej: 'Porque veo que la IA está en todos lados y no me quiero quedar atrás' o 'Porque quiero crear algo que ayude a mi familia'..." 
-                      style="min-height: 120px;"></textarea>
-          </div>
-
-          <div style="margin: 50px 0; text-align: center; padding: 40px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.15) 100%); border: 3px solid rgba(255, 215, 0, 0.5); border-radius: 25px;">
-            <div style="font-family: 'Orbitron', monospace; font-size: 1.8rem; color: #FFD700; margin-bottom: 25px;">
-              ✨ Mi compromiso personal:
-            </div>
-            <div style="font-size: 1.4rem; margin-bottom: 20px; color: rgba(255, 215, 0, 0.9);">"Me comprometo a aprender IA porque..."</div>
-            <input type="text" class="fun-input" placeholder="quiero cambiar mi futuro profesional" id="aiWorkbookCommitmentReason" 
-                   style="font-size: 1.2rem; text-align: center;">
-          </div>
-
-          <div style="margin: 40px 0; text-align: center; padding: 30px; background: rgba(0, 0, 0, 0.7); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px;">
-            <p style="color: rgba(255, 215, 0, 0.8); font-size: 1.2rem; margin-bottom: 20px; font-family: 'Orbitron', monospace;">
-              ⏰ ¿En cuántos meses quieres tener tu primera IA funcionando?
-            </p>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
-              <input type="number" class="fun-input" placeholder="6" id="aiWorkbookTimelineMonths" 
-                     style="max-width: 150px; text-align: center; font-size: 1.4rem;" 
-                     min="1" max="60">
-              <div style="font-size: 1.1rem; color: #FFD700; font-weight: 600;">meses</div>
-            </div>
-            <p style="margin-top: 15px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.6);">
-              (La mayoría lo logra en 6-12 meses)
-            </p>
-          </div>
-        </section>
-
-      </div>
-
-      <!-- OVERLAY DE BLOQUEO -->
-      <div class="unlock-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(255, 215, 0, 0.1) 50%, rgba(0, 0, 0, 0.85) 100%); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; z-index: 20; border-radius: 25px;">
-        <div class="unlock-message" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%); border: 3px solid #FFD700; border-radius: 20px; padding: 40px; text-align: center; max-width: 600px; animation: unlockPulse 2s ease-in-out infinite; box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);">
-          
-          <div style="font-family: 'Orbitron', monospace; font-size: 2rem; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
-            🔥 ¡ESPERA! No te vayas todavía...
-          </div>
-          
-          <div style="font-size: 1.2rem; color: rgba(255, 215, 0, 0.9); margin-bottom: 25px; line-height: 1.5;">
-            Lo que sigue es el contenido MÁS VALIOSO del workbook. Te vas a perder:
-            <br><br>
-            ✨ <strong>Tu plan personalizado paso a paso</strong><br>
-            ✨ <strong>Casos reales de gente que lo logró (con salarios)</strong><br>
-            ✨ <strong>Las herramientas exactas que necesitas</strong><br>
-            ✨ <strong>Tu compromiso personal hacia el éxito</strong><br>
-            ✨ <strong>Estrategias probadas de developers exitosos</strong>
-          </div>
-          
-          <div style="background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);">
-            <div style="font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #FFD700; margin-bottom: 15px;">
-              🎓 MASTERCLASS GRATUITA
-            </div>
-            <div style="font-size: 1.1rem; color: rgba(255, 215, 0, 0.9); line-height: 1.4;">
-              <strong style="color: #FFD700;">📅 Próximamente - Estate al pendiente</strong><br>
-              🎯 <strong>"De Python a IA: Tu primer proyecto en 30 días"</strong><br><br>
-              
-              🎁 <strong>¡BONUS EXCLUSIVOS EN VIVO!</strong><br>
-              💰 Análisis de salarios reales en IA<br>
-              🛠️ Kit de herramientas completo (gratis)<br>
-              🚀 Plan de estudios personalizado<br>
-              👥 Acceso a nuestra comunidad privada<br><br>
-              
-              <span style="background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 1.2rem;">
-                ⚡ Estate al pendiente de los mensajes del grupo ⚡
-              </span><br>
-              <span style="color: rgba(255, 215, 0, 0.8); font-size: 1rem;">
-                Ahí te avisaremos cuándo será la masterclass y te daremos el código
-              </span>
-            </div>
-          </div>
-
-          <div style="background: rgba(0, 0, 0, 0.9); border: 2px solid #FFD700; border-radius: 15px; padding: 30px; margin: 20px 0; text-align: center;">
-            <div style="font-family: 'Orbitron', monospace; font-size: 1.3rem; color: #FFD700; margin-bottom: 15px;">
-              🔐 Código de Desbloqueo
-            </div>
-            <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); margin-bottom: 20px;">
-              (Se revelará en la masterclass GRATUITA)
-            </div>
-            <div style="display: flex; justify-content: center; gap: 15px; margin: 20px 0;">
-              <input type="text" class="code-digit" maxlength="1" id="code1" oninput="moveToNext(this, 'code2')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-              <input type="text" class="code-digit" maxlength="1" id="code2" oninput="moveToNext(this, 'code3')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-              <input type="text" class="code-digit" maxlength="1" id="code3" oninput="moveToNext(this, 'code4')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-              <input type="text" class="code-digit" maxlength="1" id="code4" oninput="validateCode()" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
-            </div>
-            <button onclick="unlockContent()" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); border: none; padding: 15px 40px; border-radius: 50px; color: #000; font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; margin: 20px 0; text-transform: uppercase; letter-spacing: 1px;">
-              DESBLOQUEAR CONTENIDO
-            </button>
-          </div>
-
-          <div style="margin-top: 25px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); font-style: italic;">
-            💡 Tip: El código se comparte SOLO en la masterclass gratuita
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN FINAL ÉPICA -->
-    <section class="final-section">
-      <div class="ai-icon" style="font-size: 4rem; width: 120px; height: 120px; margin: 0 auto 30px;">🎯</div>
-      
-      <h1 class="final-title">¡Tu journey como desarrollador de IA comienza AHORA!</h1>
-      
-      <p class="final-text">
-        Has completado la evaluación más completa para desarrolladores de IA.<br>
-        Es momento de transformar tu carrera y construir el futuro.
-      </p>
-      
-      <div style="text-align: center; margin: 40px 0;">
-        <button class="epic-btn btn-download" onclick="downloadWorkbook(); return false;" style="cursor: pointer;">
-          📥 DESCARGAR MI ANÁLISIS COMPLETO
-        </button>
-      </div>
-      
-      <div style="margin-top: 50px; padding: 30px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.3);">
-        <p style="font-size: 1.2rem; font-weight: 600; color: #FFD700; margin-bottom: 10px;">
-          🤖 "El futuro pertenece a quienes CONSTRUYEN IA, no solo la usan"
-        </p>
-        <p style="color: rgba(255, 215, 0, 0.7); font-size: 1rem;">
-          Tu yo del 2030 te está esperando ✨
-        </p>
-      </div>
-    </section>
-  </div>
 
   <script>
     // Variables globales con IDs únicos y sistema de nombres
     let aiWorkbookUserData = {};
-    let aiWorkbookUserMainName = ''; // Nombre principal como ID
+    let aiWorkbookUserMainName = '';
     let currentQuizQuestion = 0;
     let quizAnswers = [];
     let isContentUnlocked = false;
-    
-    // 🚀 CONFIGURACIÓN DE APPS SCRIPT - ¡TU URL REAL!
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNKLJJsn_QrJUxaX0kslCjK5cxhTr5fJwbSBEV-XBMJGaMcZu37vtLnz_PGbpkBz36/exec';
-    let autoSyncInterval = null;
-    let lastSyncTime = null;
     
     // PREGUNTAS DEL QUIZ AVANZADO
     const quizQuestions = [
@@ -3073,31 +2223,19 @@ print(f"Accuracy: {accuracy:.2f}")
     const developerProfiles = {
       innovador: {
         title: "🚀 EL INNOVADOR TÉCNICO",
-        description: "Eres el tipo de desarrollador que crea breakthroughs. Tu mente siempre busca nuevas arquitecturas, algoritmos únicos y enfoques que nadie ha probado. En el mundo de la IA, serás quien desarrolle las próximas técnicas revolucionarias.",
-        techFocus: "Research, nuevas arquitecturas de redes neuronales, papers de cutting-edge",
-        careerPath: "ML Research Engineer → Principal AI Scientist → CTO/Founder",
-        tools: "PyTorch, JAX, Papers with Code, experimentación avanzada"
+        description: "Eres el tipo de desarrollador que crea breakthroughs. Tu mente siempre busca nuevas arquitecturas, algoritmos únicos y enfoques que nadie ha probado. En el mundo de la IA, serás quien desarrolle las próximas técnicas revolucionarias."
       },
       constructor: {
         title: "⚡ EL ARQUITECTO DE SISTEMAS", 
-        description: "Tu superpoder está en construir sistemas de IA robustos, escalables y que funcionen en producción real. Eres el desarrollador que toma investigación experimental y la convierte en productos que impactan millones de usuarios.",
-        techFocus: "MLOps, sistemas distribuidos, optimización de modelos, infraestructura",
-        careerPath: "ML Engineer → Senior ML Engineer → Staff Engineer → VP Engineering",
-        tools: "Kubernetes, Docker, TensorFlow Serving, cloud platforms, monitoring"
+        description: "Tu superpoder está en construir sistemas de IA robustos, escalables y que funcionen en producción real. Eres el desarrollador que toma investigación experimental y la convierte en productos que impactan millones de usuarios."
       },
       solucionador: {
         title: "🧩 EL SOLUCIONADOR MAESTRO",
-        description: "Tienes el don único de diagnosticar problemas complejos y encontrar soluciones elegantes. En IA, eres quien optimiza modelos que no convergen, debuggea pipelines rotos y mejora accuracy donde otros se rinden.",
-        techFocus: "Debugging de modelos, optimización de performance, feature engineering",
-        careerPath: "ML Engineer → Senior ML Engineer → Principal Engineer → Consultant/Expert",
-        tools: "Profilers, A/B testing, statistical analysis, optimization libraries"
+        description: "Tienes el don único de diagnosticar problemas complejos y encontrar soluciones elegantes. En IA, eres quien optimiza modelos que no convergen, debuggea pipelines rotos y mejora accuracy donde otros se rinden."
       },
       visionario: {
         title: "🌟 EL VISIONARIO ESTRATÉGICO",
-        description: "Ves el big picture y conectas tecnología con oportunidades de negocio. Tu rol es identificar dónde la IA puede crear valor real, diseñar productos y liderar equipos hacia objetivos ambiciosos.",
-        techFocus: "Product development, business applications, team leadership",
-        careerPath: "ML Engineer → ML Product Manager → Director of AI → CPO/CEO",
-        tools: "Business intelligence, product analytics, stakeholder management"
+        description: "Ves el big picture y conectas tecnología con oportunidades de negocio. Tu rol es identificar dónde la IA puede crear valor real, diseñar productos y liderar equipos hacia objetivos ambiciosos."
       }
     };
 
@@ -3116,10 +2254,8 @@ print(f"Accuracy: {accuracy:.2f}")
       const currentIndex = logoUrls.findIndex(url => currentSrc.includes(url.replace('./', '')));
       
       if (currentIndex < logoUrls.length - 1) {
-        // Probar siguiente URL
         imgElement.src = logoUrls[currentIndex + 1];
       } else {
-        // Si todas fallan, mostrar fallback
         imgElement.style.display = 'none';
         document.querySelector('.logo-fallback').style.display = 'block';
         console.log('🖼️ Logo no encontrado, usando fallback text');
@@ -3152,7 +2288,6 @@ print(f"Accuracy: {accuracy:.2f}")
       const words = name.trim().split(/\s+/);
       if (words.length < 2) return false;
       
-      // Verificar que contenga solo letras, espacios y acentos
       const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/;
       return nameRegex.test(name);
     }
@@ -3162,18 +2297,6 @@ print(f"Accuracy: {accuracy:.2f}")
       const nameInput = document.getElementById('aiWorkbookUserName');
       const nameValidation = document.getElementById('aiWorkbookNameValidation');
       const displayName = document.getElementById('aiWorkbookDisplayName');
-      const displayName2 = document.getElementById('aiWorkbookDisplayName2');
-      const signatureArea = document.getElementById('aiWorkbookSignature');
-      const signatureDate = document.getElementById('aiWorkbookSignatureDate');
-      
-      // Mostrar fecha actual
-      if (signatureDate) {
-        signatureDate.textContent = new Date().toLocaleDateString('es-ES', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        });
-      }
       
       nameInput.addEventListener('input', function() {
         const name = this.value.trim();
@@ -3182,8 +2305,6 @@ print(f"Accuracy: {accuracy:.2f}")
           nameValidation.style.opacity = '0';
           this.className = 'fun-input';
           if (displayName) displayName.textContent = '[Tu nombre aparecerá aquí]';
-          if (displayName2) displayName2.textContent = '[Tu nombre aparecerá aquí]';
-          if (signatureArea) signatureArea.textContent = '[Firma se generará automáticamente]';
           aiWorkbookUserMainName = '';
           return;
         }
@@ -3194,17 +2315,12 @@ print(f"Accuracy: {accuracy:.2f}")
           nameValidation.style.opacity = '1';
           this.className = 'fun-input name-valid';
           
-          // Actualizar displays
           if (displayName) displayName.textContent = name;
-          if (displayName2) displayName2.textContent = name;
-          if (signatureArea) signatureArea.textContent = `${name} - Futuro Arquitecto de IA`;
           
-          // Guardar como nombre principal
           aiWorkbookUserMainName = name;
           aiWorkbookUserData.mainUserName = name;
           aiWorkbookUserData.userID = generateUserID(name);
           
-          // 💾 GUARDAR INMEDIATAMENTE EL NOMBRE
           saveData();
           
         } else {
@@ -3213,8 +2329,6 @@ print(f"Accuracy: {accuracy:.2f}")
           nameValidation.style.opacity = '1';
           this.className = 'fun-input name-invalid';
           if (displayName) displayName.textContent = '[Nombre incompleto]';
-          if (displayName2) displayName2.textContent = '[Nombre incompleto]';
-          if (signatureArea) signatureArea.textContent = '[Completa tu nombre primero]';
           aiWorkbookUserMainName = '';
         }
       });
@@ -3246,7 +2360,6 @@ print(f"Accuracy: {accuracy:.2f}")
         </div>
       `;
 
-      // Actualizar progress bar
       const progress = ((currentQuizQuestion + 1) / quizQuestions.length) * 100;
       document.getElementById('quizProgressBar').style.width = progress + '%';
       document.getElementById('currentQuestion').textContent = currentQuizQuestion + 1;
@@ -3257,19 +2370,16 @@ print(f"Accuracy: {accuracy:.2f}")
       const question = quizQuestions[currentQuizQuestion];
       const selectedOption = question.options[optionIndex];
       
-      // Guardar respuesta
       quizAnswers.push({
         question: currentQuizQuestion,
         answer: optionIndex,
         points: selectedOption.points
       });
 
-      // Efecto visual
       const options = document.querySelectorAll('.quiz-option');
       options.forEach(opt => opt.classList.remove('selected'));
       options[optionIndex].classList.add('selected');
 
-      // Avanzar después de un breve delay
       setTimeout(() => {
         currentQuizQuestion++;
         displayQuizQuestion();
@@ -3277,7 +2387,6 @@ print(f"Accuracy: {accuracy:.2f}")
     }
 
     function calculateQuizResult() {
-      // Sumar puntos por categoría
       const scores = { innovador: 0, constructor: 0, solucionador: 0, visionario: 0 };
       
       quizAnswers.forEach(answer => {
@@ -3286,7 +2395,6 @@ print(f"Accuracy: {accuracy:.2f}")
         });
       });
 
-      // Encontrar categoría dominante
       let maxScore = 0;
       let dominantProfile = 'innovador';
       
@@ -3297,7 +2405,6 @@ print(f"Accuracy: {accuracy:.2f}")
         }
       });
 
-      // Mostrar resultado
       const profile = developerProfiles[dominantProfile];
       const resultContainer = document.getElementById('quizResult');
       const contentDiv = document.getElementById('quizResultContent');
@@ -3315,30 +2422,12 @@ print(f"Accuracy: {accuracy:.2f}")
             Tu forma de pensar es exactamente lo que el mundo de la IA necesita. Tienes una mente brillante y un potencial enorme para crear cosas asombrosas.
           </div>
         </div>
-        <div style="margin-top: 25px; padding: 25px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; text-align: center;">
-          <div style="font-size: 1.2rem; color: #FFD700; margin-bottom: 10px; font-weight: 600;">
-            🚀 Tu ventaja única en el mercado:
-          </div>
-          <div style="color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-            Los desarrolladores como tú son los más buscados y mejor pagados en el mercado de IA. Tu mentalidad ${dominantProfile === 'innovador' ? 'innovadora' : dominantProfile === 'constructor' ? 'constructiva' : dominantProfile === 'solucionador' ? 'analítica' : 'visionaria'} te dará una ventaja competitiva masiva.
-          </div>
-        </div>
-        <div style="margin-top: 25px; padding: 20px; background: rgba(0, 0, 0, 0.7); border: 2px solid #FFD700; border-radius: 15px; text-align: center;">
-          <div style="color: #FFD700; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;">
-            💎 Tienes TODO lo necesario para triunfar
-          </div>
-          <div style="color: rgba(255, 215, 0, 0.8); font-size: 1rem;">
-            Solo necesitas las herramientas correctas y el plan adecuado. ¡Y eso es exactamente lo que vamos a darte!
-          </div>
-        </div>
       `;
 
-      // Guardar resultado
       aiWorkbookUserData.quizResult = dominantProfile;
       aiWorkbookUserData.quizProfile = profile;
       aiWorkbookUserData.quizScores = scores;
 
-      // Ocultar quiz container y mostrar resultado
       document.getElementById('quizContainer').style.display = 'none';
       resultContainer.style.display = 'block';
 
@@ -3379,7 +2468,6 @@ print(f"Accuracy: {accuracy:.2f}")
     function setupProjectSimulator() {
       let selectedType = '';
       
-      // Tipo de sistema de IA
       document.querySelectorAll('.project-option').forEach(option => {
         option.addEventListener('click', function() {
           document.querySelectorAll('.project-option').forEach(opt => opt.classList.remove('selected'));
@@ -3388,7 +2476,6 @@ print(f"Accuracy: {accuracy:.2f}")
           selectedType = this.dataset.value;
           aiWorkbookUserData.projectType = selectedType;
           
-          // Manejar campo personalizado
           const customContainer = document.getElementById('aiWorkbookCustomTypeContainer');
           if (selectedType === 'otro-sistema') {
             customContainer.classList.add('show');
@@ -3404,7 +2491,6 @@ print(f"Accuracy: {accuracy:.2f}")
         });
       });
       
-      // Campo personalizado
       const customTypeInput = document.getElementById('aiWorkbookCustomType');
       if (customTypeInput) {
         customTypeInput.addEventListener('input', function() {
@@ -3425,7 +2511,6 @@ print(f"Accuracy: {accuracy:.2f}")
         if (finalType && finalType !== 'otro-sistema') {
           const projectSpecs = generateProjectSpecs(finalType);
           
-          // Mostrar resultado
           const resultElement = document.getElementById('aiWorkbookProjectResult');
           const descElement = document.getElementById('aiWorkbookProjectDescription');
           const stackElement = document.getElementById('aiWorkbookTechStack');
@@ -3454,16 +2539,13 @@ print(f"Accuracy: {accuracy:.2f}")
             <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
               Un sistema que puede entender, procesar y generar texto humano de manera inteligente. 
               Ideal para chatbots empresariales, análisis de sentimientos, traducción automática o generación de contenido.
-              <br><br>
-              <strong>Casos de uso:</strong> Análisis de reviews, chatbots inteligentes, resúmenes automáticos, clasificación de documentos
             </div>
           `,
           techStack: `
             <strong>🔧 Core:</strong> Python, PyTorch/TensorFlow, Transformers library<br>
             <strong>📊 Preprocessing:</strong> NLTK, spaCy, Tokenizers<br>
             <strong>🧠 Modelos:</strong> BERT, GPT, T5, fine-tuning techniques<br>
-            <strong>☁️ Deploy:</strong> FastAPI, Docker, AWS/GCP, modelo serving<br>
-            <strong>📈 Monitoring:</strong> MLflow, Weights & Biases, performance tracking
+            <strong>☁️ Deploy:</strong> FastAPI, Docker, AWS/GCP, modelo serving
           `
         },
         'computer-vision': {
@@ -3474,15 +2556,12 @@ print(f"Accuracy: {accuracy:.2f}")
             <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
               Sistemas que "ven" y comprenden imágenes y videos como lo haría un humano, pero con precisión sobrehumana.
               Perfect para detección de objetos, reconocimiento facial, análisis médico o vehículos autónomos.
-              <br><br>
-              <strong>Casos de uso:</strong> Control de calidad industrial, diagnóstico médico, seguridad, retail analytics
             </div>
           `,
           techStack: `
             <strong>🔧 Core:</strong> Python, OpenCV, PyTorch, TensorFlow<br>
             <strong>🧠 Modelos:</strong> CNNs, YOLO, ResNet, EfficientNet, Vision Transformers<br>
             <strong>📊 Data:</strong> Data augmentation, annotation tools, large datasets<br>
-            <strong>⚡ Optimization:</strong> TensorRT, ONNX, edge deployment<br>
             <strong>☁️ Infrastructure:</strong> GPU clusters, real-time inference, edge computing
           `
         },
@@ -3494,76 +2573,13 @@ print(f"Accuracy: {accuracy:.2f}")
             <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
               Algoritmos que aprenden de datos históricos para predecir eventos futuros con alta precisión.
               Esencial para forecasting de demanda, detección de fraude, predicción de precios o análisis de riesgo.
-              <br><br>
-              <strong>Casos de uso:</strong> Predicción de ventas, análisis de riesgo crediticio, forecasting financiero, mantenimiento predictivo
             </div>
           `,
           techStack: `
             <strong>🔧 Core:</strong> Python, scikit-learn, XGBoost, LightGBM<br>
             <strong>📊 Data:</strong> Pandas, NumPy, feature engineering, time series analysis<br>
             <strong>🧠 Algorithms:</strong> Random Forest, Gradient Boosting, Neural Networks<br>
-            <strong>📈 Validation:</strong> Cross-validation, A/B testing, backtesting<br>
             <strong>🚀 Production:</strong> Model versioning, automated retraining, monitoring
-          `
-        },
-        'automation-ai': {
-          description: `
-            <div style="font-size: 1.4rem; color: #FFD700; font-weight: 600; margin-bottom: 20px;">
-              ⚡ Sistema de IA para Automatización Inteligente
-            </div>
-            <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
-              IA que automatiza procesos complejos, toma decisiones y ejecuta acciones sin intervención humana.
-              Revolucionario para workflows empresariales, trading automático o gestión de recursos.
-              <br><br>
-              <strong>Casos de uso:</strong> RPA inteligente, trading algorithms, optimización de procesos, smart scheduling
-            </div>
-          `,
-          techStack: `
-            <strong>🔧 Core:</strong> Python, Reinforcement Learning, Multi-agent systems<br>
-            <strong>🤖 Frameworks:</strong> OpenAI Gym, Ray, stable-baselines3<br>
-            <strong>⚡ Integration:</strong> APIs, webhooks, message queues, microservices<br>
-            <strong>📊 Decision Making:</strong> Rule engines, optimization algorithms, genetic algorithms<br>
-            <strong>🔄 Orchestration:</strong> Apache Airflow, Kubernetes, event-driven architecture
-          `
-        },
-        'recommendation': {
-          description: `
-            <div style="font-size: 1.4rem; color: #FFD700; font-weight: 600; margin-bottom: 20px;">
-              🎯 Sistema de Recomendación Personalizada
-            </div>
-            <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
-              Algoritmos que aprenden preferencias individuales para sugerir productos, contenido o acciones personalizadas.
-              La base de plataformas como Netflix, Amazon, Spotify - donde la personalización impulsa el engagement.
-              <br><br>
-              <strong>Casos de uso:</strong> E-commerce, streaming, content discovery, marketing personalizado
-            </div>
-          `,
-          techStack: `
-            <strong>🔧 Core:</strong> Python, collaborative filtering, matrix factorization<br>
-            <strong>🧠 Algorithms:</strong> Deep learning embeddings, graph neural networks<br>
-            <strong>📊 Data:</strong> User behavior tracking, implicit/explicit feedback<br>
-            <strong>⚡ Real-time:</strong> Online learning, streaming data, low-latency serving<br>
-            <strong>📈 Optimization:</strong> A/B testing, multi-armed bandits, cold-start solutions
-          `
-        },
-        'generative-ai': {
-          description: `
-            <div style="font-size: 1.4rem; color: #FFD700; font-weight: 600; margin-bottom: 20px;">
-              🎨 Sistema de IA Generativa Creativa
-            </div>
-            <div style="color: rgba(255, 215, 0, 0.9); line-height: 1.5;">
-              IA que crea contenido original: imágenes, texto, música, código o video. La frontera más exciting de la IA,
-              donde la creatividad artificial se encuentra con aplicaciones comerciales reales.
-              <br><br>
-              <strong>Casos de uso:</strong> Generación de contenido, arte digital, código automático, diseño creativo
-            </div>
-          `,
-          techStack: `
-            <strong>🔧 Core:</strong> Python, PyTorch, Diffusion models, Transformers<br>
-            <strong>🎨 Models:</strong> GANs, VAEs, CLIP, Stable Diffusion, GPT variants<br>
-            <strong>🖼️ Image:</strong> DALL-E integration, ControlNet, fine-tuning techniques<br>
-            <strong>💬 Text:</strong> OpenAI API, Hugging Face, prompt engineering<br>
-            <strong>🚀 Deployment:</strong> GPU optimization, caching strategies, content moderation
           `
         }
       };
@@ -3571,112 +2587,175 @@ print(f"Accuracy: {accuracy:.2f}")
       return specs[projectType] || specs['nlp-system'];
     }
 
-    // SISTEMA DE BLOQUEO CON CÓDIGO
+    // SISTEMA DE BLOQUEO CON CÓDIGO SIMPLIFICADO Y FUNCIONAL
     function moveToNext(current, nextId) {
-      if (current.value.length === 1) {
+      console.log('moveToNext called:', current.value, nextId);
+      
+      // Si hay contenido y hay siguiente campo
+      if (current.value.length === 1 && nextId) {
         const nextInput = document.getElementById(nextId);
         if (nextInput) {
           nextInput.focus();
-        } else {
-          validateCode();
         }
       }
+      
+      // Validar código completo
+      setTimeout(validateCode, 50);
     }
 
     function validateCode() {
-      // Auto-validar cuando se complete el último dígito
-      setTimeout(() => {
-        const code1 = document.getElementById('code1');
-        const code2 = document.getElementById('code2');
-        const code3 = document.getElementById('code3');
-        const code4 = document.getElementById('code4');
-        
-        if (code1 && code2 && code3 && code4) {
-          const fullCode = code1.value + code2.value + code3.value + code4.value;
-          if (fullCode === '1234') {
-            // Auto-unlock si el código es correcto
-            unlockContent();
-          }
-        }
-      }, 100);
-    }
-
-    function unlockContent() {
       const code1 = document.getElementById('code1');
       const code2 = document.getElementById('code2');
       const code3 = document.getElementById('code3');
       const code4 = document.getElementById('code4');
       
-      if (!code1 || !code2 || !code3 || !code4) return;
+      if (!code1 || !code2 || !code3 || !code4) {
+        console.log('Error: Inputs de código no encontrados');
+        return;
+      }
       
       const fullCode = code1.value + code2.value + code3.value + code4.value;
+      console.log('Código actual:', fullCode);
       
-      if (fullCode === '1234') {
-        // EFECTO DE DESBLOQUEO ÉPICO
-        const lockedSection = document.getElementById('lockedSections');
-        const blockMessage = document.getElementById('blockMessage');
-        
-        // Mensaje de éxito épico
-        showUnlockSuccessMessage();
-        
-        setTimeout(() => {
-          // OCULTAR COMPLETAMENTE EL MENSAJE DE BLOQUEO
-          if (blockMessage) {
-            blockMessage.style.transition = 'all 1s ease';
-            blockMessage.style.opacity = '0';
-            blockMessage.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-              blockMessage.style.display = 'none';
-            }, 1000);
-          }
-          
-          // DESBLOQUEAR TODO EL CONTENIDO
-          if (lockedSection) {
-            lockedSection.style.transition = 'all 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
-            lockedSection.style.filter = 'blur(0px)';
-            lockedSection.style.pointerEvents = 'auto';
-            lockedSection.style.userSelect = 'auto';
-            lockedSection.style.opacity = '1';
-            lockedSection.style.transform = 'scale(1)';
-            
-            // Efectos adicionales
-            lockedSection.style.boxShadow = '0 0 100px rgba(255, 215, 0, 0.3)';
-            
-            setTimeout(() => {
-              lockedSection.style.boxShadow = 'none';
-            }, 2000);
-          }
-          
-          isContentUnlocked = true;
-          aiWorkbookUserData.contentUnlocked = true;
-          saveData();
-        }, 1000);
-        
-      } else {
-        // Efecto de error
-        const codeInputs = document.querySelectorAll('.code-digit');
-        codeInputs.forEach(input => {
-          input.style.borderColor = '#ff4444';
-          input.style.animation = 'shake 0.5s ease';
-          input.style.boxShadow = '0 0 20px rgba(255, 68, 68, 0.5)';
-        });
-        
-        setTimeout(() => {
-          codeInputs.forEach(input => {
-            input.style.borderColor = 'rgba(255, 215, 0, 0.4)';
-            input.style.animation = '';
-            input.style.boxShadow = '';
-            input.value = '';
-          });
-          if (code1) code1.focus();
-        }, 1000);
-        
-        showCustomMessage('❌ Código incorrecto. Obtén el código en la masterclass gratuita.');
+      if (fullCode.length === 4) {
+        if (fullCode === '1234') {
+          console.log('¡Código correcto!');
+          unlockContent();
+        } else {
+          console.log('Código incorrecto:', fullCode);
+          showCodeError();
+        }
       }
     }
 
+    function showCodeError() {
+      console.log('Mostrando error de código...');
+      const codeInputs = document.querySelectorAll('#code1, #code2, #code3, #code4');
+      
+      codeInputs.forEach(input => {
+        input.style.borderColor = '#FF0000';
+        input.style.animation = 'shake 0.5s ease';
+        input.style.boxShadow = '0 0 30px rgba(255, 0, 0, 0.8)';
+        input.style.background = 'rgba(255, 0, 0, 0.3)';
+      });
+      
+      setTimeout(() => {
+        codeInputs.forEach(input => {
+          input.style.borderColor = '#FF0000';
+          input.style.animation = '';
+          input.style.boxShadow = '0 0 20px rgba(255, 0, 0, 0.3)';
+          input.style.background = 'rgba(255, 0, 0, 0.1)';
+          input.value = '';
+        });
+        document.getElementById('code1').focus();
+      }, 1500);
+      
+      showCustomMessage('❌ Código incorrecto. El código correcto es 1234 (para prueba)');
+    }
+
+    function unlockContent() {
+      console.log('Iniciando desbloqueo...');
+      
+      const lockedSection = document.getElementById('lockedSections');
+      const blockMessage = document.getElementById('blockMessage');
+      
+      if (!lockedSection || !blockMessage) {
+        console.log('Error: No se encontraron elementos para desbloquear');
+        return;
+      }
+      
+      // Mostrar mensaje de éxito
+      showUnlockSuccessMessage();
+      
+      setTimeout(() => {
+        // OCULTAR mensaje de bloqueo
+        console.log('Ocultando mensaje de bloqueo...');
+        blockMessage.style.transition = 'all 1s ease';
+        blockMessage.style.opacity = '0';
+        blockMessage.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+          blockMessage.style.display = 'none';
+          console.log('Mensaje ocultado');
+        }, 1000);
+        
+        // DESBLOQUEAR contenido
+        console.log('Desbloqueando contenido...');
+        lockedSection.classList.remove('locked-content');
+        lockedSection.style.transition = 'all 1.5s ease';
+        lockedSection.style.filter = 'none';
+        lockedSection.style.pointerEvents = 'auto';
+        lockedSection.style.userSelect = 'auto';
+        lockedSection.style.opacity = '1';
+        
+        // Efecto visual
+        lockedSection.style.boxShadow = '0 0 50px rgba(0, 255, 0, 0.5)';
+        setTimeout(() => {
+          lockedSection.style.boxShadow = 'none';
+        }, 2000);
+        
+        isContentUnlocked = true;
+        aiWorkbookUserData.contentUnlocked = true;
+        saveData();
+        
+      }, 1000);
+    }
+
+    // FUNCIÓN PARA SETUP DE INPUTS AL CARGAR
+    function setupCodeInputs() {
+      console.log('Configurando inputs de código...');
+      
+      const inputs = ['code1', 'code2', 'code3', 'code4'];
+      
+      inputs.forEach((id, index) => {
+        const input = document.getElementById(id);
+        if (input) {
+          console.log('Configurando input:', id);
+          
+          // Limpiar eventos previos
+          input.onclick = null;
+          input.onfocus = null;
+          input.onkeyup = null;
+          
+          // Configurar eventos
+          input.addEventListener('input', function() {
+            console.log('Input event:', id, this.value);
+            
+            // Solo números
+            this.value = this.value.replace(/[^0-9]/g, '');
+            
+            // Auto avanzar
+            if (this.value.length === 1 && index < 3) {
+              const nextInput = document.getElementById(inputs[index + 1]);
+              if (nextInput) {
+                nextInput.focus();
+              }
+            }
+            
+            // Validar
+            validateCode();
+          });
+          
+          input.addEventListener('keydown', function(e) {
+            // Permitir backspace para retroceder
+            if (e.key === 'Backspace' && this.value === '' && index > 0) {
+              const prevInput = document.getElementById(inputs[index - 1]);
+              if (prevInput) {
+                prevInput.focus();
+              }
+            }
+          });
+          
+          // Hacer clickeable
+          input.style.cursor = 'text';
+          
+        } else {
+          console.log('Error: No se encontró input:', id);
+        }
+      });
+    }
+
     function showUnlockSuccessMessage() {
-      // Crear overlay de éxito
       const successOverlay = document.createElement('div');
       successOverlay.style.cssText = `
         position: fixed;
@@ -3709,7 +2788,6 @@ print(f"Accuracy: {accuracy:.2f}")
       
       document.body.appendChild(successOverlay);
       
-      // Quitar overlay después de 3 segundos
       setTimeout(() => {
         successOverlay.style.animation = 'successFadeOut 0.5s ease forwards';
         setTimeout(() => {
@@ -3760,7 +2838,6 @@ print(f"Accuracy: {accuracy:.2f}")
         return;
       }
       
-      // Guardar inputs de texto automáticamente
       const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
       inputs.forEach(input => {
         if (input.value && input.value.trim()) {
@@ -3768,14 +2845,12 @@ print(f"Accuracy: {accuracy:.2f}")
         }
       });
       
-      // Datos principales del usuario
       aiWorkbookUserData.mainUserName = aiWorkbookUserMainName;
       aiWorkbookUserData.userID = generateUserID(aiWorkbookUserMainName);
       aiWorkbookUserData.timestamp = aiWorkbookUserData.timestamp || new Date().toISOString();
       aiWorkbookUserData.lastUpdated = new Date().toISOString();
       aiWorkbookUserData.completedSections = Object.keys(aiWorkbookUserData).length;
       
-      // Guardar en localStorage
       try {
         const userKey = `aiWorkbook_${aiWorkbookUserMainName.replace(/\s+/g, '_')}`;
         localStorage.setItem(userKey, JSON.stringify(aiWorkbookUserData));
@@ -3831,21 +2906,15 @@ print(f"Accuracy: {accuracy:.2f}")
 
     function restoreUserData(savedData) {
       try {
-        // Restaurar nombre
         if (savedData.mainUserName) {
           aiWorkbookUserMainName = savedData.mainUserName;
           const nameInput = document.getElementById('aiWorkbookUserName');
           const displayName = document.getElementById('aiWorkbookDisplayName');
-          const displayName2 = document.getElementById('aiWorkbookDisplayName2');
-          const signatureArea = document.getElementById('aiWorkbookSignature');
           
           if (nameInput) nameInput.value = savedData.mainUserName;
           if (displayName) displayName.textContent = savedData.mainUserName;
-          if (displayName2) displayName2.textContent = savedData.mainUserName;
-          if (signatureArea) signatureArea.textContent = `${savedData.mainUserName} - Futuro Arquitecto de IA`;
         }
         
-        // Restaurar inputs
         const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
         inputs.forEach(input => {
           if (savedData[input.id]) {
@@ -3853,9 +2922,7 @@ print(f"Accuracy: {accuracy:.2f}")
           }
         });
         
-        // Restaurar quiz result
         if (savedData.quizResult && savedData.quizProfile) {
-          // Mostrar resultado del quiz
           const resultContainer = document.getElementById('quizResult');
           const contentDiv = document.getElementById('quizResultContent');
           const profile = savedData.quizProfile;
@@ -3871,12 +2938,11 @@ print(f"Accuracy: {accuracy:.2f}")
             if (resultContainer) {
               document.getElementById('quizContainer').style.display = 'none';
               resultContainer.style.display = 'block';
-              currentQuizQuestion = quizQuestions.length; // Marcar quiz como completado
+              currentQuizQuestion = quizQuestions.length;
             }
           }
         }
         
-        // Restaurar slider de Python
         if (savedData.pythonLevel) {
           const slider = document.getElementById('aiWorkbookPythonSlider');
           if (slider) {
@@ -3885,9 +2951,9 @@ print(f"Accuracy: {accuracy:.2f}")
           }
         }
         
-        // Restaurar estado de desbloqueo
         if (savedData.contentUnlocked) {
           const lockedSection = document.getElementById('lockedSections');
+          const blockMessage = document.getElementById('blockMessage');
           
           if (lockedSection) {
             lockedSection.style.filter = 'blur(0px)';
@@ -3896,6 +2962,10 @@ print(f"Accuracy: {accuracy:.2f}")
             lockedSection.style.opacity = '1';
             lockedSection.style.transform = 'scale(1)';
             isContentUnlocked = true;
+          }
+          
+          if (blockMessage) {
+            blockMessage.style.display = 'none';
           }
         }
         
@@ -3907,7 +2977,6 @@ print(f"Accuracy: {accuracy:.2f}")
       }
     }
 
-    // Mostrar mensaje de guardado
     function showSaveMessage() {
       const message = document.getElementById('aiWorkbookSaveMessage');
       if (message) {
@@ -3919,7 +2988,6 @@ print(f"Accuracy: {accuracy:.2f}")
       }
     }
 
-    // Auto-guardado
     function setupAutoSave() {
       const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
       inputs.forEach(input => {
@@ -3937,7 +3005,6 @@ print(f"Accuracy: {accuracy:.2f}")
       document.addEventListener('click', () => setTimeout(saveData, 200));
     }
 
-    // Función de descarga PDF
     async function downloadWorkbook() {
       console.log('🚀 INICIANDO DESCARGA...');
       saveData();
@@ -3948,7 +3015,6 @@ print(f"Accuracy: {accuracy:.2f}")
           return;
         }
         
-        // Ocultar elementos problemáticos
         const hideElements = ['.save-message', '.circuit-bg', '.glow-overlay'];
         const hidden = [];
         
@@ -3999,7 +3065,6 @@ print(f"Accuracy: {accuracy:.2f}")
         
         pdf.save(filename);
         
-        // Restaurar elementos
         hidden.forEach(({el, display}) => {
           el.style.display = display;
         });
@@ -4017,7 +3082,6 @@ print(f"Accuracy: {accuracy:.2f}")
       }
     }
 
-    // Inicializar aplicación
     document.addEventListener('DOMContentLoaded', function() {
       console.log('🔄 Inicializando workbook de IA...');
       
@@ -4028,7 +3092,9 @@ print(f"Accuracy: {accuracy:.2f}")
       setupProjectSimulator();
       setupAutoSave();
       
-      // Verificar logo
+      // IMPORTANTE: Configurar inputs de código
+      setTimeout(setupCodeInputs, 500);
+      
       const logoElement = document.getElementById('mainLogo');
       if (logoElement) {
         logoElement.onload = () => console.log('✅ Logo cargado');
@@ -4045,7 +3111,6 @@ print(f"Accuracy: {accuracy:.2f}")
       }, 1000);
     });
 
-    // Auto-guardado al salir
     window.addEventListener('beforeunload', saveData);
   </script>
 </body>
