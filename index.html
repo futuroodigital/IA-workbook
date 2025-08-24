@@ -2189,91 +2189,159 @@ print(f"Accuracy: {accuracy:.2f}")
       </div>
     </div>
 
-            <!-- CONTENIDO BLOQUEADO CON BLUR -->
-    <div style="position: relative;">
-      <div class="locked-content" id="lockedSections" style="filter: blur(8px); pointer-events: none; user-select: none;">
+          </div>
+    </section>
+
+    <!-- ========== PUNTO DE BLOQUEO ESTRATÉGICO ========== -->
+    <!-- MENSAJE DE BLOQUEO INMEDIATAMENTE DESPUÉS DEL PASO 1 -->
+    <div style="position: relative; margin: 60px 0;">
+      <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%); border: 3px solid #FFD700; border-radius: 20px; padding: 40px; text-align: center; max-width: 800px; margin: 0 auto; animation: unlockPulse 2s ease-in-out infinite; box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);" id="blockMessage">
         
-        <!-- SECCIÓN 5: ANÁLISIS DE TUS HABILIDADES PYTHON -->
-        <section class="workbook-section">
-          <div class="ai-icon">🐍</div>
-          <h2 class="section-title">🎮 Diagnóstico: Tu nivel Python para IA</h2>
-          <p class="section-subtitle">Evaluemos tu base técnica actual</p>
-          
-          <div class="python-slider-container">
-            <div class="python-display">
-              <div class="python-emoji" id="aiWorkbookPythonEmoji2">😅</div>
-              <div class="python-level" id="aiWorkbookPythonLevel2">NOVATO</div>
-            </div>
+        <div style="font-family: 'Orbitron', monospace; font-size: 2rem; color: #FFD700; margin-bottom: 20px; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">
+          🔥 ¡ESPERA! No te vayas todavía...
+        </div>
+        
+        <div style="font-size: 1.2rem; color: rgba(255, 215, 0, 0.9); margin-bottom: 25px; line-height: 1.5;">
+          Lo que sigue es el contenido MÁS VALIOSO del workbook. Te vas a perder:
+          <br><br>
+          ✨ <strong>Tu plan personalizado paso a paso</strong><br>
+          ✨ <strong>Casos reales de gente que lo logró (con salarios)</strong><br>
+          ✨ <strong>Las herramientas exactas que necesitas</strong><br>
+          ✨ <strong>Tu compromiso personal hacia el éxito</strong><br>
+          ✨ <strong>Descarga completa de tu análisis personalizado</strong>
+        </div>
+        
+        <div style="background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);">
+          <div style="font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #FFD700; margin-bottom: 15px;">
+            🎓 MASTERCLASS GRATUITA
+          </div>
+          <div style="font-size: 1.1rem; color: rgba(255, 215, 0, 0.9); line-height: 1.4;">
+            <strong style="color: #FFD700;">📅 Próximamente - Estate al pendiente</strong><br>
+            🎯 <strong>"De Python a IA: Tu primer proyecto en 30 días"</strong><br><br>
             
-            <div class="python-slider">
-              <input type="range" id="aiWorkbookPythonSlider2" min="1" max="5" value="1">
-              <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: rgba(255, 215, 0, 0.6);">
-                <span>😅 Básico</span>
-                <span>🤔 Intermedio</span>
-                <span>🐍 Avanzado</span>
-                <span>🧠 Expert</span>
-                <span>🤖 Ninja</span>
-              </div>
-            </div>
+            🎁 <strong>¡BONUS EXCLUSIVOS EN VIVO!</strong><br>
+            💰 Análisis de salarios reales en IA<br>
+            🛠️ Kit de herramientas completo (gratis)<br>
+            🚀 Plan de estudios personalizado<br>
+            👥 Acceso a nuestra comunidad privada<br><br>
+            
+            <span style="background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 1.2rem;">
+              ⚡ Estate al pendiente de los mensajes del grupo ⚡
+            </span><br>
+            <span style="color: rgba(255, 215, 0, 0.8); font-size: 1rem;">
+              Ahí te avisaremos cuándo será la masterclass y te daremos el código
+            </span>
+          </div>
+        </div>
+
+        <div style="background: rgba(0, 0, 0, 0.9); border: 2px solid #FFD700; border-radius: 15px; padding: 30px; margin: 20px 0; text-align: center;">
+          <div style="font-family: 'Orbitron', monospace; font-size: 1.3rem; color: #FFD700; margin-bottom: 15px;">
+            🔐 Código de Desbloqueo
+          </div>
+          <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); margin-bottom: 20px;">
+            (Se revelará en la masterclass GRATUITA)
+          </div>
+          <div style="display: flex; justify-content: center; gap: 15px; margin: 20px 0;">
+            <input type="text" class="code-digit" maxlength="1" id="code1" oninput="moveToNext(this, 'code2')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
+            <input type="text" class="code-digit" maxlength="1" id="code2" oninput="moveToNext(this, 'code3')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
+            <input type="text" class="code-digit" maxlength="1" id="code3" oninput="moveToNext(this, 'code4')" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
+            <input type="text" class="code-digit" maxlength="1" id="code4" oninput="validateCode()" style="width: 60px; height: 60px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 10px; text-align: center; font-size: 2rem; font-family: 'Orbitron', monospace; font-weight: 700; color: #FFD700; transition: all 0.3s ease;">
+          </div>
+          <button onclick="unlockContent()" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); border: none; padding: 15px 40px; border-radius: 50px; color: #000; font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; margin: 20px 0; text-transform: uppercase; letter-spacing: 1px;">
+            DESBLOQUEAR CONTENIDO
+          </button>
+        </div>
+
+        <div style="margin-top: 25px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); font-style: italic;">
+          💡 Tip: El código se comparte SOLO en la masterclass gratuita
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENIDO BLOQUEADO CON BLUR - SOLO A PARTIR DE AQUÍ -->
+    <div id="lockedSections" style="filter: blur(8px); pointer-events: none; user-select: none;">
+        
+      <!-- SECCIÓN 5: ANÁLISIS DE TUS HABILIDADES PYTHON -->
+      <section class="workbook-section">
+        <div class="ai-icon">🐍</div>
+        <h2 class="section-title">🎮 Diagnóstico: Tu nivel Python para IA</h2>
+        <p class="section-subtitle">Evaluemos tu base técnica actual</p>
+        
+        <div class="python-slider-container">
+          <div class="python-display">
+            <div class="python-emoji" id="aiWorkbookPythonEmoji2">😅</div>
+            <div class="python-level" id="aiWorkbookPythonLevel2">NOVATO</div>
           </div>
           
-          <div class="python-description" id="aiWorkbookPythonDescription2">
-            "Python para IA... ¿por dónde empiezo? 🐍"
-          </div>
-
-          <!-- ARQUITECTURAS DE IA MÁS POPULARES -->
-          <div style="margin: 40px 0;">
-            <h3 style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #FFD700; text-align: center; margin-bottom: 25px;">
-              🏗️ Arquitecturas de IA que deberías conocer
-            </h3>
-            <div class="architecture-grid">
-              <div class="architecture-card">
-                <div class="architecture-icon">🧠</div>
-                <div class="architecture-name">Transformers</div>
-                <div class="architecture-use">GPT, BERT, procesamiento de lenguaje</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">👁️</div>
-                <div class="architecture-name">CNNs</div>
-                <div class="architecture-use">Visión computacional, reconocimiento</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">📈</div>
-                <div class="architecture-name">GANs</div>
-                <div class="architecture-use">Generación de imágenes, datos sintéticos</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">🔄</div>
-                <div class="architecture-name">RNNs/LSTMs</div>
-                <div class="architecture-use">Series temporales, secuencias</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">🎯</div>
-                <div class="architecture-name">Reinforcement Learning</div>
-                <div class="architecture-use">Juegos, robótica, optimización</div>
-              </div>
-              <div class="architecture-card">
-                <div class="architecture-icon">🌐</div>
-                <div class="architecture-name">Graph Neural Networks</div>
-                <div class="architecture-use">Redes sociales, moléculas, grafos</div>
-              </div>
+          <div class="python-slider">
+            <input type="range" id="aiWorkbookPythonSlider2" min="1" max="5" value="1">
+            <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: rgba(255, 215, 0, 0.6);">
+              <span>😅 Básico</span>
+              <span>🤔 Intermedio</span>
+              <span>🐍 Avanzado</span>
+              <span>🧠 Expert</span>
+              <span>🤖 Ninja</span>
             </div>
           </div>
+        </div>
+        
+        <div class="python-description" id="aiWorkbookPythonDescription2">
+          "Python para IA... ¿por dónde empiezo? 🐍"
+        </div>
 
-          <div style="margin: 40px 0;">
-            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-              💭 ¿Cuál es tu mayor desafío técnico en el desarrollo de IA?
-            </label>
-            <textarea class="fun-textarea" id="aiWorkbookPythonExcitement2" 
-                      placeholder="Ej: 'Optimizar modelos para producción' o 'Entender la matemática detrás de los algoritmos' o 'Manejar datasets masivos'..."></textarea>
-          </div>
-
-          <!-- CÓDIGO EJEMPLO INTERACTIVO -->
-          <div class="tech-insight">
-            <div class="insight-title">
-              💻 EJEMPLO: Pipeline básico de ML con Python
+        <!-- ARQUITECTURAS DE IA MÁS POPULARES -->
+        <div style="margin: 40px 0;">
+          <h3 style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #FFD700; text-align: center; margin-bottom: 25px;">
+            🏗️ Arquitecturas de IA que deberías conocer
+          </h3>
+          <div class="architecture-grid">
+            <div class="architecture-card">
+              <div class="architecture-icon">🧠</div>
+              <div class="architecture-name">Transformers</div>
+              <div class="architecture-use">GPT, BERT, procesamiento de lenguaje</div>
             </div>
-            <div class="code-example">
+            <div class="architecture-card">
+              <div class="architecture-icon">👁️</div>
+              <div class="architecture-name">CNNs</div>
+              <div class="architecture-use">Visión computacional, reconocimiento</div>
+            </div>
+            <div class="architecture-card">
+              <div class="architecture-icon">📈</div>
+              <div class="architecture-name">GANs</div>
+              <div class="architecture-use">Generación de imágenes, datos sintéticos</div>
+            </div>
+            <div class="architecture-card">
+              <div class="architecture-icon">🔄</div>
+              <div class="architecture-name">RNNs/LSTMs</div>
+              <div class="architecture-use">Series temporales, secuencias</div>
+            </div>
+            <div class="architecture-card">
+              <div class="architecture-icon">🎯</div>
+              <div class="architecture-name">Reinforcement Learning</div>
+              <div class="architecture-use">Juegos, robótica, optimización</div>
+            </div>
+            <div class="architecture-card">
+              <div class="architecture-icon">🌐</div>
+              <div class="architecture-name">Graph Neural Networks</div>
+              <div class="architecture-use">Redes sociales, moléculas, grafos</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin: 40px 0;">
+          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
+            💭 ¿Cuál es tu mayor desafío técnico en el desarrollo de IA?
+          </label>
+          <textarea class="fun-textarea" id="aiWorkbookPythonExcitement2" 
+                    placeholder="Ej: 'Optimizar modelos para producción' o 'Entender la matemática detrás de los algoritmos' o 'Manejar datasets masivos'..."></textarea>
+        </div>
+
+        <!-- CÓDIGO EJEMPLO INTERACTIVO -->
+        <div class="tech-insight">
+          <div class="insight-title">
+            💻 EJEMPLO: Pipeline básico de ML con Python
+          </div>
+          <div class="code-example">
 # Pipeline típico de Machine Learning
 import pandas as pd
 import numpy as np
@@ -2295,242 +2363,241 @@ model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 accuracy = accuracy_score(y_test, predictions)
 print(f"Accuracy: {accuracy:.2f}")
-            </div>
-            <div class="insight-content">
-              <strong>🎯 Próximo nivel:</strong> Convertir esto en una API con FastAPI, dockerizar, y deployar en AWS/GCP para producción real.
-            </div>
           </div>
-        </section>
-
-        <!-- SECCIÓN 6: TU PLAN PASO A PASO -->
-        <section class="workbook-section">
-          <div class="ai-icon">🗺️</div>
-          <h2 class="section-title">🛣️ Tu plan para dominar la IA</h2>
-          <p class="section-subtitle">Paso a paso hacia convertirte en desarrollador de IA</p>
-          
-          <div style="display: grid; gap: 30px; margin: 40px 0;">
-            <!-- NIVEL 1 -->
-            <div class="tech-insight">
-              <div class="insight-title">
-                📚 NIVEL 1: Las Bases (2-3 meses)
-              </div>
-              <div class="insight-content">
-                <strong>Matemáticas que SÍ necesitas:</strong><br>
-                • Estadística básica (promedios, probabilidades)<br>
-                • Un poco de álgebra (matrices y vectores)<br>
-                • Lógica básica (si esto, entonces aquello)<br><br>
-                
-                <strong>Python para IA:</strong><br>
-                • Pandas para manejar datos<br>
-                • Matplotlib para hacer gráficas<br>
-                • Scikit-learn para primeros modelos<br><br>
-                
-                <strong>Tu primer proyecto:</strong> Predictor de precios de casas
-              </div>
-            </div>
-
-            <!-- NIVEL 2 -->
-            <div class="tech-insight">
-              <div class="insight-title">
-                🧠 NIVEL 2: Redes Neuronales (3-4 meses)
-              </div>
-              <div class="insight-content">
-                <strong>Herramientas principales:</strong><br>
-                • PyTorch (más fácil de aprender)<br>
-                • TensorFlow (para cuando seas pro)<br>
-                • Jupyter Notebooks (para experimentar)<br><br>
-                
-                <strong>Tipos de IA que aprenderás:</strong><br>
-                • Para reconocer imágenes<br>
-                • Para entender texto<br>
-                • Para predecir el futuro<br>
-                • Para crear contenido<br><br>
-                
-                <strong>Tu proyecto estrella:</strong> Sistema que reconoce objetos en fotos
-              </div>
-            </div>
-
-            <!-- NIVEL 3 -->
-            <div class="tech-insight">
-              <div class="insight-title">
-                ⚙️ NIVEL 3: IA en el Mundo Real (2-3 meses)
-              </div>
-              <div class="insight-content">
-                <strong>Cómo poner tu IA en internet:</strong><br>
-                • FastAPI para crear una página web<br>
-                • Docker para empaquetar tu código<br>
-                • AWS/Google Cloud para subirlo a internet<br><br>
-                
-                <strong>Monitoreo de tu IA:</strong><br>
-                • Saber si funciona bien<br>
-                • Detectar errores automáticamente<br>
-                • Mejorarla con el tiempo<br><br>
-                
-                <strong>Tu logro final:</strong> Una IA funcionando que usen personas reales
-              </div>
-            </div>
+          <div class="insight-content">
+            <strong>🎯 Próximo nivel:</strong> Convertir esto en una API con FastAPI, dockerizar, y deployar en AWS/GCP para producción real.
           </div>
+        </div>
+      </section>
 
-          <div style="margin: 40px 0;">
-            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-              🎯 ¿En qué nivel te ves ahora y cuál sería tu próximo paso?
-            </label>
-            <textarea class="fun-textarea" id="aiWorkbookCurrentPhase"
-                      placeholder="Ej: 'Estoy en Nivel 1, necesito practicar más con pandas' o 'Quiero llegar al Nivel 2 para hacer chatbots'..."></textarea>
-          </div>
-        </section>
-
-        <!-- SECCIÓN 7: EJEMPLOS REALES DE ÉXITO -->
-        <section class="workbook-section">
-          <div class="ai-icon">🏆</div>
-          <h2 class="section-title">💡 Casos reales: Gente como tú que lo logró</h2>
-          <p class="section-subtitle">Historias inspiradoras de desarrolladores que empezaron desde cero</p>
-          
-          <div class="questions-grid">
-            <div class="question-card">
-              <div style="font-size: 2rem; margin-bottom: 15px;">👨‍💻</div>
-              <h3 class="question-text">Carlos - De contador a desarrollador de IA</h3>
-              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                <strong>Antes:</strong> Contador en una empresa<br>
-                <strong>Después:</strong> Creó una IA que detecta fraudes para bancos<br>
-                <strong>Tiempo:</strong> 8 meses de estudio<br>
-                <strong>Salario:</strong> De $15K a $45K MXN mensuales
-              </div>
-            </div>
-            
-            <div class="question-card">
-              <div style="font-size: 2rem; margin-bottom: 15px;">👩‍🚀</div>
-              <h3 class="question-text">Ana - De diseñadora a fundadora de startup</h3>
-              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                <strong>Antes:</strong> Diseñadora gráfica freelancer<br>
-                <strong>Después:</strong> Fundó startup de IA para e-commerce<br>
-                <strong>Tiempo:</strong> 6 meses aprendiendo + 4 construyendo<br>
-                <strong>Logro:</strong> $2M USD en financiamiento
-              </div>
-            </div>
-            
-            <div class="question-card">
-              <div style="font-size: 2rem; margin-bottom: 15px;">🌍</div>
-              <h3 class="question-text">Diego - De México a Google</h3>
-              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                <strong>Antes:</strong> Desarrollador web en CDMX<br>
-                <strong>Después:</strong> ML Engineer en Google (remoto)<br>
-                <strong>Tiempo:</strong> 12 meses de preparación<br>
-                <strong>Salario:</strong> $120K USD anuales
-              </div>
-            </div>
-            
-            <div class="question-card">
-              <div style="font-size: 2rem; margin-bottom: 15px;">🏥</div>
-              <h3 class="question-text">María - Revolucionando la medicina</h3>
-              <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                <strong>Antes:</strong> Estudiante de medicina<br>
-                <strong>Después:</strong> Creó IA que detecta cáncer en radiografías<br>
-                <strong>Tiempo:</strong> 10 meses aprendiendo mientras estudiaba<br>
-                <strong>Impacto:</strong> Adoptado por 15 hospitales
-              </div>
-            </div>
-          </div>
-
+      <!-- SECCIÓN 6: TU PLAN PASO A PASO -->
+      <section class="workbook-section">
+        <div class="ai-icon">🗺️</div>
+        <h2 class="section-title">🛣️ Tu plan para dominar la IA</h2>
+        <p class="section-subtitle">Paso a paso hacia convertirte en desarrollador de IA</p>
+        
+        <div style="display: grid; gap: 30px; margin: 40px 0;">
+          <!-- NIVEL 1 -->
           <div class="tech-insight">
             <div class="insight-title">
-              🎯 EL PATRÓN DEL ÉXITO
+              📚 NIVEL 1: Las Bases (2-3 meses)
             </div>
             <div class="insight-content">
-              <strong>1. Empezaron con un problema específico</strong> (no "hacer IA genérica")<br>
-              <strong>2. Aprendieron haciendo proyectos reales</strong> (no solo viendo tutoriales)<br>
-              <strong>3. Se enfocaron en resolver problemas de verdad</strong> (que la gente pagaría por resolver)<br>
-              <strong>4. Construyeron en público</strong> (compartieron su progreso en redes)<br>
-              <strong>5. Nunca dejaron de aprender</strong> (se mantuvieron al día con nuevas técnicas)
+              <strong>Matemáticas que SÍ necesitas:</strong><br>
+              • Estadística básica (promedios, probabilidades)<br>
+              • Un poco de álgebra (matrices y vectores)<br>
+              • Lógica básica (si esto, entonces aquello)<br><br>
+              
+              <strong>Python para IA:</strong><br>
+              • Pandas para manejar datos<br>
+              • Matplotlib para hacer gráficas<br>
+              • Scikit-learn para primeros modelos<br><br>
+              
+              <strong>Tu primer proyecto:</strong> Predictor de precios de casas
             </div>
           </div>
 
-          <div style="margin: 40px 0;">
-            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-              💡 ¿Cuál de estos casos te inspira más y por qué?
-            </label>
-            <textarea class="fun-textarea" id="aiWorkbookCaseStudyInsight"
-                      placeholder="Ej: 'Me inspira Carlos porque también vengo de finanzas' o 'Quiero crear algo como María que ayude a la gente'..."></textarea>
+          <!-- NIVEL 2 -->
+          <div class="tech-insight">
+            <div class="insight-title">
+              🧠 NIVEL 2: Redes Neuronales (3-4 meses)
+            </div>
+            <div class="insight-content">
+              <strong>Herramientas principales:</strong><br>
+              • PyTorch (más fácil de aprender)<br>
+              • TensorFlow (para cuando seas pro)<br>
+              • Jupyter Notebooks (para experimentar)<br><br>
+              
+              <strong>Tipos de IA que aprenderás:</strong><br>
+              • Para reconocer imágenes<br>
+              • Para entender texto<br>
+              • Para predecir el futuro<br>
+              • Para crear contenido<br><br>
+              
+              <strong>Tu proyecto estrella:</strong> Sistema que reconoce objetos en fotos
+            </div>
           </div>
-        </section>
 
-        <!-- SECCIÓN 8: TU COMPROMISO PERSONAL -->
-        <section class="workbook-section" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.12) 100%); border: 3px solid rgba(255, 215, 0, 0.6);">
-          <div class="ai-icon" style="font-size: 4.5rem; width: 130px; height: 130px;">🚀</div>
-          <h2 class="section-title" style="font-size: 2.8rem;">💫 Tu compromiso hacia el futuro</h2>
-          <p class="section-subtitle">Es momento de hacer esto oficial</p>
+          <!-- NIVEL 3 -->
+          <div class="tech-insight">
+            <div class="insight-title">
+              ⚙️ NIVEL 3: IA en el Mundo Real (2-3 meses)
+            </div>
+            <div class="insight-content">
+              <strong>Cómo poner tu IA en internet:</strong><br>
+              • FastAPI para crear una página web<br>
+              • Docker para empaquetar tu código<br>
+              • AWS/Google Cloud para subirlo a internet<br><br>
+              
+              <strong>Monitoreo de tu IA:</strong><br>
+              • Saber si funciona bien<br>
+              • Detectar errores automáticamente<br>
+              • Mejorarla con el tiempo<br><br>
+              
+              <strong>Tu logro final:</strong> Una IA funcionando que usen personas reales
+            </div>
+          </div>
+        </div>
+
+        <div style="margin: 40px 0;">
+          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
+            🎯 ¿En qué nivel te ves ahora y cuál sería tu próximo paso?
+          </label>
+          <textarea class="fun-textarea" id="aiWorkbookCurrentPhase"
+                    placeholder="Ej: 'Estoy en Nivel 1, necesito practicar más con pandas' o 'Quiero llegar al Nivel 2 para hacer chatbots'..."></textarea>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 7: EJEMPLOS REALES DE ÉXITO -->
+      <section class="workbook-section">
+        <div class="ai-icon">🏆</div>
+        <h2 class="section-title">💡 Casos reales: Gente como tú que lo logró</h2>
+        <p class="section-subtitle">Historias inspiradoras de desarrolladores que empezaron desde cero</p>
+        
+        <div class="questions-grid">
+          <div class="question-card">
+            <div style="font-size: 2rem; margin-bottom: 15px;">👨‍💻</div>
+            <h3 class="question-text">Carlos - De contador a desarrollador de IA</h3>
+            <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+              <strong>Antes:</strong> Contador en una empresa<br>
+              <strong>Después:</strong> Creó una IA que detecta fraudes para bancos<br>
+              <strong>Tiempo:</strong> 8 meses de estudio<br>
+              <strong>Salario:</strong> De $15K a $45K MXN mensuales
+            </div>
+          </div>
           
-          <div style="margin: 40px 0; padding: 25px; background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 20px; text-align: center;">
-            <div style="font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 10px;">
-              👨‍💻 Futuro desarrollador de IA:
-            </div>
-            <div id="aiWorkbookDisplayName2" style="font-size: 1.8rem; color: #FFD700; font-weight: 700;">
-              [Tu nombre aparecerá aquí]
+          <div class="question-card">
+            <div style="font-size: 2rem; margin-bottom: 15px;">👩‍🚀</div>
+            <h3 class="question-text">Ana - De diseñadora a fundadora de startup</h3>
+            <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+              <strong>Antes:</strong> Diseñadora gráfica freelancer<br>
+              <strong>Después:</strong> Fundó startup de IA para e-commerce<br>
+              <strong>Tiempo:</strong> 6 meses aprendiendo + 4 construyendo<br>
+              <strong>Logro:</strong> $2M USD en financiamiento
             </div>
           </div>
-
-          <div style="margin: 40px 0;">
-            <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin: 25px 0 15px 0; text-align: center;">
-              💭 ¿Por qué AHORA es tu momento para aprender IA?
-            </label>
-            <textarea class="fun-textarea" id="aiWorkbookWhyNow"
-                      placeholder="Ej: 'Porque veo que la IA está en todos lados y no me quiero quedar atrás' o 'Porque quiero crear algo que ayude a mi familia'..." 
-                      style="min-height: 120px;"></textarea>
-          </div>
-
-          <div style="margin: 50px 0; text-align: center; padding: 40px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.15) 100%); border: 3px solid rgba(255, 215, 0, 0.5); border-radius: 25px;">
-            <div style="font-family: 'Orbitron', monospace; font-size: 1.8rem; color: #FFD700; margin-bottom: 25px;">
-              ✨ Mi compromiso personal:
-            </div>
-            <div style="font-size: 1.4rem; margin-bottom: 20px; color: rgba(255, 215, 0, 0.9);">"Me comprometo a aprender IA porque..."</div>
-            <input type="text" class="fun-input" placeholder="quiero cambiar mi futuro profesional" id="aiWorkbookCommitmentReason" 
-                   style="font-size: 1.2rem; text-align: center;">
-          </div>
-
-          <div style="margin: 40px 0; text-align: center; padding: 30px; background: rgba(0, 0, 0, 0.7); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px;">
-            <p style="color: rgba(255, 215, 0, 0.8); font-size: 1.2rem; margin-bottom: 20px; font-family: 'Orbitron', monospace;">
-              ⏰ ¿En cuántos meses quieres tener tu primera IA funcionando?
-            </p>
-            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
-              <input type="number" class="fun-input" placeholder="6" id="aiWorkbookTimelineMonths" 
-                     style="max-width: 150px; text-align: center; font-size: 1.4rem;" 
-                     min="1" max="60">
-              <div style="font-size: 1.1rem; color: #FFD700; font-weight: 600;">meses</div>
-            </div>
-            <p style="margin-top: 15px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.6);">
-              (La mayoría lo logra en 6-12 meses)
-            </p>
-          </div>
-        </section>
-
-        <!-- SECCIÓN FINAL ÉPICA -->
-        <section class="final-section">
-          <div class="ai-icon" style="font-size: 4rem; width: 120px; height: 120px; margin: 0 auto 30px;">🎯</div>
           
-          <h1 class="final-title">¡Tu journey como desarrollador de IA comienza AHORA!</h1>
+          <div class="question-card">
+            <div style="font-size: 2rem; margin-bottom: 15px;">🌍</div>
+            <h3 class="question-text">Diego - De México a Google</h3>
+            <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+              <strong>Antes:</strong> Desarrollador web en CDMX<br>
+              <strong>Después:</strong> ML Engineer en Google (remoto)<br>
+              <strong>Tiempo:</strong> 12 meses de preparación<br>
+              <strong>Salario:</strong> $120K USD anuales
+            </div>
+          </div>
           
-          <p class="final-text">
-            Has completado la evaluación más completa para desarrolladores de IA.<br>
-            Es momento de transformar tu carrera y construir el futuro.
+          <div class="question-card">
+            <div style="font-size: 2rem; margin-bottom: 15px;">🏥</div>
+            <h3 class="question-text">María - Revolucionando la medicina</h3>
+            <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+              <strong>Antes:</strong> Estudiante de medicina<br>
+              <strong>Después:</strong> Creó IA que detecta cáncer en radiografías<br>
+              <strong>Tiempo:</strong> 10 meses aprendiendo mientras estudiaba<br>
+              <strong>Impacto:</strong> Adoptado por 15 hospitales
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-insight">
+          <div class="insight-title">
+            🎯 EL PATRÓN DEL ÉXITO
+          </div>
+          <div class="insight-content">
+            <strong>1. Empezaron con un problema específico</strong> (no "hacer IA genérica")<br>
+            <strong>2. Aprendieron haciendo proyectos reales</strong> (no solo viendo tutoriales)<br>
+            <strong>3. Se enfocaron en resolver problemas de verdad</strong> (que la gente pagaría por resolver)<br>
+            <strong>4. Construyeron en público</strong> (compartieron su progreso en redes)<br>
+            <strong>5. Nunca dejaron de aprender</strong> (se mantuvieron al día con nuevas técnicas)
+          </div>
+        </div>
+
+        <div style="margin: 40px 0;">
+          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
+            💡 ¿Cuál de estos casos te inspira más y por qué?
+          </label>
+          <textarea class="fun-textarea" id="aiWorkbookCaseStudyInsight"
+                    placeholder="Ej: 'Me inspira Carlos porque también vengo de finanzas' o 'Quiero crear algo como María que ayude a la gente'..."></textarea>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 8: TU COMPROMISO PERSONAL -->
+      <section class="workbook-section" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.12) 100%); border: 3px solid rgba(255, 215, 0, 0.6);">
+        <div class="ai-icon" style="font-size: 4.5rem; width: 130px; height: 130px;">🚀</div>
+        <h2 class="section-title" style="font-size: 2.8rem;">💫 Tu compromiso hacia el futuro</h2>
+        <p class="section-subtitle">Es momento de hacer esto oficial</p>
+        
+        <div style="margin: 40px 0; padding: 25px; background: rgba(0, 0, 0, 0.8); border: 2px solid #FFD700; border-radius: 20px; text-align: center;">
+          <div style="font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 10px;">
+            👨‍💻 Futuro desarrollador de IA:
+          </div>
+          <div id="aiWorkbookDisplayName2" style="font-size: 1.8rem; color: #FFD700; font-weight: 700;">
+            [Tu nombre aparecerá aquí]
+          </div>
+        </div>
+
+        <div style="margin: 40px 0;">
+          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin: 25px 0 15px 0; text-align: center;">
+            💭 ¿Por qué AHORA es tu momento para aprender IA?
+          </label>
+          <textarea class="fun-textarea" id="aiWorkbookWhyNow"
+                    placeholder="Ej: 'Porque veo que la IA está en todos lados y no me quiero quedar atrás' o 'Porque quiero crear algo que ayude a mi familia'..." 
+                    style="min-height: 120px;"></textarea>
+        </div>
+
+        <div style="margin: 50px 0; text-align: center; padding: 40px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(255, 215, 0, 0.15) 100%); border: 3px solid rgba(255, 215, 0, 0.5); border-radius: 25px;">
+          <div style="font-family: 'Orbitron', monospace; font-size: 1.8rem; color: #FFD700; margin-bottom: 25px;">
+            ✨ Mi compromiso personal:
+          </div>
+          <div style="font-size: 1.4rem; margin-bottom: 20px; color: rgba(255, 215, 0, 0.9);">"Me comprometo a aprender IA porque..."</div>
+          <input type="text" class="fun-input" placeholder="quiero cambiar mi futuro profesional" id="aiWorkbookCommitmentReason" 
+                 style="font-size: 1.2rem; text-align: center;">
+        </div>
+
+        <div style="margin: 40px 0; text-align: center; padding: 30px; background: rgba(0, 0, 0, 0.7); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 20px;">
+          <p style="color: rgba(255, 215, 0, 0.8); font-size: 1.2rem; margin-bottom: 20px; font-family: 'Orbitron', monospace;">
+            ⏰ ¿En cuántos meses quieres tener tu primera IA funcionando?
           </p>
-          
-          <div style="text-align: center; margin: 40px 0;">
-            <button class="epic-btn btn-download" onclick="downloadWorkbook(); return false;" style="cursor: pointer;">
-              📥 DESCARGAR MI ANÁLISIS COMPLETO
-            </button>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <input type="number" class="fun-input" placeholder="6" id="aiWorkbookTimelineMonths" 
+                   style="max-width: 150px; text-align: center; font-size: 1.4rem;" 
+                   min="1" max="60">
+            <div style="font-size: 1.1rem; color: #FFD700; font-weight: 600;">meses</div>
           </div>
-          
-          <div style="margin-top: 50px; padding: 30px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.3);">
-            <p style="font-size: 1.2rem; font-weight: 600; color: #FFD700; margin-bottom: 10px;">
-              🤖 "El futuro pertenece a quienes CONSTRUYEN IA, no solo la usan"
-            </p>
-            <p style="color: rgba(255, 215, 0, 0.7); font-size: 1rem;">
-              Tu yo del 2030 te está esperando ✨
-            </p>
-          </div>
-        </section>
+          <p style="margin-top: 15px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.6);">
+            (La mayoría lo logra en 6-12 meses)
+          </p>
+        </div>
+      </section>
 
-      </div>
+      <!-- SECCIÓN FINAL ÉPICA -->
+      <section class="final-section">
+        <div class="ai-icon" style="font-size: 4rem; width: 120px; height: 120px; margin: 0 auto 30px;">🎯</div>
+        
+        <h1 class="final-title">¡Tu journey como desarrollador de IA comienza AHORA!</h1>
+        
+        <p class="final-text">
+          Has completado la evaluación más completa para desarrolladores de IA.<br>
+          Es momento de transformar tu carrera y construir el futuro.
+        </p>
+        
+        <div style="text-align: center; margin: 40px 0;">
+          <button class="epic-btn btn-download" onclick="downloadWorkbook(); return false;" style="cursor: pointer;">
+            📥 DESCARGAR MI ANÁLISIS COMPLETO
+          </button>
+        </div>
+        
+        <div style="margin-top: 50px; padding: 30px; background: rgba(255, 215, 0, 0.1); border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.3);">
+          <p style="font-size: 1.2rem; font-weight: 600; color: #FFD700; margin-bottom: 10px;">
+            🤖 "El futuro pertenece a quienes CONSTRUYEN IA, no solo la usan"
+          </p>
+          <p style="color: rgba(255, 215, 0, 0.7); font-size: 1rem;">
+            Tu yo del 2030 te está esperando ✨
+          </p>
+        </div>
+      </section>
+
     </div>
   </div>
         
