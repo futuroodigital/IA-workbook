@@ -1784,26 +1784,53 @@
           </div>
           
           <div style="display: flex; justify-content: center; gap: 15px; margin: 25px 0;">
-            <input type="text" 
+            <input type="number" 
+                   min="0" 
+                   max="9"
                    maxlength="1" 
                    id="code1" 
-                   oninput="moveToNext(this, 'code2')"
-                   style="width: 70px; height: 70px; background: rgba(255, 0, 0, 0.1); border: 3px solid #FF0000; border-radius: 15px; text-align: center; font-size: 2.2rem; font-family: 'Orbitron', monospace; font-weight: 800; color: #FFFFFF; outline: none; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);">
-            <input type="text" 
+                   class="simple-code-input"
+                   style="width: 70px !important; height: 70px !important; background: #000 !important; border: 3px solid #FF0000 !important; border-radius: 10px !important; text-align: center !important; font-size: 2rem !important; font-family: 'Orbitron', monospace !important; font-weight: bold !important; color: #FFFFFF !important; outline: none !important; cursor: text !important; pointer-events: auto !important;">
+            
+            <input type="number" 
+                   min="0" 
+                   max="9"
                    maxlength="1" 
                    id="code2" 
-                   oninput="moveToNext(this, 'code3')"
-                   style="width: 70px; height: 70px; background: rgba(255, 0, 0, 0.1); border: 3px solid #FF0000; border-radius: 15px; text-align: center; font-size: 2.2rem; font-family: 'Orbitron', monospace; font-weight: 800; color: #FFFFFF; outline: none; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);">
-            <input type="text" 
+                   class="simple-code-input"
+                   style="width: 70px !important; height: 70px !important; background: #000 !important; border: 3px solid #FF0000 !important; border-radius: 10px !important; text-align: center !important; font-size: 2rem !important; font-family: 'Orbitron', monospace !important; font-weight: bold !important; color: #FFFFFF !important; outline: none !important; cursor: text !important; pointer-events: auto !important;">
+            
+            <input type="number" 
+                   min="0" 
+                   max="9"
                    maxlength="1" 
                    id="code3" 
-                   oninput="moveToNext(this, 'code4')"
-                   style="width: 70px; height: 70px; background: rgba(255, 0, 0, 0.1); border: 3px solid #FF0000; border-radius: 15px; text-align: center; font-size: 2.2rem; font-family: 'Orbitron', monospace; font-weight: 800; color: #FFFFFF; outline: none; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);">
-            <input type="text" 
+                   class="simple-code-input"
+                   style="width: 70px !important; height: 70px !important; background: #000 !important; border: 3px solid #FF0000 !important; border-radius: 10px !important; text-align: center !important; font-size: 2rem !important; font-family: 'Orbitron', monospace !important; font-weight: bold !important; color: #FFFFFF !important; outline: none !important; cursor: text !important; pointer-events: auto !important;">
+            
+            <input type="number" 
+                   min="0" 
+                   max="9"
                    maxlength="1" 
                    id="code4" 
-                   oninput="moveToNext(this, null)"
-                   style="width: 70px; height: 70px; background: rgba(255, 0, 0, 0.1); border: 3px solid #FF0000; border-radius: 15px; text-align: center; font-size: 2.2rem; font-family: 'Orbitron', monospace; font-weight: 800; color: #FFFFFF; outline: none; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);">
+                   class="simple-code-input"
+                   style="width: 70px !important; height: 70px !important; background: #000 !important; border: 3px solid #FF0000 !important; border-radius: 10px !important; text-align: center !important; font-size: 2rem !important; font-family: 'Orbitron', monospace !important; font-weight: bold !important; color: #FFFFFF !important; outline: none !important; cursor: text !important; pointer-events: auto !important;">
+          </div>
+          
+          <!-- BOTONES DE PRUEBA PARA FORZAR FUNCIONALIDAD -->
+          <div style="text-align: center; margin: 20px 0;">
+            <button onclick="document.getElementById('code1').focus(); document.getElementById('code1').click();" 
+                    style="background: #FFFF00; color: #000; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer; font-weight: bold;">
+              ACTIVAR CAMPO 1
+            </button>
+            <button onclick="testCodeInputs()" 
+                    style="background: #00FF00; color: #000; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer; font-weight: bold;">
+              PROBAR CÓDIGO 1234
+            </button>
+            <button onclick="checkCodeStatus()" 
+                    style="background: #00FFFF; color: #000; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer; font-weight: bold;">
+              VERIFICAR ESTADO
+            </button>
           </div>
           <button onclick="unlockContent()" 
                   style="background: linear-gradient(135deg, #FF0000 0%, #FFFF00 50%, #FF0000 100%); border: none; padding: 18px 45px; border-radius: 50px; color: #000000; font-family: 'Orbitron', monospace; font-size: 1.2rem; font-weight: 800; cursor: pointer; transition: all 0.3s ease; margin: 25px 0; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6); text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);"
@@ -1931,155 +1958,240 @@ print(f"Accuracy: {accuracy:.2f}")
         </div>
       </section>
 
-      <!-- SECCIÓN 6: TU PLAN PASO A PASO -->
+      <!-- SECCIÓN 6: SIMULADOR INTERACTIVO SÚPER SIMPLE -->
       <section class="workbook-section">
-        <div class="ai-icon">🗺️</div>
-        <h2 class="section-title">🛣️ Tu plan para dominar la IA</h2>
-        <p class="section-subtitle">Paso a paso hacia convertirte en desarrollador de IA</p>
+        <div class="ai-icon">🎮</div>
+        <h2 class="section-title">🛠️ Juego: Arma tu Kit de Herramientas de IA</h2>
+        <p class="section-subtitle">¡Como armar LEGO! Haz clic en las herramientas que quieres usar</p>
         
-        <div style="display: grid; gap: 30px; margin: 40px 0;">
-          <!-- NIVEL 1 -->
-          <div class="tech-insight">
-            <div class="insight-title">
-              📚 NIVEL 1: Las Bases (2-3 meses)
-            </div>
-            <div class="insight-content">
-              <strong>Matemáticas que SÍ necesitas:</strong><br>
-              • Estadística básica (promedios, probabilidades)<br>
-              • Un poco de álgebra (matrices y vectores)<br>
-              • Lógica básica (si esto, entonces aquello)<br><br>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0;">
+          <!-- HERRAMIENTAS DISPONIBLES -->
+          <div style="background: rgba(255, 215, 0, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 20px; padding: 30px;">
+            <h3 style="font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
+              🧰 HERRAMIENTAS DISPONIBLES
+            </h3>
+            <p style="color: rgba(255, 215, 0, 0.8); text-align: center; margin-bottom: 20px; font-size: 0.9rem;">
+              Haz clic en cada herramienta para agregarla a tu kit
+            </p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+              <div class="simple-tool" onclick="addSimpleTool('python')" style="background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">🐍</div>
+                <div style="font-weight: 600; color: #FFD700; margin-bottom: 5px;">Python</div>
+                <div style="font-size: 0.8rem; color: rgba(255, 215, 0, 0.7);">El lenguaje básico</div>
+              </div>
               
-              <strong>Python para IA:</strong><br>
-              • Pandas para manejar datos<br>
-              • Matplotlib para hacer gráficas<br>
-              • Scikit-learn para primeros modelos<br><br>
+              <div class="simple-tool" onclick="addSimpleTool('pandas')" style="background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">🐼</div>
+                <div style="font-weight: 600; color: #FFD700; margin-bottom: 5px;">Pandas</div>
+                <div style="font-size: 0.8rem; color: rgba(255, 215, 0, 0.7);">Para manejar datos</div>
+              </div>
               
-              <strong>Tu primer proyecto:</strong> Predictor de precios de casas
-            </div>
-          </div>
-
-          <!-- NIVEL 2 -->
-          <div class="tech-insight">
-            <div class="insight-title">
-              🧠 NIVEL 2: Redes Neuronales (3-4 meses)
-            </div>
-            <div class="insight-content">
-              <strong>Herramientas principales:</strong><br>
-              • PyTorch (más fácil de aprender)<br>
-              • TensorFlow (para cuando seas pro)<br>
-              • Jupyter Notebooks (para experimentar)<br><br>
+              <div class="simple-tool" onclick="addSimpleTool('brain')" style="background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">🧠</div>
+                <div style="font-weight: 600; color: #FFD700; margin-bottom: 5px;">IA Cerebro</div>
+                <div style="font-size: 0.8rem; color: rgba(255, 215, 0, 0.7);">Para crear inteligencia</div>
+              </div>
               
-              <strong>Tipos de IA que aprenderás:</strong><br>
-              • Para reconocer imágenes<br>
-              • Para entender texto<br>
-              • Para predecir el futuro<br>
-              • Para crear contenido<br><br>
+              <div class="simple-tool" onclick="addSimpleTool('cloud')" style="background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">☁️</div>
+                <div style="font-weight: 600; color: #FFD700; margin-bottom: 5px;">La Nube</div>
+                <div style="font-size: 0.8rem; color: rgba(255, 215, 0, 0.7);">Para poner online</div>
+              </div>
               
-              <strong>Tu proyecto estrella:</strong> Sistema que reconoce objetos en fotos
-            </div>
-          </div>
-
-          <!-- NIVEL 3 -->
-          <div class="tech-insight">
-            <div class="insight-title">
-              ⚙️ NIVEL 3: IA en el Mundo Real (2-3 meses)
-            </div>
-            <div class="insight-content">
-              <strong>Cómo poner tu IA en internet:</strong><br>
-              • FastAPI para crear una página web<br>
-              • Docker para empaquetar tu código<br>
-              • AWS/Google Cloud para subirlo a internet<br><br>
+              <div class="simple-tool" onclick="addSimpleTool('notebook')" style="background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">📓</div>
+                <div style="font-weight: 600; color: #FFD700; margin-bottom: 5px;">Cuaderno</div>
+                <div style="font-size: 0.8rem; color: rgba(255, 215, 0, 0.7);">Para experimentar</div>
+              </div>
               
-              <strong>Monitoreo de tu IA:</strong><br>
-              • Saber si funciona bien<br>
-              • Detectar errores automáticamente<br>
-              • Mejorarla con el tiempo<br><br>
-              
-              <strong>Tu logro final:</strong> Una IA funcionando que usen personas reales
+              <div class="simple-tool" onclick="addSimpleTool('graphs')" style="background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.3s ease;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">📊</div>
+                <div style="font-weight: 600; color: #FFD700; margin-bottom: 5px;">Gráficas</div>
+                <div style="font-size: 0.8rem; color: rgba(255, 215, 0, 0.7);">Para ver resultados</div>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div style="margin: 40px 0;">
-          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-            🎯 ¿En qué nivel te ves ahora y cuál sería tu próximo paso?
-          </label>
-          <textarea class="fun-textarea" id="aiWorkbookCurrentPhase"
-                    placeholder="Ej: 'Estoy en Nivel 1, necesito practicar más con pandas' o 'Quiero llegar al Nivel 2 para hacer chatbots'..."></textarea>
+          
+          <!-- TU KIT PERSONAL -->
+          <div style="background: rgba(0, 0, 0, 0.7); border: 2px dashed rgba(255, 215, 0, 0.5); border-radius: 20px; padding: 30px; min-height: 400px;">
+            <h3 style="font-family: 'Orbitron', monospace; font-size: 1.4rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
+              🎒 TU KIT PERSONAL
+            </h3>
+            
+            <div id="simpleToolKit" style="min-height: 250px; text-align: center; color: rgba(255, 215, 0, 0.5); font-size: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+              <div style="font-size: 3rem; margin-bottom: 15px;">🎒</div>
+              <div>Haz clic en las herramientas de arriba para llenartu kit</div>
+            </div>
+            
+            <button onclick="checkSimpleKit()" style="width: 100%; background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; border: none; padding: 18px; border-radius: 15px; font-family: 'Orbitron', monospace; font-weight: 700; font-size: 1.1rem; cursor: pointer; margin-top: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+              🔍 ¿QUÉ TAN BUENO ES MI KIT?
+            </button>
+            
+            <button onclick="clearSimpleKit()" style="width: 100%; background: rgba(255, 0, 0, 0.2); color: #FFD700; border: 2px solid rgba(255, 0, 0, 0.5); padding: 12px; border-radius: 10px; font-family: 'Orbitron', monospace; font-weight: 600; cursor: pointer; margin-top: 10px;">
+              🗑️ VACIAR KIT
+            </button>
+            
+            <div id="simpleKitResult" style="margin-top: 20px; padding: 20px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; display: none;"></div>
+          </div>
         </div>
       </section>
 
-      <!-- SECCIÓN 7: EJEMPLOS REALES DE ÉXITO -->
+      <!-- SECCIÓN 7: JUEGO SÚPER SIMPLE DE MATCHING -->
       <section class="workbook-section">
-        <div class="ai-icon">🏆</div>
-        <h2 class="section-title">💡 Casos reales: Gente como tú que lo logró</h2>
-        <p class="section-subtitle">Historias inspiradoras de desarrolladores que empezaron desde cero</p>
+        <div class="ai-icon">🎯</div>
+        <h2 class="section-title">🎮 Juego: ¿Para qué sirve cada cosa?</h2>
+        <p class="section-subtitle">Conecta cada herramienta con lo que hace (¡como memoria!)</p>
         
-        <div class="questions-grid">
-          <div class="question-card">
-            <div style="font-size: 2rem; margin-bottom: 15px;">👨‍💻</div>
-            <h3 class="question-text">Carlos - De contador a desarrollador de IA</h3>
-            <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-              <strong>Antes:</strong> Contador en una empresa<br>
-              <strong>Después:</strong> Creó una IA que detecta fraudes para bancos<br>
-              <strong>Tiempo:</strong> 8 meses de estudio<br>
-              <strong>Salario:</strong> De $15K a $45K MXN mensuales
-            </div>
-          </div>
-          
-          <div class="question-card">
-            <div style="font-size: 2rem; margin-bottom: 15px;">👩‍🚀</div>
-            <h3 class="question-text">Ana - De diseñadora a fundadora de startup</h3>
-            <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-              <strong>Antes:</strong> Diseñadora gráfica freelancer<br>
-              <strong>Después:</strong> Fundó startup de IA para e-commerce<br>
-              <strong>Tiempo:</strong> 6 meses aprendiendo + 4 construyendo<br>
-              <strong>Logro:</strong> $2M USD en financiamiento
-            </div>
-          </div>
-          
-          <div class="question-card">
-            <div style="font-size: 2rem; margin-bottom: 15px;">🌍</div>
-            <h3 class="question-text">Diego - De México a Google</h3>
-            <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-              <strong>Antes:</strong> Desarrollador web en CDMX<br>
-              <strong>Después:</strong> ML Engineer en Google (remoto)<br>
-              <strong>Tiempo:</strong> 12 meses de preparación<br>
-              <strong>Salario:</strong> $120K USD anuales
-            </div>
-          </div>
-          
-          <div class="question-card">
-            <div style="font-size: 2rem; margin-bottom: 15px;">🏥</div>
-            <h3 class="question-text">María - Revolucionando la medicina</h3>
-            <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-              <strong>Antes:</strong> Estudiante de medicina<br>
-              <strong>Después:</strong> Creó IA que detecta cáncer en radiografías<br>
-              <strong>Tiempo:</strong> 10 meses aprendiendo mientras estudiaba<br>
-              <strong>Impacto:</strong> Adoptado por 15 hospitales
-            </div>
-          </div>
-        </div>
-
-        <div class="tech-insight">
-          <div class="insight-title">
-            🎯 EL PATRÓN DEL ÉXITO
-          </div>
-          <div class="insight-content">
-            <strong>1. Empezaron con un problema específico</strong> (no "hacer IA genérica")<br>
-            <strong>2. Aprendieron haciendo proyectos reales</strong> (no solo viendo tutoriales)<br>
-            <strong>3. Se enfocaron en resolver problemas de verdad</strong> (que la gente pagaría por resolver)<br>
-            <strong>4. Construyeron en público</strong> (compartieron su progreso en redes)<br>
-            <strong>5. Nunca dejaron de aprender</strong> (se mantuvieron al día con nuevas técnicas)
-          </div>
-        </div>
-
         <div style="margin: 40px 0;">
-          <label style="display: block; font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 20px; text-align: center;">
-            💡 ¿Cuál de estos casos te inspira más y por qué?
-          </label>
-          <textarea class="fun-textarea" id="aiWorkbookCaseStudyInsight"
-                    placeholder="Ej: 'Me inspira Carlos porque también vengo de finanzas' o 'Quiero crear algo como María que ayude a la gente'..."></textarea>
+          <!-- PUNTUACIÓN -->
+          <div style="text-align: center; margin-bottom: 30px; padding: 20px; background: rgba(255, 215, 0, 0.1); border-radius: 15px;">
+            <div style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #FFD700; margin-bottom: 10px;">
+              Aciertos: <span id="simpleMatchScore">0</span> de 3 🎯
+            </div>
+            <div style="background: rgba(255, 215, 0, 0.2); height: 12px; border-radius: 10px; overflow: hidden;">
+              <div id="simpleMatchProgress" style="background: linear-gradient(90deg, #4CAF50, #FFD700); height: 100%; width: 0%; transition: all 0.5s ease; border-radius: 10px;"></div>
+            </div>
+            <div style="margin-top: 10px; font-size: 0.9rem; color: rgba(255, 215, 0, 0.8);">
+              Paso 1: Haz clic en una herramienta • Paso 2: Haz clic en lo que hace
+            </div>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            <!-- HERRAMIENTAS (IZQUIERDA) -->
+            <div>
+              <h3 style="font-family: 'Orbitron', monospace; color: #FFD700; margin-bottom: 25px; text-align: center; font-size: 1.3rem;">
+                🛠️ HERRAMIENTAS
+              </h3>
+              <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="simple-match-tool" data-tool="opencv" onclick="selectSimpleTool('opencv', this)" style="background: rgba(255, 215, 0, 0.1); border: 3px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 25px; cursor: pointer; text-align: center; transition: all 0.3s ease;">
+                  <div style="font-size: 2.5rem; margin-bottom: 12px;">👁️</div>
+                  <div style="font-weight: 700; color: #FFD700; font-size: 1.1rem;">Detector de Imágenes</div>
+                  <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); margin-top: 5px;">Una herramienta que "ve" fotos</div>
+                </div>
+                
+                <div class="simple-match-tool" data-tool="chatbot" onclick="selectSimpleTool('chatbot', this)" style="background: rgba(255, 215, 0, 0.1); border: 3px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 25px; cursor: pointer; text-align: center; transition: all 0.3s ease;">
+                  <div style="font-size: 2.5rem; margin-bottom: 12px;">🤖</div>
+                  <div style="font-weight: 700; color: #FFD700; font-size: 1.1rem;">Robot Conversador</div>
+                  <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); margin-top: 5px;">Un robot que habla contigo</div>
+                </div>
+                
+                <div class="simple-match-tool" data-tool="predictor" onclick="selectSimpleTool('predictor', this)" style="background: rgba(255, 215, 0, 0.1); border: 3px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 25px; cursor: pointer; text-align: center; transition: all 0.3s ease;">
+                  <div style="font-size: 2.5rem; margin-bottom: 12px;">🔮</div>
+                  <div style="font-weight: 700; color: #FFD700; font-size: 1.1rem;">Adivino del Futuro</div>
+                  <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.7); margin-top: 5px;">Predice lo que va a pasar</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- LO QUE HACEN (DERECHA) -->
+            <div>
+              <h3 style="font-family: 'Orbitron', monospace; color: #FFD700; margin-bottom: 25px; text-align: center; font-size: 1.3rem;">
+                ✨ LO QUE HACEN
+              </h3>
+              <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="simple-match-action" data-action="see-photos" onclick="matchSimpleTools('see-photos', this)" style="background: rgba(255, 215, 0, 0.05); border: 3px dashed rgba(255, 215, 0, 0.3); border-radius: 20px; padding: 25px; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+                  <div style="color: #FFD700; font-weight: 600; font-size: 1.1rem; line-height: 1.4;">
+                    📸 Reconoce qué hay en las fotos<br>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">(personas, animales, objetos)</span>
+                  </div>
+                </div>
+                
+                <div class="simple-match-action" data-action="chat-people" onclick="matchSimpleTools('chat-people', this)" style="background: rgba(255, 215, 0, 0.05); border: 3px dashed rgba(255, 215, 0, 0.3); border-radius: 20px; padding: 25px; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+                  <div style="color: #FFD700; font-weight: 600; font-size: 1.1rem; line-height: 1.4;">
+                    💬 Conversa con las personas<br>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">(responde preguntas, ayuda)</span>
+                  </div>
+                </div>
+                
+                <div class="simple-match-action" data-action="predict-future" onclick="matchSimpleTools('predict-future', this)" style="background: rgba(255, 215, 0, 0.05); border: 3px dashed rgba(255, 215, 0, 0.3); border-radius: 20px; padding: 25px; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+                  <div style="color: #FFD700; font-weight: 600; font-size: 1.1rem; line-height: 1.4;">
+                    🎯 Predice el futuro<br>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">(precios, clima, ventas)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div style="text-align: center; margin-top: 40px;">
+            <button onclick="resetSimpleMatch()" style="background: rgba(255, 215, 0, 0.2); border: 3px solid rgba(255, 215, 0, 0.5); color: #FFD700; padding: 15px 30px; border-radius: 15px; font-family: 'Orbitron', monospace; font-weight: 600; cursor: pointer; font-size: 1rem; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+              🔄 JUGAR OTRA VEZ
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 8: TU CAMINO SÚPER SIMPLE -->
+      <section class="workbook-section">
+        <div class="ai-icon">🛤️</div>
+        <h2 class="section-title">🗺️ Tu Camino hacia la IA</h2>
+        <p class="section-subtitle">¿Qué sabes ahora? Te mostramos tu siguiente paso</p>
+        
+        <div style="margin: 40px 0;">
+          <!-- SELECTOR SÚPER SIMPLE -->
+          <div style="text-align: center; margin-bottom: 40px;">
+            <h3 style="font-family: 'Orbitron', monospace; color: #FFD700; margin-bottom: 25px; font-size: 1.4rem;">
+              🤔 ¿Qué describes mejor tu situación?
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 30px 0;">
+              <div class="simple-level" onclick="showSimplePath('zero')" style="background: rgba(255, 215, 0, 0.1); border: 3px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 30px; cursor: pointer; text-align: center; transition: all 0.3s ease;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">🌱</div>
+                <div style="font-weight: 700; color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">COMPLETAMENTE NUEVO</div>
+                <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+                  "No sé nada de programación ni de IA. ¿Por dónde empiezo?"
+                </div>
+              </div>
+              
+              <div class="simple-level" onclick="showSimplePath('basic')" style="background: rgba(255, 215, 0, 0.1); border: 3px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 30px; cursor: pointer; text-align: center; transition: all 0.3s ease;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">💻</div>
+                <div style="font-weight: 700; color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">SÉ UN POQUITO</div>
+                <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+                  "He hecho algunas páginas web o scripts básicos"
+                </div>
+              </div>
+              
+              <div class="simple-level" onclick="showSimplePath('experienced')" style="background: rgba(255, 215, 0, 0.1); border: 3px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 30px; cursor: pointer; text-align: center; transition: all 0.3s ease;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">👨‍💻</div>
+                <div style="font-weight: 700; color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">PROGRAMADOR</div>
+                <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
+                  "Ya trabajo como programador pero quiero aprender IA"
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- CAMINO PERSONALIZADO -->
+          <div id="simplePath" style="display: none;">
+            <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%); border: 3px solid rgba(255, 215, 0, 0.5); border-radius: 25px; padding: 40px; text-align: center; margin: 30px 0;">
+              <div style="font-family: 'Orbitron', monospace; font-size: 1.6rem; color: #FFD700; margin-bottom: 20px; font-weight: 700;">
+                🎯 TU CAMINO PERSONALIZADO
+              </div>
+              <div id="pathContent" style="font-size: 1.1rem; color: rgba(255, 215, 0, 0.9); line-height: 1.6;">
+                <!-- Se llenará dinámicamente -->
+              </div>
+              
+              <!-- TIMELINE SIMPLE -->
+              <div id="simpleTimeline" style="margin-top: 30px;">
+                <!-- Se llenará dinámicamente -->
+              </div>
+              
+              <div style="margin-top: 30px;">
+                <label style="display: block; font-family: 'Orbitron', monospace; color: #FFD700; margin-bottom: 15px; font-size: 1.1rem;">
+                  ⏰ ¿En cuántos meses quieres lograrlo?
+                </label>
+                <input type="range" id="simpleTimeSlider" min="3" max="24" value="12" 
+                       style="width: 80%; height: 8px; background: rgba(255, 215, 0, 0.2); border-radius: 5px; outline: none; margin: 15px 0;"
+                       oninput="updateSimpleTime(this.value)">
+                <div style="font-size: 1.4rem; color: #FFD700; font-weight: 700; margin-top: 10px;">
+                  <span id="simpleTimeDisplay">12</span> meses
+                </div>
+                <div id="timeAdvice" style="margin-top: 15px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 10px; font-size: 0.95rem; color: rgba(255, 215, 0, 0.8);">
+                  Con 12 meses tienes tiempo perfecto para aprender bien
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -2587,172 +2699,649 @@ print(f"Accuracy: {accuracy:.2f}")
       return specs[projectType] || specs['nlp-system'];
     }
 
-    // SISTEMA DE BLOQUEO CON CÓDIGO SIMPLIFICADO Y FUNCIONAL
-    function moveToNext(current, nextId) {
-      console.log('moveToNext called:', current.value, nextId);
-      
-      // Si hay contenido y hay siguiente campo
-      if (current.value.length === 1 && nextId) {
-        const nextInput = document.getElementById(nextId);
-        if (nextInput) {
-          nextInput.focus();
-        }
-      }
-      
-      // Validar código completo
-      setTimeout(validateCode, 50);
-    }
+    // ========== FUNCIONES SÚPER SIMPLES Y FUNCIONALES ==========
 
-    function validateCode() {
-      const code1 = document.getElementById('code1');
-      const code2 = document.getElementById('code2');
-      const code3 = document.getElementById('code3');
-      const code4 = document.getElementById('code4');
+    // Variables globales para los juegos
+    let simpleKit = [];
+    let simpleMatchScore = 0;
+    let selectedTool = null;
+    let simpleMatches = {
+      'opencv': 'see-photos',
+      'chatbot': 'chat-people', 
+      'predictor': 'predict-future'
+    };
+
+    // ========== SIMULADOR DE KIT DE IA ==========
+    function addSimpleTool(toolName) {
+      console.log('Agregando herramienta:', toolName);
       
-      if (!code1 || !code2 || !code3 || !code4) {
-        console.log('Error: Inputs de código no encontrados');
+      // Evitar duplicados
+      if (simpleKit.includes(toolName)) {
+        showCustomMessage('⚠️ Ya tienes esa herramienta en tu kit!');
         return;
       }
       
-      const fullCode = code1.value + code2.value + code3.value + code4.value;
-      console.log('Código actual:', fullCode);
+      // Agregar al kit
+      simpleKit.push(toolName);
       
-      if (fullCode.length === 4) {
-        if (fullCode === '1234') {
-          console.log('¡Código correcto!');
-          unlockContent();
-        } else {
-          console.log('Código incorrecto:', fullCode);
-          showCodeError();
-        }
+      // Efecto visual en la herramienta
+      const toolElement = document.querySelector(`[onclick*="${toolName}"]`);
+      if (toolElement) {
+        toolElement.style.opacity = '0.6';
+        toolElement.style.transform = 'scale(0.95)';
+        toolElement.style.background = 'rgba(76, 175, 80, 0.2)';
+        toolElement.style.borderColor = '#4CAF50';
       }
+      
+      // Actualizar display del kit
+      updateSimpleKitDisplay();
+      
+      // Mensaje de éxito
+      const toolNames = {
+        python: 'Python 🐍',
+        pandas: 'Pandas 🐼', 
+        brain: 'IA Cerebro 🧠',
+        cloud: 'La Nube ☁️',
+        notebook: 'Cuaderno 📓',
+        graphs: 'Gráficas 📊'
+      };
+      
+      showCustomMessage(`✅ ¡${toolNames[toolName]} agregado a tu kit!`);
+      
+      // Guardar progreso
+      aiWorkbookUserData.simpleKit = simpleKit;
+      saveData();
     }
 
-    function showCodeError() {
-      console.log('Mostrando error de código...');
-      const codeInputs = document.querySelectorAll('#code1, #code2, #code3, #code4');
+    function updateSimpleKitDisplay() {
+      const kitArea = document.getElementById('simpleToolKit');
+      if (!kitArea) return;
       
-      codeInputs.forEach(input => {
-        input.style.borderColor = '#FF0000';
-        input.style.animation = 'shake 0.5s ease';
-        input.style.boxShadow = '0 0 30px rgba(255, 0, 0, 0.8)';
-        input.style.background = 'rgba(255, 0, 0, 0.3)';
+      if (simpleKit.length === 0) {
+        kitArea.innerHTML = `
+          <div style="font-size: 3rem; margin-bottom: 15px;">🎒</div>
+          <div>Haz clic en las herramientas de arriba para llenar tu kit</div>
+        `;
+        return;
+      }
+      
+      const toolIcons = {
+        python: '🐍', pandas: '🐼', brain: '🧠', 
+        cloud: '☁️', notebook: '📓', graphs: '📊'
+      };
+      
+      const toolNames = {
+        python: 'Python', pandas: 'Pandas', brain: 'IA Cerebro',
+        cloud: 'La Nube', notebook: 'Cuaderno', graphs: 'Gráficas'
+      };
+      
+      let html = '<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">';
+      
+      simpleKit.forEach(tool => {
+        html += `
+          <div style="background: rgba(255, 215, 0, 0.3); border: 3px solid rgba(255, 215, 0, 0.8); border-radius: 15px; padding: 15px; text-align: center; min-width: 80px; animation: pulse 2s infinite;">
+            <div style="font-size: 2rem; margin-bottom: 5px;">${toolIcons[tool]}</div>
+            <div style="font-size: 0.9rem; color: #FFD700; font-weight: 600;">${toolNames[tool]}</div>
+          </div>
+        `;
       });
       
-      setTimeout(() => {
-        codeInputs.forEach(input => {
-          input.style.borderColor = '#FF0000';
-          input.style.animation = '';
-          input.style.boxShadow = '0 0 20px rgba(255, 0, 0, 0.3)';
-          input.style.background = 'rgba(255, 0, 0, 0.1)';
-          input.value = '';
-        });
-        document.getElementById('code1').focus();
-      }, 1500);
+      html += '</div>';
+      html += `<div style="margin-top: 20px; color: #FFD700; font-weight: 600;">¡Tienes ${simpleKit.length} herramientas en tu kit!</div>`;
       
-      showCustomMessage('❌ Código incorrecto. El código correcto es 1234 (para prueba)');
+      kitArea.innerHTML = html;
     }
 
-    function unlockContent() {
-      console.log('Iniciando desbloqueo...');
-      
-      const lockedSection = document.getElementById('lockedSections');
-      const blockMessage = document.getElementById('blockMessage');
-      
-      if (!lockedSection || !blockMessage) {
-        console.log('Error: No se encontraron elementos para desbloquear');
+    function checkSimpleKit() {
+      if (simpleKit.length === 0) {
+        showCustomMessage('🤔 Primero agrega algunas herramientas a tu kit');
         return;
       }
       
-      // Mostrar mensaje de éxito
-      showUnlockSuccessMessage();
+      const resultArea = document.getElementById('simpleKitResult');
+      let score = 0;
+      let feedback = [];
+      let level = '';
       
-      setTimeout(() => {
-        // OCULTAR mensaje de bloqueo
-        console.log('Ocultando mensaje de bloqueo...');
-        blockMessage.style.transition = 'all 1s ease';
-        blockMessage.style.opacity = '0';
-        blockMessage.style.transform = 'scale(0.8)';
-        
-        setTimeout(() => {
-          blockMessage.style.display = 'none';
-          console.log('Mensaje ocultado');
-        }, 1000);
-        
-        // DESBLOQUEAR contenido
-        console.log('Desbloqueando contenido...');
-        lockedSection.classList.remove('locked-content');
-        lockedSection.style.transition = 'all 1.5s ease';
-        lockedSection.style.filter = 'none';
-        lockedSection.style.pointerEvents = 'auto';
-        lockedSection.style.userSelect = 'auto';
-        lockedSection.style.opacity = '1';
-        
-        // Efecto visual
-        lockedSection.style.boxShadow = '0 0 50px rgba(0, 255, 0, 0.5)';
-        setTimeout(() => {
-          lockedSection.style.boxShadow = 'none';
-        }, 2000);
-        
-        isContentUnlocked = true;
-        aiWorkbookUserData.contentUnlocked = true;
-        saveData();
-        
-      }, 1000);
+      // Evaluación súper simple
+      if (simpleKit.includes('python')) {
+        score += 30;
+        feedback.push('✅ ¡Excelente! Python es súper importante');
+      }
+      
+      if (simpleKit.includes('brain')) {
+        score += 25;
+        feedback.push('✅ ¡Genial! El cerebro de IA es lo más importante');
+      }
+      
+      if (simpleKit.includes('pandas')) {
+        score += 20;
+        feedback.push('✅ ¡Perfecto! Pandas te ayuda con los datos');
+      }
+      
+      if (simpleKit.includes('notebook')) {
+        score += 15;
+        feedback.push('✅ ¡Muy bien! Los cuadernos son para practicar');
+      }
+      
+      if (simpleKit.includes('graphs')) {
+        score += 10;
+        feedback.push('✅ ¡Bien! Las gráficas te muestran resultados');
+      }
+      
+      if (simpleKit.includes('cloud')) {
+        score += 15;
+        feedback.push('✅ ¡Increíble! La nube es para compartir tu IA');
+      }
+      
+      // Bonus por tener lo básico
+      if (simpleKit.includes('python') && simpleKit.includes('brain')) {
+        score += 15;
+        feedback.push('🎯 ¡COMBO PERFECTO! Python + IA = ¡Éxito!');
+      }
+      
+      // Determinar nivel
+      if (score >= 80) level = '🏆 EXPERTO EN IA';
+      else if (score >= 60) level = '🚀 CASI EXPERTO';
+      else if (score >= 40) level = '👍 BUEN PRINCIPIO';
+      else level = '🌱 NECESITAS MÁS HERRAMIENTAS';
+      
+      resultArea.innerHTML = `
+        <div style="text-align: center; margin-bottom: 20px;">
+          <div style="font-size: 2rem; margin-bottom: 10px;">${score}/100</div>
+          <div style="font-size: 1.3rem; color: #FFD700; font-weight: 700; margin-bottom: 15px;">${level}</div>
+        </div>
+        <div style="text-align: left;">
+          ${feedback.map(f => `<div style="margin: 10px 0; padding: 8px; background: rgba(255, 215, 0, 0.1); border-radius: 8px;">${f}</div>`).join('')}
+        </div>
+        ${score < 60 ? '<div style="margin-top: 15px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 10px; text-align: center;"><strong>💡 Consejo:</strong> Agrega Python y el Cerebro de IA para mejorar tu puntuación</div>' : ''}
+      `;
+      
+      resultArea.style.display = 'block';
+      
+      // Guardar resultado
+      aiWorkbookUserData.simpleKitScore = score;
+      aiWorkbookUserData.simpleKitLevel = level;
+      saveData();
     }
 
-    // FUNCIÓN PARA SETUP DE INPUTS AL CARGAR
-    function setupCodeInputs() {
-      console.log('Configurando inputs de código...');
+    function clearSimpleKit() {
+      simpleKit = [];
+      
+      // Resetear estilos de herramientas
+      document.querySelectorAll('.simple-tool').forEach(tool => {
+        tool.style.opacity = '1';
+        tool.style.transform = 'scale(1)';
+        tool.style.background = 'rgba(255, 215, 0, 0.1)';
+        tool.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+      });
+      
+      // Actualizar display
+      updateSimpleKitDisplay();
+      
+      // Ocultar resultado
+      document.getElementById('simpleKitResult').style.display = 'none';
+      
+      showCustomMessage('🗑️ Kit vaciado. ¡Empieza de nuevo!');
+      
+      // Guardar
+      aiWorkbookUserData.simpleKit = simpleKit;
+      saveData();
+    }
+
+    // ========== JUEGO DE MATCHING SIMPLE ==========
+    function selectSimpleTool(toolName, element) {
+      console.log('Herramienta seleccionada:', toolName);
+      
+      // Limpiar selección anterior
+      document.querySelectorAll('.simple-match-tool').forEach(tool => {
+        tool.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+        tool.style.transform = 'scale(1)';
+        tool.style.background = 'rgba(255, 215, 0, 0.1)';
+      });
+      
+      // Seleccionar nueva herramienta
+      element.style.borderColor = '#FFD700';
+      element.style.transform = 'scale(1.05)';
+      element.style.background = 'rgba(255, 215, 0, 0.2)';
+      
+      selectedTool = toolName;
+      showCustomMessage('👍 ¡Bien! Ahora haz clic en lo que hace esa herramienta');
+    }
+
+    function matchSimpleTools(actionName, element) {
+      if (!selectedTool) {
+        showCustomMessage('⚠️ Primero selecciona una herramienta de la izquierda');
+        return;
+      }
+      
+      console.log('Intentando match:', selectedTool, 'con', actionName);
+      
+      const isCorrect = simpleMatches[selectedTool] === actionName;
+      
+      if (isCorrect) {
+        // ¡CORRECTO!
+        simpleMatchScore++;
+        
+        // Efectos visuales de éxito
+        const toolElement = document.querySelector(`[data-tool="${selectedTool}"]`);
+        toolElement.style.background = 'rgba(76, 175, 80, 0.3)';
+        toolElement.style.borderColor = '#4CAF50';
+        toolElement.style.pointerEvents = 'none';
+        
+        element.style.background = 'rgba(76, 175, 80, 0.3)';
+        element.style.borderColor = '#4CAF50';
+        element.style.pointerEvents = 'none';
+        
+        // Agregar check mark
+        toolElement.innerHTML += '<div style="position: absolute; top: 5px; right: 5px; background: #4CAF50; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">✅</div>';
+        
+        showCustomMessage('🎉 ¡CORRECTO! ¡Muy bien!');
+        
+        // Verificar si terminó el juego
+        if (simpleMatchScore === 3) {
+          setTimeout(() => {
+            showCustomMessage('🏆 ¡FELICIDADES! ¡Completaste todo el juego!');
+          }, 1500);
+        }
+        
+      } else {
+        // Incorrecto
+        showCustomMessage('❌ ¡Ups! Esa no es la respuesta correcta. ¡Inténtalo de nuevo!');
+        
+        // Efecto visual de error
+        element.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          element.style.animation = '';
+        }, 500);
+      }
+      
+      // Actualizar puntuación
+      document.getElementById('simpleMatchScore').textContent = simpleMatchScore;
+      const progress = (simpleMatchScore / 3) * 100;
+      document.getElementById('simpleMatchProgress').style.width = progress + '%';
+      
+      // Limpiar selección
+      selectedTool = null;
+      document.querySelectorAll('.simple-match-tool').forEach(tool => {
+        if (tool.style.pointerEvents !== 'none') {
+          tool.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+          tool.style.transform = 'scale(1)';
+          tool.style.background = 'rgba(255, 215, 0, 0.1)';
+        }
+      });
+      
+      // Guardar progreso
+      aiWorkbookUserData.simpleMatchScore = simpleMatchScore;
+      saveData();
+    }
+
+    function resetSimpleMatch() {
+      simpleMatchScore = 0;
+      selectedTool = null;
+      
+      // Resetear todos los elementos
+      document.querySelectorAll('.simple-match-tool, .simple-match-action').forEach(element => {
+        element.style.background = element.classList.contains('simple-match-tool') ? 
+          'rgba(255, 215, 0, 0.1)' : 'rgba(255, 215, 0, 0.05)';
+        element.style.borderColor = element.classList.contains('simple-match-tool') ? 
+          'rgba(255, 215, 0, 0.4)' : 'rgba(255, 215, 0, 0.3)';
+        element.style.pointerEvents = 'auto';
+        element.style.transform = 'scale(1)';
+        element.innerHTML = element.innerHTML.replace(/<div style="position: absolute.*?<\/div>/, '');
+      });
+      
+      // Resetear puntuación
+      document.getElementById('simpleMatchScore').textContent = '0';
+      document.getElementById('simpleMatchProgress').style.width = '0%';
+      
+      showCustomMessage('🔄 ¡Juego reiniciado! ¡Vamos a jugar otra vez!');
+      
+      // Guardar
+      aiWorkbookUserData.simpleMatchScore = 0;
+      saveData();
+    }
+
+    // ========== SIMULADOR DE CAMINO SIMPLE ==========
+    const simplePaths = {
+      zero: {
+        title: '🌱 EMPEZANDO DESDE CERO',
+        description: 'No te preocupes, ¡todos empezamos así! Te vamos a enseñar paso a paso.',
+        steps: [
+          { time: '1-2 meses', task: 'Aprende lo básico de Python', desc: 'Variables, loops, funciones básicas' },
+          { time: '3-4 meses', task: 'Juega con datos simples', desc: 'Excel, CSV, gráficas básicas' },
+          { time: '5-7 meses', task: 'Tu primera IA simple', desc: 'Un predictor básico que funcione' },
+          { time: '8-12 meses', task: 'Proyecto más avanzado', desc: 'Algo que puedas mostrar con orgullo' }
+        ],
+        salary: '$20K-35K MXN mensuales como Junior'
+      },
+      basic: {
+        title: '💻 YA SÉ UN POQUITO',
+        description: 'Perfect! Ya tienes base, ahora vamos directo a lo divertido de la IA.',
+        steps: [
+          { time: '1 mes', task: 'Python para datos', desc: 'Pandas, NumPy, básicos de datos' },
+          { time: '2-3 meses', task: 'Primeros modelos de IA', desc: 'Scikit-learn, predicciones simples' },
+          { time: '4-6 meses', task: 'IA más avanzada', desc: 'Deep learning básico, imágenes o texto' },
+          { time: '7-10 meses', task: 'Proyecto profesional', desc: 'Algo deployado y funcionando' }
+        ],
+        salary: '$35K-55K MXN mensuales'
+      },
+      experienced: {
+        title: '👨‍💻 SOY PROGRAMADOR',
+        description: '¡Excelente! Con tu experiencia programando, puedes ir súper rápido.',
+        steps: [
+          { time: '2-3 semanas', task: 'ML fundamentals', desc: 'Algoritmos, métricas, validación' },
+          { time: '1-2 meses', task: 'Deep Learning', desc: 'PyTorch/TensorFlow, redes neuronales' },
+          { time: '3-4 meses', task: 'MLOps y producción', desc: 'Deploy, monitoreo, escalamiento' },
+          { time: '5-8 meses', task: 'Especialización', desc: 'Computer Vision, NLP, o tu área favorita' }
+        ],
+        salary: '$60K-100K MXN mensuales o más'
+      }
+    };
+
+    function showSimplePath(pathType) {
+      console.log('Mostrando camino:', pathType);
+      
+      // Limpiar selección anterior
+      document.querySelectorAll('.simple-level').forEach(level => {
+        level.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+        level.style.transform = 'scale(1)';
+      });
+      
+      // Seleccionar nuevo
+      const selected = document.querySelector(`[onclick*="${pathType}"]`);
+      if (selected) {
+        selected.style.borderColor = '#FFD700';
+        selected.style.transform = 'scale(1.05)';
+      }
+      
+      // Mostrar path personalizado
+      const pathData = simplePaths[pathType];
+      const pathContent = document.getElementById('pathContent');
+      const simpleTimeline = document.getElementById('simpleTimeline');
+      
+      if (pathContent) {
+        pathContent.innerHTML = `
+          <div style="font-size: 1.4rem; color: #FFD700; font-weight: 700; margin-bottom: 15px;">
+            ${pathData.title}
+          </div>
+          <div style="margin-bottom: 25px;">
+            ${pathData.description}
+          </div>
+        `;
+      }
+      
+      // Crear timeline visual
+      if (simpleTimeline) {
+        let timelineHTML = '<div style="position: relative;">';
+        
+        pathData.steps.forEach((step, index) => {
+          const isLast = index === pathData.steps.length - 1;
+          timelineHTML += `
+            <div style="display: flex; align-items: flex-start; margin: 25px 0; position: relative;">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FFD700, #FFA500); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; color: #000; z-index: 2; flex-shrink: 0;">
+                ${index + 1}
+              </div>
+              <div style="flex: 1; margin-left: 20px; padding: 20px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px;">
+                <div style="color: #FFD700; font-weight: 700; font-size: 1rem; margin-bottom: 5px;">
+                  ${step.time}: ${step.task}
+                </div>
+                <div style="color: rgba(255, 215, 0, 0.8); font-size: 0.95rem;">
+                  ${step.desc}
+                </div>
+              </div>
+              ${!isLast ? '<div style="position: absolute; left: 24px; top: 50px; width: 2px; height: 30px; background: linear-gradient(to bottom, #FFD700, transparent); z-index: 1;"></div>' : ''}
+            </div>
+          `;
+        });
+        
+        timelineHTML += '</div>';
+        
+        timelineHTML += `
+          <div style="margin-top: 30px; padding: 25px; background: rgba(76, 175, 80, 0.1); border: 2px solid rgba(76, 175, 80, 0.4); border-radius: 15px; text-align: center;">
+            <div style="font-size: 1.3rem; color: #4CAF50; font-weight: 700; margin-bottom: 10px;">
+              🎯 Tu meta final
+            </div>
+            <div style="font-size: 1.1rem; color: #FFD700;">
+              ${pathData.salary}
+            </div>
+          </div>
+        `;
+        
+        simpleTimeline.innerHTML = timelineHTML;
+      }
+      
+      // Mostrar sección
+      document.getElementById('simplePath').style.display = 'block';
+      
+      // Scroll suave
+      setTimeout(() => {
+        document.getElementById('simplePath').scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }, 300);
+      
+      // Guardar selección
+      aiWorkbookUserData.selectedPath = pathType;
+      aiWorkbookUserData.pathData = pathData;
+      saveData();
+    }
+
+    function updateSimpleTime(months) {
+      document.getElementById('simpleTimeDisplay').textContent = months;
+      
+      const advice = document.getElementById('timeAdvice');
+      if (advice) {
+        let message = '';
+        let color = '';
+        
+        if (months <= 6) {
+          message = '⚡ ¡Súper rápido! Necesitarás estudiar muy intenso todos los días';
+          color = '#FF6B6B';
+        } else if (months <= 12) {
+          message = '👍 Tiempo perfecto. Puedes aprender bien sin prisas';
+          color = '#4CAF50';
+        } else {
+          message = '🌱 Relajado y seguro. Tendrás tiempo para practicar mucho';
+          color = '#FFA500';
+        }
+        
+        advice.textContent = message;
+        advice.style.color = color;
+      }
+      
+      // Guardar
+      aiWorkbookUserData.simpleTimeMonths = months;
+      saveData();
+    }
+
+    // ========== FUNCIONES DE INICIALIZACIÓN ==========
+    function setupSimpleInteractions() {
+      console.log('🎮 Configurando interacciones simples...');
+      
+      // Efectos hover para herramientas
+      document.querySelectorAll('.simple-tool').forEach(tool => {
+        tool.addEventListener('mouseenter', function() {
+          if (this.style.opacity !== '0.6') {
+            this.style.transform = 'scale(1.05)';
+            this.style.borderColor = '#FFD700';
+          }
+        });
+        
+        tool.addEventListener('mouseleave', function() {
+          if (this.style.opacity !== '0.6') {
+            this.style.transform = 'scale(1)';
+            this.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+          }
+        });
+      });
+      
+      // Efectos hover para matching
+      document.querySelectorAll('.simple-match-tool, .simple-match-action, .simple-level').forEach(element => {
+        element.addEventListener('mouseenter', function() {
+          if (this.style.pointerEvents !== 'none') {
+            this.style.transform = 'scale(1.02)';
+            this.style.borderColor = '#FFD700';
+          }
+        });
+        
+        element.addEventListener('mouseleave', function() {
+          if (this.style.pointerEvents !== 'none' && !this.style.borderColor.includes('rgb(255, 215, 0)')) {
+            this.style.transform = 'scale(1)';
+            this.style.borderColor = this.classList.contains('simple-match-action') ? 
+              'rgba(255, 215, 0, 0.3)' : 'rgba(255, 215, 0, 0.4)';
+          }
+        });
+      });
+      
+      console.log('✅ Interacciones simples configuradas');
+    }
+    function testCodeInputs() {
+      console.log('Probando inputs de código...');
+      document.getElementById('code1').value = '1';
+      document.getElementById('code2').value = '2';
+      document.getElementById('code3').value = '3';
+      document.getElementById('code4').value = '4';
+      
+      setTimeout(() => {
+        unlockContent();
+      }, 500);
+    }
+    
+    function checkCodeStatus() {
+      console.log('=== ESTADO DE LOS INPUTS DE CÓDIGO ===');
+      ['code1', 'code2', 'code3', 'code4'].forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+          console.log(`${id}:`, {
+            value: input.value,
+            disabled: input.disabled,
+            readonly: input.readOnly,
+            style: input.style.pointerEvents,
+            cursor: input.style.cursor,
+            visible: input.offsetWidth > 0 && input.offsetHeight > 0
+          });
+        } else {
+          console.log(`${id}: NO ENCONTRADO`);
+        }
+      });
+    }
+
+    // SISTEMA DE CÓDIGO SUPER SIMPLIFICADO
+    function setupSimpleCodeInputs() {
+      console.log('🔧 Configurando inputs simples...');
       
       const inputs = ['code1', 'code2', 'code3', 'code4'];
       
       inputs.forEach((id, index) => {
         const input = document.getElementById(id);
-        if (input) {
-          console.log('Configurando input:', id);
-          
-          // Limpiar eventos previos
-          input.onclick = null;
-          input.onfocus = null;
-          input.onkeyup = null;
-          
-          // Configurar eventos
-          input.addEventListener('input', function() {
-            console.log('Input event:', id, this.value);
-            
-            // Solo números
-            this.value = this.value.replace(/[^0-9]/g, '');
-            
-            // Auto avanzar
-            if (this.value.length === 1 && index < 3) {
-              const nextInput = document.getElementById(inputs[index + 1]);
-              if (nextInput) {
-                nextInput.focus();
-              }
-            }
-            
-            // Validar
-            validateCode();
-          });
-          
-          input.addEventListener('keydown', function(e) {
-            // Permitir backspace para retroceder
-            if (e.key === 'Backspace' && this.value === '' && index > 0) {
-              const prevInput = document.getElementById(inputs[index - 1]);
-              if (prevInput) {
-                prevInput.focus();
-              }
-            }
-          });
-          
-          // Hacer clickeable
-          input.style.cursor = 'text';
-          
-        } else {
-          console.log('Error: No se encontró input:', id);
+        if (!input) {
+          console.log(`❌ No se encontró input: ${id}`);
+          return;
         }
+        
+        console.log(`✅ Configurando: ${id}`);
+        
+        // Asegurar que sea editable
+        input.disabled = false;
+        input.readOnly = false;
+        input.style.pointerEvents = 'auto';
+        input.style.cursor = 'text';
+        
+        // Eventos básicos
+        input.addEventListener('click', function() {
+          console.log(`Click en ${id}`);
+          this.focus();
+        });
+        
+        input.addEventListener('focus', function() {
+          console.log(`Focus en ${id}`);
+          this.style.borderColor = '#FFFF00';
+        });
+        
+        input.addEventListener('blur', function() {
+          this.style.borderColor = '#FF0000';
+        });
+        
+        input.addEventListener('input', function() {
+          console.log(`Input en ${id}:`, this.value);
+          
+          // Solo un dígito
+          if (this.value.length > 1) {
+            this.value = this.value.slice(-1);
+          }
+          
+          // Auto avanzar
+          if (this.value && index < 3) {
+            const nextInput = document.getElementById(inputs[index + 1]);
+            if (nextInput) {
+              setTimeout(() => nextInput.focus(), 50);
+            }
+          }
+          
+          // Verificar código completo
+          setTimeout(checkFullCode, 100);
+        });
+        
+        input.addEventListener('keydown', function(e) {
+          console.log(`Keydown en ${id}:`, e.key);
+          
+          // Permitir backspace
+          if (e.key === 'Backspace' && !this.value && index > 0) {
+            const prevInput = document.getElementById(inputs[index - 1]);
+            if (prevInput) {
+              prevInput.focus();
+            }
+          }
+        });
       });
+    }
+    
+    function checkFullCode() {
+      const code1 = document.getElementById('code1').value;
+      const code2 = document.getElementById('code2').value;
+      const code3 = document.getElementById('code3').value;
+      const code4 = document.getElementById('code4').value;
+      
+      const fullCode = code1 + code2 + code3 + code4;
+      console.log('Código actual:', fullCode);
+      
+      if (fullCode.length === 4) {
+        if (fullCode === '1234') {
+          console.log('¡CÓDIGO CORRECTO!');
+          setTimeout(unlockContent, 200);
+        } else {
+          console.log('Código incorrecto:', fullCode);
+        }
+      }
+    }
+
+    // FUNCIÓN DE DESBLOQUEO SIMPLIFICADA
+    function unlockContent() {
+      console.log('🔓 DESBLOQUEANDO CONTENIDO...');
+      
+      // Mostrar mensaje de éxito
+      alert('¡CÓDIGO CORRECTO! Desbloqueando contenido...');
+      
+      const blockMessage = document.getElementById('blockMessage');
+      const lockedSections = document.getElementById('lockedSections');
+      
+      if (blockMessage) {
+        blockMessage.style.display = 'none';
+        console.log('✅ Mensaje de bloqueo ocultado');
+      }
+      
+      if (lockedSections) {
+        lockedSections.classList.remove('locked-content');
+        lockedSections.style.filter = 'none';
+        lockedSections.style.pointerEvents = 'auto';
+        lockedSections.style.userSelect = 'auto';
+        console.log('✅ Contenido desbloqueado');
+      }
+      
+      isContentUnlocked = true;
+      showCustomMessage('🎉 ¡WORKBOOK COMPLETAMENTE DESBLOQUEADO!');
     }
 
     function showUnlockSuccessMessage() {
