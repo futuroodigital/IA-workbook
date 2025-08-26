@@ -1104,7 +1104,7 @@
       line-height: 1.5;
     }
 
-    /* CÓDIGO DE DESBLOQUEO */
+    /* CÓDIGO DE DESBLOQUEO MEJORADO */
     .unlock-code-container {
       background: rgba(0, 0, 0, 0.8);
       border: 2px solid #FFD700;
@@ -1122,24 +1122,44 @@
     }
 
     .code-digit {
-      width: 60px;
-      height: 60px;
-      background: rgba(255, 215, 0, 0.1);
-      border: 2px solid rgba(255, 215, 0, 0.4);
+      width: 70px;
+      height: 70px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 3px solid rgba(255, 215, 0, 0.4);
       border-radius: 10px;
       text-align: center;
       font-size: 2rem;
       font-family: 'Orbitron', monospace;
-      font-weight: 700;
+      font-weight: bold;
       color: #FFD700;
+      outline: none;
+      cursor: text;
+      pointer-events: auto;
       transition: all 0.3s ease;
     }
 
     .code-digit:focus {
-      outline: none;
       border-color: #FFD700;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
       transform: scale(1.1);
+    }
+
+    .code-digit.correct {
+      border-color: #4CAF50;
+      background: rgba(76, 175, 80, 0.2);
+      animation: codeSuccess 0.5s ease;
+    }
+
+    .code-digit.error {
+      border-color: #FF4444;
+      background: rgba(255, 68, 68, 0.2);
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes codeSuccess {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
     }
 
     .unlock-btn {
@@ -1161,6 +1181,42 @@
     .unlock-btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+    }
+
+    /* MENSAJES DE FEEDBACK */
+    .code-feedback {
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: 'Orbitron', monospace;
+      font-weight: 600;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .code-feedback.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .code-feedback.success {
+      background: rgba(76, 175, 80, 0.2);
+      border: 2px solid #4CAF50;
+      color: #4CAF50;
+    }
+
+    .code-feedback.error {
+      background: rgba(255, 68, 68, 0.2);
+      border: 2px solid #FF4444;
+      color: #FF4444;
+    }
+
+    .code-feedback.info {
+      background: rgba(33, 150, 243, 0.2);
+      border: 2px solid #2196F3;
+      color: #2196F3;
     }
 
     /* BOTONES PRINCIPALES */
@@ -1783,55 +1839,34 @@
             <span style="font-size: 0.8rem; color: #FFFFFF;">Esto es solo para que puedas probar - en producción se quitará</span>
           </div>
           
-          <div style="display: flex; justify-content: center; gap: 15px; margin: 25px 0;">
-            <input type="number" 
-                   min="0" 
-                   max="9"
+          <div style="display: flex; justify-content: center; gap: 15px; margin: 25px 0;" class="code-inputs">
+            <input type="text" 
+                   inputmode="numeric"
                    maxlength="1" 
                    id="code1" 
-                   class="simple-code-input"
-                   style="width: 70px !important; height: 70px !important; background: #000 !important; border: 3px solid #FF0000 !important; border-radius: 10px !important; text-align: center !important; font-size: 2rem !important; font-family: 'Orbitron', monospace !important; font-weight: bold !important; color: #FFFFFF !important; outline: none !important; cursor: text !important; pointer-events: auto !important;">
+                   class="code-digit">
             
-            <input type="number" 
-                   min="0" 
-                   max="9"
+            <input type="text" 
+                   inputmode="numeric"
                    maxlength="1" 
                    id="code2" 
-                   class="simple-code-input"
-                   style="width: 70px !important; height: 70px !important; background: #000 !important; border: 3px solid #FF0000 !important; border-radius: 10px !important; text-align: center !important; font-size: 2rem !important; font-family: 'Orbitron', monospace !important; font-weight: bold !important; color: #FFFFFF !important; outline: none !important; cursor: text !important; pointer-events: auto !important;">
+                   class="code-digit">
             
-            <input type="number" 
-                   min="0" 
-                   max="9"
+            <input type="text" 
+                   inputmode="numeric"
                    maxlength="1" 
                    id="code3" 
-                   class="simple-code-input"
-                   style="width: 70px !important; height: 70px !important; background: #000 !important; border: 3px solid #FF0000 !important; border-radius: 10px !important; text-align: center !important; font-size: 2rem !important; font-family: 'Orbitron', monospace !important; font-weight: bold !important; color: #FFFFFF !important; outline: none !important; cursor: text !important; pointer-events: auto !important;">
+                   class="code-digit">
             
-            <input type="number" 
-                   min="0" 
-                   max="9"
+            <input type="text" 
+                   inputmode="numeric"
                    maxlength="1" 
                    id="code4" 
-                   class="simple-code-input"
-                   style="width: 70px !important; height: 70px !important; background: #000 !important; border: 3px solid #FF0000 !important; border-radius: 10px !important; text-align: center !important; font-size: 2rem !important; font-family: 'Orbitron', monospace !important; font-weight: bold !important; color: #FFFFFF !important; outline: none !important; cursor: text !important; pointer-events: auto !important;">
+                   class="code-digit">
           </div>
           
-          <!-- BOTONES DE PRUEBA PARA FORZAR FUNCIONALIDAD -->
-          <div style="text-align: center; margin: 20px 0;">
-            <button onclick="document.getElementById('code1').focus(); document.getElementById('code1').click();" 
-                    style="background: #FFFF00; color: #000; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer; font-weight: bold;">
-              ACTIVAR CAMPO 1
-            </button>
-            <button onclick="testCodeInputs()" 
-                    style="background: #00FF00; color: #000; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer; font-weight: bold;">
-              PROBAR CÓDIGO 1234
-            </button>
-            <button onclick="checkCodeStatus()" 
-                    style="background: #00FFFF; color: #000; padding: 10px 20px; border: none; border-radius: 5px; margin: 5px; cursor: pointer; font-weight: bold;">
-              VERIFICAR ESTADO
-            </button>
-          </div>
+          <div id="codeFeedback" class="code-feedback"></div>
+          
           <button onclick="unlockContent()" 
                   style="background: linear-gradient(135deg, #FF0000 0%, #FFFF00 50%, #FF0000 100%); border: none; padding: 18px 45px; border-radius: 50px; color: #000000; font-family: 'Orbitron', monospace; font-size: 1.2rem; font-weight: 800; cursor: pointer; transition: all 0.3s ease; margin: 25px 0; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6); text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);"
                   onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.boxShadow='0 15px 40px rgba(255, 0, 0, 0.8)';"
@@ -2118,79 +2153,6 @@ print(f"Accuracy: {accuracy:.2f}")
             <button onclick="resetSimpleMatch()" style="background: rgba(255, 215, 0, 0.2); border: 3px solid rgba(255, 215, 0, 0.5); color: #FFD700; padding: 15px 30px; border-radius: 15px; font-family: 'Orbitron', monospace; font-weight: 600; cursor: pointer; font-size: 1rem; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
               🔄 JUGAR OTRA VEZ
             </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN 8: TU CAMINO SÚPER SIMPLE -->
-      <section class="workbook-section">
-        <div class="ai-icon">🛤️</div>
-        <h2 class="section-title">🗺️ Tu Camino hacia la IA</h2>
-        <p class="section-subtitle">¿Qué sabes ahora? Te mostramos tu siguiente paso</p>
-        
-        <div style="margin: 40px 0;">
-          <!-- SELECTOR SÚPER SIMPLE -->
-          <div style="text-align: center; margin-bottom: 40px;">
-            <h3 style="font-family: 'Orbitron', monospace; color: #FFD700; margin-bottom: 25px; font-size: 1.4rem;">
-              🤔 ¿Qué describes mejor tu situación?
-            </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 30px 0;">
-              <div class="simple-level" onclick="showSimplePath('zero')" style="background: rgba(255, 215, 0, 0.1); border: 3px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 30px; cursor: pointer; text-align: center; transition: all 0.3s ease;">
-                <div style="font-size: 3rem; margin-bottom: 15px;">🌱</div>
-                <div style="font-weight: 700; color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">COMPLETAMENTE NUEVO</div>
-                <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                  "No sé nada de programación ni de IA. ¿Por dónde empiezo?"
-                </div>
-              </div>
-              
-              <div class="simple-level" onclick="showSimplePath('basic')" style="background: rgba(255, 215, 0, 0.1); border: 3px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 30px; cursor: pointer; text-align: center; transition: all 0.3s ease;">
-                <div style="font-size: 3rem; margin-bottom: 15px;">💻</div>
-                <div style="font-weight: 700; color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">SÉ UN POQUITO</div>
-                <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                  "He hecho algunas páginas web o scripts básicos"
-                </div>
-              </div>
-              
-              <div class="simple-level" onclick="showSimplePath('experienced')" style="background: rgba(255, 215, 0, 0.1); border: 3px solid rgba(255, 215, 0, 0.4); border-radius: 20px; padding: 30px; cursor: pointer; text-align: center; transition: all 0.3s ease;">
-                <div style="font-size: 3rem; margin-bottom: 15px;">👨‍💻</div>
-                <div style="font-weight: 700; color: #FFD700; margin-bottom: 12px; font-size: 1.2rem;">PROGRAMADOR</div>
-                <div style="font-size: 1rem; color: rgba(255, 215, 0, 0.8); line-height: 1.4;">
-                  "Ya trabajo como programador pero quiero aprender IA"
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- CAMINO PERSONALIZADO -->
-          <div id="simplePath" style="display: none;">
-            <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%); border: 3px solid rgba(255, 215, 0, 0.5); border-radius: 25px; padding: 40px; text-align: center; margin: 30px 0;">
-              <div style="font-family: 'Orbitron', monospace; font-size: 1.6rem; color: #FFD700; margin-bottom: 20px; font-weight: 700;">
-                🎯 TU CAMINO PERSONALIZADO
-              </div>
-              <div id="pathContent" style="font-size: 1.1rem; color: rgba(255, 215, 0, 0.9); line-height: 1.6;">
-                <!-- Se llenará dinámicamente -->
-              </div>
-              
-              <!-- TIMELINE SIMPLE -->
-              <div id="simpleTimeline" style="margin-top: 30px;">
-                <!-- Se llenará dinámicamente -->
-              </div>
-              
-              <div style="margin-top: 30px;">
-                <label style="display: block; font-family: 'Orbitron', monospace; color: #FFD700; margin-bottom: 15px; font-size: 1.1rem;">
-                  ⏰ ¿En cuántos meses quieres lograrlo?
-                </label>
-                <input type="range" id="simpleTimeSlider" min="3" max="24" value="12" 
-                       style="width: 80%; height: 8px; background: rgba(255, 215, 0, 0.2); border-radius: 5px; outline: none; margin: 15px 0;"
-                       oninput="updateSimpleTime(this.value)">
-                <div style="font-size: 1.4rem; color: #FFD700; font-weight: 700; margin-top: 10px;">
-                  <span id="simpleTimeDisplay">12</span> meses
-                </div>
-                <div id="timeAdvice" style="margin-top: 15px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 10px; font-size: 0.95rem; color: rgba(255, 215, 0, 0.8);">
-                  Con 12 meses tienes tiempo perfecto para aprender bien
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -2699,6 +2661,294 @@ print(f"Accuracy: {accuracy:.2f}")
       return specs[projectType] || specs['nlp-system'];
     }
 
+    // ========== SISTEMA DE CÓDIGO INTELIGENTE MEJORADO ==========
+
+    // Variables para el sistema de código
+    let codeInputs = [];
+    let currentInputIndex = 0;
+    const correctCode = "1234";
+
+    // Configurar sistema de código inteligente
+    function setupCodeInputs() {
+      console.log('🔧 Configurando sistema de código inteligente...');
+      
+      codeInputs = ['code1', 'code2', 'code3', 'code4'].map(id => document.getElementById(id));
+      
+      // Verificar que todos los inputs existan
+      if (codeInputs.some(input => !input)) {
+        console.error('❌ Error: No se encontraron todos los inputs de código');
+        return;
+      }
+      
+      codeInputs.forEach((input, index) => {
+        if (!input) return;
+        
+        // Configuración básica
+        input.disabled = false;
+        input.readOnly = false;
+        input.style.pointerEvents = 'auto';
+        input.setAttribute('maxlength', '4'); // Permitir hasta 4 dígitos para auto-distribución
+        
+        // Evento de entrada (AUTO-DISTRIBUCIÓN INTELIGENTE)
+        input.addEventListener('input', function(e) {
+          let value = this.value.replace(/[^0-9]/g, ''); // Solo números
+          
+          if (value.length === 0) {
+            clearCodeFeedback();
+            return;
+          }
+          
+          // AUTO-DISTRIBUCIÓN: Si escriben múltiples dígitos
+          if (value.length > 1) {
+            console.log(`🎯 Auto-distribución activada: "${value}"`);
+            distributeCode(value);
+            return;
+          }
+          
+          // Un solo dígito: comportamiento normal
+          this.value = value;
+          
+          // Auto-avance al siguiente campo
+          if (value && index < 3) {
+            setTimeout(() => {
+              const nextInput = codeInputs[index + 1];
+              if (nextInput) nextInput.focus();
+            }, 100);
+          }
+          
+          // Verificar código completo automáticamente
+          setTimeout(checkCodeComplete, 150);
+        });
+        
+        // Eventos de teclado
+        input.addEventListener('keydown', function(e) {
+          // Backspace: ir al campo anterior si está vacío
+          if (e.key === 'Backspace' && !this.value && index > 0) {
+            setTimeout(() => {
+              const prevInput = codeInputs[index - 1];
+              if (prevInput) {
+                prevInput.focus();
+                prevInput.setSelectionRange(1, 1);
+              }
+            }, 10);
+          }
+          
+          // Enter: intentar desbloquear
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            unlockContent();
+          }
+        });
+        
+        // Efectos visuales
+        input.addEventListener('focus', function() {
+          this.style.borderColor = '#FFFF00';
+          this.style.boxShadow = '0 0 25px rgba(255, 255, 0, 0.6)';
+        });
+        
+        input.addEventListener('blur', function() {
+          this.style.borderColor = '#FF0000';
+          this.style.boxShadow = '0 0 20px rgba(255, 0, 0, 0.4)';
+        });
+      });
+      
+      console.log('✅ Sistema de código inteligente configurado correctamente');
+    }
+
+    // FUNCIÓN DE AUTO-DISTRIBUCIÓN INTELIGENTE
+    function distributeCode(codeString) {
+      console.log(`🔄 Distribuyendo código: "${codeString}"`);
+      
+      // Limpiar inputs primero
+      codeInputs.forEach(input => {
+        input.value = '';
+        input.classList.remove('correct', 'error');
+      });
+      
+      // Distribuir dígitos
+      const digits = codeString.slice(0, 4).split('');
+      digits.forEach((digit, index) => {
+        if (codeInputs[index]) {
+          codeInputs[index].value = digit;
+        }
+      });
+      
+      // Enfocar el último campo completado o el siguiente vacío
+      const lastFilledIndex = Math.min(digits.length - 1, 3);
+      const nextEmptyIndex = digits.length < 4 ? digits.length : 3;
+      
+      if (digits.length === 4) {
+        // Código completo, verificar
+        setTimeout(checkCodeComplete, 200);
+      } else {
+        // Código incompleto, enfocar siguiente campo
+        if (codeInputs[nextEmptyIndex]) {
+          setTimeout(() => codeInputs[nextEmptyIndex].focus(), 100);
+        }
+      }
+      
+      showCodeFeedback('info', `📝 Código distribuido: ${digits.join(' ')}`);
+    }
+
+    // VERIFICACIÓN AUTOMÁTICA DE CÓDIGO COMPLETO
+    function checkCodeComplete() {
+      const enteredCode = codeInputs.map(input => input.value).join('');
+      
+      console.log(`🔍 Verificando código: "${enteredCode}"`);
+      
+      if (enteredCode.length !== 4) {
+        clearCodeFeedback();
+        return;
+      }
+      
+      if (enteredCode === correctCode) {
+        // CÓDIGO CORRECTO
+        console.log('🎉 ¡CÓDIGO CORRECTO!');
+        
+        codeInputs.forEach(input => {
+          input.classList.add('correct');
+          input.classList.remove('error');
+        });
+        
+        showCodeFeedback('success', '🎉 ¡CÓDIGO CORRECTO! Desbloqueando contenido...');
+        
+        setTimeout(() => {
+          unlockContent();
+        }, 1500);
+        
+      } else {
+        // CÓDIGO INCORRECTO
+        console.log(`❌ Código incorrecto: "${enteredCode}"`);
+        
+        codeInputs.forEach(input => {
+          input.classList.add('error');
+          input.classList.remove('correct');
+        });
+        
+        showCodeFeedback('error', '❌ Código incorrecto. El código se revelará en la masterclass.');
+        
+        // LIMPIEZA AUTOMÁTICA después de 2 segundos
+        setTimeout(() => {
+          clearAllCodeInputs();
+          showCodeFeedback('info', '🔄 Campos limpiados. Intenta de nuevo.');
+          
+          // Enfocar primer campo
+          setTimeout(() => {
+            if (codeInputs[0]) codeInputs[0].focus();
+          }, 500);
+        }, 2000);
+      }
+    }
+
+    // FUNCIÓN DE DESBLOQUEO CORREGIDA
+    function unlockContent() {
+      console.log('🔓 EJECUTANDO DESBLOQUEO DE CONTENIDO...');
+      
+      // Verificar que el código sea correcto antes de desbloquear
+      const enteredCode = codeInputs.map(input => input.value).join('');
+      if (enteredCode !== correctCode) {
+        showCodeFeedback('error', '❌ Código incorrecto. No se puede desbloquear.');
+        return;
+      }
+      
+      isContentUnlocked = true;
+      aiWorkbookUserData.contentUnlocked = true;
+      
+      // Ocultar mensaje de bloqueo
+      const blockMessage = document.getElementById('blockMessage');
+      if (blockMessage) {
+        blockMessage.style.display = 'none';
+        console.log('✅ Mensaje de bloqueo ocultado');
+      }
+      
+      // Desbloquear contenido
+      const lockedSections = document.getElementById('lockedSections');
+      if (lockedSections) {
+        lockedSections.classList.remove('locked-content');
+        lockedSections.style.filter = 'none';
+        lockedSections.style.pointerEvents = 'auto';
+        lockedSections.style.userSelect = 'auto';
+        console.log('✅ Contenido desbloqueado');
+      }
+      
+      // Guardar estado
+      saveData();
+      
+      // Mostrar mensaje de éxito
+      showUnlockSuccessMessage();
+      
+      console.log('🎉 ¡DESBLOQUEO COMPLETADO EXITOSAMENTE!');
+    }
+
+    // FUNCIONES DE FEEDBACK VISUAL
+    function showCodeFeedback(type, message) {
+      const feedback = document.getElementById('codeFeedback');
+      if (!feedback) return;
+      
+      feedback.className = `code-feedback show ${type}`;
+      feedback.textContent = message;
+      
+      console.log(`💬 Feedback: ${message}`);
+    }
+
+    function clearCodeFeedback() {
+      const feedback = document.getElementById('codeFeedback');
+      if (feedback) {
+        feedback.classList.remove('show');
+      }
+    }
+
+    function clearAllCodeInputs() {
+      codeInputs.forEach(input => {
+        input.value = '';
+        input.classList.remove('correct', 'error');
+      });
+    }
+
+    // MENSAJE DE ÉXITO MEJORADO
+    function showUnlockSuccessMessage() {
+      const successOverlay = document.createElement('div');
+      successOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.95) 0%, rgba(255, 165, 0, 0.95) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        animation: successFadeIn 0.8s ease;
+      `;
+      
+      successOverlay.innerHTML = `
+        <div style="text-align: center; color: #000; animation: successBounce 1s ease;">
+          <div style="font-size: 4rem; margin-bottom: 20px; animation: successSpin 1s ease;">🎉</div>
+          <div style="font-family: 'Orbitron', monospace; font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            ¡FELICIDADES!
+          </div>
+          <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 10px;">
+            🔓 WORKBOOK COMPLETAMENTE DESBLOQUEADO
+          </div>
+          <div style="font-size: 1.2rem; opacity: 0.8;">
+            Disfruta todo el contenido exclusivo
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(successOverlay);
+      
+      setTimeout(() => {
+        successOverlay.style.animation = 'successFadeOut 0.5s ease forwards';
+        setTimeout(() => {
+          if (document.body.contains(successOverlay)) {
+            document.body.removeChild(successOverlay);
+          }
+        }, 500);
+      }, 3000);
+    }
+
     // ========== FUNCIONES SÚPER SIMPLES Y FUNCIONALES ==========
 
     // Variables globales para los juegos
@@ -3002,390 +3252,7 @@ print(f"Accuracy: {accuracy:.2f}")
       saveData();
     }
 
-    // ========== SIMULADOR DE CAMINO SIMPLE ==========
-    const simplePaths = {
-      zero: {
-        title: '🌱 EMPEZANDO DESDE CERO',
-        description: 'No te preocupes, ¡todos empezamos así! Te vamos a enseñar paso a paso.',
-        steps: [
-          { time: '1-2 meses', task: 'Aprende lo básico de Python', desc: 'Variables, loops, funciones básicas' },
-          { time: '3-4 meses', task: 'Juega con datos simples', desc: 'Excel, CSV, gráficas básicas' },
-          { time: '5-7 meses', task: 'Tu primera IA simple', desc: 'Un predictor básico que funcione' },
-          { time: '8-12 meses', task: 'Proyecto más avanzado', desc: 'Algo que puedas mostrar con orgullo' }
-        ],
-        salary: '$20K-35K MXN mensuales como Junior'
-      },
-      basic: {
-        title: '💻 YA SÉ UN POQUITO',
-        description: 'Perfect! Ya tienes base, ahora vamos directo a lo divertido de la IA.',
-        steps: [
-          { time: '1 mes', task: 'Python para datos', desc: 'Pandas, NumPy, básicos de datos' },
-          { time: '2-3 meses', task: 'Primeros modelos de IA', desc: 'Scikit-learn, predicciones simples' },
-          { time: '4-6 meses', task: 'IA más avanzada', desc: 'Deep learning básico, imágenes o texto' },
-          { time: '7-10 meses', task: 'Proyecto profesional', desc: 'Algo deployado y funcionando' }
-        ],
-        salary: '$35K-55K MXN mensuales'
-      },
-      experienced: {
-        title: '👨‍💻 SOY PROGRAMADOR',
-        description: '¡Excelente! Con tu experiencia programando, puedes ir súper rápido.',
-        steps: [
-          { time: '2-3 semanas', task: 'ML fundamentals', desc: 'Algoritmos, métricas, validación' },
-          { time: '1-2 meses', task: 'Deep Learning', desc: 'PyTorch/TensorFlow, redes neuronales' },
-          { time: '3-4 meses', task: 'MLOps y producción', desc: 'Deploy, monitoreo, escalamiento' },
-          { time: '5-8 meses', task: 'Especialización', desc: 'Computer Vision, NLP, o tu área favorita' }
-        ],
-        salary: '$60K-100K MXN mensuales o más'
-      }
-    };
-
-    function showSimplePath(pathType) {
-      console.log('Mostrando camino:', pathType);
-      
-      // Limpiar selección anterior
-      document.querySelectorAll('.simple-level').forEach(level => {
-        level.style.borderColor = 'rgba(255, 215, 0, 0.4)';
-        level.style.transform = 'scale(1)';
-      });
-      
-      // Seleccionar nuevo
-      const selected = document.querySelector(`[onclick*="${pathType}"]`);
-      if (selected) {
-        selected.style.borderColor = '#FFD700';
-        selected.style.transform = 'scale(1.05)';
-      }
-      
-      // Mostrar path personalizado
-      const pathData = simplePaths[pathType];
-      const pathContent = document.getElementById('pathContent');
-      const simpleTimeline = document.getElementById('simpleTimeline');
-      
-      if (pathContent) {
-        pathContent.innerHTML = `
-          <div style="font-size: 1.4rem; color: #FFD700; font-weight: 700; margin-bottom: 15px;">
-            ${pathData.title}
-          </div>
-          <div style="margin-bottom: 25px;">
-            ${pathData.description}
-          </div>
-        `;
-      }
-      
-      // Crear timeline visual
-      if (simpleTimeline) {
-        let timelineHTML = '<div style="position: relative;">';
-        
-        pathData.steps.forEach((step, index) => {
-          const isLast = index === pathData.steps.length - 1;
-          timelineHTML += `
-            <div style="display: flex; align-items: flex-start; margin: 25px 0; position: relative;">
-              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FFD700, #FFA500); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; color: #000; z-index: 2; flex-shrink: 0;">
-                ${index + 1}
-              </div>
-              <div style="flex: 1; margin-left: 20px; padding: 20px; background: rgba(255, 215, 0, 0.1); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px;">
-                <div style="color: #FFD700; font-weight: 700; font-size: 1rem; margin-bottom: 5px;">
-                  ${step.time}: ${step.task}
-                </div>
-                <div style="color: rgba(255, 215, 0, 0.8); font-size: 0.95rem;">
-                  ${step.desc}
-                </div>
-              </div>
-              ${!isLast ? '<div style="position: absolute; left: 24px; top: 50px; width: 2px; height: 30px; background: linear-gradient(to bottom, #FFD700, transparent); z-index: 1;"></div>' : ''}
-            </div>
-          `;
-        });
-        
-        timelineHTML += '</div>';
-        
-        timelineHTML += `
-          <div style="margin-top: 30px; padding: 25px; background: rgba(76, 175, 80, 0.1); border: 2px solid rgba(76, 175, 80, 0.4); border-radius: 15px; text-align: center;">
-            <div style="font-size: 1.3rem; color: #4CAF50; font-weight: 700; margin-bottom: 10px;">
-              🎯 Tu meta final
-            </div>
-            <div style="font-size: 1.1rem; color: #FFD700;">
-              ${pathData.salary}
-            </div>
-          </div>
-        `;
-        
-        simpleTimeline.innerHTML = timelineHTML;
-      }
-      
-      // Mostrar sección
-      document.getElementById('simplePath').style.display = 'block';
-      
-      // Scroll suave
-      setTimeout(() => {
-        document.getElementById('simplePath').scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
-        });
-      }, 300);
-      
-      // Guardar selección
-      aiWorkbookUserData.selectedPath = pathType;
-      aiWorkbookUserData.pathData = pathData;
-      saveData();
-    }
-
-    function updateSimpleTime(months) {
-      document.getElementById('simpleTimeDisplay').textContent = months;
-      
-      const advice = document.getElementById('timeAdvice');
-      if (advice) {
-        let message = '';
-        let color = '';
-        
-        if (months <= 6) {
-          message = '⚡ ¡Súper rápido! Necesitarás estudiar muy intenso todos los días';
-          color = '#FF6B6B';
-        } else if (months <= 12) {
-          message = '👍 Tiempo perfecto. Puedes aprender bien sin prisas';
-          color = '#4CAF50';
-        } else {
-          message = '🌱 Relajado y seguro. Tendrás tiempo para practicar mucho';
-          color = '#FFA500';
-        }
-        
-        advice.textContent = message;
-        advice.style.color = color;
-      }
-      
-      // Guardar
-      aiWorkbookUserData.simpleTimeMonths = months;
-      saveData();
-    }
-
-    // ========== FUNCIONES DE INICIALIZACIÓN ==========
-    function setupSimpleInteractions() {
-      console.log('🎮 Configurando interacciones simples...');
-      
-      // Efectos hover para herramientas
-      document.querySelectorAll('.simple-tool').forEach(tool => {
-        tool.addEventListener('mouseenter', function() {
-          if (this.style.opacity !== '0.6') {
-            this.style.transform = 'scale(1.05)';
-            this.style.borderColor = '#FFD700';
-          }
-        });
-        
-        tool.addEventListener('mouseleave', function() {
-          if (this.style.opacity !== '0.6') {
-            this.style.transform = 'scale(1)';
-            this.style.borderColor = 'rgba(255, 215, 0, 0.4)';
-          }
-        });
-      });
-      
-      // Efectos hover para matching
-      document.querySelectorAll('.simple-match-tool, .simple-match-action, .simple-level').forEach(element => {
-        element.addEventListener('mouseenter', function() {
-          if (this.style.pointerEvents !== 'none') {
-            this.style.transform = 'scale(1.02)';
-            this.style.borderColor = '#FFD700';
-          }
-        });
-        
-        element.addEventListener('mouseleave', function() {
-          if (this.style.pointerEvents !== 'none' && !this.style.borderColor.includes('rgb(255, 215, 0)')) {
-            this.style.transform = 'scale(1)';
-            this.style.borderColor = this.classList.contains('simple-match-action') ? 
-              'rgba(255, 215, 0, 0.3)' : 'rgba(255, 215, 0, 0.4)';
-          }
-        });
-      });
-      
-      console.log('✅ Interacciones simples configuradas');
-    }
-    function testCodeInputs() {
-      console.log('Probando inputs de código...');
-      document.getElementById('code1').value = '1';
-      document.getElementById('code2').value = '2';
-      document.getElementById('code3').value = '3';
-      document.getElementById('code4').value = '4';
-      
-      setTimeout(() => {
-        unlockContent();
-      }, 500);
-    }
-    
-    function checkCodeStatus() {
-      console.log('=== ESTADO DE LOS INPUTS DE CÓDIGO ===');
-      ['code1', 'code2', 'code3', 'code4'].forEach(id => {
-        const input = document.getElementById(id);
-        if (input) {
-          console.log(`${id}:`, {
-            value: input.value,
-            disabled: input.disabled,
-            readonly: input.readOnly,
-            style: input.style.pointerEvents,
-            cursor: input.style.cursor,
-            visible: input.offsetWidth > 0 && input.offsetHeight > 0
-          });
-        } else {
-          console.log(`${id}: NO ENCONTRADO`);
-        }
-      });
-    }
-
-    // SISTEMA DE CÓDIGO SUPER SIMPLIFICADO
-    function setupSimpleCodeInputs() {
-      console.log('🔧 Configurando inputs simples...');
-      
-      const inputs = ['code1', 'code2', 'code3', 'code4'];
-      
-      inputs.forEach((id, index) => {
-        const input = document.getElementById(id);
-        if (!input) {
-          console.log(`❌ No se encontró input: ${id}`);
-          return;
-        }
-        
-        console.log(`✅ Configurando: ${id}`);
-        
-        // Asegurar que sea editable
-        input.disabled = false;
-        input.readOnly = false;
-        input.style.pointerEvents = 'auto';
-        input.style.cursor = 'text';
-        
-        // Eventos básicos
-        input.addEventListener('click', function() {
-          console.log(`Click en ${id}`);
-          this.focus();
-        });
-        
-        input.addEventListener('focus', function() {
-          console.log(`Focus en ${id}`);
-          this.style.borderColor = '#FFFF00';
-        });
-        
-        input.addEventListener('blur', function() {
-          this.style.borderColor = '#FF0000';
-        });
-        
-        input.addEventListener('input', function() {
-          console.log(`Input en ${id}:`, this.value);
-          
-          // Solo un dígito
-          if (this.value.length > 1) {
-            this.value = this.value.slice(-1);
-          }
-          
-          // Auto avanzar
-          if (this.value && index < 3) {
-            const nextInput = document.getElementById(inputs[index + 1]);
-            if (nextInput) {
-              setTimeout(() => nextInput.focus(), 50);
-            }
-          }
-          
-          // Verificar código completo
-          setTimeout(checkFullCode, 100);
-        });
-        
-        input.addEventListener('keydown', function(e) {
-          console.log(`Keydown en ${id}:`, e.key);
-          
-          // Permitir backspace
-          if (e.key === 'Backspace' && !this.value && index > 0) {
-            const prevInput = document.getElementById(inputs[index - 1]);
-            if (prevInput) {
-              prevInput.focus();
-            }
-          }
-        });
-      });
-    }
-    
-    function checkFullCode() {
-      const code1 = document.getElementById('code1').value;
-      const code2 = document.getElementById('code2').value;
-      const code3 = document.getElementById('code3').value;
-      const code4 = document.getElementById('code4').value;
-      
-      const fullCode = code1 + code2 + code3 + code4;
-      console.log('Código actual:', fullCode);
-      
-      if (fullCode.length === 4) {
-        if (fullCode === '1234') {
-          console.log('¡CÓDIGO CORRECTO!');
-          setTimeout(unlockContent, 200);
-        } else {
-          console.log('Código incorrecto:', fullCode);
-        }
-      }
-    }
-
-    // FUNCIÓN DE DESBLOQUEO SIMPLIFICADA
-    function unlockContent() {
-      console.log('🔓 DESBLOQUEANDO CONTENIDO...');
-      
-      // Mostrar mensaje de éxito
-      alert('¡CÓDIGO CORRECTO! Desbloqueando contenido...');
-      
-      const blockMessage = document.getElementById('blockMessage');
-      const lockedSections = document.getElementById('lockedSections');
-      
-      if (blockMessage) {
-        blockMessage.style.display = 'none';
-        console.log('✅ Mensaje de bloqueo ocultado');
-      }
-      
-      if (lockedSections) {
-        lockedSections.classList.remove('locked-content');
-        lockedSections.style.filter = 'none';
-        lockedSections.style.pointerEvents = 'auto';
-        lockedSections.style.userSelect = 'auto';
-        console.log('✅ Contenido desbloqueado');
-      }
-      
-      isContentUnlocked = true;
-      showCustomMessage('🎉 ¡WORKBOOK COMPLETAMENTE DESBLOQUEADO!');
-    }
-
-    function showUnlockSuccessMessage() {
-      const successOverlay = document.createElement('div');
-      successOverlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(255, 215, 0, 0.95) 0%, rgba(255, 165, 0, 0.95) 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        animation: successFadeIn 0.8s ease;
-      `;
-      
-      successOverlay.innerHTML = `
-        <div style="text-align: center; color: #000; animation: successBounce 1s ease;">
-          <div style="font-size: 4rem; margin-bottom: 20px; animation: successSpin 1s ease;">🎉</div>
-          <div style="font-family: 'Orbitron', monospace; font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-            ¡FELICIDADES!
-          </div>
-          <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 10px;">
-            🔓 WORKBOOK DESBLOQUEADO
-          </div>
-          <div style="font-size: 1.2rem; opacity: 0.8;">
-            Disfruta todo el contenido exclusivo
-          </div>
-        </div>
-      `;
-      
-      document.body.appendChild(successOverlay);
-      
-      setTimeout(() => {
-        successOverlay.style.animation = 'successFadeOut 0.5s ease forwards';
-        setTimeout(() => {
-          if (document.body.contains(successOverlay)) {
-            document.body.removeChild(successOverlay);
-          }
-        }, 500);
-      }, 3000);
-    }
+    // ========== FUNCIONES DE FEEDBACK Y MENSAJES ==========
 
     function showCustomMessage(message) {
       const messageDiv = document.createElement('div');
@@ -3404,6 +3271,8 @@ print(f"Accuracy: {accuracy:.2f}")
         z-index: 10001;
         box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
         animation: popIn 0.5s ease;
+        max-width: 80%;
+        text-align: center;
       `;
       messageDiv.textContent = message;
       
@@ -3545,11 +3414,10 @@ print(f"Accuracy: {accuracy:.2f}")
           const blockMessage = document.getElementById('blockMessage');
           
           if (lockedSection) {
-            lockedSection.style.filter = 'blur(0px)';
+            lockedSection.classList.remove('locked-content');
+            lockedSection.style.filter = 'none';
             lockedSection.style.pointerEvents = 'auto';
             lockedSection.style.userSelect = 'auto';
-            lockedSection.style.opacity = '1';
-            lockedSection.style.transform = 'scale(1)';
             isContentUnlocked = true;
           }
           
@@ -3671,19 +3539,27 @@ print(f"Accuracy: {accuracy:.2f}")
       }
     }
 
+    // ========== INICIALIZACIÓN PRINCIPAL ==========
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('🔄 Inicializando workbook de IA...');
+      console.log('🔄 Inicializando workbook de IA avanzado...');
       
+      // Cargar datos guardados
       loadSavedData();
+      
+      // Configurar sistemas principales
       setupNameSystem();
       setupAdvancedQuiz();
       setupPythonSlider();
       setupProjectSimulator();
       setupAutoSave();
       
-      // IMPORTANTE: Configurar inputs de código
-      setTimeout(setupCodeInputs, 500);
+      // CRÍTICO: Configurar sistema de código inteligente
+      setTimeout(() => {
+        setupCodeInputs();
+        console.log('✅ Sistema de código inteligente configurado');
+      }, 500);
       
+      // Configurar logo
       const logoElement = document.getElementById('mainLogo');
       if (logoElement) {
         logoElement.onload = () => console.log('✅ Logo cargado');
@@ -3692,6 +3568,7 @@ print(f"Accuracy: {accuracy:.2f}")
       
       console.log('🚀 Workbook de desarrollo de IA cargado completamente!');
       
+      // Mensaje de bienvenida
       setTimeout(() => {
         if (aiWorkbookUserMainName) {
           showSaveMessage();
@@ -3700,7 +3577,10 @@ print(f"Accuracy: {accuracy:.2f}")
       }, 1000);
     });
 
+    // Guardar antes de salir
     window.addEventListener('beforeunload', saveData);
+    
+    console.log('🎯 Sistema de código inteligente con auto-distribución listo!');
   </script>
 </body>
 </html>
