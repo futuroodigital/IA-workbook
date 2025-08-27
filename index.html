@@ -3581,6 +3581,553 @@ print(f"Accuracy: {accuracy:.2f}")
     window.addEventListener('beforeunload', saveData);
     
     console.log('🎯 Sistema de código inteligente con auto-distribución listo!');
+
+    // ==========================================
+// INTEGRACIÓN CON GOOGLE APPS SCRIPT
+// Agregar este código al workbook HTML existente
+// ==========================================
+
+// CONFIGURACIÓN DE LA BASE DE DATOS
+const DATABASE_CONFIG = {
+  // Reemplaza esta URL con la de tu Apps Script deployment
+  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzU_nccIB9JecZIh3xjdpmsABPb12itnv7EO8BjENTvSfEXPja696JlP-gxApkC-Hcl/exec',
+  ENABLED: true, // Cambiar a false para desactivar BD temporalmente
+  RETRY_ATTEMPTS: 3,
+  TIMEOUT: 10000 // 10 segundos
+};
+
+// VARIABLES PARA MANEJO DE CONEXIÓN
+let isOnline = navigator.onLine;
+let pendingSaves = [];
+let lastSaveAttempt = null;
+
+// ==========================================
+// FUNCIONES DE BASE DE DATOS
+// ==========================================
+
+// GUARDAR DATOS EN LA BASE DE DATOS
+async function saveToDatabaseAsync(userData) {
+  if (!DATABASE_CONFIG.ENABLED) {
+    console.log('Base de datos deshabilitada, guardando solo localmente');
+    return { success: false, reason: 'disabled' };
+  }
+  
+  if (!isOnline) {
+    console.log('Sin conexión, agregando a cola de guardado');
+    addToPendingSaves(userData);
+    return { success: false, reason: 'offline' };
+  }
+  
+  try {
+    console.log('Enviando datos a base de datos...', userData.mainUserName);
+    
+    const payload = {
+      action: 'save',
+      userData: userData,
+      timestamp: new Date().toISOString()
+    };
+    
+    const response = await fetchWithRetry(DATABASE_CONFIG.APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      timeout: DATABASE_CONFIG.TIMEOUT
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      console.log('Datos guardados en base de datos:', result.data);
+      
+      // Mostrar indicador de éxito
+      showDatabaseStatus('success', 'Datos sincronizados con la nube');
+      
+      // Limpiar saves pendientes si este usuario está en la cola
+      removeFromPendingSaves(userData.userID);
+      
+      return { success: true, data: result.data };
+    } else {
+      throw new Error(result.error || 'Error desconocido');
+    }
+    
+  } catch (error) {
+    console.error('Error guardando en base de datos:', error);
+    
+    // Agregar a cola para reintentar después
+    addToPendingSaves(userData);
+    
+    // Mostrar indicador de error
+    showDatabaseStatus('error', 'Error de conexión - datos guardados localmente');
+    
+    return { success: false, error: error.message };
+  }
+}
+
+// CARGAR DATOS DE LA BASE DE DATOS
+async function loadFromDatabase(identifier) {
+  if (!DATABASE_CONFIG.ENABLED || !isOnline) {
+    console.log('Base de datos no disponible, cargando datos locales');
+    return null;
+  }
+  
+  try {
+    console.log('Cargando datos desde base de datos para:', identifier);
+    
+    const payload = {
+      action: 'load',
+      userID: identifier,
+      userName: identifier
+    };
+    
+    const response = await fetchWithRetry(DATABASE_CONFIG.APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      timeout: DATABASE_CONFIG.TIMEOUT
+    });
+    
+    const result = await response.json();
+    
+    if (result.success && result.data) {
+      console.log('Datos cargados desde base de datos:', result.data.mainUserName);
+      showDatabaseStatus('success', 'Datos cargados desde la nube');
+      return result.data;
+    }
+    
+    return null;
+    
+  } catch (error) {
+    console.error('Error cargando desde base de datos:', error);
+    showDatabaseStatus('error', 'Error cargando desde la nube');
+    return null;
+  }
+}
+
+// OBTENER ESTADÍSTICAS
+async function getWorkbookStatistics() {
+  if (!DATABASE_CONFIG.ENABLED || !isOnline) {
+    return null;
+  }
+  
+  try {
+    const payload = { action: 'stats' };
+    
+    const response = await fetchWithRetry(DATABASE_CONFIG.APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    });
+    
+    const result = await response.json();
+    return result.success ? result.data : null;
+    
+  } catch (error) {
+    console.error('Error obteniendo estadísticas:', error);
+    return null;
+  }
+}
+
+// ==========================================
+// FUNCIONES AUXILIARES
+// ==========================================
+
+// FETCH CON REINTENTOS
+async function fetchWithRetry(url, options, attempts = 0) {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), options.timeout || 10000);
+    
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal
+    });
+    
+    clearTimeout(timeoutId);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    return response;
+    
+  } catch (error) {
+    attempts++;
+    console.warn(`Intento ${attempts} falló:`, error.message);
+    
+    if (attempts < DATABASE_CONFIG.RETRY_ATTEMPTS) {
+      // Esperar antes del siguiente intento (backoff exponencial)
+      const delay = Math.min(1000 * Math.pow(2, attempts), 10000);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return fetchWithRetry(url, options, attempts);
+    }
+    
+    throw error;
+  }
+}
+
+// MANEJAR SAVES PENDIENTES
+function addToPendingSaves(userData) {
+  // Evitar duplicados
+  pendingSaves = pendingSaves.filter(item => item.userID !== userData.userID);
+  
+  pendingSaves.push({
+    ...userData,
+    pendingSince: Date.now()
+  });
+  
+  console.log(`Agregado a cola de guardado: ${userData.mainUserName} (${pendingSaves.length} pendientes)`);
+}
+
+function removeFromPendingSaves(userID) {
+  const initialLength = pendingSaves.length;
+  pendingSaves = pendingSaves.filter(item => item.userID !== userID);
+  
+  if (pendingSaves.length < initialLength) {
+    console.log(`Removido de cola de guardado: ${userID}`);
+  }
+}
+
+// PROCESAR SAVES PENDIENTES
+async function processPendingSaves() {
+  if (!isOnline || pendingSaves.length === 0) return;
+  
+  console.log(`Procesando ${pendingSaves.length} saves pendientes...`);
+  
+  const toProcess = [...pendingSaves];
+  
+  for (const userData of toProcess) {
+    try {
+      const result = await saveToDatabaseAsync(userData);
+      if (result.success) {
+        removeFromPendingSaves(userData.userID);
+      }
+      
+      // Pequeña pausa entre requests
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+    } catch (error) {
+      console.error('Error procesando save pendiente:', error);
+    }
+  }
+}
+
+// MOSTRAR ESTADO DE LA BASE DE DATOS
+function showDatabaseStatus(type, message) {
+  const statusDiv = document.getElementById('databaseStatus') || createDatabaseStatusDiv();
+  
+  statusDiv.className = `database-status ${type}`;
+  statusDiv.textContent = message;
+  statusDiv.style.opacity = '1';
+  
+  // Auto-hide después de 3 segundos
+  setTimeout(() => {
+    statusDiv.style.opacity = '0';
+  }, 3000);
+}
+
+function createDatabaseStatusDiv() {
+  const statusDiv = document.createElement('div');
+  statusDiv.id = 'databaseStatus';
+  statusDiv.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #FFD700;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 2px solid #FFD700;
+    backdrop-filter: blur(10px);
+  `;
+  
+  document.body.appendChild(statusDiv);
+  return statusDiv;
+}
+
+// ==========================================
+// MODIFICACIONES A FUNCIONES EXISTENTES
+// ==========================================
+
+// FUNCIÓN SAVE DATA MODIFICADA
+function saveData() {
+  // Guardar localmente primero (comportamiento existente)
+  if (!aiWorkbookUserMainName || aiWorkbookUserMainName.trim().length === 0) {
+    saveTemporaryData();
+    return;
+  }
+  
+  // Recopilar datos
+  const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
+  inputs.forEach(input => {
+    if (input.value && input.value.trim()) {
+      aiWorkbookUserData[input.id] = input.value.trim();
+    }
+  });
+  
+  aiWorkbookUserData.mainUserName = aiWorkbookUserMainName;
+  aiWorkbookUserData.userID = aiWorkbookUserData.userID || generateUserID(aiWorkbookUserMainName);
+  aiWorkbookUserData.timestamp = aiWorkbookUserData.timestamp || new Date().toISOString();
+  aiWorkbookUserData.lastUpdated = new Date().toISOString();
+  aiWorkbookUserData.completedSections = Object.keys(aiWorkbookUserData).length;
+  
+  // Guardar localmente
+  try {
+    const userKey = `aiWorkbook_${aiWorkbookUserMainName.replace(/\s+/g, '_')}`;
+    localStorage.setItem(userKey, JSON.stringify(aiWorkbookUserData));
+    localStorage.setItem('aiWorkbookCurrentUser', aiWorkbookUserMainName);
+    console.log('Datos guardados localmente');
+  } catch (error) {
+    console.error('Error guardando localmente:', error);
+  }
+  
+  // Intentar guardar en base de datos (asíncrono)
+  saveToDatabaseAsync(aiWorkbookUserData).catch(error => {
+    console.log('Save a BD falló, datos seguros localmente');
+  });
+}
+
+// FUNCIÓN LOAD SAVED DATA MODIFICADA
+async function loadSavedData() {
+  try {
+    const currentUser = localStorage.getItem('aiWorkbookCurrentUser');
+    
+    // Intentar cargar desde base de datos primero
+    if (currentUser && isOnline && DATABASE_CONFIG.ENABLED) {
+      console.log('Intentando cargar desde base de datos...');
+      
+      try {
+        const cloudData = await loadFromDatabase(currentUser);
+        if (cloudData) {
+          console.log('Datos cargados desde la nube, sincronizando...');
+          restoreUserData(cloudData);
+          
+          // También actualizar localStorage con datos de la nube
+          const userKey = `aiWorkbook_${currentUser.replace(/\s+/g, '_')}`;
+          localStorage.setItem(userKey, JSON.stringify(cloudData));
+          
+          return;
+        }
+      } catch (error) {
+        console.log('Error cargando desde nube, usando datos locales');
+      }
+    }
+    
+    // Fallback: cargar desde localStorage
+    if (currentUser) {
+      const userKey = `aiWorkbook_${currentUser.replace(/\s+/g, '_')}`;
+      const savedUserData = localStorage.getItem(userKey);
+      
+      if (savedUserData) {
+        console.log(`Cargando datos locales: ${currentUser}`);
+        restoreUserData(JSON.parse(savedUserData));
+        return;
+      }
+    }
+    
+    // Fallback final: datos temporales
+    const tempData = localStorage.getItem('aiWorkbook_tempData');
+    if (tempData) {
+      console.log('Cargando datos temporales');
+      restoreUserData(JSON.parse(tempData));
+    }
+    
+  } catch (error) {
+    console.error('Error cargando datos:', error);
+  }
+}
+
+// ==========================================
+// EVENTOS Y CONFIGURACIÓN
+// ==========================================
+
+// DETECTAR ESTADO DE CONEXIÓN
+window.addEventListener('online', () => {
+  isOnline = true;
+  console.log('Conexión restaurada');
+  showDatabaseStatus('success', 'Conexión restaurada');
+  
+  // Procesar saves pendientes después de un momento
+  setTimeout(processPendingSaves, 2000);
+});
+
+window.addEventListener('offline', () => {
+  isOnline = false;
+  console.log('Conexión perdida');
+  showDatabaseStatus('error', 'Sin conexión - guardado local activo');
+});
+
+// PROCESAR SAVES PENDIENTES PERIÓDICAMENTE
+setInterval(() => {
+  if (isOnline && pendingSaves.length > 0) {
+    processPendingSaves();
+  }
+}, 30000); // Cada 30 segundos
+
+// FUNCIÓN DE TESTING DE CONEXIÓN
+async function testDatabaseConnection() {
+  if (!DATABASE_CONFIG.ENABLED) {
+    console.log('Base de datos deshabilitada');
+    return false;
+  }
+  
+  try {
+    const response = await fetch(DATABASE_CONFIG.APPS_SCRIPT_URL + '?action=test', {
+      method: 'GET',
+      timeout: 5000
+    });
+    
+    const result = await response.json();
+    console.log('Test de conexión:', result);
+    
+    return result.success;
+    
+  } catch (error) {
+    console.error('Error en test de conexión:', error);
+    return false;
+  }
+}
+
+// MOSTRAR ESTADÍSTICAS (OPCIONAL)
+async function showWorkbookStats() {
+  const stats = await getWorkbookStatistics();
+  if (stats) {
+    console.log('Estadísticas del Workbook:', stats);
+    
+    // Crear modal o área para mostrar estadísticas
+    showCustomMessage(`
+      Usuarios totales: ${stats.totalUsers}
+      Workbooks completados: ${stats.completedWorkbooks}
+      Contenido desbloqueado: ${stats.unlockedContent}
+    `);
+  }
+}
+
+// ==========================================
+// ESTILOS CSS ADICIONALES
+// ==========================================
+
+// Agregar estilos para el indicador de estado
+const databaseStyles = `
+<style>
+.database-status {
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(10px);
+  max-width: 300px;
+  text-align: center;
+}
+
+.database-status.success {
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+}
+
+.database-status.error {
+  color: #FF6B6B;
+  border: 2px solid #FF6B6B;
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.database-status.info {
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Indicador de conexión */
+.connection-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  z-index: 10000;
+  transition: all 0.3s ease;
+}
+
+.connection-indicator.online {
+  background: #4CAF50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.connection-indicator.offline {
+  background: #FF6B6B;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+</style>
+`;
+
+// Inyectar estilos
+document.head.insertAdjacentHTML('beforeend', databaseStyles);
+
+// Crear indicador de conexión
+const createConnectionIndicator = () => {
+  const indicator = document.createElement('div');
+  indicator.className = `connection-indicator ${isOnline ? 'online' : 'offline'}`;
+  indicator.title = isOnline ? 'Conectado a la base de datos' : 'Sin conexión - modo offline';
+  document.body.appendChild(indicator);
+  
+  // Actualizar indicador según estado
+  const updateIndicator = () => {
+    indicator.className = `connection-indicator ${isOnline ? 'online' : 'offline'}`;
+    indicator.title = isOnline ? 'Conectado a la base de datos' : 'Sin conexión - modo offline';
+  };
+  
+  window.addEventListener('online', updateIndicator);
+  window.addEventListener('offline', updateIndicator);
+};
+
+// Crear indicador al cargar
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(createConnectionIndicator, 1000);
+  
+  // Test inicial de conexión
+  if (DATABASE_CONFIG.ENABLED) {
+    testDatabaseConnection().then(success => {
+      if (success) {
+        showDatabaseStatus('success', 'Conectado a la base de datos');
+      } else {
+        showDatabaseStatus('error', 'Error de conexión con base de datos');
+      }
+    });
+  }
+});
+
+console.log('Sistema de base de datos inicializado', { 
+  enabled: DATABASE_CONFIG.ENABLED, 
+  online: isOnline,
+  url: DATABASE_CONFIG.APPS_SCRIPT_URL 
+});
   </script>
 </body>
 </html>
