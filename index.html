@@ -2072,7 +2072,7 @@ print(f"Accuracy: {accuracy:.2f}")
             
             <div id="simpleToolKit" style="min-height: 250px; text-align: center; color: rgba(255, 215, 0, 0.5); font-size: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center;">
               <div style="font-size: 3rem; margin-bottom: 15px;">🎒</div>
-              <div>Haz clic en las herramientas de arriba para llenartu kit</div>
+              <div>Haz clic en las herramientas de arriba para llenar tu kit</div>
             </div>
             
             <button onclick="checkSimpleKit()" style="width: 100%; background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; border: none; padding: 18px; border-radius: 15px; font-family: 'Orbitron', monospace; font-weight: 700; font-size: 1.1rem; cursor: pointer; margin-top: 20px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
@@ -2253,12 +2253,28 @@ print(f"Accuracy: {accuracy:.2f}")
   </div>
 
   <script>
+    // ========================================
+    // CONFIGURACIÓN DE BASE DE DATOS - REEMPLAZA CON TU URL
+    // ========================================
+    const APPS_SCRIPT_URL = 'TU_URL_DE_APPS_SCRIPT_AQUÍ';
+    // Ejemplo: 'https://script.google.com/macros/s/AKfycbxxx.../exec'
+
     // Variables globales con IDs únicos y sistema de nombres
     let aiWorkbookUserData = {};
     let aiWorkbookUserMainName = '';
     let currentQuizQuestion = 0;
     let quizAnswers = [];
     let isContentUnlocked = false;
+    
+    // Variables globales para los juegos
+    let simpleKit = [];
+    let simpleMatchScore = 0;
+    let selectedTool = null;
+    let simpleMatches = {
+      'opencv': 'see-photos',
+      'chatbot': 'chat-people', 
+      'predictor': 'predict-future'
+    };
     
     // PREGUNTAS DEL QUIZ AVANZADO
     const quizQuestions = [
@@ -2328,6 +2344,123 @@ print(f"Accuracy: {accuracy:.2f}")
         description: "Ves el big picture y conectas tecnología con oportunidades de negocio. Tu rol es identificar dónde la IA puede crear valor real, diseñar productos y liderar equipos hacia objetivos ambiciosos."
       }
     };
+
+    // ========================================
+    // FUNCIONES DE CONEXIÓN A BASE DE DATOS
+    // ========================================
+
+    // FUNCIÓN PARA LLAMAR A APPS SCRIPT
+    async function callAppsScript(action, userData = null) {
+      try {
+        console.log(`📡 Enviando ${action} a Apps Script...`);
+        
+        const payload = {
+          action: action,
+          userData: userData,
+          userID: aiWorkbookUserData.userID,
+          userName: aiWorkbookUserMainName
+        };
+
+        const response = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        
+        if (!result.success) {
+          throw new Error(result.error || 'Error desconocido');
+        }
+
+        console.log(`✅ ${action} exitoso:`, result);
+        return result.data;
+
+      } catch (error) {
+        console.error(`❌ Error en ${action}:`, error);
+        
+        // Fallback a localStorage si falla la conexión
+        console.log('🔄 Usando respaldo local...');
+        return handleLocalFallback(action, userData);
+      }
+    }
+
+    // SISTEMA DE RESPALDO LOCAL
+    function handleLocalFallback(action, userData) {
+      try {
+        switch (action) {
+          case 'save':
+            return saveToLocalStorage(userData);
+          case 'load':
+            return loadFromLocalStorage();
+          default:
+            return null;
+        }
+      } catch (error) {
+        console.error('❌ Error en respaldo local:', error);
+        return null;
+      }
+    }
+
+    function saveToLocalStorage(userData) {
+      try {
+        const userKey = `aiWorkbook_${aiWorkbookUserMainName.replace(/\s+/g, '_')}`;
+        localStorage.setItem(userKey, JSON.stringify(userData));
+        localStorage.setItem('aiWorkbookCurrentUser', aiWorkbookUserMainName);
+        return { action: 'saved_locally', timestamp: new Date().toISOString() };
+      } catch (error) {
+        console.error('❌ Error guardando localmente:', error);
+        return null;
+      }
+    }
+
+    function loadFromLocalStorage() {
+      try {
+        const currentUser = localStorage.getItem('aiWorkbookCurrentUser');
+        if (currentUser) {
+          const userKey = `aiWorkbook_${currentUser.replace(/\s+/g, '_')}`;
+          const savedData = localStorage.getItem(userKey);
+          return savedData ? JSON.parse(savedData) : null;
+        }
+        return null;
+      } catch (error) {
+        console.error('❌ Error cargando localmente:', error);
+        return null;
+      }
+    }
+
+    // FUNCIÓN PARA PROBAR CONEXIÓN
+    async function testConnection() {
+      try {
+        console.log('🧪 Probando conexión a Apps Script...');
+        
+        const response = await fetch(APPS_SCRIPT_URL + '?action=test');
+        const result = await response.json();
+        
+        if (result.success) {
+          console.log('✅ Conexión exitosa con Apps Script');
+          showSaveMessage('¡Conexión con la base de datos establecida!');
+          return true;
+        } else {
+          throw new Error(result.error);
+        }
+        
+      } catch (error) {
+        console.error('❌ Error de conexión:', error);
+        showSaveMessage('Sin conexión - funcionando en modo local');
+        return false;
+      }
+    }
+
+    // ========================================
+    // FUNCIONES PRINCIPALES DEL WORKBOOK
+    // ========================================
 
     // 🖼️ SISTEMA DE CARGA DE LOGO CON MÚLTIPLES OPCIONES
     function tryAlternativeLogos(imgElement) {
@@ -2522,7 +2655,7 @@ print(f"Accuracy: {accuracy:.2f}")
       resultContainer.style.display = 'block';
 
       saveData();
-      showSaveMessage();
+      showSaveMessage('¡Quiz completado y guardado!');
     }
 
     // Configurar slider de Python
@@ -2583,7 +2716,7 @@ print(f"Accuracy: {accuracy:.2f}")
           
           updateProjectResult();
           saveData();
-          showSaveMessage();
+          showSaveMessage('¡Proyecto seleccionado!');
         });
       });
       
@@ -2683,8 +2816,6 @@ print(f"Accuracy: {accuracy:.2f}")
       return specs[projectType] || specs['nlp-system'];
     }
 
-    // ========== SISTEMA DE CÓDIGO INTELIGENTE MEJORADO ==========
-
     // Variables para el sistema de código
     let codeInputs = [];
     let currentInputIndex = 0;
@@ -2709,11 +2840,11 @@ print(f"Accuracy: {accuracy:.2f}")
         input.disabled = false;
         input.readOnly = false;
         input.style.pointerEvents = 'auto';
-        input.setAttribute('maxlength', '4'); // Permitir hasta 4 dígitos para auto-distribución
+        input.setAttribute('maxlength', '4');
         
-        // Evento de entrada (AUTO-DISTRIBUCIÓN INTELIGENTE)
+        // Evento de entrada
         input.addEventListener('input', function(e) {
-          let value = this.value.replace(/[^0-9]/g, ''); // Solo números
+          let value = this.value.replace(/[^0-9]/g, '');
           
           if (value.length === 0) {
             clearCodeFeedback();
@@ -2972,16 +3103,6 @@ print(f"Accuracy: {accuracy:.2f}")
     }
 
     // ========== FUNCIONES SÚPER SIMPLES Y FUNCIONALES ==========
-
-    // Variables globales para los juegos
-    let simpleKit = [];
-    let simpleMatchScore = 0;
-    let selectedTool = null;
-    let simpleMatches = {
-      'opencv': 'see-photos',
-      'chatbot': 'chat-people', 
-      'predictor': 'predict-future'
-    };
 
     // ========== SIMULADOR DE KIT DE IA ==========
     function addSimpleTool(toolName) {
@@ -3311,33 +3432,98 @@ print(f"Accuracy: {accuracy:.2f}")
       }, 3000);
     }
 
-    // Guardar datos
-    function saveData() {
+    // ========== FUNCIONES DE GUARDADO CON BASE DE DATOS ==========
+
+    // NUEVA FUNCIÓN DE GUARDADO (CON BASE DE DATOS)
+    async function saveData() {
       if (!aiWorkbookUserMainName || aiWorkbookUserMainName.trim().length === 0) {
+        console.log('⚠️ No hay nombre de usuario, guardando temporalmente...');
         saveTemporaryData();
         return;
       }
-      
+
+      // Recopilar todos los datos del formulario
       const inputs = Array.from(document.querySelectorAll('.fun-input, .fun-textarea'));
       inputs.forEach(input => {
         if (input.value && input.value.trim()) {
           aiWorkbookUserData[input.id] = input.value.trim();
         }
       });
-      
+
+      // Agregar metadatos
       aiWorkbookUserData.mainUserName = aiWorkbookUserMainName;
-      aiWorkbookUserData.userID = generateUserID(aiWorkbookUserMainName);
+      aiWorkbookUserData.userID = aiWorkbookUserData.userID || generateUserID(aiWorkbookUserMainName);
       aiWorkbookUserData.timestamp = aiWorkbookUserData.timestamp || new Date().toISOString();
       aiWorkbookUserData.lastUpdated = new Date().toISOString();
       aiWorkbookUserData.completedSections = Object.keys(aiWorkbookUserData).length;
-      
+
       try {
-        const userKey = `aiWorkbook_${aiWorkbookUserMainName.replace(/\s+/g, '_')}`;
-        localStorage.setItem(userKey, JSON.stringify(aiWorkbookUserData));
-        localStorage.setItem('aiWorkbookCurrentUser', aiWorkbookUserMainName);
-        console.log('💾 Datos guardados exitosamente');
+        // Intentar guardar en la base de datos
+        const result = await callAppsScript('save', aiWorkbookUserData);
+        
+        if (result) {
+          console.log('💾 Datos guardados en la base de datos');
+          
+          // También guardar localmente como respaldo
+          saveToLocalStorage(aiWorkbookUserData);
+          
+          // Mostrar mensaje de éxito
+          showSaveMessage('¡Datos guardados en la nube!');
+        }
+        
       } catch (error) {
-        console.error('❌ Error guardando datos:', error);
+        console.error('❌ Error guardando en la base de datos:', error);
+        showSaveMessage('Datos guardados localmente (sin conexión)');
+      }
+    }
+
+    // NUEVA FUNCIÓN DE CARGA (CON BASE DE DATOS)
+    async function loadSavedData() {
+      try {
+        console.log('🔄 Intentando cargar datos de la base de datos...');
+        
+        // Primero intentar cargar usuario actual local
+        const currentUser = localStorage.getItem('aiWorkbookCurrentUser');
+        
+        if (currentUser) {
+          // Intentar cargar desde la base de datos
+          const savedData = await callAppsScript('load', null);
+          
+          if (savedData && savedData.mainUserName) {
+            console.log(`📊 Datos cargados desde la base de datos para: ${savedData.mainUserName}`);
+            restoreUserData(savedData);
+            return;
+          }
+        }
+        
+        // Si no hay datos en la base de datos, cargar desde localStorage
+        console.log('🔄 Cargando desde almacenamiento local...');
+        const localData = loadFromLocalStorage();
+        
+        if (localData) {
+          console.log('📊 Datos cargados desde almacenamiento local');
+          restoreUserData(localData);
+        }
+        
+        // Cargar datos temporales si existen
+        const tempData = localStorage.getItem('aiWorkbook_tempData');
+        if (tempData && !localData) {
+          console.log('🔄 Cargando datos temporales');
+          restoreUserData(JSON.parse(tempData));
+        }
+        
+      } catch (error) {
+        console.error('❌ Error cargando datos:', error);
+        
+        // Fallback completo a localStorage
+        try {
+          const localData = loadFromLocalStorage();
+          if (localData) {
+            restoreUserData(localData);
+          }
+        } catch (localError) {
+          console.error('❌ Error en fallback local:', localError);
+        }
       }
     }
 
@@ -3356,31 +3542,6 @@ print(f"Accuracy: {accuracy:.2f}")
         console.log('💾 Datos temporales guardados');
       } catch (error) {
         console.error('❌ Error guardando datos temporales:', error);
-      }
-    }
-
-    function loadSavedData() {
-      try {
-        const currentUser = localStorage.getItem('aiWorkbookCurrentUser');
-        
-        if (currentUser) {
-          const userKey = `aiWorkbook_${currentUser.replace(/\s+/g, '_')}`;
-          const savedUserData = localStorage.getItem(userKey);
-          
-          if (savedUserData) {
-            console.log(`🔄 Cargando datos del usuario: ${currentUser}`);
-            restoreUserData(JSON.parse(savedUserData));
-            return;
-          }
-        }
-        
-        const tempData = localStorage.getItem('aiWorkbook_tempData');
-        if (tempData) {
-          console.log('🔄 Cargando datos temporales');
-          restoreUserData(JSON.parse(tempData));
-        }
-      } catch (error) {
-        console.error('❌ Error cargando datos:', error);
       }
     }
 
@@ -3449,16 +3610,17 @@ print(f"Accuracy: {accuracy:.2f}")
         }
         
         console.log('✅ Datos restaurados exitosamente');
-        setTimeout(showSaveMessage, 1000);
+        setTimeout(() => showSaveMessage('Datos cargados desde la nube'), 1000);
         
       } catch (error) {
         console.error('❌ Error restaurando datos:', error);
       }
     }
 
-    function showSaveMessage() {
+    function showSaveMessage(customMessage = null) {
       const message = document.getElementById('aiWorkbookSaveMessage');
       if (message) {
+        message.textContent = customMessage || '✨ ¡DATOS GUARDADOS MÁGICAMENTE!';
         message.classList.add('show');
         
         setTimeout(() => {
@@ -3472,21 +3634,36 @@ print(f"Accuracy: {accuracy:.2f}")
       inputs.forEach(input => {
         input.addEventListener('input', function() {
           clearTimeout(this.saveTimeout);
-          this.saveTimeout = setTimeout(() => {
-            saveData();
-          }, 1000);
+          this.saveTimeout = setTimeout(async () => {
+            await saveData();
+          }, 2000); // 2 segundos de espera
         });
         
-        input.addEventListener('blur', saveData);
+        input.addEventListener('blur', async () => {
+          await saveData();
+        });
       });
 
-      setInterval(saveData, 15000);
-      document.addEventListener('click', () => setTimeout(saveData, 200));
+      // Guardar cada 30 segundos
+      setInterval(async () => {
+        if (aiWorkbookUserMainName) {
+          await saveData();
+        }
+      }, 30000);
+      
+      // Guardar al hacer clic
+      document.addEventListener('click', () => {
+        setTimeout(async () => {
+          if (aiWorkbookUserMainName) {
+            await saveData();
+          }
+        }, 500);
+      });
     }
 
     async function downloadWorkbook() {
       console.log('🚀 INICIANDO DESCARGA...');
-      saveData();
+      await saveData();
       
       try {
         if (!window.html2canvas || !window.jspdf) {
@@ -3562,11 +3739,20 @@ print(f"Accuracy: {accuracy:.2f}")
     }
 
     // ========== INICIALIZACIÓN PRINCIPAL ==========
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('🔄 Inicializando workbook de IA avanzado...');
+    document.addEventListener('DOMContentLoaded', async function() {
+      console.log('🔄 Inicializando workbook con base de datos...');
+      
+      // Probar conexión a la base de datos
+      const connected = await testConnection();
+      
+      if (connected) {
+        console.log('🌐 Modo online - base de datos conectada');
+      } else {
+        console.log('📴 Modo offline - usando almacenamiento local');
+      }
       
       // Cargar datos guardados
-      loadSavedData();
+      await loadSavedData();
       
       // Configurar sistemas principales
       setupNameSystem();
@@ -3588,21 +3774,26 @@ print(f"Accuracy: {accuracy:.2f}")
         logoElement.onerror = () => tryAlternativeLogos(logoElement);
       }
       
-      console.log('🚀 Workbook de desarrollo de IA cargado completamente!');
+      console.log('🚀 Workbook con base de datos cargado completamente!');
       
       // Mensaje de bienvenida
       setTimeout(() => {
         if (aiWorkbookUserMainName) {
-          showSaveMessage();
+          showSaveMessage('¡Bienvenido de vuelta! Datos sincronizados');
           console.log(`👋 ¡Bienvenido de vuelta, ${aiWorkbookUserMainName}!`);
         }
       }, 1000);
     });
 
     // Guardar antes de salir
-    window.addEventListener('beforeunload', saveData);
+    window.addEventListener('beforeunload', async (e) => {
+      if (aiWorkbookUserMainName) {
+        // Para operaciones síncronas en beforeunload
+        saveToLocalStorage(aiWorkbookUserData);
+      }
+    });
     
-    console.log('🎯 Sistema de código inteligente con auto-distribución listo!');
+    console.log('🎯 Sistema completo con base de datos listo!');
   </script>
 </body>
 </html>
